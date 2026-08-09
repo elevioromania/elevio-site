@@ -61,7 +61,13 @@ export async function POST(request: Request) {
   lead.notifiedTeam = teamResult.ok;
   lead.audioEmailSent = audioResult.ok;
 
-  await saveLead(lead);
+  try {
+    await saveLead(lead);
+  } catch {
+    // Best-effort only: serverless hosts (e.g. Netlify Functions) have a
+    // read-only filesystem, so local persistence can fail. The emails above
+    // already went out, which is the part that must not fail silently.
+  }
 
   return NextResponse.json({
     ok: true,
