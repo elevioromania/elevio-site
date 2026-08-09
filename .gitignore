@@ -1,0 +1,3 @@
+# Claude Code local/session-specific files (not portable, don't commit)
+.claude/settings.local.json
+start-dev.cmd
