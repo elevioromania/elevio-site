@@ -25,7 +25,7 @@ const ITEMS = [
   },
   {
     q: "Pot renunța oricând?",
-    a: "Da. Nu există obligații pe termen lung — începi cu Etapa Inițială gratuită și treci la un plan plătit doar când ești convins că merită.",
+    a: "Da. Nu există obligații pe termen lung — poți renunța oricând, fără penalizări.",
   },
 ];
 

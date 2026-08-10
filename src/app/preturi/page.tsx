@@ -7,7 +7,7 @@ import FAQSection from "@/components/FAQSection";
 export const metadata: Metadata = {
   title: "Prețuri — Elevio",
   description:
-    "Trei etape simple: Gratuit pentru primul client de test, 120€/lună pentru volum constant, 200€+/lună pentru volum mare.",
+    "Trei planuri simple: START de la 130€/lună, PRO (cel mai ales) de la 300€/lună, BUSINESS de la 600€/lună — recepționer vocal AI în română, 24/7.",
 };
 
 export default function PreturiPage() {
@@ -15,8 +15,8 @@ export default function PreturiPage() {
     <>
       <PageIntro
         eyebrow="Prețuri"
-        title="Etape simple, ușor de înțeles"
-        text="Începi gratuit cu primul client de test, apoi treci la etapa potrivită volumului tău de apeluri. Noi ne ocupăm de configurare și implementare."
+        title="Planuri simple, ușor de înțeles"
+        text="Alege planul potrivit volumului tău de apeluri. Noi ne ocupăm de configurare și implementare."
       />
 
       <section className="py-20">
