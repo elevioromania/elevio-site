@@ -15,7 +15,7 @@ const TIERS = [
       "Rezumat după fiecare apel",
       "Suport direct din partea echipei Elevio",
     ],
-    cta: "Începe testul gratuit",
+    cta: "Programează un demo",
   },
   {
     name: "Etapa Intermediară",
@@ -49,20 +49,20 @@ const TIERS = [
       "Rapoarte periodice și optimizare continuă",
       "Suport prioritar din partea echipei Elevio",
     ],
-    cta: "Discută oferta personalizată",
+    cta: "Programează un demo",
   },
 ];
 
 export default function PricingCards() {
   return (
-    <div className="grid gap-6 lg:grid-cols-3">
+    <div className="grid gap-6 lg:grid-cols-3 lg:items-center">
       {TIERS.map((tier) => (
         <div
           key={tier.name}
-          className={`relative flex flex-col rounded-3xl border p-8 transition-shadow duration-300 ${
+          className={`relative flex flex-col rounded-3xl border transition-shadow duration-300 ${
             tier.highlighted
-              ? "border-elevio-primary bg-elevio-dark text-white shadow-2xl shadow-elevio-primary/30 lg:-translate-y-3"
-              : "border-elevio-border bg-white text-elevio-dark shadow-sm hover:shadow-md"
+              ? "z-10 border-elevio-accent bg-elevio-dark p-8 text-white shadow-2xl shadow-elevio-accent/40 ring-2 ring-elevio-accent/60 lg:-translate-y-2 lg:scale-105 lg:p-10"
+              : "border-elevio-border bg-white p-8 text-elevio-dark shadow-sm hover:shadow-md"
           }`}
         >
           {tier.badge && (
@@ -86,7 +86,13 @@ export default function PricingCards() {
             {tier.tagline}
           </p>
 
-          <div className="mt-6 flex items-baseline gap-1">
+          {tier.launchOffer && (
+            <span className="mt-4 inline-flex w-fit items-center rounded-full bg-elevio-accent px-3 py-1 text-xs font-bold text-elevio-dark">
+              {LAUNCH_OFFER_TEXT}
+            </span>
+          )}
+
+          <div className="mt-4 flex items-baseline gap-1">
             <span className="text-4xl font-extrabold">{tier.price}</span>
             <span
               className={`text-sm ${
@@ -103,11 +109,6 @@ export default function PricingCards() {
               }`}
             >
               {tier.calls}
-            </p>
-          )}
-          {tier.launchOffer && (
-            <p className="mt-3 rounded-lg bg-elevio-accent/15 px-3 py-2 text-xs font-semibold text-elevio-accent">
-              {LAUNCH_OFFER_TEXT}
             </p>
           )}
 

@@ -46,4 +46,5 @@ next-env.d.ts
 
 # Claude Code local/session-specific files (not portable, don't commit)
 .claude/settings.local.json
+.claude/scheduled_tasks.lock
 start-dev.cmd

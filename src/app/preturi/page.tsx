@@ -22,10 +22,10 @@ export default function PreturiPage() {
       <section className="py-20">
         <div className="container-elevio">
           <PricingCards />
-          <p className="mx-auto mt-8 max-w-2xl text-center text-xs text-elevio-dark/50">
-            Prețurile pot fi ajustate în funcție de industrie, volum de
-            apeluri și integrările necesare. Discutăm exact ce ți se
-            potrivește la demo.
+          <p className="mx-auto mt-10 max-w-2xl text-center text-xs text-elevio-dark/50">
+            Fără cost de instalare. Prețurile pot fi ajustate în funcție de
+            industrie, volum de apeluri și integrările necesare. Discutăm
+            exact ce ți se potrivește la demo.
           </p>
         </div>
       </section>
