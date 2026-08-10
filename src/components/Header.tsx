@@ -57,7 +57,7 @@ export default function Header() {
             href="/demo"
             className="rounded-full bg-elevio-accent px-5 py-2.5 text-sm font-semibold text-elevio-dark shadow-sm transition-colors hover:bg-white"
           >
-            Cere un demo
+            Testează gratuit
           </Link>
         </div>
 
@@ -118,7 +118,7 @@ export default function Header() {
             href="/demo"
             className="mt-2 rounded-full bg-elevio-accent px-5 py-3 text-center text-base font-semibold text-elevio-dark shadow-sm"
           >
-            Cere un demo
+            Testează gratuit
           </Link>
         </nav>
       </div>

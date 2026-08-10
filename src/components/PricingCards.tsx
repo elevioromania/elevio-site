@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { LAUNCH_OFFER_TEXT } from "@/lib/launchOffer";
 
 const TIERS = [
   {
@@ -10,7 +11,7 @@ const TIERS = [
     features: [
       "Recepționer vocal AI în română, configurat pentru afacerea ta",
       "Preluarea apelurilor cu toate detaliile importante",
-      "Escaladare la om când Elevio nu e sigur de răspuns",
+      "Transfer direct pe telefonul tău când Elevio nu e sigur de răspuns",
       "Rezumat după fiecare apel",
       "Suport direct din partea echipei Elevio",
     ],
@@ -24,6 +25,7 @@ const TIERS = [
     highlighted: true,
     badge: "CEL MAI ALES",
     calls: "Până la ~300 apeluri incluse",
+    launchOffer: true,
     features: [
       "Tot ce include Etapa Inițială",
       "Confirmări automate prin SMS",
@@ -101,6 +103,11 @@ export default function PricingCards() {
               }`}
             >
               {tier.calls}
+            </p>
+          )}
+          {tier.launchOffer && (
+            <p className="mt-3 rounded-lg bg-elevio-accent/15 px-3 py-2 text-xs font-semibold text-elevio-accent">
+              {LAUNCH_OFFER_TEXT}
             </p>
           )}
 

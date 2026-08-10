@@ -10,7 +10,8 @@ export default function Footer() {
           <p className="mt-4 max-w-sm text-sm leading-relaxed text-white/60">
             Recepționer vocal AI în limba română, disponibil 24/7. Niciun apel
             pierdut, niciodată. Elevio răspunde cald, natural, și nu
-            improvizează niciodată — escaladează la om când e nevoie.
+            improvizează niciodată — transferă apelul direct pe telefonul
+            tău, în câteva secunde, când e nevoie.
           </p>
         </div>
 

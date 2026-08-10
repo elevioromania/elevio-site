@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { LAUNCH_OFFER_TEXT } from "@/lib/launchOffer";
 
 const ROWS = [
   {
@@ -28,7 +29,11 @@ const ROWS = [
   },
 ];
 
-export default function PriceAnchor() {
+export default function PriceAnchor({
+  showPricingLink = false,
+}: {
+  showPricingLink?: boolean;
+}) {
   return (
     <section className="py-20">
       <div className="container-elevio">
@@ -41,6 +46,9 @@ export default function PriceAnchor() {
             <br />
             Elevio pornește de la 120€.
           </h2>
+          <p className="mx-auto mt-4 inline-block rounded-full bg-elevio-accent/15 px-4 py-1.5 text-xs font-semibold text-elevio-accent">
+            {LAUNCH_OFFER_TEXT}
+          </p>
         </div>
 
         <div className="mx-auto mt-10 max-w-3xl overflow-hidden rounded-2xl border border-elevio-border bg-white shadow-sm">
@@ -85,6 +93,14 @@ export default function PriceAnchor() {
           <p className="mt-3 text-xs text-elevio-dark/50">
             Fără obligații. Îl asculți, apoi decizi.
           </p>
+          {showPricingLink && (
+            <Link
+              href="/preturi"
+              className="mt-4 inline-block text-sm font-semibold text-elevio-primary hover:text-elevio-dark"
+            >
+              Vezi toate etapele de preț →
+            </Link>
+          )}
         </div>
       </div>
     </section>

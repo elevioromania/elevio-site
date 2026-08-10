@@ -21,7 +21,7 @@ const FEATURES = [
   },
   {
     title: "Nu improvizează niciodată",
-    text: "Când nu are un răspuns sigur, Elevio nu inventează — escaladează politicos apelul către un coleg din echipa ta.",
+    text: "Când nu are un răspuns sigur, Elevio nu inventează — transferă apelul direct pe telefonul tău, în câteva secunde.",
   },
 ];
 

@@ -13,7 +13,11 @@ const ITEMS = [
   },
   {
     q: "Ce se întâmplă dacă Elevio nu poate răspunde la o întrebare?",
-    a: "Nu improvizează niciodată. Dacă nu are un răspuns sigur, spune politicos că redirecționează apelul către un coleg din echipa ta sau că cineva va reveni cu un răspuns.",
+    a: "Nu improvizează niciodată. Dacă nu are un răspuns sigur, transferă apelul direct pe telefonul tău, în câteva secunde — sau, dacă nu răspunzi, spune politicos că cineva va reveni cu un răspuns.",
+  },
+  {
+    q: "Se integrează cu calendarul meu?",
+    a: "Da — Elevio poate verifica disponibilitatea în timp real și crea rezervări direct în calendarul tău (Cal.com, Calendly), exact cum face deja pentru DonCafe.",
   },
   {
     q: "Cât durează implementarea?",

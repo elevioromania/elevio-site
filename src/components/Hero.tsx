@@ -26,8 +26,8 @@ export default function Hero() {
           <p className="mt-6 max-w-xl text-lg leading-relaxed text-white/70">
             Elevio este recepționerul vocal AI care răspunde clienților tăi în
             română, 24/7 — preia rezervări, răspunde la întrebări și
-            escaladează la un om ori de câte ori e nevoie. Cald și natural,
-            nu ca un robot.
+            transferă apelul direct pe telefonul tău, în câteva secunde, ori
+            de câte ori e nevoie. Cald și natural, nu ca un robot.
           </p>
 
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">

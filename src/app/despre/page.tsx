@@ -44,9 +44,9 @@ export default function DesprePage() {
               </h2>
               <p className="mt-2 text-sm leading-relaxed text-elevio-dark/75">
                 Elevio nu improvizează niciodată. Când nu are un răspuns
-                sigur la o întrebare, spune politicos că redirecționează
-                apelul către un om — nu inventează informații despre afacerea
-                ta.
+                sigur la o întrebare, transferă apelul direct pe telefonul
+                tău, în câteva secunde — nu inventează informații despre
+                afacerea ta.
               </p>
             </div>
           </div>
