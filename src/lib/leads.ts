@@ -9,6 +9,7 @@ export type Lead = {
   phone: string;
   email: string;
   businessType: BusinessType;
+  businessDescription: string;
   createdAt: string;
   notifiedTeam: boolean;
   audioEmailSent: boolean;

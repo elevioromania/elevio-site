@@ -19,7 +19,7 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "Corp de cerere invalid." }, { status: 400 });
   }
 
-  const { name, phone, email, businessType } = (body ?? {}) as Record<string, unknown>;
+  const { name, phone, email, businessType, businessDescription } = (body ?? {}) as Record<string, unknown>;
 
   if (typeof name !== "string" || name.trim().length < 2) {
     return NextResponse.json({ error: "Numele este obligatoriu." }, { status: 400 });
@@ -48,6 +48,8 @@ export async function POST(request: Request) {
     phone: e164Phone,
     email: email.trim(),
     businessType: businessType as BusinessType,
+    businessDescription:
+      typeof businessDescription === "string" ? businessDescription.trim().slice(0, 2000) : "",
     createdAt: new Date().toISOString(),
     notifiedTeam: false,
     audioEmailSent: false,

@@ -6,6 +6,15 @@ import { businessTypeLabel } from "./autocalls";
 
 const DEMO_AUDIO_PATH = path.join(process.cwd(), "public", "audio", "elevio-demo.mp3");
 
+function escapeHtml(value: string): string {
+  return value
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#39;");
+}
+
 function getTransporter() {
   const user = process.env.GMAIL_USER;
   const pass = process.env.GMAIL_APP_PASSWORD;
@@ -40,16 +49,22 @@ export async function sendLeadNotification(lead: Lead): Promise<{ ok: boolean; e
         `Email: ${lead.email}`,
         `Tip afacere: ${businessTypeLabel(lead.businessType)}`,
         `Trimis la: ${lead.createdAt}`,
+        ...(lead.businessDescription ? ["", "Despre afacere:", lead.businessDescription] : []),
       ].join("\n"),
       html: `
         <h2>Lead nou de pe site-ul Elevio</h2>
         <table cellpadding="6" style="border-collapse:collapse">
-          <tr><td><strong>Nume</strong></td><td>${lead.name}</td></tr>
-          <tr><td><strong>Telefon</strong></td><td>${lead.phone}</td></tr>
-          <tr><td><strong>Email</strong></td><td>${lead.email}</td></tr>
+          <tr><td><strong>Nume</strong></td><td>${escapeHtml(lead.name)}</td></tr>
+          <tr><td><strong>Telefon</strong></td><td>${escapeHtml(lead.phone)}</td></tr>
+          <tr><td><strong>Email</strong></td><td>${escapeHtml(lead.email)}</td></tr>
           <tr><td><strong>Tip afacere</strong></td><td>${businessTypeLabel(lead.businessType)}</td></tr>
           <tr><td><strong>Trimis la</strong></td><td>${lead.createdAt}</td></tr>
         </table>
+        ${
+          lead.businessDescription
+            ? `<h3>Despre afacere</h3><p>${escapeHtml(lead.businessDescription).replace(/\n/g, "<br>")}</p>`
+            : ""
+        }
       `,
     });
     return { ok: true };

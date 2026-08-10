@@ -31,6 +31,7 @@ export default function LeadForm({
       phone: String(data.get("phone") || ""),
       email: String(data.get("email") || ""),
       businessType: String(data.get("businessType") || ""),
+      businessDescription: String(data.get("businessDescription") || ""),
     };
 
     try {
@@ -152,6 +153,22 @@ export default function LeadForm({
             </option>
           ))}
         </select>
+      </div>
+
+      <div>
+        <label htmlFor="businessDescription" className="block text-sm font-medium text-elevio-dark">
+          Spune-ne pe scurt despre afacerea ta
+        </label>
+        <textarea
+          id="businessDescription"
+          name="businessDescription"
+          rows={4}
+          placeholder="Ex: Restaurant cu specific italian, 40 de locuri, program 12-23..."
+          className="mt-1.5 w-full resize-y rounded-xl border border-elevio-border bg-white px-4 py-3 text-sm text-elevio-dark placeholder:text-elevio-dark/35 focus:border-elevio-primary focus:outline-none focus:ring-2 focus:ring-elevio-primary/20"
+        />
+        <p className="mt-1 text-xs text-elevio-dark/45">
+          Opțional — ne ajută să configurăm agentul potrivit pentru tine.
+        </p>
       </div>
 
       {status === "error" && (
