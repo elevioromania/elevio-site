@@ -1,5 +1,6 @@
 import Hero from "@/components/Hero";
 import SocialProof from "@/components/SocialProof";
+import AudioProof from "@/components/AudioProof";
 import HowItWorks from "@/components/HowItWorks";
 import Verticals from "@/components/Verticals";
 import Features from "@/components/Features";
@@ -11,6 +12,7 @@ export default function Home() {
     <>
       <Hero />
       <SocialProof />
+      <AudioProof />
       <HowItWorks />
       <Verticals />
       <Features />

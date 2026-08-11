@@ -1,7 +1,10 @@
-Pune aici fișierul demo audio, cu exact numele:
+Fișiere audio așteptate în acest folder:
 
   elevio-demo.mp3
+    Atașat automat la emailul trimis lead-urilor (src/lib/mailer.ts).
+    Fără el, emailul se trimite oricum, doar fără atașament.
 
-Emailul automat trimis lead-urilor (src/lib/mailer.ts) îl atașează automat
-dacă există la această cale. Până atunci, emailul se trimite oricum, doar
-fără mostra audio atașată.
+  agent-call-sample.mp3
+    Redat de playerul din secțiunea "Cât de repede răspunde agentul AI?"
+    de pe homepage (src/components/AudioProof.tsx). Fără el, playerul
+    arată un mesaj de tip "urmează să fie adăugată aici" în loc de buton.
