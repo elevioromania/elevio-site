@@ -1,5 +1,6 @@
 import PromoBanner from "@/components/PromoBanner";
 import Hero from "@/components/Hero";
+import WorkModes from "@/components/WorkModes";
 import SocialProof from "@/components/SocialProof";
 import TrustStat from "@/components/TrustStat";
 import AudioProof from "@/components/AudioProof";
@@ -14,6 +15,7 @@ export default function Home() {
     <>
       <PromoBanner />
       <Hero />
+      <WorkModes />
       <SocialProof />
       <TrustStat />
       <AudioProof />
