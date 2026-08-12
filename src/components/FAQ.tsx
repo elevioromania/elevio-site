@@ -17,7 +17,7 @@ const ITEMS = [
   },
   {
     q: "Se integrează cu calendarul meu?",
-    a: "Da — Elevio poate verifica disponibilitatea în timp real și crea rezervări direct în calendarul tău (Cal.com, Calendly), exact cum face deja pentru DonCafe.",
+    a: "Da — Elevio poate verifica disponibilitatea în timp real și crea rezervări direct în calendarul tău (Cal.com, Calendly).",
   },
   {
     q: "Cât durează implementarea?",

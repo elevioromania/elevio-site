@@ -33,9 +33,9 @@ export default function DesprePage() {
             </p>
             <p>
               Primul nostru exemplu real este{" "}
-              <strong className="text-elevio-dark">DonCafe</strong>, o
-              cafenea din București, unde Elevio răspunde deja la telefon și
-              preia rezervări direct în calendar.
+              <strong className="text-elevio-dark">Clypt România</strong>,
+              care a salvat peste 2.000€ printr-o singură implementare
+              Elevio.
             </p>
 
             <div className="rounded-2xl border border-elevio-border bg-elevio-secondary/30 p-6">
@@ -58,7 +58,8 @@ export default function DesprePage() {
             <ul className="mt-4 space-y-4 text-sm text-elevio-dark/75">
               <li>
                 <strong className="block text-elevio-dark">Poziționare</strong>
-                Niciun apel pierdut — recepționer vocal AI în română, 24/7.
+                Niciun apel ratat, niciun client pierdut — recepționer vocal
+                AI în română, 24/7.
               </li>
               <li>
                 <strong className="block text-elevio-dark">Pentru cine</strong>
@@ -66,7 +67,7 @@ export default function DesprePage() {
               </li>
               <li>
                 <strong className="block text-elevio-dark">Exemplu real</strong>
-                DonCafe, cafenea din București.
+                Clypt România.
               </li>
             </ul>
             <Link

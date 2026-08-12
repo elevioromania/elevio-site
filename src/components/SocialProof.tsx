@@ -7,13 +7,12 @@ export default function SocialProof() {
             Client real
           </span>
           <h2 className="text-balance text-2xl font-extrabold tracking-tight text-elevio-dark sm:text-3xl">
-            Primul nostru client: DonCafe, București
+            Clypt România a salvat peste 2.000€ prin implementarea unui
+            singur agent AI.
           </h2>
           <p className="max-w-xl text-elevio-dark/70">
-            Client activ din august 2026. Elevio răspunde la telefon în
-            locul recepției, preia rezervările, verifică disponibilitatea
-            direct în calendar și trimite confirmarea — fără să implice
-            echipa DonCafe.
+            Fără personal suplimentar la recepție, fără ore pierdute la
+            telefon — rezultatul unei singure implementări Elevio.
           </p>
         </div>
       </div>

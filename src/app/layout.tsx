@@ -10,7 +10,7 @@ const jakarta = Plus_Jakarta_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "Elevio — Niciun apel pierdut",
+  title: "Elevio — Niciun apel ratat. Niciun client pierdut.",
   description:
     "Recepționer vocal AI în limba română, disponibil 24/7. Elevio preia apelurile afacerii tale, răspunde clienților și nu improvizează niciodată.",
 };

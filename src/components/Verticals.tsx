@@ -26,11 +26,8 @@ export default function Verticals() {
     <section className="py-20">
       <div className="container-elevio">
         <div className="max-w-2xl">
-          <span className="text-xs font-bold uppercase tracking-wide text-elevio-primary">
+          <h2 className="text-balance text-3xl font-extrabold tracking-tight text-elevio-dark sm:text-4xl">
             Pentru cine
-          </span>
-          <h2 className="mt-3 text-balance text-3xl font-extrabold tracking-tight text-elevio-dark sm:text-4xl">
-            Construit pentru afaceri care trăiesc din telefon
           </h2>
           <p className="mt-4 text-elevio-dark/70">
             Elevio se configurează pe serviciile, programul și regulile tale

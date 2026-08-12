@@ -18,16 +18,15 @@ export default function Hero() {
           </span>
 
           <h1 className="mt-6 text-balance text-4xl font-extrabold leading-tight tracking-tight text-white sm:text-5xl">
-            Niciun apel pierdut.
+            <span className="text-elevio-accent">Niciun</span> apel ratat.
             <br />
-            Nicio programare ratată.
+            <span className="text-elevio-accent">Niciun</span> client pierdut.
           </h1>
 
           <p className="mt-6 max-w-xl text-lg leading-relaxed text-white/70">
             Elevio este recepționerul vocal AI care răspunde clienților tăi în
-            română, 24/7 — preia rezervări, răspunde la întrebări și
-            transferă apelul direct pe telefonul tău, în câteva secunde, ori
-            de câte ori e nevoie. Cald și natural, nu ca un robot.
+            română, 24/7 — preia rezervări, oferă informații și răspunde
+            tuturor întrebărilor.
           </p>
 
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">

@@ -14,9 +14,9 @@ export default function Logo({ className = "" }: { className?: string }) {
   return (
     <Link
       href="/"
-      className={`flex items-center gap-2 text-xl font-extrabold tracking-tight ${className}`}
+      className={`flex items-center gap-2.5 text-2xl font-extrabold tracking-tight ${className}`}
     >
-      <LayersMark className="h-8 w-9 shrink-0" />
+      <LayersMark className="h-10 w-11 shrink-0" />
       <span className="text-logo-gradient">Elevio</span>
     </Link>
   );

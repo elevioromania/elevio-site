@@ -24,7 +24,7 @@ export default function CallDemoCard() {
             <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-emerald-500" />
           </span>
           <span className="text-xs font-semibold uppercase tracking-wide text-elevio-dark/60">
-            Apel live · DonCafe
+            Apel live · Restaurant Demo
           </span>
         </div>
         <span className="text-xs font-medium text-elevio-dark/40">21:47</span>

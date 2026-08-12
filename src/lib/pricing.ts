@@ -19,7 +19,7 @@ export const PRICING_TIERS: PricingTier[] = [
     id: "start",
     name: "START",
     tagline: "Pentru afaceri mici și cabinete individuale",
-    price: "130€",
+    price: "150€",
     period: "/lună + TVA",
     calls: "Până la 150 apeluri",
     highlighted: false,

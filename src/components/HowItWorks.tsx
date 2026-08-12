@@ -6,13 +6,13 @@ const STEPS = [
   },
   {
     number: "2",
-    title: "Elevio înțelege cererea și verifică ce trebuie",
-    text: "Preia comanda sau rezervarea, verifică disponibilitatea reală când e cazul, și propune politicos alternative dacă varianta cerută nu e posibilă.",
+    title: "Elevio înțelege cererea și se adaptează",
+    text: "Preia comanda sau rezervarea, verifică disponibilitatea reală când e cazul, și propune alternative dacă varianta cerută nu e posibilă.",
   },
   {
     number: "3",
-    title: "Rezultatul ajunge gata făcut la tine",
-    text: "Rezervarea sau comanda apare notată complet, clientul primește confirmare, iar tu vezi transcriptul și rezumatul fiecărui apel.",
+    title: "Comanda ajunge notată, gata de procesat",
+    text: "Clientul primește confirmare imediat, iar rezervarea sau comanda apare completă, pregătită pentru tine.",
   },
 ];
 
@@ -28,9 +28,9 @@ export default function HowItWorks() {
             Trei pași. Zero bătăi de cap.
           </h2>
           <p className="mt-4 text-elevio-dark/70">
-            Configurarea o facem noi, cap-coadă. Pentru tine și pentru
-            clienții tăi, totul rămâne la fel — doar că telefonul nu mai sună
-            în gol.
+            Configurarea o facem noi, de la început până la sfârșit. Pentru
+            tine și pentru clienții tăi, totul rămâne la fel — doar că
+            telefonul nu mai sună în gol.
           </p>
         </div>
 
