@@ -8,10 +8,9 @@ export default function Footer() {
         <div className="md:col-span-2">
           <Logo />
           <p className="mt-4 max-w-sm text-sm leading-relaxed text-white/60">
-            Recepționer vocal AI în limba română, disponibil 24/7. Niciun apel
-            ratat, niciun client pierdut. Elevio răspunde cald, natural, și
-            nu improvizează niciodată — transferă apelul direct pe telefonul
-            tău, în câteva secunde, când e nevoie.
+            Rezervări preluate non-stop — inclusiv vineri seara, când tot
+            personalul e în tură. Numărul de persoane, ora și numele, notate
+            exact.
           </p>
         </div>
 
