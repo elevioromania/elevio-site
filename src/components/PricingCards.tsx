@@ -58,6 +58,13 @@ export default function PricingCards() {
                 {tier.period}
               </span>
             </div>
+            <p
+              className={`text-xs ${
+                tier.highlighted ? "text-white/45" : "text-elevio-dark/40"
+              }`}
+            >
+              + taxă de implementare &amp; taxe suplimentare
+            </p>
             {tier.calls && (
               <p
                 className={`mt-2 text-sm font-medium ${

@@ -7,7 +7,7 @@ import FAQSection from "@/components/FAQSection";
 export const metadata: Metadata = {
   title: "Prețuri — Elevio",
   description:
-    "Trei planuri simple: START de la 130€/lună, PRO (cel mai ales) de la 300€/lună, BUSINESS de la 600€/lună — recepționer vocal AI în română, 24/7.",
+    "Trei planuri simple: START de la 150€/lună, PRO (cel mai ales) de la 300€/lună, BUSINESS de la 600€/lună — recepționer vocal AI în română, 24/7.",
 };
 
 export default function PreturiPage() {
@@ -23,9 +23,9 @@ export default function PreturiPage() {
         <div className="container-elevio">
           <PricingCards />
           <p className="mx-auto mt-10 max-w-2xl text-center text-xs text-elevio-dark/50">
-            Fără cost de instalare. Prețurile pot fi ajustate în funcție de
-            industrie, volum de apeluri și integrările necesare. Discutăm
-            exact ce ți se potrivește la demo.
+            Prețurile pot fi ajustate în funcție de industrie, volum de
+            apeluri și integrările necesare. Discutăm exact ce ți se
+            potrivește la demo.
           </p>
         </div>
       </section>

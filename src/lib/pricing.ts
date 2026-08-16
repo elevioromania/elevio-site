@@ -37,7 +37,7 @@ export const PRICING_TIERS: PricingTier[] = [
   {
     id: "pro",
     name: "PRO",
-    tagline: "Pentru saloane, clinici și businessuri cu program plin",
+    tagline: "Pentru businessuri cu un volum ridicat de programări",
     price: "300€",
     period: "/lună + TVA",
     calls: "Până la 650 apeluri",
@@ -60,7 +60,7 @@ export const PRICING_TIERS: PricingTier[] = [
   {
     id: "business",
     name: "BUSINESS",
-    tagline: "Pentru companii mari și locații multiple",
+    tagline: "Pentru clinici, businessuri cu program plin și locații multiple",
     price: "600€",
     period: "/lună + TVA",
     calls: "Până la 1.200 apeluri",
