@@ -20,23 +20,40 @@ export default function DesprePage() {
         <div className="container-elevio grid gap-12 lg:grid-cols-3">
           <div className="lg:col-span-2 space-y-6 text-elevio-dark/75 leading-relaxed">
             <p>
-              Elevio a pornit de la o observație simplă: în restaurante,
-              magazine și service-uri auto, telefonul sună constant — și
-              fiecare apel nepreluat e, de cele mai multe ori, un client
-              pierdut. O recepție umană costă mult și nu poate fi disponibilă
-              24/7, în weekend sau la ore de vârf.
+              Suntem o agenție formată pe baza unei viziuni: să ajutăm
+              companiile să lucreze mai inteligent, mai eficient și fără
+              limite.
             </p>
             <p>
-              De aceea am construit un recepționer vocal AI care vorbește
-              română naturală, preia rezervări și comenzi, răspunde la
-              întrebări frecvente și nu se oprește niciodată din lucru.
+              Am pornit de la o idee simplă: AI-ul nu ar trebui doar să
+              răspundă, ci să lucreze.
             </p>
             <p>
-              Primul nostru exemplu real este{" "}
-              <strong className="text-elevio-dark">Clypt România</strong>,
-              care a salvat peste 2.000€ printr-o singură implementare
-              Elevio.
+              De aici a luat naștere misiunea noastră de a transforma
+              inteligența artificială într-un adevărat angajat digital,
+              disponibil 24/7. Un AI creat și configurat special pentru
+              fiecare companie, capabil să poarte conversații naturale cu
+              clienții, să răspundă la întrebări, să facă programări, să
+              gestioneze solicitări și să execute acțiuni, iar atunci când o
+              situație necesită experiența unui om, să transfere conversația
+              către un angajat real.
             </p>
+            <p>
+              Nu credem că tehnologia trebuie să înlocuiască oamenii. Credem
+              că trebuie să îi ajute să fie mai buni.
+            </p>
+            <p>
+              De aceea, construim soluții care preiau munca repetitivă, reduc
+              timpul pierdut și permit echipelor să se concentreze pe ceea ce
+              contează cu adevărat: clienții, dezvoltarea și creșterea
+              companiei.
+            </p>
+            <p>
+              Suntem la începutul drumului, dar avem o ambiție mare: să facem
+              AI-ul accesibil, util și indispensabil pentru cât mai multe
+              companii.
+            </p>
+            <p>Iar ceea ce construim astăzi este doar începutul.</p>
 
             <div className="rounded-2xl border border-elevio-border bg-elevio-secondary/30 p-6">
               <h2 className="text-lg font-semibold text-elevio-dark">
