@@ -1,7 +1,13 @@
 import { promises as fs } from "fs";
 import path from "path";
 
-export type BusinessType = "restaurant" | "magazin" | "service_auto" | "altul";
+export type BusinessType =
+  | "restaurant"
+  | "magazin"
+  | "service_auto"
+  | "medical"
+  | "beauty"
+  | "altul";
 
 export type Lead = {
   id: string;

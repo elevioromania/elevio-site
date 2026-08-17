@@ -8,6 +8,8 @@ const VALID_BUSINESS_TYPES: BusinessType[] = [
   "restaurant",
   "magazin",
   "service_auto",
+  "medical",
+  "beauty",
   "altul",
 ];
 

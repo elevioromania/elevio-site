@@ -6,6 +6,8 @@ const BUSINESS_TYPES = [
   { value: "restaurant", label: "Restaurant / cafenea" },
   { value: "magazin", label: "Magazin" },
   { value: "service_auto", label: "Service auto" },
+  { value: "medical", label: "Cabinet medical / clinică" },
+  { value: "beauty", label: "Salon / beauty" },
   { value: "altul", label: "Alt domeniu" },
 ];
 

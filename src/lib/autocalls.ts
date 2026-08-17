@@ -4,6 +4,8 @@ const BUSINESS_TYPE_LABELS: Record<BusinessType, string> = {
   restaurant: "un restaurant sau o cafenea",
   magazin: "un magazin",
   service_auto: "un service auto",
+  medical: "un cabinet medical sau o clinică",
+  beauty: "un salon sau studio beauty",
   altul: "afacerea dumneavoastră",
 };
 

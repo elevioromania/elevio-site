@@ -8,7 +8,14 @@ export const metadata: Metadata = {
     "Cere un demo gratuit și primești pe email o mostră audio de la Elevio, recepționerul vocal AI.",
 };
 
-const VALID_TYPES = new Set(["restaurant", "magazin", "service_auto", "altul"]);
+const VALID_TYPES = new Set([
+  "restaurant",
+  "magazin",
+  "service_auto",
+  "medical",
+  "beauty",
+  "altul",
+]);
 
 export default async function DemoPage({
   searchParams,

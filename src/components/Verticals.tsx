@@ -19,6 +19,24 @@ const VERTICALS = [
     text: "Programări la revizie sau intervenții, cu marca, modelul și problema mașinii preluate din telefon — mecanicii știu exact ce îi așteaptă.",
     tags: "Service-uri auto · ateliere · vulcanizări",
   },
+  {
+    tag: "medical",
+    title: "Cabinete medicale & clinici",
+    text: "Programări preluate corect din prima — dată, oră, tip de consultație — fără să aglomerezi recepția între doi pacienți.",
+    tags: "Cabinete stomatologice · clinici · cabinete individuale",
+  },
+  {
+    tag: "beauty",
+    title: "Saloane & studiouri beauty",
+    text: "Programări pe stilist sau specialist, confirmate automat prin SMS — clienta știe exact când și la cine vine.",
+    tags: "Saloane de coafură · manichiură · cosmetică",
+  },
+  {
+    tag: "altul",
+    title: "Orice afacere care răspunde la telefon",
+    text: "Nu te încadrezi în categoriile de mai sus? Elevio se adaptează pe serviciile și regulile oricărei afaceri — dacă ai clienți care sună, funcționează.",
+    tags: "Servicii, birouri, cabinete — orice domeniu",
+  },
 ];
 
 export default function Verticals() {
