@@ -55,6 +55,17 @@ export default function DesprePage() {
             </p>
             <p>Iar ceea ce construim astăzi este doar începutul.</p>
 
+            <p className="text-sm text-elevio-dark/50">
+              Avem și o divizie de marketing pentru afaceri locale —{" "}
+              <Link
+                href="/marketing"
+                className="font-medium text-elevio-primary underline underline-offset-2 hover:text-elevio-accent"
+              >
+                Elevio Marketing
+              </Link>
+              .
+            </p>
+
             <div className="rounded-2xl border border-elevio-border bg-elevio-secondary/30 p-6">
               <h2 className="text-lg font-semibold text-elevio-dark">
                 Regula noastră de încredere

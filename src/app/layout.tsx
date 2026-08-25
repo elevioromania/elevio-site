@@ -1,7 +1,5 @@
 import type { Metadata } from "next";
 import { Plus_Jakarta_Sans } from "next/font/google";
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
 import "./globals.css";
 
 const jakarta = Plus_Jakarta_Sans({
@@ -19,9 +17,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="ro" className={`${jakarta.variable} h-full antialiased`}>
       <body className="min-h-full flex flex-col bg-elevio-bg text-elevio-dark">
-        <Header />
-        <main className="flex-1">{children}</main>
-        <Footer />
+        {children}
       </body>
     </html>
   );

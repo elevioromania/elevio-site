@@ -8,6 +8,14 @@
   --color-elevio-accent: #38bdf8;
   --color-elevio-border: #bae6fd;
 
+  --color-marketing-bg: #05070c;
+  --color-marketing-surface: #10141c;
+  --color-marketing-accent: #f5b700;
+  --color-marketing-accent-dark: #d4a017;
+  --color-marketing-border: #2a2f3a;
+  --color-marketing-text: #f8fafc;
+  --color-marketing-text-muted: #9a9a95;
+
   --background: var(--color-elevio-bg);
   --foreground: var(--color-elevio-dark);
 }
@@ -22,6 +30,14 @@
   --color-elevio-bg: var(--color-elevio-bg);
   --color-elevio-accent: var(--color-elevio-accent);
   --color-elevio-border: var(--color-elevio-border);
+
+  --color-marketing-bg: var(--color-marketing-bg);
+  --color-marketing-surface: var(--color-marketing-surface);
+  --color-marketing-accent: var(--color-marketing-accent);
+  --color-marketing-accent-dark: var(--color-marketing-accent-dark);
+  --color-marketing-border: var(--color-marketing-border);
+  --color-marketing-text: var(--color-marketing-text);
+  --color-marketing-text-muted: var(--color-marketing-text-muted);
 
   --font-sans: var(--font-jakarta);
 }

@@ -3,6 +3,7 @@ import { promises as fsp, existsSync } from "fs";
 import path from "path";
 import type { Lead } from "./leads";
 import { businessTypeLabel } from "./autocalls";
+import { MARKETING_SERVICE_LABELS, type MarketingLead } from "./marketingLeads";
 
 const DEMO_AUDIO_PATH = path.join(process.cwd(), "public", "audio", "elevio-demo.mp3");
 
@@ -103,6 +104,53 @@ export async function sendDemoAudioEmail(lead: Lead): Promise<{ ok: boolean; err
       attachments: audioAvailable
         ? [{ filename: "elevio-demo.mp3", content: await fsp.readFile(DEMO_AUDIO_PATH) }]
         : [],
+    });
+    return { ok: true };
+  } catch (err) {
+    return { ok: false, error: err instanceof Error ? err.message : "Eroare necunoscută la trimiterea emailului." };
+  }
+}
+
+export async function sendMarketingLeadNotification(
+  lead: MarketingLead,
+): Promise<{ ok: boolean; error?: string }> {
+  const transporter = getTransporter();
+  const to = process.env.GMAIL_USER;
+  if (!transporter || !to) {
+    return { ok: false, error: "Email neconfigurat (GMAIL_USER / GMAIL_APP_PASSWORD lipsă)." };
+  }
+
+  const serviceLabels = lead.services.map((s) => MARKETING_SERVICE_LABELS[s]);
+
+  try {
+    await transporter.sendMail({
+      from: `"Elevio Marketing — Site" <${process.env.GMAIL_USER}>`,
+      to,
+      replyTo: lead.email,
+      subject: `Lead nou Elevio Marketing: ${lead.name}`,
+      text: [
+        `Nume: ${lead.name}`,
+        `Telefon: ${lead.phone}`,
+        `Email: ${lead.email}`,
+        `Servicii dorite: ${serviceLabels.join(", ")}`,
+        `Trimis la: ${lead.createdAt}`,
+        ...(lead.businessDescription ? ["", "Despre afacere:", lead.businessDescription] : []),
+      ].join("\n"),
+      html: `
+        <h2>Lead nou de pe pagina Elevio Marketing</h2>
+        <table cellpadding="6" style="border-collapse:collapse">
+          <tr><td><strong>Nume</strong></td><td>${escapeHtml(lead.name)}</td></tr>
+          <tr><td><strong>Telefon</strong></td><td>${escapeHtml(lead.phone)}</td></tr>
+          <tr><td><strong>Email</strong></td><td>${escapeHtml(lead.email)}</td></tr>
+          <tr><td><strong>Servicii dorite</strong></td><td>${escapeHtml(serviceLabels.join(", "))}</td></tr>
+          <tr><td><strong>Trimis la</strong></td><td>${lead.createdAt}</td></tr>
+        </table>
+        ${
+          lead.businessDescription
+            ? `<h3>Despre afacere</h3><p>${escapeHtml(lead.businessDescription).replace(/\n/g, "<br>")}</p>`
+            : ""
+        }
+      `,
     });
     return { ok: true };
   } catch (err) {
