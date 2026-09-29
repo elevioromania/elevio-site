@@ -1,4 +1,3 @@
-import PromoBanner from "@/components/PromoBanner";
 import Hero from "@/components/Hero";
 import WorkModes from "@/components/WorkModes";
 import SocialProof from "@/components/SocialProof";
@@ -13,7 +12,6 @@ import FAQSection from "@/components/FAQSection";
 export default function Home() {
   return (
     <>
-      <PromoBanner />
       <Hero />
       <WorkModes />
       <SocialProof />
