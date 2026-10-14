@@ -128,7 +128,7 @@ create index lead_activitate_lead_idx on public.lead_activitate (lead_id, creat_
 create index lead_activitate_autor_idx on public.lead_activitate (autor_id, creat_la desc);
 
 -- ---------------------------------------------------------------------------
--- Întâlniri predate lui David
+-- Întâlniri predate echipei de closing
 -- ---------------------------------------------------------------------------
 
 create table public.predari (

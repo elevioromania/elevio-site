@@ -52,7 +52,7 @@ export default function TabloulDeBord({ sectiuni }: { sectiuni: SectiuneScurta[]
     setTotal(randT);
     setInsigne((i.data ?? []).map((x) => x.cod_insigna));
 
-    // Un client închis de la ultima vizită: îl sărbătorim.
+    // Un lead închis de la ultima vizită: îl sărbătorim.
     if (randT) {
       const cheie = `echipa-clienti-vazuti-${profil.id}`;
       try {
@@ -73,8 +73,6 @@ export default function TabloulDeBord({ sectiuni }: { sectiuni: SectiuneScurta[]
   const actiuni = useActiuniLead(incarca);
   const prenume = profil.nume.trim().split(/\s+/)[0];
   const azi = cheieZi(new Date());
-  const ora = Number(new Date().toLocaleString("en-GB", { timeZone: "Europe/Bucharest", hour: "2-digit", hour12: false }));
-  const salut = ora < 12 ? "Bună dimineața" : ora < 18 ? "Salut" : "Bună seara";
 
   async function amInteles() {
     await supabaseBrowser().from("profiles").update({ bun_venit_vazut: true }).eq("id", profil.id);
@@ -85,7 +83,7 @@ export default function TabloulDeBord({ sectiuni }: { sectiuni: SectiuneScurta[]
     <div className="space-y-6">
       <div>
         <h1 className="text-2xl font-bold tracking-tight sm:text-3xl">
-          {salut}, {prenume}!
+          Salut, {prenume}!
         </h1>
         <p className="mt-1 text-sm text-echipa-muted">{profil.titlu}</p>
       </div>
@@ -96,8 +94,8 @@ export default function TabloulDeBord({ sectiuni }: { sectiuni: SectiuneScurta[]
         <div className="pop flex items-center gap-4 rounded-3xl border border-emerald-500/50 bg-emerald-500/10 p-5">
           <IconTrofeu className="h-10 w-10 shrink-0 text-emerald-300" />
           <div className="flex-1">
-            <p className="text-lg font-bold text-emerald-200">Ai închis un client nou!</p>
-            <p className="text-sm text-emerald-100/80">Întâlnirea ta s-a transformat în client. Vezi comisionul în „Câștigurile mele”.</p>
+            <p className="text-lg font-bold text-emerald-200">Ai închis un lead nou!</p>
+            <p className="text-sm text-emerald-100/80">Întâlnirea ta s-a închis. Vezi comisionul în „Câștigurile mele”.</p>
           </div>
           <button type="button" onClick={() => setClientNou(false)} className="text-sm text-emerald-200/80 hover:text-emerald-100">
             Închide
@@ -127,7 +125,7 @@ export default function TabloulDeBord({ sectiuni }: { sectiuni: SectiuneScurta[]
         </h2>
         <Cifra eticheta="Apeluri marcate" saptamana={saptamana?.apeluri} total={total?.apeluri} />
         <Cifra eticheta="Întâlniri programate" saptamana={saptamana?.intalniri} total={total?.intalniri} />
-        <Cifra eticheta="Clienți închiși" saptamana={saptamana?.clienti} total={total?.clienti} />
+        <Cifra eticheta="Lead-uri închise" saptamana={saptamana?.clienti} total={total?.clienti} />
       </section>
 
       {profil.rol === "vanzator" && <ChecklistStart sectiuni={sectiuni} insigne={insigne} />}
@@ -151,7 +149,7 @@ export default function TabloulDeBord({ sectiuni }: { sectiuni: SectiuneScurta[]
         <Rapid href="/echipa/app/mod-apel" icon={<IconFulger className="h-6 w-6" />} titlu="Mod apel" />
         <Rapid href="/echipa/app/leaduri" icon={<IconLeaduri className="h-6 w-6" />} titlu="Lead-urile mele" />
         <Rapid href="/echipa/app/ghid" icon={<IconCarte className="h-6 w-6" />} titlu="Ghid" />
-        <Rapid href="/echipa/app/calendar" icon={<IconCalendar className="h-6 w-6" />} titlu="Calendarul lui David" />
+        <Rapid href="/echipa/app/calendar" icon={<IconCalendar className="h-6 w-6" />} titlu="Calendarul de closing" />
         <div className="col-span-2 flex flex-col justify-between rounded-2xl border border-echipa-line/70 bg-echipa-card p-4 lg:col-span-1">
           <p className="text-xs text-echipa-muted">Numărul de demo</p>
           <p className="mt-1 text-lg font-bold tracking-wide text-echipa-accent">{DEMO_NUMBER}</p>

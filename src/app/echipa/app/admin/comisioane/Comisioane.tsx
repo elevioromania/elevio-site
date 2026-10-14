@@ -18,7 +18,7 @@ type Bifa = "taxa_instalare_platita" | "prima_luna_incheiata" | "anulat" | "tran
 const BIFE: { camp: Bifa; eticheta: string }[] = [
   { camp: "taxa_instalare_platita", eticheta: "Instalarea plătită de client" },
   { camp: "prima_luna_incheiata", eticheta: "Prima lună încheiată" },
-  { camp: "anulat", eticheta: "Client anulat" },
+  { camp: "anulat", eticheta: "A anulat abonamentul" },
   { camp: "transa1_platita", eticheta: "Tranșa 1 plătită vânzătorului" },
   { camp: "transa2_platita", eticheta: "Tranșa 2 plătită vânzătorului" },
 ];
@@ -69,7 +69,7 @@ export default function Comisioane() {
   async function adaugaPrag(e: React.FormEvent) {
     e.preventDefault();
     const prag = Number(pragNou.prag);
-    if (!prag || prag < 1) return setMesaj({ tip: "eroare", text: "Pragul trebuie să fie un număr de clienți (minimum 1)." });
+    if (!prag || prag < 1) return setMesaj({ tip: "eroare", text: "Pragul trebuie să fie un număr de lead-uri închise (minimum 1)." });
     const { error } = await supabaseBrowser()
       .from("bonusuri_config")
       .insert({ prag, suma: Number(pragNou.suma) || 0, descriere: pragNou.descriere.trim() || null });
@@ -79,7 +79,7 @@ export default function Comisioane() {
   }
 
   async function stergePrag(p: Prag) {
-    if (!confirm(`Ștergi bonusul pentru ${p.prag} clienți? Bonusurile deja acordate rămân.`)) return;
+    if (!confirm(`Ștergi bonusul pentru ${p.prag} lead-uri închise? Bonusurile deja acordate rămân.`)) return;
     await supabaseBrowser().from("bonusuri_config").delete().eq("id", p.id);
     incarca();
   }
@@ -93,20 +93,20 @@ export default function Comisioane() {
 
   return (
     <div className="max-w-4xl space-y-6">
-      <TitluPagina titlu="Clienți și comisioane" subtitlu="Bifezi ce s-a întâmplat; stările tranșelor se actualizează singure la vânzători." />
+      <TitluPagina titlu="Lead-uri închise și comisioane" subtitlu="Bifezi ce s-a întâmplat; stările tranșelor se actualizează singure la vânzători." />
       {mesaj && <Mesaj tip={mesaj.tip}>{mesaj.text}</Mesaj>}
 
       <section>
-        <h2 className="mb-3 text-lg font-bold">Clienți închiși</h2>
+        <h2 className="mb-3 text-lg font-bold">Lead-uri închise</h2>
         {clienti.length === 0 ? (
-          <Gol titlu="Niciun client închis încă">Când marchezi o întâlnire „Client închis”, apare aici.</Gol>
+          <Gol titlu="Niciun lead închis încă">Când marchezi o întâlnire „Lead închis”, apare aici.</Gol>
         ) : (
           <ul className="space-y-3">
             {clienti.map((c) => (
               <li key={c.id} className="rounded-2xl border border-echipa-line/70 bg-echipa-card p-4">
                 <div className="flex flex-wrap items-baseline justify-between gap-2">
                   <p className="font-semibold">
-                    {c.predari?.leads?.afacere ?? "Client"}
+                    {c.predari?.leads?.afacere ?? "Lead"}
                     {c.predari?.leads?.oras ? `, ${c.predari.leads.oras}` : ""}
                   </p>
                   <p className="text-xs text-echipa-muted">
@@ -134,14 +134,14 @@ export default function Comisioane() {
       <section>
         <h2 className="mb-3 text-lg font-bold">Bonusuri</h2>
         <Card>
-          <p className="mb-3 text-sm text-echipa-muted">Un bonus se acordă automat când vânzătorul atinge pragul de clienți închiși.</p>
+          <p className="mb-3 text-sm text-echipa-muted">Un bonus se acordă automat când vânzătorul atinge pragul de lead-uri închise.</p>
           <ul className="space-y-2">
             {praguri.map((p) => (
               <RandPrag key={p.id} p={p} salveaza={salveazaPrag} sterge={stergePrag} />
             ))}
           </ul>
           <form onSubmit={adaugaPrag} className="mt-4 grid gap-2 border-t border-echipa-line/60 pt-4 sm:grid-cols-[7rem_7rem_1fr_auto]">
-            <input aria-label="Prag (clienți)" type="number" min={1} className="camp" placeholder="Clienți" value={pragNou.prag} onChange={(e) => setPragNou({ ...pragNou, prag: e.target.value })} />
+            <input aria-label="Prag (lead-uri închise)" type="number" min={1} className="camp" placeholder="Lead-uri" value={pragNou.prag} onChange={(e) => setPragNou({ ...pragNou, prag: e.target.value })} />
             <input aria-label="Suma (€)" type="number" min={0} className="camp" placeholder="Suma €" value={pragNou.suma} onChange={(e) => setPragNou({ ...pragNou, suma: e.target.value })} />
             <input aria-label="Descriere" className="camp" placeholder="Descriere" value={pragNou.descriere} onChange={(e) => setPragNou({ ...pragNou, descriere: e.target.value })} />
             <Buton type="submit">Adaugă prag</Buton>
@@ -155,7 +155,7 @@ export default function Comisioane() {
               {acordate.map((a) => (
                 <li key={a.id} className="flex flex-wrap items-center justify-between gap-2 py-2.5 text-sm">
                   <span>
-                    <strong>{nume[a.vanzator_id] ?? "-"}</strong>: {a.prag === 1 ? "primul client" : `${a.prag} clienți`}, {euro(a.suma)}
+                    <strong>{nume[a.vanzator_id] ?? "-"}</strong>: {a.prag === 1 ? "primul lead închis" : `${a.prag} lead-uri închise`}, {euro(a.suma)}
                   </span>
                   <label className="flex items-center gap-2">
                     <input type="checkbox" checked={a.platit} onChange={(e) => bonusPlatit(a, e.target.checked)} />
@@ -200,9 +200,9 @@ function RandPrag({ p, salveaza, sterge }: { p: Prag; salveaza: (p: Prag, suma: 
   const modificat = Number(suma) !== Number(p.suma) || descriere !== (p.descriere ?? "");
   return (
     <li className="grid items-center gap-2 sm:grid-cols-[7rem_7rem_1fr_auto_auto]">
-      <span className="text-sm font-semibold">{p.prag === 1 ? "Primul client" : `${p.prag} clienți`}</span>
-      <input aria-label={`Suma pentru ${p.prag} clienți`} type="number" min={0} className="camp" value={suma} onChange={(e) => setSuma(e.target.value)} />
-      <input aria-label={`Descriere pentru ${p.prag} clienți`} className="camp" value={descriere} onChange={(e) => setDescriere(e.target.value)} />
+      <span className="text-sm font-semibold">{p.prag === 1 ? "Primul lead închis" : `${p.prag} lead-uri închise`}</span>
+      <input aria-label={`Suma pentru ${p.prag} lead-uri închise`} type="number" min={0} className="camp" value={suma} onChange={(e) => setSuma(e.target.value)} />
+      <input aria-label={`Descriere pentru ${p.prag} lead-uri închise`} className="camp" value={descriere} onChange={(e) => setDescriere(e.target.value)} />
       <Buton onClick={() => salveaza(p, suma, descriere)} disabled={!modificat}>
         Salvează
       </Buton>

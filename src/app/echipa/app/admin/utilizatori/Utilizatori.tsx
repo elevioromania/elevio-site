@@ -60,17 +60,18 @@ function RandUtilizator({
   laSchimbare: () => void;
   setMesaj: (m: { tip: "eroare" | "succes"; text: string } | null) => void;
 }) {
+  const [nume, setNume] = useState(u.nume);
   const [titlu, setTitlu] = useState(u.titlu);
   const [rol, setRol] = useState<Rol>(u.rol);
   const [comision, setComision] = useState(String(u.comision_instalare));
   const [seLucreaza, setSeLucreaza] = useState(false);
-  const modificat = titlu !== u.titlu || rol !== u.rol || Number(comision) !== Number(u.comision_instalare);
+  const modificat = nume !== u.nume || titlu !== u.titlu || rol !== u.rol || Number(comision) !== Number(u.comision_instalare);
 
   async function salveaza() {
     setSeLucreaza(true);
     const { error } = await supabaseBrowser()
       .from("profiles")
-      .update({ titlu: titlu.trim() || "Echipa de marketing Elevio", rol, comision_instalare: Number(comision) || 0 })
+      .update({ nume: nume.trim() || u.nume, titlu: titlu.trim() || "Echipa de marketing Elevio", rol, comision_instalare: Number(comision) || 0 })
       .eq("id", u.id);
     setSeLucreaza(false);
     setMesaj(error ? { tip: "eroare", text: "Nu am putut salva." } : { tip: "succes", text: `Salvat: ${u.nume}.` });
@@ -117,7 +118,13 @@ function RandUtilizator({
           </Buton>
         )}
       </div>
-      <div className="mt-3 grid gap-3 sm:grid-cols-[1fr_10rem_10rem_auto] sm:items-end">
+      <div className="mt-3 grid gap-3 sm:grid-cols-[1fr_1fr_10rem_10rem_auto] sm:items-end">
+        <div>
+          <label htmlFor={`nume-${u.id}`} className="mb-1 block text-xs text-echipa-muted">
+            Prenume și nume
+          </label>
+          <input id={`nume-${u.id}`} className="camp" value={nume} onChange={(e) => setNume(e.target.value)} />
+        </div>
         <div>
           <label htmlFor={`titlu-${u.id}`} className="mb-1 block text-xs text-echipa-muted">
             Titlu afișat

@@ -61,7 +61,7 @@ export default function Comunitate() {
           <Incarcare />
         ) : sesiuni.length === 0 ? (
           <Card>
-            <p className="text-sm text-echipa-muted">Nicio sesiune programată acum. David le anunță aici și în grup.</p>
+            <p className="text-sm text-echipa-muted">Nicio sesiune programată acum. Le anunțăm aici și în grup.</p>
           </Card>
         ) : (
           <ul className="space-y-2">

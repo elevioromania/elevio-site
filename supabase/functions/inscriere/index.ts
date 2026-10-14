@@ -35,7 +35,7 @@ Deno.serve(async (req) => {
 
   const codCorect = Deno.env.get("INVITE_CODE");
   if (!codCorect) {
-    return raspuns({ eroare: "Înscrierea nu e configurată încă. Scrie-i lui David." }, 500);
+    return raspuns({ eroare: "Înscrierea nu e configurată încă." }, 500);
   }
 
   let date: Record<string, unknown>;

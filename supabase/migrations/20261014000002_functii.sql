@@ -156,7 +156,7 @@ begin
     end if;
     if public.exista_lead(new.telefon_afacere, new.afacere, new.oras) then
       raise exception 'DUPLICAT' using errcode = 'P0001',
-        hint = 'Lead-ul ăsta e deja alocat. Vorbește cu David.';
+        hint = 'Lead-ul ăsta e deja alocat. Vorbește cu echipa de closing.';
     end if;
   end if;
 
@@ -196,7 +196,7 @@ begin
         or new.oras is distinct from old.oras)
       and public.exista_lead(new.telefon_afacere, new.afacere, new.oras, new.id) then
       raise exception 'DUPLICAT' using errcode = 'P0001',
-        hint = 'Lead-ul ăsta e deja alocat. Vorbește cu David.';
+        hint = 'Lead-ul ăsta e deja alocat. Vorbește cu echipa de closing.';
     end if;
   end if;
 
@@ -375,7 +375,7 @@ begin
     decident_telefon = new.decident_telefon,
     decident_email = new.decident_email,
     urmatorul_pas_data = new.data_intalnire,
-    urmatorul_pas_text = 'Întâlnire cu David'
+    urmatorul_pas_text = 'Întâlnire de closing'
   where id = new.lead_id;
 
   if new.vanzator_id is not null then

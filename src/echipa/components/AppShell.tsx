@@ -34,7 +34,7 @@ const NAV: Item[] = [
   { href: "/echipa/app", eticheta: "Acasă", icon: IconAcasa },
   { href: "/echipa/app/mod-apel", eticheta: "Mod apel", icon: IconFulger },
   { href: "/echipa/app/leaduri", eticheta: "Lead-urile mele", icon: IconLeaduri },
-  { href: "/echipa/app/calendar", eticheta: "Programează cu David", icon: IconCalendar },
+  { href: "/echipa/app/calendar", eticheta: "Programează întâlnirea", icon: IconCalendar },
   { href: "/echipa/app/ghid", eticheta: "Ghid", icon: IconCarte },
   { href: "/echipa/app/obiectii", eticheta: "Obiecții", icon: IconScut },
   { href: "/echipa/app/intrebari", eticheta: "Întrebări frecvente", icon: IconIntrebare },

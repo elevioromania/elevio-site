@@ -76,7 +76,7 @@ export default function Predari() {
     <div>
       <TitluPagina
         titlu="Întâlniri predate"
-        subtitlu="Marchează rezultatul fiecărei întâlniri. „Client închis” calculează automat comisionul."
+        subtitlu="Marchează rezultatul fiecărei întâlniri. „Lead închis” calculează automat comisionul."
         actiuni={
           <Buton varianta="secundar" onClick={exporta} disabled={!vizibile.length}>
             <IconDescarca className="h-4 w-4" /> Export CSV
@@ -136,7 +136,7 @@ function CardPredare({
 
   async function salveaza() {
     if (rezultat === "inchis" && (!pachet.trim() || !pret)) {
-      return setMesaj({ tip: "eroare", text: "Pentru „Client închis” completează pachetul și prețul lunar." });
+      return setMesaj({ tip: "eroare", text: "Pentru „Lead închis” completează pachetul și prețul lunar." });
     }
     setSeSalveaza(true);
     const { error } = await supabaseBrowser()
@@ -171,7 +171,7 @@ function CardPredare({
       <dl className="mt-3 grid gap-x-6 gap-y-2 text-sm sm:grid-cols-2">
         <Info e="Când" v={`${dataOra(p.data_intalnire)}, ${p.format === "online" ? "online" : `la locație: ${p.adresa}`}`} />
         <Info
-          e="Decident"
+          e="Persoana de contact"
           v={
             <>
               {p.decident_nume}, {p.decident_functie},{" "}

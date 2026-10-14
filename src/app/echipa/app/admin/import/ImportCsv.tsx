@@ -17,10 +17,10 @@ const CAMPURI: { camp: string; eticheta: string; coloana: string; obligatoriu?: 
   { camp: "telefon_afacere", eticheta: "Telefonul afacerii", coloana: "telefon_afacere" },
   { camp: "site", eticheta: "Site", coloana: "site" },
   { camp: "google_maps", eticheta: "Google Maps", coloana: "google_maps" },
-  { camp: "decident_nume", eticheta: "Decident: nume", coloana: "decident_nume" },
-  { camp: "decident_functie", eticheta: "Decident: funcție", coloana: "decident_functie" },
-  { camp: "decident_telefon", eticheta: "Decident: telefon", coloana: "decident_telefon" },
-  { camp: "decident_email", eticheta: "Decident: e-mail", coloana: "decident_email" },
+  { camp: "decident_nume", eticheta: "Contact: nume", coloana: "decident_nume" },
+  { camp: "decident_functie", eticheta: "Contact: funcție", coloana: "decident_functie" },
+  { camp: "decident_telefon", eticheta: "Contact: telefon", coloana: "decident_telefon" },
+  { camp: "decident_email", eticheta: "Contact: e-mail", coloana: "decident_email" },
   { camp: "notite", eticheta: "Notițe", coloana: "note" },
 ];
 
@@ -288,7 +288,7 @@ function Tabel({ randuri }: { randuri: RandPregatit[] }) {
             <th className="py-2 pr-3">Nișă</th>
             <th className="py-2 pr-3">Oraș</th>
             <th className="py-2 pr-3">Telefon</th>
-            <th className="py-2 pr-3">Decident</th>
+            <th className="py-2 pr-3">Contact</th>
             <th className="py-2">Stare</th>
           </tr>
         </thead>

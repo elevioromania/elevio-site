@@ -16,4 +16,4 @@ Hotelurile au de obicei recepție non-stop, deci nu întrebi de program, ci dire
 >
 > **Tu:** „Înțeleg. Împreună cu echipa mea am dezvoltat un recepționer AI care preia exact apelurile astea și face rezervări. Cel mai simplu e să-l auziți singur...”
 
-Numărul de demo e configurat pentru o clinică stomatologică. Pentru alte nișe, spune-i asta clar (vezi secțiunea următoare). Dacă vrei să te concentrezi pe o nișă anume, de exemplu hoteluri, spune-i lui David: putem face un număr de demo dedicat.
+Numărul de demo e configurat pentru o clinică stomatologică. Pentru alte nișe, spune-i asta clar (vezi secțiunea următoare). Dacă vrei să te concentrezi pe o nișă anume, de exemplu hoteluri, spune în echipă: putem face un număr de demo dedicat.

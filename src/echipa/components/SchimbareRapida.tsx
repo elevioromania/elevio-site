@@ -91,7 +91,7 @@ export default function SchimbareRapida({
       </div>
 
       {status === "intalnire" && lead.status !== "intalnire" ? (
-        <Mesaj tip="info">Super! Pentru verde completezi predarea către David. Apasă mai jos.</Mesaj>
+        <Mesaj tip="info">Super! Pentru verde completezi predarea către closer. Apasă mai jos.</Mesaj>
       ) : (
         <div className="mt-5 space-y-4">
           {status === lead.status && (

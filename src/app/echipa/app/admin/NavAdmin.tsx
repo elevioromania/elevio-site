@@ -8,7 +8,7 @@ const TABURI = [
   { href: "/echipa/app/admin/predari", eticheta: "Întâlniri predate" },
   { href: "/echipa/app/admin/leaduri", eticheta: "Toate lead-urile" },
   { href: "/echipa/app/admin/import", eticheta: "Import CSV" },
-  { href: "/echipa/app/admin/comisioane", eticheta: "Clienți și comisioane" },
+  { href: "/echipa/app/admin/comisioane", eticheta: "Lead-uri închise și comisioane" },
   { href: "/echipa/app/admin/sesiuni", eticheta: "Sesiuni și anunțuri" },
   { href: "/echipa/app/admin/utilizatori", eticheta: "Utilizatori" },
   { href: "/echipa/app/statistici", eticheta: "Statistici" },

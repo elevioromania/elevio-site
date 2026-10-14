@@ -12,6 +12,6 @@ Cold calling-ul poate părea greu sau plictisitor la început. Nu trebuie să fi
 - **Ascultă mai mult decât vorbești.** Întrebările bune vând mai mult decât orice argument.
 - **„Nu”-ul face parte din joc.** Nu e despre tine. Unii nu au timp, alții nu au nevoie acum. Mergi la următorul apel.
 - **Energie.** Sună în sesiuni de 60-90 de minute, în picioare dacă poți. Cel mai bine, împreună cu alții din echipă, online sau fizic.
-- **Înregistrează-te și ascultă-te.** E cel mai rapid mod de a crește. Trimite înregistrările trainerilor pentru feedback. Înainte să înregistrezi un apel întreg, întreabă-l pe David cum se face corect, și nu publica niciodată un apel fără acordul celuilalt.
+- **Înregistrează-te și ascultă-te.** E cel mai rapid mod de a crește. Trimite înregistrările trainerilor pentru feedback. Înainte să înregistrezi un apel întreg, întreabă în echipă cum se face corect, și nu publica niciodată un apel fără acordul celuilalt.
 - **Sărbătorește.** Fiecare întâlnire programată se anunță în grup.
-- **Sinceritate.** Dacă nu știi un răspuns, spui: „Foarte bună întrebare, o notez și vă răspunde David la întâlnire.” Nu inventezi.
+- **Sinceritate.** Dacă nu știi un răspuns, spui: „Foarte bună întrebare, o notez și vă răspundem la întâlnire.” Nu inventezi.

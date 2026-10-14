@@ -40,7 +40,7 @@ export default function FormularPredare({
     const lipsa: string[] = [];
     if (!f.data) lipsa.push("data și ora");
     if (f.format === "locatie" && !f.adresa.trim()) lipsa.push("adresa");
-    if (!f.decident_nume.trim()) lipsa.push("numele decidentului");
+    if (!f.decident_nume.trim()) lipsa.push("numele persoanei de contact");
     if (!f.decident_functie.trim()) lipsa.push("funcția");
     if (!f.decident_telefon.trim()) lipsa.push("telefonul");
     if (!f.decident_email.trim()) lipsa.push("e-mailul");
@@ -50,7 +50,7 @@ export default function FormularPredare({
     if (f.altcineva === "") lipsa.push("dacă participă altcineva");
     if (f.altcineva === "da" && !f.cine.trim()) lipsa.push("cine mai participă");
     if (lipsa.length) return setEroare(`Completează: ${lipsa.join(", ")}.`);
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(f.decident_email.trim())) return setEroare("E-mailul decidentului nu e valid.");
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(f.decident_email.trim())) return setEroare("E-mailul persoanei de contact nu e valid.");
 
     const predare = {
       data_intalnire: dinInputLocal(f.data)!,
@@ -86,7 +86,7 @@ export default function FormularPredare({
           <div className="rounded-2xl border border-emerald-500/40 bg-emerald-500/10 p-4">
             <p className="text-lg font-bold text-emerald-300">Felicitări, {profil.nume.split(" ")[0]}!</p>
             <p className="mt-1 text-sm text-emerald-100/90">
-              Întâlnirea e la David. Trimite-i acum și mesajul pe WhatsApp, ca s-o vadă imediat.
+              Întâlnirea e la echipa de closing. Trimite acum și mesajul pe WhatsApp, ca s-o vadă imediat.
             </p>
           </div>
           <pre className="whitespace-pre-wrap rounded-xl border border-echipa-line bg-echipa-bg p-4 font-sans text-sm leading-relaxed text-echipa-text">
@@ -114,7 +114,7 @@ export default function FormularPredare({
   }
 
   return (
-    <Modal deschis={deschis} inchide={inchide} titlu="Predarea către David" lat>
+    <Modal deschis={deschis} inchide={inchide} titlu="Predarea către closer" lat>
       <form onSubmit={trimite} className="space-y-5" noValidate>
         <p className="text-sm text-echipa-muted">
           <strong className="text-echipa-text">{lead.afacere}</strong>
@@ -126,11 +126,11 @@ export default function FormularPredare({
             <p className="text-sm font-semibold">Când e întâlnirea</p>
             {CALENDAR_URL ? (
               <a href={CALENDAR_URL} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 text-sm text-echipa-accent hover:underline">
-                <IconCalendar className="h-4 w-4" /> Deschide calendarul lui David
+                <IconCalendar className="h-4 w-4" /> Deschide calendarul de closing
               </a>
             ) : (
               <Link href="/echipa/app/calendar" target="_blank" className="inline-flex items-center gap-1.5 text-sm text-echipa-accent hover:underline">
-                <IconCalendar className="h-4 w-4" /> Calendarul lui David
+                <IconCalendar className="h-4 w-4" /> Calendarul de closing
               </Link>
             )}
           </div>
@@ -160,7 +160,7 @@ export default function FormularPredare({
         </div>
 
         <div className="grid gap-4 sm:grid-cols-2">
-          <Camp eticheta="Decidentul: nume" htmlFor="p-nume" obligatoriu>
+          <Camp eticheta="Persoana de contact: nume" htmlFor="p-nume" obligatoriu>
             <input id="p-nume" className="camp" value={f.decident_nume} onChange={set("decident_nume")} />
           </Camp>
           <Camp eticheta="Funcția" htmlFor="p-functie" obligatoriu>
@@ -212,7 +212,7 @@ export default function FormularPredare({
             Renunță
           </Buton>
           <Buton type="submit" varianta="succes" mare disabled={seTrimite}>
-            {seTrimite ? "Se trimite..." : "Predă întâlnirea lui David"}
+            {seTrimite ? "Se trimite..." : "Predă întâlnirea"}
           </Buton>
         </div>
       </form>

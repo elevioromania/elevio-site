@@ -32,7 +32,7 @@ export default function Clasament() {
 
   return (
     <div className="max-w-3xl">
-      <TitluPagina titlu="Clasament" subtitlu="Contează întâi clienții închiși, apoi întâlnirile programate, apoi apelurile marcate." />
+      <TitluPagina titlu="Clasament" subtitlu="Contează întâi lead-urile închise, apoi întâlnirile programate, apoi apelurile marcate." />
       <div className="mb-5 flex gap-1 rounded-2xl border border-echipa-line/70 bg-echipa-card-2 p-1" role="tablist" aria-label="Perioada">
         {PERIOADE.map((p) => (
           <button
@@ -83,7 +83,7 @@ export default function Clasament() {
                   <p className="truncate text-xs text-echipa-muted">{r.titlu}</p>
                 </div>
                 <div className="grid w-full grid-cols-3 gap-3 pl-[3.25rem] text-center sm:w-auto sm:gap-6 sm:pl-0">
-                  <Cifra e="Clienți" v={r.clienti} principal />
+                  <Cifra e="Închise" v={r.clienti} principal />
                   <Cifra e="Întâlniri" v={r.intalniri} />
                   <Cifra e="Apeluri" v={r.apeluri} />
                 </div>

@@ -100,7 +100,7 @@ export default function ListaLeaduri() {
             id="cautare-lead"
             type="search"
             className="camp flex-1"
-            placeholder="Caută după afacere sau decident"
+            placeholder="Caută după afacere sau persoană de contact"
             value={cautare}
             onChange={(e) => setCautare(e.target.value)}
           />
@@ -170,7 +170,7 @@ export default function ListaLeaduri() {
         <Incarcare />
       ) : leaduri.length === 0 ? (
         <Gol titlu="Încă nu ai lead-uri">
-          David îți alocă lista ta. Între timp, poți adăuga un lead găsit de tine.
+          Primești în curând lista ta de lead-uri. Între timp, poți adăuga un lead găsit de tine.
         </Gol>
       ) : vedere === "lista" ? (
         filtrate.length === 0 ? (

@@ -94,7 +94,7 @@ export default function DetaliiLead({ id }: { id: string }) {
 
   const telefoane = [
     { eticheta: "Sună afacerea", nr: lead.telefon_afacere },
-    { eticheta: "Sună decidentul", nr: lead.decident_telefon },
+    { eticheta: "Sună contactul", nr: lead.decident_telefon },
   ].filter((t) => t.nr);
 
   return (
@@ -177,11 +177,11 @@ export default function DetaliiLead({ id }: { id: string }) {
           <dl className="grid gap-x-6 gap-y-3 text-sm sm:grid-cols-2">
             <Rand eticheta="Adresa" valoare={lead.adresa} />
             <Rand eticheta="Telefonul afacerii" valoare={lead.telefon_afacere} />
-            <Rand eticheta="Decident" valoare={[lead.decident_nume, lead.decident_functie].filter(Boolean).join(", ")} />
-            <Rand eticheta="Telefon decident" valoare={lead.decident_telefon} />
-            <Rand eticheta="E-mail decident" valoare={lead.decident_email} />
+            <Rand eticheta="Persoana de contact" valoare={[lead.decident_nume, lead.decident_functie].filter(Boolean).join(", ")} />
+            <Rand eticheta="Telefon contact" valoare={lead.decident_telefon} />
+            <Rand eticheta="E-mail contact" valoare={lead.decident_email} />
             <Rand eticheta="A sunat la demo" valoare={lead.a_sunat_demo ? "Da" : "Nu"} />
-            <Rand eticheta="Sursa" valoare={lead.sursa === "alocat" ? "Alocat de David" : "Adăugat de vânzător"} />
+            <Rand eticheta="Sursa" valoare={lead.sursa === "alocat" ? "Alocat de echipă" : "Adăugat de vânzător"} />
             <Rand eticheta="Creat" valoare={dataScurta(lead.creat_la)} />
             <Rand eticheta="Ultimul contact" valoare={lead.ultimul_contact ? dataOra(lead.ultimul_contact) : "Încă nu"} />
           </dl>

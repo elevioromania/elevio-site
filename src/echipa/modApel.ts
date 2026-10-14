@@ -46,7 +46,7 @@ export function pasiScript(p: ParametriScript): Pas[] {
     id: "receptia",
     titlu: "Recepția",
     linii: [
-      nota("Scopul nu e să prezinți Elevio, ci să obții numărul sau numele decidentului. Fii scurt și sigur pe tine. Dacă răspunde chiar proprietarul, treci direct la Deschidere."),
+      nota("Scopul nu e să prezinți Elevio, ci să obții numărul sau numele proprietarului ori al managerului. Fii scurt și sigur pe tine. Dacă răspunde chiar proprietarul, treci direct la Deschidere."),
       { tip: "titlu", text: "Varianta politicoasă" },
       tu(`„Bună ziua, sper că nu vă deranjez. Aș vrea să discut foarte pe scurt cu managerul sau proprietarul ${n.alAfacerii}. Mă puteți ajuta, vă rog frumos, cu un număr de telefon sau altă variantă de contact?”`),
       { tip: "titlu", text: "Varianta directă" },
@@ -193,12 +193,12 @@ export function pasiScript(p: ParametriScript): Pas[] {
       tu("„Cum vi s-a părut?”"),
       regie("[Taci și lasă-l să vorbească. Reacția lui e cel mai bun argument.]"),
       tu(
-        "„Ce ați auzit e varianta standard, configurată pentru o clinică stomatologică. Pentru dumneavoastră se personalizează complet: programul, tipurile de programări, vocea, informațiile pe care le dă. Asta o face David, fondatorul Elevio, într-o discuție de 15-20 de minute, online sau la dumneavoastră. Ce zi vă convine săptămâna asta, după-amiaza?”",
+        "„Ce ați auzit e varianta standard, configurată pentru o clinică stomatologică. Pentru dumneavoastră se personalizează complet: programul, tipurile de programări, vocea, informațiile pe care le dă. Asta o face un coleg specializat, într-o discuție de 15-20 de minute, online sau la dumneavoastră. Ce zi vă convine săptămâna asta, după-amiaza?”",
       ),
       { tip: "titlu", text: "Confirmarea" },
       tu(`„Perfect, am notat [ziua], la ora [ora], [online / ${n.laAfacere}]. Pe ce număr și pe ce adresă de e-mail vă trimit confirmarea?”`),
       tu("„Ar mai trebui să participe cineva la discuție, un asociat sau colegul care se ocupă de programări?”"),
-      nota("Rezervi ora direct în calendarul lui David, cât ești la telefon. David face întâlnirile după-amiaza."),
+      nota("Rezervi ora direct în calendarul de closing, cât ești la telefon. Întâlnirile sunt după-amiaza."),
     ],
     extra: [
       {

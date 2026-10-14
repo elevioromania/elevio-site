@@ -23,7 +23,7 @@ export default function FormularLogin({ dezactivat }: { dezactivat: boolean }) {
       setSeTrimite(false);
       setEroare(
         /banned/i.test(error.message)
-          ? "Contul tău e dezactivat. Vorbește cu David."
+          ? "Contul tău e dezactivat. Vorbește cu echipa de closing."
           : "E-mailul sau parola nu sunt corecte.",
       );
       return;
@@ -34,7 +34,7 @@ export default function FormularLogin({ dezactivat }: { dezactivat: boolean }) {
 
   return (
     <form onSubmit={trimite} className="space-y-4" noValidate>
-      {dezactivat && <Mesaj>Contul tău e dezactivat. Vorbește cu David.</Mesaj>}
+      {dezactivat && <Mesaj>Contul tău e dezactivat. Vorbește cu echipa de closing.</Mesaj>}
       {eroare && <Mesaj>{eroare}</Mesaj>}
       <Camp eticheta="E-mail" htmlFor="email">
         <input id="email" type="email" autoComplete="email" required className="camp" value={email} onChange={(e) => setEmail(e.target.value)} />
