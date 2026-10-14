@@ -16,6 +16,15 @@
   --color-marketing-text: #f8fafc;
   --color-marketing-text-muted: #9a9a95;
 
+  /* Platforma internă a echipei (/echipa) */
+  --color-echipa-bg: #0b0d12;
+  --color-echipa-card: #0c202c;
+  --color-echipa-card-2: #10161f;
+  --color-echipa-line: #1c3444;
+  --color-echipa-accent: #38bdf8;
+  --color-echipa-text: #ecf5fa;
+  --color-echipa-muted: #9fb3c2;
+
   --background: var(--color-elevio-bg);
   --foreground: var(--color-elevio-dark);
 }
@@ -38,6 +47,14 @@
   --color-marketing-border: var(--color-marketing-border);
   --color-marketing-text: var(--color-marketing-text);
   --color-marketing-text-muted: var(--color-marketing-text-muted);
+
+  --color-echipa-bg: var(--color-echipa-bg);
+  --color-echipa-card: var(--color-echipa-card);
+  --color-echipa-card-2: var(--color-echipa-card-2);
+  --color-echipa-line: var(--color-echipa-line);
+  --color-echipa-accent: var(--color-echipa-accent);
+  --color-echipa-text: var(--color-echipa-text);
+  --color-echipa-muted: var(--color-echipa-muted);
 
   --font-sans: var(--font-jakarta);
 }

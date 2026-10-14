@@ -1,0 +1,265 @@
+/* Stiluri pentru platforma echipei. Toate sunt sub .echipa-root, ca să nu atingă site-ul public. */
+
+html:has(.echipa-root),
+body:has(.echipa-root) {
+  background: #0b0d12;
+  color-scheme: dark;
+}
+
+.echipa-root {
+  background: #0b0d12;
+  color: #ecf5fa;
+}
+
+.echipa-root :focus-visible {
+  outline: 2px solid #38bdf8;
+  outline-offset: 2px;
+}
+
+/* În stratul „components”, ca utilitarele Tailwind (de ex. pl-10) să le poată suprascrie. */
+@layer components {
+  .echipa-root .camp {
+    width: 100%;
+    border-radius: 0.75rem;
+    border: 1px solid #1c3444;
+    background: #0b0d12;
+    padding: 0.7rem 0.9rem;
+    font-size: 1rem;
+    color: #ecf5fa;
+    min-height: 2.9rem;
+  }
+
+  .echipa-root .camp::placeholder {
+    color: #6b8193;
+  }
+
+  .echipa-root .camp:focus {
+    border-color: #38bdf8;
+    outline: none;
+    box-shadow: 0 0 0 3px rgb(56 189 248 / 0.25);
+  }
+
+  .echipa-root select.camp {
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='none' stroke='%239fb3c2' stroke-width='2' viewBox='0 0 24 24'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.8rem center;
+    padding-right: 2.4rem;
+  }
+
+  .echipa-root input[type="checkbox"],
+  .echipa-root input[type="radio"] {
+    accent-color: #38bdf8;
+    width: 1.15rem;
+    height: 1.15rem;
+  }
+}
+
+/* Efect de apariție pentru cardurile de felicitare */
+@keyframes echipa-pop {
+  0% {
+    transform: scale(0.92);
+    opacity: 0;
+  }
+  60% {
+    transform: scale(1.02);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.echipa-root .pop {
+  animation: echipa-pop 0.45s ease-out both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .echipa-root .pop {
+    animation: none;
+  }
+}
+
+/* ------------------------------------------------------------------------- */
+/* Ghidul (Markdown randat)                                                  */
+/* ------------------------------------------------------------------------- */
+
+.ghid-prose {
+  color: #d5e3ec;
+  line-height: 1.7;
+  font-size: 1rem;
+}
+
+.ghid-prose > * + * {
+  margin-top: 1rem;
+}
+
+.ghid-prose h2,
+.ghid-prose h3,
+.ghid-prose h4 {
+  color: #ecf5fa;
+  font-weight: 700;
+  line-height: 1.3;
+  margin-top: 2rem;
+  scroll-margin-top: 5rem;
+}
+
+.ghid-prose h2 {
+  font-size: 1.35rem;
+}
+
+.ghid-prose h3,
+.ghid-prose h4 {
+  font-size: 1.15rem;
+}
+
+.ghid-prose strong {
+  color: #ecf5fa;
+  font-weight: 700;
+}
+
+.ghid-prose a {
+  color: #38bdf8;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  word-break: break-word;
+}
+
+.ghid-prose ul,
+.ghid-prose ol {
+  padding-left: 1.3rem;
+}
+
+.ghid-prose ul {
+  list-style: disc;
+}
+
+.ghid-prose ol {
+  list-style: decimal;
+}
+
+.ghid-prose li + li {
+  margin-top: 0.4rem;
+}
+
+.ghid-prose li::marker {
+  color: #38bdf8;
+}
+
+/* Indicațiile scenice: italic, gri */
+.ghid-prose em {
+  color: #8ea3b3;
+  font-style: italic;
+}
+
+/* Casetele (scripturi și idei importante): card cu bară albastră în stânga */
+.ghid-prose blockquote {
+  border-left: 4px solid #38bdf8;
+  background: #0c202c;
+  border-radius: 0 1rem 1rem 0;
+  padding: 1rem 1.1rem;
+}
+
+.ghid-prose blockquote > * + * {
+  margin-top: 0.7rem;
+}
+
+.ghid-prose blockquote .caseta-titlu {
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #38bdf8;
+}
+
+.ghid-prose blockquote .caseta-titlu strong {
+  color: inherit;
+}
+
+.ghid-prose .replica {
+  color: #ecf5fa;
+}
+
+.ghid-prose .replica .tu {
+  display: inline-block;
+  margin-right: 0.35rem;
+  border-radius: 0.4rem;
+  background: rgb(56 189 248 / 0.16);
+  padding: 0 0.4rem;
+  color: #38bdf8;
+  font-weight: 700;
+}
+
+.ghid-prose .regie {
+  color: #8ea3b3;
+}
+
+/* Tabele: lizibile pe desktop, carduri pe mobil */
+.ghid-prose .tabel {
+  overflow-x: auto;
+}
+
+.ghid-prose table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+}
+
+.ghid-prose th {
+  text-align: left;
+  color: #9fb3c2;
+  font-weight: 600;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  border-bottom: 1px solid #1c3444;
+  padding: 0.6rem 0.75rem;
+}
+
+.ghid-prose td {
+  border-bottom: 1px solid #16293a;
+  padding: 0.7rem 0.75rem;
+  vertical-align: top;
+}
+
+@media (max-width: 640px) {
+  .ghid-prose table,
+  .ghid-prose tbody,
+  .ghid-prose tr,
+  .ghid-prose td {
+    display: block;
+    width: 100%;
+  }
+
+  .ghid-prose thead {
+    display: none;
+  }
+
+  .ghid-prose tr {
+    background: #0c202c;
+    border-radius: 0.9rem;
+    padding: 0.4rem 0.2rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .ghid-prose td {
+    border: none;
+    padding: 0.35rem 0.8rem;
+  }
+
+  .ghid-prose td::before {
+    content: attr(data-label);
+    display: block;
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #7f95a6;
+  }
+}
+
+.ghid-prose mark {
+  background: rgb(56 189 248 / 0.3);
+  color: inherit;
+  border-radius: 0.2rem;
+}
