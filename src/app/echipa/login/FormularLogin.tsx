@@ -3,7 +3,8 @@
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import { Buton, Camp, Mesaj } from "@/echipa/components/ui";
+import { IconUtilizatori } from "@/echipa/components/icons";
+import { Buton, Camp, LinkButon, Mesaj } from "@/echipa/components/ui";
 import { supabaseBrowser } from "@/echipa/lib/supabase-browser";
 
 export default function FormularLogin({ dezactivat }: { dezactivat: boolean }) {
@@ -44,13 +45,18 @@ export default function FormularLogin({ dezactivat }: { dezactivat: boolean }) {
       <Buton type="submit" mare className="w-full" disabled={seTrimite || !email || !parola}>
         {seTrimite ? "Se verifică..." : "Intră"}
       </Buton>
-      <div className="flex flex-wrap items-center justify-between gap-2 pt-1 text-sm">
+      <div className="pt-1 text-center text-sm">
         <Link href="/echipa/resetare" className="text-echipa-muted underline-offset-2 hover:text-echipa-accent hover:underline">
           Am uitat parola
         </Link>
-        <Link href="/echipa/inscriere" className="text-echipa-accent underline-offset-2 hover:underline">
-          Am un cod de invitație
-        </Link>
+      </div>
+
+      <div className="border-t border-echipa-line/70 pt-5">
+        <p className="mb-3 text-center text-sm text-echipa-muted">Nu ai cont încă?</p>
+        <LinkButon href="/echipa/inscriere" varianta="secundar" mare className="w-full">
+          <IconUtilizatori className="h-5 w-5 text-echipa-accent" />
+          Înscrie-te cu codul de invitație
+        </LinkButon>
       </div>
     </form>
   );
