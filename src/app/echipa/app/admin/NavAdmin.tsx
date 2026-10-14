@@ -6,7 +6,7 @@ import { usePathname } from "next/navigation";
 const TABURI = [
   { href: "/echipa/app/admin", eticheta: "Pe scurt" },
   { href: "/echipa/app/admin/predari", eticheta: "Întâlniri predate" },
-  { href: "/echipa/app/admin/leaduri", eticheta: "Toate lead-urile" },
+  { href: "/echipa/app/admin/leaduri", eticheta: "Lead-uri și atribuire" },
   { href: "/echipa/app/admin/import", eticheta: "Import CSV" },
   { href: "/echipa/app/admin/comisioane", eticheta: "Lead-uri închise și comisioane" },
   { href: "/echipa/app/admin/sesiuni", eticheta: "Sesiuni și anunțuri" },

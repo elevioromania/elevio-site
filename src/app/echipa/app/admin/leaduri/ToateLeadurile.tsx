@@ -72,19 +72,37 @@ export default function ToateLeadurile() {
   async function realoca() {
     if (!alese.size) return;
     const cui = tinta === "nealocat" ? null : tinta;
-    if (tinta === "") return setMesaj({ tip: "eroare", text: "Alege cui muți lead-urile." });
+    if (tinta === "") return setMesaj({ tip: "eroare", text: "Alege cui atribui lead-urile." });
     setSeLucreaza(true);
     const ids = [...alese];
     for (let i = 0; i < ids.length; i += 200) {
       const { error } = await supabaseBrowser().from("leads").update({ vanzator_id: cui }).in("id", ids.slice(i, i + 200));
       if (error) {
         setSeLucreaza(false);
-        return setMesaj({ tip: "eroare", text: "Realocarea a eșuat. Încearcă din nou." });
+        return setMesaj({ tip: "eroare", text: "Atribuirea a eșuat. Încearcă din nou." });
       }
     }
     setSeLucreaza(false);
     setAlese(new Set());
-    setMesaj({ tip: "succes", text: `Am mutat ${ids.length} lead-uri la ${cui ? numeVanzator[cui] : "nealocat"}.` });
+    setMesaj({ tip: "succes", text: `Am atribuit ${ids.length} lead-uri lui ${cui ? numeVanzator[cui] : "nimeni (nealocate)"}.` });
+    incarca();
+  }
+
+  async function stergeAlese() {
+    if (!alese.size) return;
+    if (!confirm(`Ștergi definitiv ${alese.size} lead-uri? Se șterg și istoricul și întâlnirile predate pentru ele.`)) return;
+    setSeLucreaza(true);
+    const ids = [...alese];
+    for (let i = 0; i < ids.length; i += 200) {
+      const { error } = await supabaseBrowser().from("leads").delete().in("id", ids.slice(i, i + 200));
+      if (error) {
+        setSeLucreaza(false);
+        return setMesaj({ tip: "eroare", text: "Ștergerea a eșuat. Încearcă din nou." });
+      }
+    }
+    setSeLucreaza(false);
+    setAlese(new Set());
+    setMesaj({ tip: "succes", text: `Am șters ${ids.length} lead-uri.` });
     incarca();
   }
 
@@ -120,7 +138,7 @@ export default function ToateLeadurile() {
     <div>
       <TitluPagina
         titlu="Toate lead-urile"
-        subtitlu={leaduri ? `${filtrate.length} din ${leaduri.length}` : undefined}
+        subtitlu={leaduri ? `${filtrate.length} din ${leaduri.length}. Bifează lead-urile ca să le atribui cuiva sau să le ștergi.` : undefined}
         actiuni={
           <Buton varianta="secundar" onClick={exporta} disabled={!filtrate.length}>
             <IconDescarca className="h-4 w-4" /> Export CSV
@@ -180,8 +198,8 @@ export default function ToateLeadurile() {
       {alese.size > 0 && (
         <div className="sticky top-16 z-20 mb-4 flex flex-wrap items-center gap-2 rounded-2xl border border-echipa-accent/50 bg-echipa-card-2 p-3 lg:top-4">
           <span className="text-sm font-semibold">{alese.size} alese</span>
-          <select aria-label="Mută la" className="camp max-w-xs flex-1" value={tinta} onChange={(e) => setTinta(e.target.value)}>
-            <option value="">Mută la...</option>
+          <select aria-label="Atribuie lui" className="camp max-w-xs flex-1" value={tinta} onChange={(e) => setTinta(e.target.value)}>
+            <option value="">Atribuie lui...</option>
             <option value="nealocat">Nealocat</option>
             {oameni
               .filter((o) => o.activ)
@@ -192,7 +210,10 @@ export default function ToateLeadurile() {
               ))}
           </select>
           <Buton onClick={realoca} disabled={seLucreaza}>
-            {seLucreaza ? "Se mută..." : "Realocă"}
+            {seLucreaza ? "Se salvează..." : "Atribuie"}
+          </Buton>
+          <Buton varianta="pericol" onClick={stergeAlese} disabled={seLucreaza}>
+            Șterge
           </Buton>
           <Buton varianta="fantoma" onClick={() => setAlese(new Set())}>
             Anulează

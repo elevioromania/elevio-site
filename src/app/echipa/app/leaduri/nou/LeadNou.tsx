@@ -2,17 +2,26 @@
 
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import FormularLead, { curata, dateGoale } from "@/echipa/components/FormularLead";
 import { IconInapoi } from "@/echipa/components/icons";
 import { useProfil } from "@/echipa/components/ProfilContext";
 import { Buton, Card, Mesaj, TitluPagina } from "@/echipa/components/ui";
 import { MESAJ_DUPLICAT, mesajEroare } from "@/echipa/lib/leaduri";
+import { useIncarca } from "@/echipa/lib/hooks";
 import { supabaseBrowser } from "@/echipa/lib/supabase-browser";
 
 export default function LeadNou() {
   const router = useRouter();
-  const { profil } = useProfil();
+  const { profil, esteAdmin } = useProfil();
+  const [oameni, setOameni] = useState<{ id: string; nume: string }[]>([]);
+  const [cui, setCui] = useState(profil.id);
+  const incarcaOameni = useCallback(async () => {
+    if (!esteAdmin) return;
+    const { data } = await supabaseBrowser().from("profiles").select("id, nume").eq("activ", true).order("nume");
+    setOameni(data ?? []);
+  }, [esteAdmin]);
+  useIncarca(incarcaOameni);
   const [date, setDate] = useState(dateGoale());
   const [eroare, setEroare] = useState("");
   const [seSalveaza, setSeSalveaza] = useState(false);
@@ -41,7 +50,7 @@ export default function LeadNou() {
 
     const { data, error } = await supabase
       .from("leads")
-      .insert({ ...curata(date), vanzator_id: profil.id, sursa: "adaugat_de_vanzator" })
+      .insert({ ...curata(date), vanzator_id: esteAdmin ? cui || null : profil.id, sursa: esteAdmin ? "alocat" : "adaugat_de_vanzator" })
       .select("id")
       .single();
     setSeSalveaza(false);
@@ -57,6 +66,21 @@ export default function LeadNou() {
       <TitluPagina titlu="Adaugă un lead" subtitlu="Verificăm automat să nu fie deja la altcineva din echipă." />
       <form onSubmit={salveaza} noValidate>
         <Card>
+          {esteAdmin && (
+            <div className="mb-6">
+              <label htmlFor="lead-cui" className="mb-1.5 block text-sm font-medium">
+                Atribuie lui
+              </label>
+              <select id="lead-cui" className="camp" value={cui} onChange={(e) => setCui(e.target.value)}>
+                <option value="">Nealocat</option>
+                {oameni.map((o) => (
+                  <option key={o.id} value={o.id}>
+                    {o.nume}
+                  </option>
+                ))}
+              </select>
+            </div>
+          )}
           <FormularLead date={date} schimba={setDate} />
         </Card>
         {eroare && (
