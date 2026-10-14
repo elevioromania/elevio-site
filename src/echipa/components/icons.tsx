@@ -177,3 +177,17 @@ export const IconGrafic = (p: P) => (
     <path d="M3 3v18h18M7 15l4-4 3 3 5-6" />
   </Svg>
 );
+export const IconMedalie = (p: P) => (
+  <Svg {...p}>
+    <path d="M7.2 2h9.6L14 8.5M10 8.5 7.2 2" />
+    <circle cx="12" cy="15" r="6" />
+    <path d="m12 12 .9 1.8 2 .3-1.4 1.4.3 2-1.8-.9-1.8.9.3-2-1.4-1.4 2-.3z" />
+  </Svg>
+);
+export const IconBani = (p: P) => (
+  <Svg {...p}>
+    <rect x="2" y="6" width="20" height="12" rx="2" />
+    <circle cx="12" cy="12" r="2.5" />
+    <path d="M6 12h.01M18 12h.01" />
+  </Svg>
+);

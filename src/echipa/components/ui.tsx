@@ -152,11 +152,13 @@ export function ButonCopiere({
   eticheta = "Copiază",
   className = "",
   varianta = "secundar",
+  compact,
 }: {
   text: string;
   eticheta?: string;
   className?: string;
   varianta?: Varianta;
+  compact?: boolean; // doar iconița pe ecrane mici
 }) {
   const [copiat, setCopiat] = useState(false);
   return (
@@ -180,7 +182,7 @@ export function ButonCopiere({
       }}
     >
       {copiat ? <IconBifa className="h-4 w-4" /> : <IconCopiaza className="h-4 w-4" />}
-      {copiat ? "Copiat" : eticheta}
+      <span className={compact ? "sr-only sm:not-sr-only" : undefined}>{copiat ? "Copiat" : eticheta}</span>
     </Buton>
   );
 }

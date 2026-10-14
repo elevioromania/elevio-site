@@ -53,12 +53,19 @@ export type Nisa =
 
 export type InfoNisa = {
   eticheta: string;
-  // Exemplele folosite în replicile din „Mod apel”.
+  // Exemplele folosite în replicile din „Mod apel”. Pentru stomatologie dau exact textul din ghid.
   client: string; // „un pacient”, „un client”
   serviciu: string; // „un detartraj sau o consultație”
   serviciuPret: string; // „o consultație sau un tratament”
   afacerea: string; // „clinica”, „salonul”
   laAfacere: string; // „la clinică”, „la salon”
+  alAfacerii: string; // „clinicii”, „salonului”
+  cerere: string; // ce cere clientul: „o programare pentru un detartraj sau o consultație”
+  cerereScurta: string; // „o programare”, „o rezervare”
+  altClient: string; // „alt pacient”
+  caUnClient: string; // „ca un pacient”
+  niciunClient: string; // „niciun pacient”
+  altaAfacere: string; // „altă clinică”
   variantaHotel?: boolean;
 };
 
@@ -70,6 +77,13 @@ export const NISE: Record<Nisa, InfoNisa> = {
     serviciuPret: "o consultație sau un tratament",
     afacerea: "clinica",
     laAfacere: "la clinică",
+    alAfacerii: "clinicii",
+    cerere: "o programare pentru un detartraj sau o consultație",
+    cerereScurta: "o programare",
+    altClient: "alt pacient",
+    caUnClient: "ca un pacient",
+    niciunClient: "niciun pacient",
+    altaAfacere: "altă clinică",
   },
   salon: {
     eticheta: "Salon",
@@ -78,6 +92,13 @@ export const NISE: Record<Nisa, InfoNisa> = {
     serviciuPret: "o manichiură sau un tuns",
     afacerea: "salonul",
     laAfacere: "la salon",
+    alAfacerii: "salonului",
+    cerere: "o programare la manichiură",
+    cerereScurta: "o programare",
+    altClient: "altă clientă",
+    caUnClient: "ca o clientă",
+    niciunClient: "nicio clientă",
+    altaAfacere: "alt salon",
   },
   spa: {
     eticheta: "Spa",
@@ -86,6 +107,13 @@ export const NISE: Record<Nisa, InfoNisa> = {
     serviciuPret: "un masaj sau un tratament",
     afacerea: "spa-ul",
     laAfacere: "la spa",
+    alAfacerii: "spa-ului",
+    cerere: "o programare pentru un masaj",
+    cerereScurta: "o programare",
+    altClient: "alt client",
+    caUnClient: "ca un client",
+    niciunClient: "niciun client",
+    altaAfacere: "alt spa",
   },
   clinica: {
     eticheta: "Clinică medicală",
@@ -94,6 +122,13 @@ export const NISE: Record<Nisa, InfoNisa> = {
     serviciuPret: "o consultație",
     afacerea: "clinica",
     laAfacere: "la clinică",
+    alAfacerii: "clinicii",
+    cerere: "o programare pentru o consultație",
+    cerereScurta: "o programare",
+    altClient: "alt pacient",
+    caUnClient: "ca un pacient",
+    niciunClient: "niciun pacient",
+    altaAfacere: "altă clinică",
   },
   hotel: {
     eticheta: "Hotel",
@@ -102,6 +137,13 @@ export const NISE: Record<Nisa, InfoNisa> = {
     serviciuPret: "o noapte de cazare",
     afacerea: "hotelul",
     laAfacere: "la hotel",
+    alAfacerii: "hotelului",
+    cerere: "o rezervare",
+    cerereScurta: "o rezervare",
+    altClient: "alt client",
+    caUnClient: "ca un client",
+    niciunClient: "niciun client",
+    altaAfacere: "alt hotel",
     variantaHotel: true,
   },
   restaurant: {
@@ -111,6 +153,13 @@ export const NISE: Record<Nisa, InfoNisa> = {
     serviciuPret: "o masă pentru doi",
     afacerea: "restaurantul",
     laAfacere: "la restaurant",
+    alAfacerii: "restaurantului",
+    cerere: "o rezervare de masă",
+    cerereScurta: "o rezervare",
+    altClient: "alt client",
+    caUnClient: "ca un client",
+    niciunClient: "niciun client",
+    altaAfacere: "alt restaurant",
   },
   service_auto: {
     eticheta: "Service auto",
@@ -119,6 +168,13 @@ export const NISE: Record<Nisa, InfoNisa> = {
     serviciuPret: "o revizie",
     afacerea: "service-ul",
     laAfacere: "la service",
+    alAfacerii: "service-ului",
+    cerere: "o programare pentru o revizie",
+    cerereScurta: "o programare",
+    altClient: "alt client",
+    caUnClient: "ca un client",
+    niciunClient: "niciun client",
+    altaAfacere: "alt service",
   },
   altele: {
     eticheta: "Altele",
@@ -127,6 +183,13 @@ export const NISE: Record<Nisa, InfoNisa> = {
     serviciuPret: "un serviciu",
     afacerea: "afacerea",
     laAfacere: "la dumneavoastră",
+    alAfacerii: "afacerii",
+    cerere: "o programare",
+    cerereScurta: "o programare",
+    altClient: "alt client",
+    caUnClient: "ca un client",
+    niciunClient: "niciun client",
+    altaAfacere: "concurență",
   },
 };
 

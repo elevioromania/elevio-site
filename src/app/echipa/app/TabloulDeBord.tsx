@@ -1,10 +1,11 @@
 "use client";
 
 import Link from "next/link";
-import { useCallback, useMemo, useState } from "react";
+import { useCallback, useState } from "react";
 import { DEMO_NUMBER, MESAJ_BUN_VENIT, NISE, STATUSURI } from "@/echipa/config";
 import { useActiuniLead } from "@/echipa/components/ActiuniLead";
-import { IconCalendar, IconCarte, IconLeaduri, IconTelefon, IconTrofeu } from "@/echipa/components/icons";
+import { lanseazaConfetti } from "@/echipa/components/confetti";
+import { IconCalendar, IconCarte, IconFulger, IconLeaduri, IconTelefon, IconTrofeu } from "@/echipa/components/icons";
 import { useProfil } from "@/echipa/components/ProfilContext";
 import StatusBadge from "@/echipa/components/StatusBadge";
 import { Buton, ButonCopiere, Card, Incarcare } from "@/echipa/components/ui";
@@ -13,21 +14,24 @@ import { COLOANE_LEAD } from "@/echipa/lib/leaduri";
 import { useIncarca } from "@/echipa/lib/hooks";
 import { supabaseBrowser } from "@/echipa/lib/supabase-browser";
 import type { Lead } from "@/echipa/lib/tipuri";
+import { Anunturi, ChecklistStart, FeedEchipa, InsigneleMele, ProgresBonus, ProgresGhid, type SectiuneScurta } from "./Widgeturi";
 
 type RandClasament = { user_id: string; clienti: number; intalniri: number; apeluri: number; pozitie: number };
 
-export default function TabloulDeBord() {
+export default function TabloulDeBord({ sectiuni }: { sectiuni: SectiuneScurta[] }) {
   const { profil, reincarca: reincarcaProfil } = useProfil();
   const [deFacut, setDeFacut] = useState<Lead[] | null>(null);
   const [saptamana, setSaptamana] = useState<RandClasament | null>(null);
   const [total, setTotal] = useState<RandClasament | null>(null);
   const [nrEchipa, setNrEchipa] = useState(0);
+  const [insigne, setInsigne] = useState<string[]>([]);
+  const [clientNou, setClientNou] = useState(false);
 
   const incarca = useCallback(async () => {
     const supabase = supabaseBrowser();
     const sfarsitAzi = new Date();
     sfarsitAzi.setHours(23, 59, 59, 999);
-    const [l, s, t] = await Promise.all([
+    const [l, s, t, i] = await Promise.all([
       supabase
         .from("leads")
         .select(COLOANE_LEAD)
@@ -38,12 +42,30 @@ export default function TabloulDeBord() {
         .limit(50),
       supabase.rpc("clasament", { p_perioada: "saptamana" }),
       supabase.rpc("clasament", { p_perioada: "total" }),
+      supabase.from("insigne").select("cod_insigna").eq("user_id", profil.id).order("obtinuta_la"),
     ]);
     setDeFacut((l.data as Lead[]) ?? []);
     const randS = (s.data as RandClasament[] | null) ?? [];
     setNrEchipa(randS.length);
     setSaptamana(randS.find((r) => r.user_id === profil.id) ?? null);
-    setTotal(((t.data as RandClasament[] | null) ?? []).find((r) => r.user_id === profil.id) ?? null);
+    const randT = ((t.data as RandClasament[] | null) ?? []).find((r) => r.user_id === profil.id) ?? null;
+    setTotal(randT);
+    setInsigne((i.data ?? []).map((x) => x.cod_insigna));
+
+    // Un client închis de la ultima vizită: îl sărbătorim.
+    if (randT) {
+      const cheie = `echipa-clienti-vazuti-${profil.id}`;
+      try {
+        const vazuti = Number(localStorage.getItem(cheie) ?? "0");
+        if (randT.clienti > vazuti) {
+          setClientNou(true);
+          lanseazaConfetti();
+        }
+        localStorage.setItem(cheie, String(randT.clienti));
+      } catch {
+        // fără localStorage: fără sărbătoare
+      }
+    }
   }, [profil.id]);
 
   useIncarca(incarca);
@@ -51,7 +73,7 @@ export default function TabloulDeBord() {
   const actiuni = useActiuniLead(incarca);
   const prenume = profil.nume.trim().split(/\s+/)[0];
   const azi = cheieZi(new Date());
-  const ora = useMemo(() => new Date().getHours(), []);
+  const ora = Number(new Date().toLocaleString("en-GB", { timeZone: "Europe/Bucharest", hour: "2-digit", hour12: false }));
   const salut = ora < 12 ? "Bună dimineața" : ora < 18 ? "Salut" : "Bună seara";
 
   async function amInteles() {
@@ -67,6 +89,21 @@ export default function TabloulDeBord() {
         </h1>
         <p className="mt-1 text-sm text-echipa-muted">{profil.titlu}</p>
       </div>
+
+      <Anunturi />
+
+      {clientNou && (
+        <div className="pop flex items-center gap-4 rounded-3xl border border-emerald-500/50 bg-emerald-500/10 p-5">
+          <IconTrofeu className="h-10 w-10 shrink-0 text-emerald-300" />
+          <div className="flex-1">
+            <p className="text-lg font-bold text-emerald-200">Ai închis un client nou!</p>
+            <p className="text-sm text-emerald-100/80">Întâlnirea ta s-a transformat în client. Vezi comisionul în „Câștigurile mele”.</p>
+          </div>
+          <button type="button" onClick={() => setClientNou(false)} className="text-sm text-emerald-200/80 hover:text-emerald-100">
+            Închide
+          </button>
+        </div>
+      )}
 
       {!profil.bun_venit_vazut && (
         <div className="pop rounded-3xl border border-echipa-accent/50 bg-gradient-to-br from-echipa-card to-echipa-bg p-5 shadow-[0_0_60px_-25px_rgba(56,189,248,0.6)] sm:p-6">
@@ -93,6 +130,8 @@ export default function TabloulDeBord() {
         <Cifra eticheta="Clienți închiși" saptamana={saptamana?.clienti} total={total?.clienti} />
       </section>
 
+      {profil.rol === "vanzator" && <ChecklistStart sectiuni={sectiuni} insigne={insigne} />}
+
       {saptamana && profil.rol === "vanzator" && (
         <Card className="flex items-center gap-4">
           <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-echipa-accent/15 text-echipa-accent">
@@ -108,11 +147,12 @@ export default function TabloulDeBord() {
       )}
 
       {/* Acces rapid */}
-      <section aria-label="Acces rapid" className="grid grid-cols-2 gap-3 sm:grid-cols-4">
+      <section aria-label="Acces rapid" className="grid grid-cols-2 gap-3 lg:grid-cols-5">
+        <Rapid href="/echipa/app/mod-apel" icon={<IconFulger className="h-6 w-6" />} titlu="Mod apel" />
         <Rapid href="/echipa/app/leaduri" icon={<IconLeaduri className="h-6 w-6" />} titlu="Lead-urile mele" />
         <Rapid href="/echipa/app/ghid" icon={<IconCarte className="h-6 w-6" />} titlu="Ghid" />
         <Rapid href="/echipa/app/calendar" icon={<IconCalendar className="h-6 w-6" />} titlu="Calendarul lui David" />
-        <div className="flex flex-col justify-between rounded-2xl border border-echipa-line/70 bg-echipa-card p-4">
+        <div className="col-span-2 flex flex-col justify-between rounded-2xl border border-echipa-line/70 bg-echipa-card p-4 lg:col-span-1">
           <p className="text-xs text-echipa-muted">Numărul de demo</p>
           <p className="mt-1 text-lg font-bold tracking-wide text-echipa-accent">{DEMO_NUMBER}</p>
           <ButonCopiere text={DEMO_NUMBER} className="mt-2 w-full" />
@@ -168,6 +208,16 @@ export default function TabloulDeBord() {
           </ul>
         )}
       </section>
+
+      <div className="grid gap-3 sm:grid-cols-2">
+        <ProgresGhid total={sectiuni.length} />
+        {profil.rol === "vanzator" && <ProgresBonus clienti={total?.clienti ?? 0} />}
+      </div>
+
+      <div className="grid gap-4 lg:grid-cols-2">
+        <FeedEchipa />
+        <InsigneleMele insigne={insigne} />
+      </div>
 
       {actiuni.modale}
     </div>

@@ -185,6 +185,32 @@ Nișa se recunoaște și din cuvinte ca „dentist”, „coafor”, „pensiune
 
 **Admin, Întâlniri predate**: alegi rezultatul. La „Client închis” completezi pachetul și prețul lunar. Comisionul vânzătorului se calculează automat (taxa de instalare setată la el, plus 50% din prima lună).
 
+### Setezi bonusurile
+
+**Admin, Clienți și comisioane**, secțiunea **Bonusuri**. La pornire sunt două praguri orientative, pe care le schimbi cum vrei:
+
+- primul client: **50€** (sumă pusă de mine ca exemplu, nu ai stabilit-o tu);
+- 5 clienți: **450€** (mijlocul intervalului de 400-500€).
+
+Bonusul se acordă automat când vânzătorul atinge pragul. Tu bifezi „Plătit” când îl plătești.
+
+### Marchezi plățile de comision
+
+Tot în **Clienți și comisioane**, la fiecare client bifezi pe rând: instalarea plătită de client, prima lună încheiată, client anulat, tranșa 1 plătită, tranșa 2 plătită. Vânzătorul vede imediat în „Câștigurile mele” stările „În așteptare”, „De plată” sau „Plătit”. Sumele tranșelor se pot corecta direct pe card.
+
+Regula folosită: tranșa 2 (50% din prima lună) devine „De plată” după ce bifezi „Prima lună încheiată”. Dacă bifezi „Client anulat” înainte de încheierea primei luni, tranșa 2 se anulează, iar tranșa 1 rămâne a vânzătorului.
+
+### Anunțuri și sesiuni de apeluri în grup
+
+**Admin, Sesiuni și anunțuri**:
+
+- un **anunț** apare sus în tabloul de bord al tuturor, până îl ascunzi;
+- o **sesiune** (power hour) apare în pagina „Echipa”, cu data, ora și linkul de Zoom sau Google Meet.
+
+### Statistici
+
+**Admin, Statistici**: lead-uri, apeluri, întâlniri, clienți și rata întâlnire-client, pe fiecare vânzător și pe toată echipa. Trainerul vede și el pagina asta, din meniul lui.
+
 ### Actualizezi ghidul de vânzări
 
 Textul ghidului stă în fișiere Markdown, în folderul `content/echipa`, câte un fișier pe secțiune (`01-bine-ai-venit.md`, `02-ce-este-elevio.md` etc.).

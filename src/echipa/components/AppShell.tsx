@@ -3,38 +3,52 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
-import type { Profil } from "../lib/tipuri";
+import type { Profil, Rol } from "../lib/tipuri";
 import {
   IconAcasa,
+  IconBani,
   IconCalendar,
   IconCarte,
+  IconFulger,
+  IconGrafic,
   IconIesire,
   IconIntrebare,
   IconLeaduri,
   IconMeniu,
   IconScut,
+  IconTrofeu,
   IconUtilizatori,
   IconX,
 } from "./icons";
 import { ProfilProvider, useProfil } from "./ProfilContext";
 import { Logo } from "./ui";
 
-type Item = { href: string; eticheta: string; icon: (p: { className?: string }) => React.ReactElement; doarAdmin?: boolean };
+type Item = {
+  href: string;
+  eticheta: string;
+  icon: (p: { className?: string }) => React.ReactElement;
+  roluri?: Rol[]; // fără roluri: vizibil pentru toți
+};
 
 const NAV: Item[] = [
   { href: "/echipa/app", eticheta: "Acasă", icon: IconAcasa },
+  { href: "/echipa/app/mod-apel", eticheta: "Mod apel", icon: IconFulger },
   { href: "/echipa/app/leaduri", eticheta: "Lead-urile mele", icon: IconLeaduri },
   { href: "/echipa/app/calendar", eticheta: "Programează cu David", icon: IconCalendar },
   { href: "/echipa/app/ghid", eticheta: "Ghid", icon: IconCarte },
   { href: "/echipa/app/obiectii", eticheta: "Obiecții", icon: IconScut },
   { href: "/echipa/app/intrebari", eticheta: "Întrebări frecvente", icon: IconIntrebare },
-  { href: "/echipa/app/admin", eticheta: "Admin", icon: IconUtilizatori, doarAdmin: true },
+  { href: "/echipa/app/clasament", eticheta: "Clasament", icon: IconTrofeu },
+  { href: "/echipa/app/castiguri", eticheta: "Câștigurile mele", icon: IconBani, roluri: ["vanzator"] },
+  { href: "/echipa/app/comunitate", eticheta: "Echipa", icon: IconUtilizatori },
+  { href: "/echipa/app/statistici", eticheta: "Statistici", icon: IconGrafic, roluri: ["trainer"] },
+  { href: "/echipa/app/admin", eticheta: "Admin", icon: IconGrafic, roluri: ["admin"] },
 ];
 
 const BARA_JOS: Item[] = [
   { href: "/echipa/app", eticheta: "Acasă", icon: IconAcasa },
   { href: "/echipa/app/leaduri", eticheta: "Lead-uri", icon: IconLeaduri },
-  { href: "/echipa/app/calendar", eticheta: "Calendar", icon: IconCalendar },
+  { href: "/echipa/app/mod-apel", eticheta: "Mod apel", icon: IconFulger },
   { href: "/echipa/app/ghid", eticheta: "Ghid", icon: IconCarte },
 ];
 
@@ -52,12 +66,12 @@ export default function AppShell({ profil, children }: { profil: Profil; childre
 
 function Cadru({ children }: { children: React.ReactNode }) {
   const path = usePathname();
-  const { profil, esteAdmin } = useProfil();
+  const { profil } = useProfil();
   // Meniul e deschis pentru pagina curentă; la navigare se închide singur.
   const [meniuPe, setMeniuPe] = useState<string | null>(null);
   const meniu = meniuPe === path;
   const setMeniu = (deschis: boolean) => setMeniuPe(deschis ? path : null);
-  const iteme = NAV.filter((i) => !i.doarAdmin || esteAdmin);
+  const iteme = NAV.filter((i) => !i.roluri || i.roluri.includes(profil.rol));
 
   const utilizator = (
     <div className="flex items-center gap-3">

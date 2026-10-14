@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import ButonCitit from "@/echipa/components/ButonCitit";
 import { IconInapoi, IconSageata } from "@/echipa/components/icons";
 import { sectiune, sectiuni } from "@/echipa/lib/ghid";
 
@@ -25,6 +26,10 @@ export default async function SectiunePage({ params }: PageProps<"/echipa/app/gh
         {s.numar}. {s.titlu}
       </h1>
       <div className="ghid-prose mt-6" dangerouslySetInnerHTML={{ __html: s.html }} />
+
+      <div className="mt-10">
+        <ButonCitit sectiune={s.slug} />
+      </div>
 
       <nav className="mt-10 grid gap-3 border-t border-echipa-line pt-6 sm:grid-cols-2" aria-label="Secțiuni vecine">
         {inainte ? (

@@ -2,11 +2,15 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useProgresGhid } from "../lib/progres";
+import { useProfil } from "./ProfilContext";
 
 export type ParteCuprins = { numar: number; titlu: string; sectiuni: { slug: string; numar: number; titlu: string }[] };
 
-export default function CuprinsGhid({ parti, citite = [] }: { parti: ParteCuprins[]; citite?: string[] }) {
+export default function CuprinsGhid({ parti }: { parti: ParteCuprins[] }) {
   const path = usePathname();
+  const { profil } = useProfil();
+  const citite = useProgresGhid(profil.id).citite ?? [];
   return (
     <nav aria-label="Cuprinsul ghidului" className="space-y-5">
       {parti.map((p) => (

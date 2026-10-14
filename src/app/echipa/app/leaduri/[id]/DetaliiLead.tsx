@@ -5,7 +5,7 @@ import { useCallback, useEffect, useState } from "react";
 import { etichetaObiectie, NISE, REZULTATE_PREDARE, STATUSURI, type Status } from "@/echipa/config";
 import { useActiuniLead } from "@/echipa/components/ActiuniLead";
 import FormularLead, { curata, type DateLead } from "@/echipa/components/FormularLead";
-import { IconHarta, IconInapoi, IconLink, IconNotita, IconTelefon } from "@/echipa/components/icons";
+import { IconFulger, IconHarta, IconInapoi, IconLink, IconNotita, IconTelefon } from "@/echipa/components/icons";
 import { useProfil } from "@/echipa/components/ProfilContext";
 import StatusBadge from "@/echipa/components/StatusBadge";
 import { Buton, Card, Gol, Incarcare, Mesaj } from "@/echipa/components/ui";
@@ -113,12 +113,18 @@ export default function DetaliiLead({ id }: { id: string }) {
         <StatusBadge status={lead.status} />
       </div>
 
-      <div className="mb-5 grid grid-cols-2 gap-2 sm:grid-cols-4">
+      <div className="mb-5 grid grid-cols-2 gap-2 sm:grid-cols-3">
         {telefoane.map((t) => (
           <a key={t.eticheta} href={linkTel(t.nr)} className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-echipa-accent px-3 text-sm font-semibold text-echipa-bg hover:bg-sky-300">
             <IconTelefon className="h-4 w-4" /> {t.eticheta}
           </a>
         ))}
+        <Link
+          href={`/echipa/app/mod-apel?lead=${lead.id}`}
+          className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl border border-echipa-accent/60 bg-echipa-accent/10 px-3 text-sm font-semibold text-echipa-accent hover:bg-echipa-accent/20"
+        >
+          <IconFulger className="h-4 w-4" /> Mod apel
+        </Link>
         <Buton varianta="secundar" className="min-h-12" onClick={() => actiuni.deschideStatus(lead)}>
           Schimbă statusul
         </Buton>
