@@ -27,3 +27,18 @@ export function citesteCsv(fisier: File): Promise<{ coloane: string[]; randuri: 
     });
   });
 }
+
+// Citește un CSV sau un Excel (.xlsx): prima linie e capul de tabel.
+export async function citesteFisier(fisier: File): Promise<{ coloane: string[]; randuri: Record<string, string>[] }> {
+  if (/\.xlsx$/i.test(fisier.name)) {
+    const { readSheet } = await import("read-excel-file/browser");
+    const date = await readSheet(fisier);
+    const [cap = [], ...rest] = date;
+    const coloane = cap.map((c, i) => String(c ?? "").trim() || `Coloana ${i + 1}`);
+    const randuri = rest
+      .filter((r) => r.some((c) => c !== null && String(c).trim() !== ""))
+      .map((r) => Object.fromEntries(coloane.map((c, i) => [c, r[i] == null ? "" : String(r[i])])));
+    return { coloane, randuri };
+  }
+  return citesteCsv(fisier);
+}

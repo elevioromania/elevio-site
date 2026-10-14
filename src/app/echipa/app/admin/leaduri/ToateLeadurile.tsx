@@ -15,7 +15,7 @@ import type { Lead } from "@/echipa/lib/tipuri";
 
 type Persoana = { id: string; nume: string; activ: boolean };
 
-export default function ToateLeadurile() {
+export default function ToateLeadurile({ listaId, titlu = "Toate lead-urile", sus }: { listaId?: string; titlu?: string; sus?: React.ReactNode } = {}) {
   const [leaduri, setLeaduri] = useState<Lead[] | null>(null);
   const [oameni, setOameni] = useState<Persoana[]>([]);
   const [alese, setAlese] = useState<Set<string>>(new Set());
@@ -32,12 +32,16 @@ export default function ToateLeadurile() {
   const incarca = useCallback(async () => {
     const supabase = supabaseBrowser();
     const [l, p] = await Promise.all([
-      toatePaginile<Lead>((de, pana) => supabase.from("leads").select(COLOANE_LEAD).order("creat_la", { ascending: false }).order("id").range(de, pana)),
+      toatePaginile<Lead>((de, pana) => {
+        let q = supabase.from("leads").select(COLOANE_LEAD);
+        if (listaId) q = q.eq("lista_id", listaId);
+        return q.order("creat_la", { ascending: false }).order("id").range(de, pana);
+      }),
       supabase.from("profiles").select("id, nume, activ").order("nume"),
     ]);
     setLeaduri(l.data);
     setOameni((p.data as Persoana[]) ?? []);
-  }, []);
+  }, [listaId]);
 
   useIncarca(incarca);
 
@@ -137,7 +141,7 @@ export default function ToateLeadurile() {
   return (
     <div>
       <TitluPagina
-        titlu="Toate lead-urile"
+        titlu={titlu}
         subtitlu={leaduri ? `${filtrate.length} din ${leaduri.length}. Bifează lead-urile ca să le atribui cuiva sau să le ștergi.` : undefined}
         actiuni={
           <Buton varianta="secundar" onClick={exporta} disabled={!filtrate.length}>
@@ -145,6 +149,8 @@ export default function ToateLeadurile() {
           </Buton>
         }
       />
+
+      {sus}
 
       <div className="mb-4 grid gap-2 sm:grid-cols-3 lg:grid-cols-6">
         <input type="search" aria-label="Caută" className="camp sm:col-span-3 lg:col-span-1" placeholder="Caută" value={cautare} onChange={(e) => setCautare(e.target.value)} />

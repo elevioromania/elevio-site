@@ -6,7 +6,7 @@ import { supabaseBrowser } from "./supabase-browser";
 import type { Lead, Predare } from "./tipuri";
 
 export const COLOANE_LEAD =
-  "id, vanzator_id, afacere, nisa, oras, adresa, telefon_afacere, site, google_maps, decident_nume, decident_functie, decident_telefon, decident_email, status, urmatorul_pas_data, urmatorul_pas_text, notite, obiectii, obiectii_text, a_sunat_demo, sursa, calitate, creat_la, actualizat_la, ultimul_contact";
+  "id, vanzator_id, lista_id, afacere, nisa, oras, adresa, telefon_afacere, site, google_maps, decident_nume, decident_functie, decident_telefon, decident_email, status, urmatorul_pas_data, urmatorul_pas_text, notite, obiectii, obiectii_text, a_sunat_demo, sursa, calitate, creat_la, actualizat_la, ultimul_contact";
 
 export const MESAJ_DUPLICAT = "Lead-ul ăsta e deja alocat. Vorbește cu echipa de closing.";
 

@@ -21,6 +21,7 @@ export type Profil = {
 export type Lead = {
   id: string;
   vanzator_id: string | null;
+  lista_id: string | null;
   afacere: string;
   nisa: Nisa;
   oras: string | null;
