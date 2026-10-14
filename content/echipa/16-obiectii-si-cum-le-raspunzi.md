@@ -32,7 +32,7 @@ O obiecție nu e un „nu”. E o întrebare sau o grijă. Regula: **înțelegi,
 
 #### „Cât costă?”
 
-> **Tu:** „Depinde de ce aveți nevoie: câte apeluri aveți, ce vreți să facă agentul, câte locații. Pornește de la aproximativ 130€ pe lună. Prețul exact îl stabilește David cu dumneavoastră, după ce vede exact ce vă trebuie.”
+> **Tu:** „Depinde de ce aveți nevoie: câte apeluri aveți, ce vreți să facă agentul, câte locații. Pornește de la aproximativ 130€ pe lună. Prețul exact se stabilește la întâlnire, după ce vedem exact ce vă trebuie.”
 >
 > _[Leagă de calcul, dacă l-ați făcut:]_
 >
@@ -44,7 +44,7 @@ O obiecție nu e un „nu”. E o întrebare sau o grijă. Regula: **înțelegi,
 
 #### „Trebuie să vorbesc cu asociatul / cu doctorul.”
 
-> **Tu:** „Foarte bine. Cel mai simplu e să participe și el la discuția cu David, ca să afle tot de la sursă. Ce zi v-ar conveni amândurora?”
+> **Tu:** „Foarte bine. Cel mai simplu e să participe și el la întâlnire, ca să afle tot de la sursă. Ce zi v-ar conveni amândurora?”
 
 #### „Avem deja un sistem / am mai fost sunat de alții.”
 
@@ -58,4 +58,4 @@ O obiecție nu e un „nu”. E o întrebare sau o grijă. Regula: **înțelegi,
 
 #### „Sună robotic.”
 
-> **Tu:** „Cel mai bine e să judecați singur. Sunați un minut la numărul de test și cereți o programare. Vocea și tonul se aleg apoi împreună cu David.”
+> **Tu:** „Cel mai bine e să judecați singur. Sunați un minut la numărul de test și cereți o programare. Vocea și tonul se aleg apoi împreună, la întâlnire.”

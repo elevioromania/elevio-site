@@ -8,7 +8,7 @@ import { supabaseBrowser } from "@/echipa/lib/supabase-browser";
 
 export default function FormularInscriere() {
   const router = useRouter();
-  const [f, setF] = useState({ nume: "", email: "", telefon: "", parola: "", confirmare: "", cod: "" });
+  const [f, setF] = useState({ prenume: "", nume: "", email: "", telefon: "", parola: "", confirmare: "", cod: "" });
   const [eroare, setEroare] = useState("");
   const [seTrimite, setSeTrimite] = useState(false);
 
@@ -17,7 +17,8 @@ export default function FormularInscriere() {
   async function trimite(e: React.FormEvent) {
     e.preventDefault();
     setEroare("");
-    if (f.nume.trim().length < 3) return setEroare("Scrie numele și prenumele.");
+    if (f.prenume.trim().length < 2) return setEroare("Scrie prenumele.");
+    if (f.nume.trim().length < 2) return setEroare("Scrie numele de familie.");
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(f.email.trim())) return setEroare("Adresa de e-mail nu e validă.");
     if (f.telefon.replace(/\D/g, "").length < 9) return setEroare("Numărul de telefon nu e valid.");
     if (f.parola.length < 8) return setEroare("Parola trebuie să aibă minimum 8 caractere.");
@@ -27,7 +28,7 @@ export default function FormularInscriere() {
     setSeTrimite(true);
     const supabase = supabaseBrowser();
     const { error } = await supabase.functions.invoke("inscriere", {
-      body: { nume: f.nume, email: f.email, telefon: f.telefon, parola: f.parola, cod: f.cod },
+      body: { nume: `${f.prenume.trim()} ${f.nume.trim()}`, email: f.email, telefon: f.telefon, parola: f.parola, cod: f.cod },
     });
 
     if (error) {
@@ -54,9 +55,14 @@ export default function FormularInscriere() {
   return (
     <form onSubmit={trimite} className="space-y-4" noValidate>
       {eroare && <Mesaj>{eroare}</Mesaj>}
-      <Camp eticheta="Nume și prenume" htmlFor="nume" obligatoriu>
-        <input id="nume" autoComplete="name" className="camp" value={f.nume} onChange={set("nume")} />
-      </Camp>
+      <div className="grid gap-4 sm:grid-cols-2">
+        <Camp eticheta="Prenume" htmlFor="prenume" obligatoriu>
+          <input id="prenume" autoComplete="given-name" className="camp" value={f.prenume} onChange={set("prenume")} />
+        </Camp>
+        <Camp eticheta="Nume de familie" htmlFor="nume" obligatoriu>
+          <input id="nume" autoComplete="family-name" className="camp" value={f.nume} onChange={set("nume")} />
+        </Camp>
+      </div>
       <Camp eticheta="E-mail" htmlFor="email" obligatoriu>
         <input id="email" type="email" autoComplete="email" className="camp" value={f.email} onChange={set("email")} />
       </Camp>

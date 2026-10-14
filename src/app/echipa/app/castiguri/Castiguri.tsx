@@ -55,7 +55,7 @@ export default function Castiguri() {
 
   return (
     <div className="max-w-3xl space-y-5">
-      <TitluPagina titlu="Câștigurile mele" subtitlu="Doar tu și David vedeți pagina asta." />
+      <TitluPagina titlu="Câștigurile mele" subtitlu="Doar tu și administratorul vedeți pagina asta." />
 
       <div className="grid gap-3 sm:grid-cols-3">
         <Suma eticheta="Total câștigat" valoare={sume["Plătit"] + sume["De plată"]} detaliu={`din care plătit: ${euro(sume["Plătit"])}`} accent />
@@ -70,7 +70,7 @@ export default function Castiguri() {
             <p className="mt-1 text-lg font-bold">
               {urmatorul ? (
                 <>
-                  {nrClienti} din {urmatorul.prag} clienți <span className="text-echipa-accent">({euro(urmatorul.suma)})</span>
+                  {nrClienti} din {urmatorul.prag} lead-uri închise <span className="text-echipa-accent">({euro(urmatorul.suma)})</span>
                 </>
               ) : praguri.length ? (
                 "Ai atins toate pragurile de bonus"
@@ -87,7 +87,7 @@ export default function Castiguri() {
           <ul className="mt-4 space-y-2">
             {bonusuri.map((b) => (
               <li key={b.id} className="flex items-center justify-between rounded-xl bg-echipa-bg/60 px-3 py-2 text-sm">
-                <span>Bonus pentru {b.prag === 1 ? "primul client" : `${b.prag} clienți`}</span>
+                <span>Bonus pentru {b.prag === 1 ? "primul lead închis" : `${b.prag} lead-uri închise`}</span>
                 <span className="flex items-center gap-2">
                   <strong>{euro(b.suma)}</strong>
                   <Stare s={b.platit ? "Plătit" : "De plată"} />
@@ -99,16 +99,16 @@ export default function Castiguri() {
       </Card>
 
       <section>
-        <h2 className="mb-3 text-lg font-bold">Clienții închiși prin întâlnirile mele</h2>
+        <h2 className="mb-3 text-lg font-bold">Lead-urile închise din întâlnirile mele</h2>
         {clienti.length === 0 ? (
-          <Gol titlu="Încă niciun client închis">Fiecare întâlnire programată te apropie de primul. Prima tranșă vine după ce clientul plătește instalarea.</Gol>
+          <Gol titlu="Încă niciun lead închis">Fiecare întâlnire programată te apropie de primul. Prima tranșă vine după plata instalării.</Gol>
         ) : (
           <ul className="space-y-3">
             {clienti.map((c) => (
               <li key={c.id} className="rounded-2xl border border-echipa-line/70 bg-echipa-card p-4">
                 <div className="flex flex-wrap items-baseline justify-between gap-2">
                   <p className="font-semibold">
-                    {c.predari?.leads?.afacere ?? "Client"}
+                    {c.predari?.leads?.afacere ?? "Lead"}
                     {c.predari?.leads?.oras ? `, ${c.predari.leads.oras}` : ""}
                   </p>
                   <p className="text-xs text-echipa-muted">

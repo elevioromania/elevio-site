@@ -15,11 +15,10 @@ export function numarDemo(nisa?: Nisa | null) {
   return (nisa && DEMO_NUMERE_PE_NISA[nisa]) || DEMO_NUMBER;
 }
 
-export const DAVID_NUME = "David";
 export const DAVID_WHATSAPP = "0778 320 872";
 export const DAVID_WHATSAPP_INTL = "40778320872";
 
-// Calendarul lui David (Cal.com sau Google Calendar). Gol = se afișează un mesaj de configurare.
+// Calendarul de closing (Cal.com sau Google Calendar). Gol = se afișează un mesaj de configurare.
 // Poate fi suprascris din Netlify cu variabila NEXT_PUBLIC_CALENDAR_URL.
 export const CALENDAR_URL = process.env.NEXT_PUBLIC_CALENDAR_URL || "";
 
@@ -239,7 +238,7 @@ export const STATUSURI: Record<Status, InfoStatus> = {
     eticheta: "Întâlnire programată",
     culoare: "Verde",
     hex: "#22C55E",
-    descriere: "Se predă lui David",
+    descriere: "Se predă echipei de closing",
   },
   neinteresat: { eticheta: "Nu e interesat", culoare: "Roșu", hex: "#EF4444", descriere: "Închis politicos" },
   invalid: {
@@ -282,17 +281,17 @@ export const REZULTATE_PREDARE: Record<string, string> = {
   confirmata: "Confirmată",
   neprezentat: "Neprezentat (no-show)",
   reprogramata: "Reprogramată",
-  inchis: "Client închis",
+  inchis: "Lead închis",
   neinchis: "Nu a închis",
 };
 
 export const INSIGNE: Record<string, { titlu: string; descriere: string }> = {
   primul_apel: { titlu: "Primul apel", descriere: "Ai marcat primul apel." },
   o_suta_apeluri: { titlu: "100 de apeluri", descriere: "Ai marcat 100 de apeluri." },
-  prima_intalnire: { titlu: "Prima întâlnire", descriere: "Ai programat prima întâlnire cu David." },
+  prima_intalnire: { titlu: "Prima întâlnire", descriere: "Ai programat prima întâlnire." },
   zece_intalniri: { titlu: "10 întâlniri", descriere: "Ai programat 10 întâlniri." },
-  primul_client: { titlu: "Primul client", descriere: "Primul client închis din întâlnirile tale." },
-  cinci_clienti: { titlu: "5 clienți", descriere: "Cinci clienți închiși." },
+  primul_client: { titlu: "Primul lead închis", descriere: "Primul lead închis din întâlnirile tale." },
+  cinci_clienti: { titlu: "5 lead-uri închise", descriere: "Cinci lead-uri închise." },
   serie_7_zile: { titlu: "7 zile la rând", descriere: "Activitate în fiecare zi, o săptămână întreagă." },
 };
 
@@ -313,4 +312,4 @@ export const PRET_DE_PORNIRE = "aproximativ 130€ pe lună";
 // ---------------------------------------------------------------------------
 
 export const MESAJ_BUN_VENIT =
-  "Ai o singură misiune: să-l faci pe decident să audă agentul. Când aude cum preia apelul și face programarea, se convinge singur. Restul îl face David.";
+  "Ai o singură misiune: să-l faci pe proprietar sau pe manager să audă agentul. Când aude cum preia apelul și face programarea, se convinge singur. Restul îl face echipa de closing.";

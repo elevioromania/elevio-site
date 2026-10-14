@@ -10,7 +10,7 @@ titlu: Demo-ul și programarea întâlnirii
 >
 > _[Taci și lasă-l să vorbească. Reacția lui e cel mai bun argument.]_
 >
-> **Tu:** „Ce ați auzit e varianta standard, configurată pentru o clinică stomatologică. Pentru dumneavoastră se personalizează complet: programul, tipurile de programări, vocea, informațiile pe care le dă. Asta o face David, fondatorul Elevio, într-o discuție de 15-20 de minute, online sau la dumneavoastră. Ce zi vă convine săptămâna asta, după-amiaza?”
+> **Tu:** „Ce ați auzit e varianta standard, configurată pentru o clinică stomatologică. Pentru dumneavoastră se personalizează complet: programul, tipurile de programări, vocea, informațiile pe care le dă. Asta o face un coleg specializat, într-o discuție de 15-20 de minute, online sau la dumneavoastră. Ce zi vă convine săptămâna asta, după-amiaza?”
 
 #### Confirmarea
 
@@ -18,7 +18,7 @@ titlu: Demo-ul și programarea întâlnirii
 >
 > **Tu:** „Ar mai trebui să participe cineva la discuție, un asociat sau colegul care se ocupă de programări?”
 
-Rezervi ora direct în calendarul lui David (primești link-ul de la el). David face întâlnirile după-amiaza.
+Rezervi ora direct în calendarul de closing, din platformă. Întâlnirile sunt după-amiaza.
 
 #### Dacă n-a sunat încă la demo
 

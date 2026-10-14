@@ -46,14 +46,14 @@ export default function Statistici() {
 
   return (
     <div>
-      <TitluPagina titlu="Statistici" subtitlu="Pe vânzător și pe toată echipa. Rata = clienți închiși din întâlnirile programate." />
+      <TitluPagina titlu="Statistici" subtitlu="Pe vânzător și pe toată echipa. Rata = lead-uri închise din întâlnirile programate." />
 
       <div className="mb-5 grid grid-cols-2 gap-3 lg:grid-cols-5">
         <Total e="Lead-uri alocate" v={total.leaduri} />
         <Total e="Apeluri săptămâna asta" v={total.apeluri_saptamana} />
         <Total e="Apeluri în total" v={total.apeluri} />
         <Total e="Întâlniri" v={total.intalniri} />
-        <Total e="Clienți (rata)" v={`${total.clienti} (${rata(total.clienti, total.intalniri)})`} />
+        <Total e="Închise (rata)" v={`${total.clienti} (${rata(total.clienti, total.intalniri)})`} />
       </div>
 
       <div className="overflow-x-auto rounded-2xl border border-echipa-line/70 bg-echipa-card">
@@ -65,7 +65,7 @@ export default function Statistici() {
               <th className="px-3 py-3 text-right">Apeluri (săpt.)</th>
               <th className="px-3 py-3 text-right">Apeluri</th>
               <th className="px-3 py-3 text-right">Întâlniri</th>
-              <th className="px-3 py-3 text-right">Clienți</th>
+              <th className="px-3 py-3 text-right">Închise</th>
               <th className="px-4 py-3 text-right">Rata</th>
             </tr>
           </thead>

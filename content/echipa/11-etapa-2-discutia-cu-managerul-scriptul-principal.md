@@ -1,7 +1,7 @@
 ---
 numar: 11
 parte: 2
-titlu: Etapa 2: Discuția cu decidentul (scriptul principal)
+titlu: Etapa 2: Discuția cu managerul (scriptul principal)
 ---
 
 Ăsta e scriptul de bază. Are șase pași. Ideea: îl faci să-și dea seama singur că pierde apeluri și bani, apoi îi arăți soluția și îl faci să o audă.

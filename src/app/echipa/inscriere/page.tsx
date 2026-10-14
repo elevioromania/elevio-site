@@ -6,7 +6,7 @@ export const metadata: Metadata = { title: "Înscriere" };
 
 export default function InscrierePage() {
   return (
-    <AuthCadru titlu="Intră în echipă" subtitlu="Ai nevoie de codul de invitație primit de la David.">
+    <AuthCadru titlu="Intră în echipă" subtitlu="Ai nevoie de codul de invitație.">
       <FormularInscriere />
     </AuthCadru>
   );

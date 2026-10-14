@@ -175,11 +175,11 @@ export default function ModApel({ leadId, obiectii }: { leadId: string | null; o
           <div className="mt-6 grid gap-2 sm:grid-cols-2">
             {CALENDAR_URL ? (
               <a href={CALENDAR_URL} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl border border-echipa-line bg-echipa-card-2 font-semibold hover:border-echipa-accent">
-                <IconCalendar /> Calendarul lui David
+                <IconCalendar /> Calendarul de closing
               </a>
             ) : (
               <Link href="/echipa/app/calendar" className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl border border-echipa-line bg-echipa-card-2 font-semibold hover:border-echipa-accent">
-                <IconCalendar /> Calendarul lui David
+                <IconCalendar /> Calendarul de closing
               </Link>
             )}
             {lead && lead.status !== "intalnire" && (

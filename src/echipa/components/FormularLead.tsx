@@ -114,7 +114,7 @@ export default function FormularLead({ date, schimba }: { date: DateLead; schimb
       </section>
 
       <section className="space-y-4">
-        <h2 className="text-sm font-semibold uppercase tracking-wide text-echipa-muted">Decidentul</h2>
+        <h2 className="text-sm font-semibold uppercase tracking-wide text-echipa-muted">Persoana de contact</h2>
         <div className="grid gap-4 sm:grid-cols-2">
           <Camp eticheta="Nume" htmlFor="l-dnume">
             <input id="l-dnume" className="camp" value={date.decident_nume ?? ""} onChange={set("decident_nume")} />

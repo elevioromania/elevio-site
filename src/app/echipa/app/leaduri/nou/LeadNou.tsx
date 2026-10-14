@@ -54,7 +54,7 @@ export default function LeadNou() {
       <Link href="/echipa/app/leaduri" className="mb-4 inline-flex items-center gap-1.5 text-sm text-echipa-muted hover:text-echipa-accent">
         <IconInapoi className="h-4 w-4" /> Lead-urile mele
       </Link>
-      <TitluPagina titlu="Adaugă un lead" subtitlu="Spune-i și lui David, ca să nu se suprapună cu altcineva." />
+      <TitluPagina titlu="Adaugă un lead" subtitlu="Verificăm automat să nu fie deja la altcineva din echipă." />
       <form onSubmit={salveaza} noValidate>
         <Card>
           <FormularLead date={date} schimba={setDate} />

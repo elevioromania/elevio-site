@@ -1,16 +1,16 @@
 ---
 numar: 15
 parte: 2
-titlu: Predarea către David
+titlu: Predarea către closer
 ---
 
-Imediat după ce ai programat o întâlnire, îi trimiți lui David pe WhatsApp un mesaj de felul ăsta:
+Imediat după ce ai programat o întâlnire, completezi predarea în platformă și trimiți pe WhatsApp, echipei de closing, un mesaj de felul ăsta:
 
 > **Model de mesaj**
 >
 > **Întâlnire nouă:** [Clinica], [orașul]
 >
-> **Decident:** [Nume], [funcția], [telefon], [e-mail]
+> **Contact:** [Nume], [funcția], [telefon], [e-mail]
 >
 > **Când:** [ziua, ora], [online / la locație, adresa]
 >

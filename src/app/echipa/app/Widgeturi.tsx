@@ -30,7 +30,7 @@ export function Anunturi() {
           <IconFulger className="mt-0.5 h-5 w-5 shrink-0 text-amber-300" />
           <div>
             <p className="whitespace-pre-wrap text-sm text-amber-50">{a.text}</p>
-            <p className="mt-1 text-xs text-amber-200/70">David, {relativ(a.creat_la)}</p>
+            <p className="mt-1 text-xs text-amber-200/70">Anunț, {relativ(a.creat_la)}</p>
           </div>
         </div>
       ))}
@@ -152,7 +152,7 @@ export function ProgresBonus({ clienti }: { clienti: number }) {
       <p className="mt-1 text-2xl font-bold tabular-nums">
         {urmatorul ? (
           <>
-            {clienti} <span className="text-sm font-normal text-echipa-muted">din {urmatorul.prag} clienți</span>
+            {clienti} <span className="text-sm font-normal text-echipa-muted">din {urmatorul.prag} lead-uri închise</span>
           </>
         ) : (
           <span className="text-lg">Toate bonusurile atinse</span>
@@ -177,7 +177,7 @@ export function FeedEchipa() {
 
   function text(e: Eveniment) {
     const prenume = e.nume.trim().split(/\s+/)[0];
-    if (e.tip === "client") return <><strong>{prenume}</strong> a închis un client</>;
+    if (e.tip === "client") return <><strong>{prenume}</strong> a închis un lead</>;
     if (e.tip === "intalnire") return <><strong>{prenume}</strong> a programat o întâlnire</>;
     return <><strong>{prenume}</strong> a obținut insigna „{INSIGNE[e.detaliu ?? ""]?.titlu ?? e.detaliu}”</>;
   }

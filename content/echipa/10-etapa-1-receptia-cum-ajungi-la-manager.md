@@ -1,10 +1,10 @@
 ---
 numar: 10
 parte: 2
-titlu: Etapa 1: Recepția (cum ajungi la decident)
+titlu: Etapa 1: Recepția (cum ajungi la manager)
 ---
 
-De cele mai multe ori răspunde recepția. Scopul tău aici nu e să prezinți Elevio, ci să obții **numărul sau numele decidentului**. Fii scurt și sigur pe tine. La afacerile mai mici, de multe ori răspunde chiar proprietarul: atunci treci direct la Etapa 2.
+De cele mai multe ori răspunde recepția. Scopul tău aici nu e să prezinți Elevio, ci să obții **numărul sau numele managerului**. Fii scurt și sigur pe tine. La afacerile mai mici, de multe ori răspunde chiar proprietarul: atunci treci direct la Etapa 2.
 
 #### Varianta politicoasă
 
