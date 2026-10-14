@@ -1,9 +1,11 @@
 "use client";
 
+import Link from "next/link";
 import { useCallback, useState } from "react";
 import { DISCORD_URL, WHATSAPP_GROUP_URL } from "@/echipa/config";
 import { IconCalendar, IconLink, IconWhatsapp } from "@/echipa/components/icons";
 import Insigna from "@/echipa/components/Insigna";
+import { useProfil } from "@/echipa/components/ProfilContext";
 import { Card, Gol, Incarcare, TitluPagina } from "@/echipa/components/ui";
 import { dataOra, linkExtern } from "@/echipa/lib/format";
 import { useIncarca } from "@/echipa/lib/hooks";
@@ -13,6 +15,7 @@ type Membru = { user_id: string; nume: string; titlu: string; rol: string; insig
 export type Sesiune = { id: string; titlu: string; incepe_la: string; link: string | null; locatie: string | null; descriere: string | null };
 
 export default function Comunitate() {
+  const { esteAdmin } = useProfil();
   const [membri, setMembri] = useState<Membru[] | null>(null);
   const [sesiuni, setSesiuni] = useState<Sesiune[] | null>(null);
 
@@ -89,6 +92,7 @@ export default function Comunitate() {
 
       <section>
         <h2 className="mb-3 text-lg font-bold">Membrii echipei</h2>
+        {esteAdmin && <p className="-mt-2 mb-3 text-sm text-echipa-muted">Apasă pe un nume ca să vezi profilul complet.</p>}
         {membri === null ? (
           <Incarcare />
         ) : membri.length === 0 ? (
@@ -96,13 +100,19 @@ export default function Comunitate() {
         ) : (
           <ul className="grid gap-3 sm:grid-cols-2">
             {membri.map((m) => (
-              <li key={m.user_id} className="rounded-2xl border border-echipa-line/70 bg-echipa-card p-4">
+              <li key={m.user_id} className="relative rounded-2xl border border-echipa-line/70 bg-echipa-card p-4 has-[a:hover]:border-echipa-accent/60">
                 <div className="flex items-center gap-3">
                   <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-echipa-accent/15 font-bold text-echipa-accent">
                     {m.nume.trim().charAt(0).toUpperCase()}
                   </div>
                   <div className="min-w-0">
-                    <p className="truncate font-semibold">{m.nume}</p>
+                    {esteAdmin ? (
+                      <Link href={`/echipa/app/admin/utilizatori/${m.user_id}`} className="truncate font-semibold after:absolute after:inset-0 hover:text-echipa-accent">
+                        {m.nume}
+                      </Link>
+                    ) : (
+                      <p className="truncate font-semibold">{m.nume}</p>
+                    )}
                     <p className="truncate text-xs text-echipa-muted">{m.titlu}</p>
                   </div>
                 </div>
