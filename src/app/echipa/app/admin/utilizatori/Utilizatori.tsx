@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useCallback, useState } from "react";
 import { COMISION_INSTALARE_VARIANTE, TITLURI_SUGERATE } from "@/echipa/config";
 import { useProfil } from "@/echipa/components/ProfilContext";
@@ -9,7 +10,7 @@ import { useIncarca } from "@/echipa/lib/hooks";
 import { supabaseBrowser } from "@/echipa/lib/supabase-browser";
 import { COLOANE_PROFIL, type Profil, type Rol } from "@/echipa/lib/tipuri";
 
-const ROLURI: Record<Rol, string> = { vanzator: "Vânzător", trainer: "Trainer", admin: "Admin" };
+export const ROLURI: Record<Rol, string> = { vanzator: "Vânzător", trainer: "Trainer", admin: "Admin" };
 
 export default function Utilizatori() {
   const { profil: eu } = useProfil();
@@ -49,7 +50,7 @@ export default function Utilizatori() {
   );
 }
 
-function RandUtilizator({
+export function RandUtilizator({
   u,
   esteEu,
   laSchimbare,
@@ -105,7 +106,10 @@ function RandUtilizator({
       <div className="flex flex-wrap items-start justify-between gap-2">
         <div className="min-w-0">
           <p className="font-semibold">
-            {u.nume} {esteEu && <span className="text-xs text-echipa-accent">(tu)</span>}
+            <Link href={`/echipa/app/admin/utilizatori/${u.id}`} className="hover:text-echipa-accent hover:underline">
+              {u.nume}
+            </Link>{" "}
+            {esteEu && <span className="text-xs text-echipa-accent">(tu)</span>}
             {!u.activ && <span className="ml-2 rounded-full bg-red-500/15 px-2 py-0.5 text-xs text-red-300">Dezactivat</span>}
           </p>
           <p className="break-all text-sm text-echipa-muted">
