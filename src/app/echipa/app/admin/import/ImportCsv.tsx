@@ -1,10 +1,11 @@
 "use client";
 
+import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
 import { LISTA_NISE, NISE, type Nisa } from "@/echipa/config";
 import { IconIncarca } from "@/echipa/components/icons";
 import { Buton, Card, Mesaj, TitluPagina } from "@/echipa/components/ui";
-import { citesteCsv } from "@/echipa/lib/csv";
+import { citesteFisier } from "@/echipa/lib/csv";
 import { normal } from "@/echipa/lib/format";
 import { supabaseBrowser } from "@/echipa/lib/supabase-browser";
 
@@ -50,6 +51,9 @@ function cheieLocala(r: Record<string, string | null>) {
 export default function ImportCsv() {
   const [vanzatori, setVanzatori] = useState<Vanzator[]>([]);
   const [fisier, setFisier] = useState<string>("");
+  const [numeLista, setNumeLista] = useState("");
+  const [peste, setPeste] = useState(false);
+  const [listaNoua, setListaNoua] = useState<{ id: string; nume: string } | null>(null);
   const [coloane, setColoane] = useState<string[]>([]);
   const [randuri, setRanduri] = useState<Record<string, string>[]>([]);
   const [mapare, setMapare] = useState<Record<string, string>>({});
@@ -71,12 +75,23 @@ export default function ImportCsv() {
     const f = e.target.files?.[0];
     // Golim câmpul, ca același fișier să poată fi ales din nou.
     e.target.value = "";
-    if (!f) return;
+    if (f) await incarcaFisier(f);
+  }
+
+  async function incarcaFisier(f: File) {
     setMesaj(null);
     setPregatite(null);
+    setListaNoua(null);
+    if (/\.(docx?|pdf)$/i.test(f.name)) {
+      return setMesaj({
+        tip: "eroare",
+        text: "Fișierele Word și PDF nu au coloane clare. Trimite-l lui Claude și cere-i să-l transforme în CSV sau Excel (ori să creeze el lista direct).",
+      });
+    }
     try {
-      const r = await citesteCsv(f);
+      const r = await citesteFisier(f);
       setFisier(f.name);
+      setNumeLista(f.name.replace(/\.[^.]+$/, "").replace(/[_-]+/g, " ").trim());
       setColoane(r.coloane);
       setRanduri(r.randuri);
       // Potrivire automată după numele coloanei.
@@ -87,7 +102,7 @@ export default function ImportCsv() {
       }
       setMapare(auto);
     } catch {
-      setMesaj({ tip: "eroare", text: "Fișierul nu a putut fi citit. Verifică să fie CSV." });
+      setMesaj({ tip: "eroare", text: "Fișierul nu a putut fi citit. Folosește CSV sau Excel (.xlsx)." });
     }
   }
 
@@ -149,11 +164,17 @@ export default function ImportCsv() {
     if (!pregatite) return;
     const bune = pregatite.filter((p) => !p.motiv).map((p) => ({ ...p.date, vanzator_id: vanzator || null, sursa: "alocat" }));
     if (!bune.length) return;
+    if (!numeLista.trim()) return setMesaj({ tip: "eroare", text: "Dă un nume listei." });
     setStare("import");
     const supabase = supabaseBrowser();
+    const { data: lista, error: eroareLista } = await supabase.from("liste").insert({ nume: numeLista.trim() }).select("id, nume").single();
+    if (eroareLista || !lista) {
+      setStare("");
+      return setMesaj({ tip: "eroare", text: "Lista nu a putut fi creată. Încearcă din nou." });
+    }
     let importate = 0;
     for (let i = 0; i < bune.length; i += 500) {
-      const { error } = await supabase.from("leads").insert(bune.slice(i, i + 500));
+      const { error } = await supabase.from("leads").insert(bune.slice(i, i + 500).map((b) => ({ ...b, lista_id: lista.id })));
       if (error) {
         setStare("");
         return setMesaj({ tip: "eroare", text: `Importul s-a oprit după ${importate} lead-uri. Verifică fișierul și încearcă din nou.` });
@@ -166,7 +187,8 @@ export default function ImportCsv() {
     setColoane([]);
     setFisier("");
     const cui = vanzatori.find((v) => v.id === vanzator)?.nume;
-    setMesaj({ tip: "succes", text: `Am importat ${importate} lead-uri${cui ? ` pentru ${cui}` : " (nealocate)"}.` });
+    setListaNoua(lista);
+    setMesaj({ tip: "succes", text: `Lista „${lista.nume}” a fost creată cu ${importate} lead-uri${cui ? `, atribuite lui ${cui}` : " (nealocate)"}.` });
   }
 
   const nrDuplicate = pregatite?.filter((p) => p.motiv).length ?? 0;
@@ -174,7 +196,10 @@ export default function ImportCsv() {
 
   return (
     <div className="max-w-4xl">
-      <TitluPagina titlu="Import de lead-uri din CSV" subtitlu="Încarcă fișierul, potrivește coloanele, alege vânzătorul, verifică și importă." />
+      <TitluPagina
+        titlu="Importă o listă de lead-uri"
+        subtitlu="Tragi fișierul aici, îi dai un nume, alegi cine o primește și gata. Lista apare în „Liste de lead-uri”."
+      />
 
       <Card className="mb-4">
         <p className="text-sm text-echipa-muted">Formatul recomandat (prima linie):</p>
@@ -184,17 +209,50 @@ export default function ImportCsv() {
         <p className="mt-2 text-xs text-echipa-muted">
           Nișa poate fi: {LISTA_NISE.map((n) => NISE[n].eticheta.toLowerCase()).join(", ")}. Un exemplu e în fișierul exemplu-import-leaduri.csv din repo.
         </p>
-        <label className="mt-4 flex min-h-24 cursor-pointer flex-col items-center justify-center gap-2 rounded-2xl border-2 border-dashed border-echipa-line p-4 text-center hover:border-echipa-accent/60 has-[:focus-visible]:ring-2 has-[:focus-visible]:ring-echipa-accent">
-          <IconIncarca className="h-6 w-6 text-echipa-accent" />
-          <span className="text-sm font-medium">{fisier || "Alege fișierul CSV"}</span>
-          {randuri.length > 0 && <span className="text-xs text-echipa-muted">{randuri.length} rânduri</span>}
-          <input type="file" accept=".csv,text/csv" className="sr-only" onChange={alegeFisier} />
+        <label
+          onDragOver={(e) => {
+            e.preventDefault();
+            setPeste(true);
+          }}
+          onDragLeave={() => setPeste(false)}
+          onDrop={(e) => {
+            e.preventDefault();
+            setPeste(false);
+            const f = e.dataTransfer.files?.[0];
+            if (f) void incarcaFisier(f);
+          }}
+          className={`mt-4 flex min-h-32 cursor-pointer flex-col items-center justify-center gap-2 rounded-2xl border-2 border-dashed p-4 text-center hover:border-echipa-accent/60 has-[:focus-visible]:ring-2 has-[:focus-visible]:ring-echipa-accent ${
+            peste ? "border-echipa-accent bg-echipa-accent/10" : "border-echipa-line"
+          }`}
+        >
+          <IconIncarca className="h-7 w-7 text-echipa-accent" />
+          <span className="text-sm font-medium">{fisier || "Trage fișierul aici sau apasă ca să-l alegi"}</span>
+          <span className="text-xs text-echipa-muted">{randuri.length > 0 ? `${randuri.length} rânduri` : "CSV sau Excel (.xlsx)"}</span>
+          <input
+            type="file"
+            accept=".csv,.xlsx,text/csv,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+            className="sr-only"
+            onChange={alegeFisier}
+          />
         </label>
+        <p className="mt-3 text-xs text-echipa-muted">
+          Ai lead-urile într-un Word sau într-un PDF? Trimite-l lui Claude: îl transformă în fișier bun de importat sau creează lista direct.
+        </p>
       </Card>
 
       {mesaj && (
         <div className="mb-4">
-          <Mesaj tip={mesaj.tip}>{mesaj.text}</Mesaj>
+          <Mesaj tip={mesaj.tip}>
+            {mesaj.text}
+            {listaNoua && mesaj.tip === "succes" && (
+              <>
+                {" "}
+                <Link href={`/echipa/app/admin/liste/${listaNoua.id}`} className="font-semibold underline">
+                  Deschide lista
+                </Link>
+              </>
+            )}
+          </Mesaj>
         </div>
       )}
 
@@ -228,10 +286,16 @@ export default function ImportCsv() {
             ))}
           </div>
 
-          <div className="mt-5 grid gap-3 sm:grid-cols-[1fr_auto] sm:items-end">
+          <div className="mt-5 grid gap-3 sm:grid-cols-[1fr_1fr_auto] sm:items-end">
+            <div>
+              <label htmlFor="import-lista" className="mb-1.5 block text-sm font-medium">
+                Numele listei
+              </label>
+              <input id="import-lista" className="camp" placeholder="de ex. Clinici Cluj, octombrie" value={numeLista} onChange={(e) => setNumeLista(e.target.value)} />
+            </div>
             <div>
               <label htmlFor="import-vanzator" className="mb-1.5 block text-sm font-medium">
-                Vânzătorul care primește lead-urile
+                Cine primește lista
               </label>
               <select id="import-vanzator" className="camp" value={vanzator} onChange={(e) => setVanzator(e.target.value)}>
                 <option value="">Nealocat (le aloc mai târziu)</option>

@@ -26,6 +26,8 @@ export default function ListaLeaduri() {
   const [status, setStatus] = useState<Status | "">("");
   const [nisa, setNisa] = useState("");
   const [oras, setOras] = useState("");
+  const [listaAleasa, setListaAleasa] = useState("");
+  const [liste, setListe] = useState<{ id: string; nume: string }[]>([]);
   const [sortare, setSortare] = useState<Sortare>("pas");
 
   const incarca = useCallback(async () => {
@@ -40,6 +42,8 @@ export default function ListaLeaduri() {
     );
     if (error) setEroare(mesajEroare(error));
     setLeaduri(data);
+    const { data: l } = await supabaseBrowser().from("liste").select("id, nume").order("creat_la", { ascending: false });
+    setListe(l ?? []);
   }, [profil.id]);
 
   useIncarca(incarca);
@@ -58,7 +62,8 @@ export default function ListaLeaduri() {
         (!q || normal(l.afacere).includes(q) || normal(l.decident_nume).includes(q)) &&
         (!status || l.status === status) &&
         (!nisa || l.nisa === nisa) &&
-        (!oras || l.oras?.trim() === oras),
+        (!oras || l.oras?.trim() === oras) &&
+        (!listaAleasa || l.lista_id === listaAleasa),
     );
     return lista.sort((a, b) => {
       if (sortare === "nume") return a.afacere.localeCompare(b.afacere, "ro");
@@ -68,7 +73,7 @@ export default function ListaLeaduri() {
       if (!b.urmatorul_pas_data) return -1;
       return a.urmatorul_pas_data.localeCompare(b.urmatorul_pas_data);
     });
-  }, [leaduri, cautare, status, nisa, oras, sortare]);
+  }, [leaduri, cautare, status, nisa, oras, listaAleasa, sortare]);
 
   async function mutaKanban(lead: Lead, nou: Status) {
     if (lead.status === nou) return;
@@ -144,6 +149,16 @@ export default function ListaLeaduri() {
               </option>
             ))}
           </select>
+          {liste.length > 0 && (
+            <select aria-label="Filtru listă" className="camp col-span-2 sm:col-span-4" value={listaAleasa} onChange={(e) => setListaAleasa(e.target.value)}>
+              <option value="">Toate listele</option>
+              {liste.map((x) => (
+                <option key={x.id} value={x.id}>
+                  Lista: {x.nume}
+                </option>
+              ))}
+            </select>
+          )}
           <select aria-label="Filtru oraș" className="camp" value={oras} onChange={(e) => setOras(e.target.value)}>
             <option value="">Toate orașele</option>
             {orase.map((o) => (
