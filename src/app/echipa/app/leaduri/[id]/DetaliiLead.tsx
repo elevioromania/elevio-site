@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useCallback, useEffect, useState } from "react";
 import { etichetaObiectie, NISE, REZULTATE_PREDARE, STATUSURI, type Status } from "@/echipa/config";
 import { useActiuniLead } from "@/echipa/components/ActiuniLead";
+import AdminLead from "@/echipa/components/AdminLead";
 import FormularLead, { curata, type DateLead } from "@/echipa/components/FormularLead";
 import { IconFulger, IconHarta, IconInapoi, IconLink, IconNotita, IconTelefon } from "@/echipa/components/icons";
 import { useProfil } from "@/echipa/components/ProfilContext";
@@ -54,7 +55,7 @@ export default function DetaliiLead({ id }: { id: string }) {
   if (lead === undefined) return <Incarcare />;
   if (lead === null) {
     return (
-      <Gol titlu="Lead-ul nu există sau nu e alocat ție">
+      <Gol titlu="Lead-ul nu există sau nu mai e alocat ție">
         <Link href="/echipa/app/leaduri" className="text-echipa-accent hover:underline">
           Înapoi la lead-urile mele
         </Link>
@@ -141,6 +142,8 @@ export default function DetaliiLead({ id }: { id: string }) {
           </p>
         </Card>
       )}
+
+      {esteAdmin && <AdminLead lead={lead} laSchimbare={incarca} />}
 
       {editez && date ? (
         <Card className="mb-4">
