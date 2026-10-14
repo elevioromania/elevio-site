@@ -11,7 +11,7 @@ Totul e gratuit: hostingul rămâne pe Netlify, iar baza de date și conturile s
 ## Pe scurt: ce faci
 
 1. Creezi proiectul Supabase.
-2. Rulezi cele 4 fișiere SQL (creează tabelele și regulile de securitate).
+2. Rulezi cele 5 fișiere SQL (creează tabelele și regulile de securitate).
 3. Publici cele 2 funcții de server și setezi codul de invitație.
 4. Oprești înscrierea publică din Supabase.
 5. Setezi adresele site-ului în Supabase.
@@ -40,6 +40,7 @@ Fișierele sunt în repo, în folderul `supabase/migrations`. Le rulezi **în or
 2. `20261014000002_functii.sql` (funcțiile și automatizările)
 3. `20261014000003_rls.sql` (regulile de securitate: cine ce vede)
 4. `20261014000004_date_initiale.sql` (sumele implicite ale bonusurilor)
+5. `20261014000005_securitate.sql` (curățenie de securitate)
 
 Pentru fiecare:
 
