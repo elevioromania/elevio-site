@@ -46,6 +46,7 @@ Deno.serve(async (req) => {
   }
 
   const nume = String(date.nume ?? "").trim();
+  const prenume = String(date.prenume ?? "").trim() || null;
   const email = String(date.email ?? "").trim().toLowerCase();
   const telefon = String(date.telefon ?? "").trim();
   const parola = String(date.parola ?? "");
@@ -86,6 +87,7 @@ Deno.serve(async (req) => {
   const { error: eroareProfil } = await admin.from("profiles").insert({
     id: creat.user.id,
     nume,
+    prenume,
     email,
     telefon,
     rol: "vanzator",

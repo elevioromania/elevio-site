@@ -176,7 +176,7 @@ export function FeedEchipa() {
   useIncarca(incarca);
 
   function text(e: Eveniment) {
-    const prenume = e.nume.trim().split(/\s+/)[0];
+    const prenume = e.nume;
     if (e.tip === "client") return <><strong>{prenume}</strong> a închis un lead</>;
     if (e.tip === "intalnire") return <><strong>{prenume}</strong> a programat o întâlnire</>;
     return <><strong>{prenume}</strong> a obținut insigna „{INSIGNE[e.detaliu ?? ""]?.titlu ?? e.detaliu}”</>;
