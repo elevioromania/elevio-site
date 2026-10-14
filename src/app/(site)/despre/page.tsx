@@ -106,6 +106,17 @@ export default function DesprePage() {
             </Link>
           </div>
         </div>
+
+        <div className="container-elevio mt-14">
+          <Link
+            href="/echipa"
+            prefetch={false}
+            rel="nofollow"
+            className="text-xs tracking-wide text-elevio-dark/30 transition-colors hover:text-elevio-dark/60"
+          >
+            Echipa
+          </Link>
+        </div>
       </section>
     </>
   );
