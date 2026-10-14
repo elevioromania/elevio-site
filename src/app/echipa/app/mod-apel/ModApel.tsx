@@ -13,7 +13,7 @@ import type { ElementGhid } from "@/echipa/lib/ghid";
 import { useIncarca } from "@/echipa/lib/hooks";
 import { COLOANE_LEAD } from "@/echipa/lib/leaduri";
 import { supabaseBrowser } from "@/echipa/lib/supabase-browser";
-import type { Lead } from "@/echipa/lib/tipuri";
+import { prenumeDe, type Lead } from "@/echipa/lib/tipuri";
 import { pasiScript, pierdereLunara, type Linie } from "@/echipa/modApel";
 
 export default function ModApel({ leadId, obiectii }: { leadId: string | null; obiectii: ElementGhid[] }) {
@@ -43,13 +43,13 @@ export default function ModApel({ leadId, obiectii }: { leadId: string | null; o
     () =>
       pasiScript({
         nisa,
-        numeVanzator: profil.nume.trim().split(/\s+/)[0],
+        numeVanzator: prenumeDe(profil),
         demo,
         apeluriPeZi: Number(apeluri) || 0,
         rata: Number(rata) || 0,
         rezultat: rezultat !== null ? lei(rezultat) : null,
       }),
-    [nisa, profil.nume, demo, apeluri, rata, rezultat],
+    [nisa, profil, demo, apeluri, rata, rezultat],
   );
   const curent = pasi[pas];
   const telefon = lead?.decident_telefon || lead?.telefon_afacere;

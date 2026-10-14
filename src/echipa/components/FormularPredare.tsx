@@ -6,7 +6,7 @@ import { CALENDAR_URL, DAVID_WHATSAPP_INTL } from "../config";
 import { dinInputLocal } from "../lib/format";
 import { mesajEroare, mesajWhatsapp } from "../lib/leaduri";
 import { supabaseBrowser } from "../lib/supabase-browser";
-import type { Lead } from "../lib/tipuri";
+import { prenumeDe, type Lead } from "../lib/tipuri";
 import { lanseazaConfetti } from "./confetti";
 import { IconCalendar, IconWhatsapp } from "./icons";
 import { useProfil } from "./ProfilContext";
@@ -84,7 +84,7 @@ export default function FormularPredare({
       <Modal deschis={deschis} inchide={inchide} titlu="Întâlnire programată">
         <div className="pop space-y-4">
           <div className="rounded-2xl border border-emerald-500/40 bg-emerald-500/10 p-4">
-            <p className="text-lg font-bold text-emerald-300">Felicitări, {profil.nume.split(" ")[0]}!</p>
+            <p className="text-lg font-bold text-emerald-300">Felicitări, {prenumeDe(profil)}!</p>
             <p className="mt-1 text-sm text-emerald-100/90">
               Întâlnirea e la echipa de closing. Trimite acum și mesajul pe WhatsApp, ca s-o vadă imediat.
             </p>

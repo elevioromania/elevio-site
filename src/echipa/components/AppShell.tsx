@@ -20,6 +20,7 @@ import {
   IconUtilizatori,
   IconX,
 } from "./icons";
+import CerePrenume from "./CerePrenume";
 import { ProfilProvider, useProfil } from "./ProfilContext";
 import { Logo } from "./ui";
 
@@ -60,6 +61,7 @@ export default function AppShell({ profil, children }: { profil: Profil; childre
   return (
     <ProfilProvider initial={profil}>
       <Cadru>{children}</Cadru>
+      <CerePrenume />
     </ProfilProvider>
   );
 }

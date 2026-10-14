@@ -28,7 +28,7 @@ export default function FormularInscriere() {
     setSeTrimite(true);
     const supabase = supabaseBrowser();
     const { error } = await supabase.functions.invoke("inscriere", {
-      body: { nume: `${f.prenume.trim()} ${f.nume.trim()}`, email: f.email, telefon: f.telefon, parola: f.parola, cod: f.cod },
+      body: { prenume: f.prenume.trim(), nume: `${f.prenume.trim()} ${f.nume.trim()}`, email: f.email, telefon: f.telefon, parola: f.parola, cod: f.cod },
     });
 
     if (error) {

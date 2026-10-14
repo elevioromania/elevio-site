@@ -5,6 +5,7 @@ export type Rol = "admin" | "vanzator" | "trainer";
 export type Profil = {
   id: string;
   nume: string;
+  prenume: string | null;
   telefon: string | null;
   email: string;
   rol: Rol;
@@ -80,4 +81,9 @@ export type Predare = {
 };
 
 export const COLOANE_PROFIL =
-  "id, nume, telefon, email, rol, titlu, activ, comision_instalare, nivel, onboarding, bun_venit_vazut, creat_la";
+  "id, nume, prenume, telefon, email, rol, titlu, activ, comision_instalare, nivel, onboarding, bun_venit_vazut, creat_la";
+
+// Prenumele folosit în salut. Dacă lipsește, primul cuvânt din nume.
+export function prenumeDe(p: Pick<Profil, "prenume" | "nume">) {
+  return p.prenume?.trim() || p.nume.trim().split(/\s+/)[0];
+}

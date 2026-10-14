@@ -13,7 +13,7 @@ import { cheieZi, dataOra, linkTel } from "@/echipa/lib/format";
 import { COLOANE_LEAD } from "@/echipa/lib/leaduri";
 import { useIncarca } from "@/echipa/lib/hooks";
 import { supabaseBrowser } from "@/echipa/lib/supabase-browser";
-import type { Lead } from "@/echipa/lib/tipuri";
+import { prenumeDe, type Lead } from "@/echipa/lib/tipuri";
 import { Anunturi, ChecklistStart, FeedEchipa, InsigneleMele, ProgresBonus, ProgresGhid, type SectiuneScurta } from "./Widgeturi";
 
 type RandClasament = { user_id: string; clienti: number; intalniri: number; apeluri: number; pozitie: number };
@@ -71,7 +71,7 @@ export default function TabloulDeBord({ sectiuni }: { sectiuni: SectiuneScurta[]
   useIncarca(incarca);
 
   const actiuni = useActiuniLead(incarca);
-  const prenume = profil.nume.trim().split(/\s+/)[0];
+  const prenume = prenumeDe(profil);
   const azi = cheieZi(new Date());
 
   async function amInteles() {
