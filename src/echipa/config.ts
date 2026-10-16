@@ -6,9 +6,13 @@ export const BRAND = "Elevio";
 export const SITE = "elevio-agency.ro";
 export const CONTACT_EMAIL = "elevioromania@gmail.com";
 
-// Numărul de demo. Poate deveni pe nișe: adaugă o cheie în DEMO_NUMERE_PE_NISA
+// Numărul de demo recomandat, pe care îl dăm clienților să-l testeze.
+// Poate deveni pe nișe: adaugă o cheie în DEMO_NUMERE_PE_NISA
 // (de exemplu hotel: "0373 000 000") și „Mod apel” îl folosește automat.
-export const DEMO_NUMBER = "0373 807 222";
+export const DEMO_NUMBER = "0373 816 111";
+export const DEMO_NOTA = "Demo făcut pentru o clinică reală (Identis)";
+// Numărul de demo vechi, păstrat ca variantă.
+export const DEMO_NUMBER_ALT = "0373 807 222";
 export const DEMO_NUMERE_PE_NISA: Partial<Record<Nisa, string>> = {};
 
 export function numarDemo(nisa?: Nisa | null) {

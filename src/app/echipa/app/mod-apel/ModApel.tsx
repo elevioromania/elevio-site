@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useCallback, useMemo, useState } from "react";
-import { CALCULATOR, CALENDAR_URL, LISTA_NISE, NISE, numarDemo, type Nisa } from "@/echipa/config";
+import { CALCULATOR, CALENDAR_URL, DEMO_NUMBER, LISTA_NISE, NISE, numarDemo, type Nisa } from "@/echipa/config";
 import { useActiuniLead } from "@/echipa/components/ActiuniLead";
 import { IconCalendar, IconCautare, IconInapoi, IconSageata, IconScut, IconTelefon } from "@/echipa/components/icons";
 import { useProfil } from "@/echipa/components/ProfilContext";
@@ -59,7 +59,10 @@ export default function ModApel({ leadId, obiectii }: { leadId: string | null; o
       {/* Bara de sus: numărul de demo și obiecțiile, mereu la îndemână */}
       <div className="sticky top-[57px] z-20 -mx-4 mb-4 flex items-center gap-2 border-b border-echipa-line/60 bg-echipa-bg/95 px-4 py-2.5 backdrop-blur sm:mx-0 sm:rounded-2xl sm:border lg:top-4">
         <div className="min-w-0 flex-1">
-          <p className="text-[11px] uppercase tracking-wide text-echipa-muted">Demo</p>
+          <p className="text-[11px] uppercase tracking-wide text-echipa-muted">
+            Demo{" "}
+            {demo === DEMO_NUMBER && <span className="ml-1 rounded-full bg-echipa-accent/15 px-1.5 py-px text-[9px] font-semibold text-echipa-accent">Recomandat</span>}
+          </p>
           <p className="whitespace-nowrap text-lg font-bold tracking-wide text-echipa-accent sm:text-xl">{demo}</p>
         </div>
         <ButonCopiere text={demo} compact eticheta="Copiază numărul" />

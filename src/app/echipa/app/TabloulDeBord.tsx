@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useCallback, useState } from "react";
-import { DEMO_NUMBER, MESAJ_BUN_VENIT, NISE, STATUSURI } from "@/echipa/config";
+import { DEMO_NOTA, DEMO_NUMBER, DEMO_NUMBER_ALT, MESAJ_BUN_VENIT, NISE, STATUSURI } from "@/echipa/config";
 import { useActiuniLead } from "@/echipa/components/ActiuniLead";
 import { lanseazaConfetti } from "@/echipa/components/confetti";
 import { IconCalendar, IconCarte, IconFulger, IconLeaduri, IconTelefon, IconTrofeu } from "@/echipa/components/icons";
@@ -145,15 +145,22 @@ export default function TabloulDeBord({ sectiuni }: { sectiuni: SectiuneScurta[]
       )}
 
       {/* Acces rapid */}
-      <section aria-label="Acces rapid" className="grid grid-cols-2 gap-3 lg:grid-cols-5">
+      <section aria-label="Acces rapid" className="grid grid-cols-2 gap-3 lg:grid-cols-6">
         <Rapid href="/echipa/app/mod-apel" icon={<IconFulger className="h-6 w-6" />} titlu="Mod apel" />
         <Rapid href="/echipa/app/leaduri" icon={<IconLeaduri className="h-6 w-6" />} titlu="Lead-urile mele" />
         <Rapid href="/echipa/app/ghid" icon={<IconCarte className="h-6 w-6" />} titlu="Ghid" />
         <Rapid href="/echipa/app/calendar" icon={<IconCalendar className="h-6 w-6" />} titlu="Calendarul de closing" />
-        <div className="col-span-2 flex flex-col justify-between rounded-2xl border border-echipa-line/70 bg-echipa-card p-4 lg:col-span-1">
+        <div className="relative col-span-2 flex flex-col justify-between rounded-2xl border border-echipa-accent/50 bg-echipa-card p-4">
+          <span className="absolute right-3 top-3 rounded-full bg-echipa-accent/15 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-echipa-accent">
+            Recomandat
+          </span>
           <p className="text-xs text-echipa-muted">Numărul de demo</p>
           <p className="mt-1 text-lg font-bold tracking-wide text-echipa-accent">{DEMO_NUMBER}</p>
+          <p className="text-[11px] text-echipa-muted">{DEMO_NOTA}</p>
           <ButonCopiere text={DEMO_NUMBER} className="mt-2 w-full" />
+          <p className="mt-2 text-[11px] text-echipa-muted">
+            Alt număr de demo: <span className="font-medium text-echipa-text">{DEMO_NUMBER_ALT}</span>
+          </p>
         </div>
       </section>
 
