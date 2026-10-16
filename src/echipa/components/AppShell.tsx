@@ -51,6 +51,14 @@ const BARA_JOS: Item[] = [
   { href: "/echipa/app/ghid", eticheta: "Ghid", icon: IconCarte },
 ];
 
+// Adminul are în bara de jos Admin și Echipa în loc de Mod apel și Ghid.
+const BARA_JOS_ADMIN: Item[] = [
+  { href: "/echipa/app", eticheta: "Acasă", icon: IconAcasa },
+  { href: "/echipa/app/leaduri", eticheta: "Lead-uri", icon: IconLeaduri },
+  { href: "/echipa/app/admin", eticheta: "Admin", icon: IconGrafic },
+  { href: "/echipa/app/comunitate", eticheta: "Echipa", icon: IconUtilizatori },
+];
+
 function activ(path: string, href: string) {
   return href === "/echipa/app" ? path === href : path === href || path.startsWith(href + "/");
 }
@@ -154,7 +162,7 @@ function Cadru({ children }: { children: React.ReactNode }) {
           className="fixed inset-x-0 bottom-0 z-30 grid grid-cols-5 border-t border-echipa-line/60 bg-echipa-bg/95 pb-[env(safe-area-inset-bottom)] backdrop-blur lg:hidden"
           aria-label="Navigare rapidă"
         >
-          {BARA_JOS.map((i) => {
+          {(profil.rol === "admin" ? BARA_JOS_ADMIN : BARA_JOS).map((i) => {
             const a = activ(path, i.href);
             return (
               <Link

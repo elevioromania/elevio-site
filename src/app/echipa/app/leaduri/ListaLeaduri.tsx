@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useCallback, useMemo, useState } from "react";
 import { LISTA_NISE, LISTA_STATUSURI, NISE, STATUSURI, type Status } from "@/echipa/config";
 import { useActiuniLead } from "@/echipa/components/ActiuniLead";
-import { IconColoane, IconLista, IconNotita, IconPlus, IconTelefon } from "@/echipa/components/icons";
+import { IconColoane, IconIncarca, IconLista, IconNotita, IconPlus, IconTelefon } from "@/echipa/components/icons";
 import { useProfil } from "@/echipa/components/ProfilContext";
 import StatusBadge from "@/echipa/components/StatusBadge";
 import { Buton, Gol, Incarcare, LinkButon, Mesaj, TitluPagina } from "@/echipa/components/ui";
@@ -13,6 +13,7 @@ import { COLOANE_LEAD, mesajEroare, schimbaStatus, toatePaginile } from "@/echip
 import { useIncarca, usePreferinta } from "@/echipa/lib/hooks";
 import { supabaseBrowser } from "@/echipa/lib/supabase-browser";
 import type { Lead } from "@/echipa/lib/tipuri";
+import ImportCsv from "../admin/import/ImportCsv";
 
 type Vedere = "lista" | "kanban";
 type Sortare = "pas" | "recent" | "nume";
@@ -29,6 +30,7 @@ export default function ListaLeaduri() {
   const [listaAleasa, setListaAleasa] = useState("");
   const [liste, setListe] = useState<{ id: string; nume: string }[]>([]);
   const [sortare, setSortare] = useState<Sortare>("pas");
+  const [importDeschis, setImportDeschis] = useState(true);
 
   const incarca = useCallback(async () => {
     const { data, error } = await toatePaginile<Lead>((de, pana) =>
@@ -90,11 +92,20 @@ export default function ListaLeaduri() {
         titlu="Lead-urile mele"
         subtitlu={leaduri ? `${leaduri.length} lead-uri în total` : undefined}
         actiuni={
-          <LinkButon href="/echipa/app/leaduri/nou">
-            <IconPlus className="h-4 w-4" /> Adaugă lead
-          </LinkButon>
+          <div className="flex flex-wrap gap-2">
+            {profil.rol === "admin" && (
+              <Buton varianta="secundar" onClick={() => setImportDeschis((x) => !x)} aria-expanded={importDeschis}>
+                <IconIncarca className="h-4 w-4" /> {importDeschis ? "Ascunde importul" : "Adaugă în bulk"}
+              </Buton>
+            )}
+            <LinkButon href="/echipa/app/leaduri/nou">
+              <IconPlus className="h-4 w-4" /> Adaugă lead
+            </LinkButon>
+          </div>
         }
       />
+
+      {profil.rol === "admin" && importDeschis && <ImportCsv compact vanzatorImplicit={profil.id} laGata={incarca} />}
 
       <div className="mb-4 space-y-3">
         <div className="flex gap-2">

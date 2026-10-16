@@ -48,7 +48,8 @@ function cheieLocala(r: Record<string, string | null>) {
   return { tel: tel || null, nume: normal(r.afacere ?? "").replace(/[^a-z0-9]+/g, " ").trim() + "|" + normal(r.oras ?? "").replace(/[^a-z0-9]+/g, " ").trim() };
 }
 
-export default function ImportCsv() {
+// Folosit pe pagina de import din Admin și, compact, în „Lead-urile mele” ale adminului.
+export default function ImportCsv({ compact, vanzatorImplicit = "", laGata }: { compact?: boolean; vanzatorImplicit?: string; laGata?: () => void } = {}) {
   const [vanzatori, setVanzatori] = useState<Vanzator[]>([]);
   const [fisier, setFisier] = useState<string>("");
   const [numeLista, setNumeLista] = useState("");
@@ -57,7 +58,7 @@ export default function ImportCsv() {
   const [coloane, setColoane] = useState<string[]>([]);
   const [randuri, setRanduri] = useState<Record<string, string>[]>([]);
   const [mapare, setMapare] = useState<Record<string, string>>({});
-  const [vanzator, setVanzator] = useState("");
+  const [vanzator, setVanzator] = useState(vanzatorImplicit);
   const [pregatite, setPregatite] = useState<RandPregatit[] | null>(null);
   const [stare, setStare] = useState<"" | "verific" | "import">("");
   const [mesaj, setMesaj] = useState<{ tip: "eroare" | "succes" | "info"; text: string } | null>(null);
@@ -189,26 +190,35 @@ export default function ImportCsv() {
     const cui = vanzatori.find((v) => v.id === vanzator)?.nume;
     setListaNoua(lista);
     setMesaj({ tip: "succes", text: `Lista „${lista.nume}” a fost creată cu ${importate} lead-uri${cui ? `, atribuite lui ${cui}` : " (nealocate)"}.` });
+    laGata?.();
   }
 
   const nrDuplicate = pregatite?.filter((p) => p.motiv).length ?? 0;
   const nrBune = (pregatite?.length ?? 0) - nrDuplicate;
 
   return (
-    <div className="max-w-4xl">
-      <TitluPagina
-        titlu="Importă o listă de lead-uri"
-        subtitlu="Tragi fișierul aici, îi dai un nume, alegi cine o primește și gata. Lista apare în „Liste de lead-uri”."
-      />
+    <div className={compact ? "" : "max-w-4xl"}>
+      {!compact && (
+        <TitluPagina
+          titlu="Importă o listă de lead-uri"
+          subtitlu="Tragi fișierul aici, îi dai un nume, alegi cine o primește și gata. Lista apare în „Liste de lead-uri”."
+        />
+      )}
 
       <Card className="mb-4">
-        <p className="text-sm text-echipa-muted">Formatul recomandat (prima linie):</p>
-        <code className="mt-2 block overflow-x-auto whitespace-nowrap rounded-lg bg-echipa-bg px-3 py-2 text-xs text-echipa-accent">
-          afacere,nisa,oras,adresa,telefon_afacere,site,google_maps,decident_nume,decident_functie,decident_telefon,decident_email,note
-        </code>
-        <p className="mt-2 text-xs text-echipa-muted">
-          Nișa poate fi: {LISTA_NISE.map((n) => NISE[n].eticheta.toLowerCase()).join(", ")}. Un exemplu e în fișierul exemplu-import-leaduri.csv din repo.
-        </p>
+        {compact ? (
+          <p className="text-sm text-echipa-muted">Adaugă multe lead-uri deodată dintr-un fișier CSV sau Excel. Implicit le primești tu.</p>
+        ) : (
+          <>
+            <p className="text-sm text-echipa-muted">Formatul recomandat (prima linie):</p>
+            <code className="mt-2 block overflow-x-auto whitespace-nowrap rounded-lg bg-echipa-bg px-3 py-2 text-xs text-echipa-accent">
+              afacere,nisa,oras,adresa,telefon_afacere,site,google_maps,decident_nume,decident_functie,decident_telefon,decident_email,note
+            </code>
+            <p className="mt-2 text-xs text-echipa-muted">
+              Nișa poate fi: {LISTA_NISE.map((n) => NISE[n].eticheta.toLowerCase()).join(", ")}. Un exemplu e în fișierul exemplu-import-leaduri.csv din repo.
+            </p>
+          </>
+        )}
         <label
           onDragOver={(e) => {
             e.preventDefault();
@@ -221,7 +231,7 @@ export default function ImportCsv() {
             const f = e.dataTransfer.files?.[0];
             if (f) void incarcaFisier(f);
           }}
-          className={`mt-4 flex min-h-32 cursor-pointer flex-col items-center justify-center gap-2 rounded-2xl border-2 border-dashed p-4 text-center hover:border-echipa-accent/60 has-[:focus-visible]:ring-2 has-[:focus-visible]:ring-echipa-accent ${
+          className={`mt-4 flex ${compact ? "min-h-24" : "min-h-32"} cursor-pointer flex-col items-center justify-center gap-2 rounded-2xl border-2 border-dashed p-4 text-center hover:border-echipa-accent/60 has-[:focus-visible]:ring-2 has-[:focus-visible]:ring-echipa-accent ${
             peste ? "border-echipa-accent bg-echipa-accent/10" : "border-echipa-line"
           }`}
         >

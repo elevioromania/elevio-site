@@ -24,7 +24,7 @@ export const DAVID_WHATSAPP_INTL = "40778320872";
 
 // Calendarul de closing (Cal.com sau Google Calendar). Gol = se afișează un mesaj de configurare.
 // Poate fi suprascris din Netlify cu variabila NEXT_PUBLIC_CALENDAR_URL.
-export const CALENDAR_URL = process.env.NEXT_PUBLIC_CALENDAR_URL || "";
+export const CALENDAR_URL = process.env.NEXT_PUBLIC_CALENDAR_URL || "https://cal.com/davidmorega/60min";
 
 // Grupul echipei. Gol = linkul nu apare.
 export const WHATSAPP_GROUP_URL = process.env.NEXT_PUBLIC_WHATSAPP_GROUP_URL || "";
@@ -309,7 +309,7 @@ export const CALCULATOR = {
   rataConversie: 70, // procente
 };
 
-export const PRET_DE_PORNIRE = "aproximativ 130€ pe lună";
+export const PRET_DE_PORNIRE = "de la 130€ la 500€ pe lună";
 
 // ---------------------------------------------------------------------------
 // Mesajul de bun venit și onboarding-ul

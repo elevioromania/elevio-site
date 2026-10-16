@@ -32,7 +32,7 @@ O obiecție nu e un „nu”. E o întrebare sau o grijă. Regula: **înțelegi,
 
 #### „Cât costă?”
 
-> **Tu:** „Depinde de ce aveți nevoie: câte apeluri aveți, ce vreți să facă agentul, câte locații. Pornește de la aproximativ 130€ pe lună. Prețul exact se stabilește la întâlnire, după ce vedem exact ce vă trebuie.”
+> **Tu:** „Depinde de ce aveți nevoie: câte apeluri aveți, ce vreți să facă agentul, câte locații. Costă de la 130€ la 500€ pe lună, în funcție de nevoile clinicii. Prețul exact se stabilește la întâlnire, după ce vedem exact ce vă trebuie.”
 >
 > _[Leagă de calcul, dacă l-ați făcut:]_
 >
