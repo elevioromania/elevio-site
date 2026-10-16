@@ -40,7 +40,7 @@ O obiecție nu e un „nu”. E o întrebare sau o grijă. Regula: **înțelegi,
 
 #### „Trimiteți-mi un e-mail.” / „N-am timp acum.”
 
-> **Tu:** „Sigur. Vă las doar un număr de test, ca să-l puteți asculta când aveți un minut: 0373 807 222. Când vă pot suna înapoi, mâine sau poimâine?”
+> **Tu:** „Sigur. Vă las doar un număr de test, ca să-l puteți asculta când aveți un minut: 0373 816 111. Când vă pot suna înapoi, mâine sau poimâine?”
 
 #### „Trebuie să vorbesc cu asociatul / cu doctorul.”
 
