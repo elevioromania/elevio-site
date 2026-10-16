@@ -219,10 +219,14 @@ export default function TabloulDeBord({ sectiuni }: { sectiuni: SectiuneScurta[]
         {profil.rol === "vanzator" && <ProgresBonus clienti={total?.clienti ?? 0} />}
       </div>
 
-      <div className="grid gap-4 lg:grid-cols-2">
+      {profil.rol === "admin" ? (
         <FeedEchipa />
-        <InsigneleMele insigne={insigne} />
-      </div>
+      ) : (
+        <div className="grid gap-4 lg:grid-cols-2">
+          <FeedEchipa />
+          <InsigneleMele insigne={insigne} />
+        </div>
+      )}
 
       {actiuni.modale}
     </div>

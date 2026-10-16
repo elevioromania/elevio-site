@@ -38,4 +38,4 @@ Nișele principale sunt **clinicile stomatologice, saloanele și spa-urile**. Da
 
 #### Cât costă
 
-Prețul **pornește de la aproximativ 130€ pe lună** și depinde de nevoile afacerii: câte apeluri are, ce trebuie să facă agentul, câte locații are. Există și o taxă unică de configurare. Prețul exact se stabilește la întâlnire. Tu nu negociezi și nu dai cifre exacte (vezi „Ce nu spunem niciodată”).
+Prețul e **de la 130€ la 500€ pe lună**, în funcție de nevoile afacerii: câte apeluri are, ce trebuie să facă agentul, câte locații are. Există și o taxă unică de configurare. Prețul exact se stabilește la întâlnire. Tu nu negociezi și nu dai cifre exacte (vezi „Ce nu spunem niciodată”).

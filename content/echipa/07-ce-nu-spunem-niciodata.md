@@ -8,7 +8,7 @@ titlu: Ce nu spunem niciodată
 |---|---|
 | Câți clienți are Elevio sau că încă nu sunt clienți plătitori. | „Suntem la început de drum și discutăm acum cu primele clinici interesate.” |
 | Clienți, rezultate, studii de caz sau citate inventate. | Doar cifrele cu sursă din secțiunea „Cifre pe care le poți folosi”. |
-| Un preț exact sau o reducere. | „Pornește de la aproximativ 130€ pe lună și depinde de ce aveți nevoie. Prețul exact se stabilește la întâlnire, împreună cu dumneavoastră.” |
+| Un preț exact sau o reducere. | „Costă de la 130€ la 500€ pe lună, în funcție de nevoile clinicii. Prețul exact se stabilește la întâlnire, împreună cu dumneavoastră.” |
 | „Înlocuim recepția.” | „Nu înlocuiește pe nimeni. Preia doar apelurile la care nu poate răspunde nimeni.” |
 | „Rezolvă problema 100%” sau alte promisiuni absolute. | „Vă ajută să nu mai pierdeți apeluri, inclusiv seara și în weekend.” |
 | Comparații cu concediile medicale ale angajaților. | Vorbește despre apelurile pierdute, nu despre oameni. |
