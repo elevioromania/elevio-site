@@ -53,7 +53,7 @@ Prezintă calculul ca pe o **estimare făcută împreună** („să zicem că...
 
 #### Pasul 6. Demo-ul
 
-> **Tu:** „Cel mai simplu e să-l auziți singur. Vă las un număr de test: 0373 807 222. Sunați ca un pacient și cereți o programare. Durează un minut.”
+> **Tu:** „Cel mai simplu e să-l auziți singur. Vă las un număr de test: 0373 816 111. Sunați ca un pacient și cereți o programare. Durează un minut.”
 >
 > **Tu:** „Aveți un minut acum? Vă sun înapoi în cinci minute, după ce îl încercați, și-mi spuneți cum vi s-a părut.”
 >

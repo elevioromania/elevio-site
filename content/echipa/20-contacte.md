@@ -6,7 +6,8 @@ titlu: Contacte
 
 | Contact | Detalii |
 |---|---|
-| Numărul de demo | **0373 807 222** |
+| Numărul de demo (recomandat) | **0373 816 111** (demo făcut pentru o clinică reală, Identis) |
+| Alt număr de demo | 0373 807 222 |
 | Echipa de closing (WhatsApp și telefon) | 0778 320 872 |
 | E-mail | elevioromania@gmail.com |
 | Site | elevio-agency.ro |
