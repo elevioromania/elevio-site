@@ -278,7 +278,7 @@ function PanouObiectii({ deschis, inchide, obiectii }: { deschis: boolean; inchi
                 </button>
               </li>
             ))}
-            {lista.length === 0 && <li className="text-sm text-echipa-muted">Nicio obiecție găsită. Vezi și „Întrebări frecvente”.</li>}
+            {lista.length === 0 && <li className="text-sm text-echipa-muted">Nicio obiecție găsită.</li>}
           </ul>
         </>
       )}

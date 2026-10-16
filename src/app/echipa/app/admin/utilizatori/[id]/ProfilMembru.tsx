@@ -5,18 +5,20 @@ import { useCallback, useState } from "react";
 import { IconInapoi } from "@/echipa/components/icons";
 import Insigna from "@/echipa/components/Insigna";
 import { useProfil } from "@/echipa/components/ProfilContext";
-import { Card, Gol, Incarcare, Mesaj } from "@/echipa/components/ui";
+import { Gol, Incarcare, Mesaj } from "@/echipa/components/ui";
 import { stareTransa1, stareTransa2, type ClientComision, type StareTransa } from "@/echipa/lib/comision";
 import { euro } from "@/echipa/lib/format";
 import { useIncarca } from "@/echipa/lib/hooks";
 import { supabaseBrowser } from "@/echipa/lib/supabase-browser";
 import { COLOANE_PROFIL, type Profil } from "@/echipa/lib/tipuri";
 import { RandUtilizator, ROLURI } from "../Utilizatori";
+import LeaduriMembru from "./LeaduriMembru";
 
 type Statistici = { leaduri: number; apeluri_saptamana: number; apeluri: number; intalniri: number; clienti: number };
 type Bonus = { suma: number; platit: boolean };
+type Tab = "leaduri" | "cont";
 
-// Profilul complet al unui membru, doar pentru admin: date, comision, cifre, bani.
+// Profilul unui membru, doar pentru admin: sus cifrele pe scurt, dedesubt lead-urile lui sau setările contului.
 export default function ProfilMembru({ id }: { id: string }) {
   const { profil: eu } = useProfil();
   const [u, setU] = useState<Profil | null | undefined>(undefined);
@@ -24,6 +26,7 @@ export default function ProfilMembru({ id }: { id: string }) {
   const [comisioane, setComisioane] = useState<ClientComision[]>([]);
   const [bonusuri, setBonusuri] = useState<Bonus[]>([]);
   const [insigne, setInsigne] = useState<string[]>([]);
+  const [tab, setTab] = useState<Tab>("leaduri");
   const [mesaj, setMesaj] = useState<{ tip: "eroare" | "succes"; text: string } | null>(null);
 
   const incarca = useCallback(async () => {
@@ -64,65 +67,89 @@ export default function ProfilMembru({ id }: { id: string }) {
           {u.nume.trim().charAt(0).toUpperCase()}
         </div>
         <div className="min-w-0">
-          <h1 className="truncate text-2xl font-bold tracking-tight sm:text-3xl">{u.nume}</h1>
+          <h1 className="truncate text-2xl font-bold tracking-tight sm:text-3xl">
+            {u.nume}
+            {!u.activ && <span className="ml-2 align-middle rounded-full bg-red-500/15 px-2 py-0.5 text-xs font-medium text-red-300">Dezactivat</span>}
+          </h1>
           <p className="text-sm text-echipa-muted">
-            {u.titlu} · {ROLURI[u.rol]} · comision instalare <strong className="text-echipa-text">{euro(u.comision_instalare)}</strong>
+            {ROLURI[u.rol]} · comision instalare <strong className="text-echipa-text">{euro(u.comision_instalare)}</strong>
+            {u.telefon ? ` · ${u.telefon}` : ""}
           </p>
         </div>
       </div>
 
-      {mesaj && <Mesaj tip={mesaj.tip}>{mesaj.text}</Mesaj>}
+      <div className="grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-echipa-line/70 bg-echipa-line/50 sm:grid-cols-5">
+        <Cifra e="Lead-uri" v={cifre?.leaduri ?? 0} />
+        <Cifra e="Apeluri săpt." v={cifre?.apeluri_saptamana ?? 0} />
+        <Cifra e="Întâlniri" v={cifre?.intalniri ?? 0} />
+        <Cifra e="Închise" v={cifre?.clienti ?? 0} />
+        <Cifra e="De plată" v={euro(sume["De plată"])} accent={sume["De plată"] > 0} className="col-span-2 sm:col-span-1" />
+      </div>
 
-      <ul>
-        <RandUtilizator u={u} esteEu={u.id === eu.id} laSchimbare={incarca} setMesaj={setMesaj} />
-      </ul>
+      <div role="tablist" className="flex gap-1 border-b border-echipa-line/70">
+        <ButonTab activ={tab === "leaduri"} onClick={() => setTab("leaduri")}>
+          Lead-uri
+        </ButonTab>
+        <ButonTab activ={tab === "cont"} onClick={() => setTab("cont")}>
+          Cont și bani
+        </ButonTab>
+      </div>
 
-      <section>
-        <h2 className="mb-3 text-lg font-bold">Cifre</h2>
-        <div className="grid grid-cols-2 gap-3 sm:grid-cols-5">
-          <Cifra e="Lead-uri alocate" v={cifre?.leaduri ?? 0} />
-          <Cifra e="Apeluri (săpt.)" v={cifre?.apeluri_saptamana ?? 0} />
-          <Cifra e="Apeluri în total" v={cifre?.apeluri ?? 0} />
-          <Cifra e="Întâlniri" v={cifre?.intalniri ?? 0} />
-          <Cifra e="Lead-uri închise" v={cifre?.clienti ?? 0} />
-        </div>
-      </section>
-
-      <section>
-        <h2 className="mb-3 text-lg font-bold">Bani</h2>
-        <div className="grid gap-3 sm:grid-cols-3">
-          <Cifra e="Plătit până acum" v={euro(sume["Plătit"])} />
-          <Cifra e="De plată" v={euro(sume["De plată"])} accent />
-          <Cifra e="În așteptare" v={euro(sume["În așteptare"])} />
-        </div>
-        <p className="mt-2 text-xs text-echipa-muted">
-          Detaliile pe fiecare lead închis și bifele de plată sunt în{" "}
-          <Link href="/echipa/app/admin/comisioane" className="text-echipa-accent hover:underline">
-            Lead-uri închise și comisioane
-          </Link>
-          .
-        </p>
-      </section>
-
-      {insigne.length > 0 && (
-        <Card>
-          <h2 className="mb-3 font-semibold">Insigne</h2>
-          <div className="flex flex-wrap gap-2">
-            {insigne.map((i) => (
-              <Insigna key={i} cod={i} mare />
-            ))}
+      {tab === "leaduri" ? (
+        <LeaduriMembru id={u.id} nume={u.prenume || u.nume} laSchimbare={incarca} />
+      ) : (
+        <div className="space-y-5">
+          {mesaj && <Mesaj tip={mesaj.tip}>{mesaj.text}</Mesaj>}
+          <ul>
+            <RandUtilizator u={u} esteEu={u.id === eu.id} laSchimbare={incarca} setMesaj={setMesaj} />
+          </ul>
+          <div className="rounded-2xl border border-echipa-line/70 bg-echipa-card p-4 text-sm">
+            <p>
+              Plătit până acum <strong>{euro(sume["Plătit"])}</strong> · De plată <strong className="text-echipa-accent">{euro(sume["De plată"])}</strong> · În
+              așteptare <strong>{euro(sume["În așteptare"])}</strong>
+            </p>
+            <p className="mt-1 text-xs text-echipa-muted">
+              Bifele de plată sunt în{" "}
+              <Link href="/echipa/app/admin/comisioane" className="text-echipa-accent hover:underline">
+                Lead-uri închise și comisioane
+              </Link>
+              .
+            </p>
           </div>
-        </Card>
+          {insigne.length > 0 && (
+            <div className="flex flex-wrap gap-2">
+              {insigne.map((i) => (
+                <Insigna key={i} cod={i} />
+              ))}
+            </div>
+          )}
+        </div>
       )}
     </div>
   );
 }
 
-function Cifra({ e, v, accent }: { e: string; v: number | string; accent?: boolean }) {
+function ButonTab({ activ, onClick, children }: { activ: boolean; onClick: () => void; children: React.ReactNode }) {
   return (
-    <div className={`rounded-2xl border p-4 ${accent ? "border-echipa-accent/60 bg-echipa-accent/10" : "border-echipa-line/70 bg-echipa-card"}`}>
-      <p className="text-2xl font-bold tabular-nums">{v}</p>
-      <p className="mt-1 text-xs text-echipa-muted">{e}</p>
+    <button
+      type="button"
+      role="tab"
+      aria-selected={activ}
+      onClick={onClick}
+      className={`-mb-px border-b-2 px-4 py-2.5 text-sm font-semibold transition ${
+        activ ? "border-echipa-accent text-echipa-text" : "border-transparent text-echipa-muted hover:text-echipa-text"
+      }`}
+    >
+      {children}
+    </button>
+  );
+}
+
+function Cifra({ e, v, accent, className = "" }: { e: string; v: number | string; accent?: boolean; className?: string }) {
+  return (
+    <div className={`bg-echipa-card px-3 py-3 text-center ${className}`}>
+      <p className={`text-xl font-bold tabular-nums ${accent ? "text-echipa-accent" : ""}`}>{v}</p>
+      <p className="mt-0.5 text-xs text-echipa-muted">{e}</p>
     </div>
   );
 }
