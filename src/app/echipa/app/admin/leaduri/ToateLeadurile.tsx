@@ -105,12 +105,12 @@ export default function ToateLeadurile({ listaId, titlu = "Toate lead-urile", su
     setSeLucreaza(true);
     let folder: Folder | null = null;
     if (folderTinta === "nou") {
-      const n = prompt("Numele folderului nou:")?.trim();
+      const n = prompt("Numele fișierului nou:")?.trim();
       if (!n) return setSeLucreaza(false);
       const { data, error } = await supabaseBrowser().from("liste").insert({ nume: n }).select("id, nume").single();
       if (error || !data) {
         setSeLucreaza(false);
-        return setMesaj({ tip: "eroare", text: "Nu am putut crea folderul." });
+        return setMesaj({ tip: "eroare", text: "Nu am putut crea fișierul." });
       }
       folder = data;
     } else if (folderTinta !== "fara") {
@@ -121,13 +121,13 @@ export default function ToateLeadurile({ listaId, titlu = "Toate lead-urile", su
       const { error } = await supabaseBrowser().from("leads").update({ lista_id: folder?.id ?? null }).in("id", ids.slice(i, i + 200));
       if (error) {
         setSeLucreaza(false);
-        return setMesaj({ tip: "eroare", text: "Mutarea în folder a eșuat. Încearcă din nou." });
+        return setMesaj({ tip: "eroare", text: "Mutarea în fișier a eșuat. Încearcă din nou." });
       }
     }
     setSeLucreaza(false);
     setAlese(new Set());
     setFolderTinta("");
-    setMesaj({ tip: "succes", text: folder ? `Am mutat ${ids.length} lead-uri în folderul „${folder.nume}”.` : `Am scos ${ids.length} lead-uri din foldere.` });
+    setMesaj({ tip: "succes", text: folder ? `Am mutat ${ids.length} lead-uri în fișierul „${folder.nume}”.` : `Am scos ${ids.length} lead-uri din fișiere.` });
     incarca();
   }
 
@@ -155,7 +155,7 @@ export default function ToateLeadurile({ listaId, titlu = "Toate lead-urile", su
       filtrate.map((l) => ({
         afacere: l.afacere,
         nisa: NISE[l.nisa]?.eticheta,
-        folder: l.lista_id ? numeFolder[l.lista_id] : "",
+        fisier: l.lista_id ? numeFolder[l.lista_id] : "",
         oras: l.oras,
         adresa: l.adresa,
         telefon_afacere: l.telefon_afacere,
@@ -205,9 +205,9 @@ export default function ToateLeadurile({ listaId, titlu = "Toate lead-urile", su
           ))}
         </select>
         {!listaId && (
-          <select aria-label="Folder" className="camp" value={fFolder} onChange={(e) => setFFolder(e.target.value)}>
-            <option value="">Toate folderele</option>
-            <option value="fara">Fără folder</option>
+          <select aria-label="Fișier" className="camp" value={fFolder} onChange={(e) => setFFolder(e.target.value)}>
+            <option value="">Toate fișierele</option>
+            <option value="fara">Fără fișier</option>
             {foldere.map((f) => (
               <option key={f.id} value={f.id}>
                 {f.nume}
@@ -269,8 +269,8 @@ export default function ToateLeadurile({ listaId, titlu = "Toate lead-urile", su
           <Buton onClick={realoca} disabled={seLucreaza}>
             {seLucreaza ? "Se salvează..." : "Atribuie"}
           </Buton>
-          <select aria-label="Mută în folder" className="camp max-w-xs flex-1" value={folderTinta} onChange={(e) => setFolderTinta(e.target.value)}>
-            <option value="">Mută în folder...</option>
+          <select aria-label="Mută în fișier" className="camp max-w-xs flex-1" value={folderTinta} onChange={(e) => setFolderTinta(e.target.value)}>
+            <option value="">Mută în fișier...</option>
             {foldere
               .filter((f) => f.id !== listaId)
               .map((f) => (
@@ -278,8 +278,8 @@ export default function ToateLeadurile({ listaId, titlu = "Toate lead-urile", su
                   {f.nume}
                 </option>
               ))}
-            <option value="nou">+ Folder nou...</option>
-            <option value="fara">Scoate din folder</option>
+            <option value="nou">+ Fișier nou...</option>
+            <option value="fara">Scoate din fișier</option>
           </select>
           <Buton varianta="secundar" onClick={mutaInFolder} disabled={!folderTinta || seLucreaza}>
             Mută
@@ -310,7 +310,7 @@ export default function ToateLeadurile({ listaId, titlu = "Toate lead-urile", su
                 </th>
                 <th className="px-3 py-3">Afacere</th>
                 <th className="px-3 py-3">Oraș</th>
-                {!listaId && <th className="px-3 py-3">Folder</th>}
+                {!listaId && <th className="px-3 py-3">Fișier</th>}
                 <th className="px-3 py-3">Status</th>
                 <th className="px-3 py-3">Vânzător</th>
                 <th className="px-3 py-3">Sursa</th>

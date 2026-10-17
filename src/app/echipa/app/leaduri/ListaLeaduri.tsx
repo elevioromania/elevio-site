@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useCallback, useMemo, useState } from "react";
 import { LISTA_NISE, LISTA_STATUSURI, NISE, STATUSURI, type Status } from "@/echipa/config";
 import { useActiuniLead } from "@/echipa/components/ActiuniLead";
-import { IconColoane, IconIncarca, IconLista, IconNotita, IconPlus, IconTelefon } from "@/echipa/components/icons";
+import { IconColoane, IconFolder, IconIncarca, IconLista, IconNotita, IconPlus, IconTelefon } from "@/echipa/components/icons";
 import { useProfil } from "@/echipa/components/ProfilContext";
 import StatusBadge from "@/echipa/components/StatusBadge";
 import { Buton, Gol, Incarcare, LinkButon, Mesaj, TitluPagina } from "@/echipa/components/ui";
@@ -98,6 +98,9 @@ export default function ListaLeaduri() {
                 <IconIncarca className="h-4 w-4" /> {importDeschis ? "Ascunde importul" : "Adaugă în bulk"}
               </Buton>
             )}
+            <LinkButon href="/echipa/app/foldere" varianta="secundar">
+              <IconFolder className="h-4 w-4" /> Folderele mele
+            </LinkButon>
             <LinkButon href="/echipa/app/leaduri/nou">
               <IconPlus className="h-4 w-4" /> Adaugă lead
             </LinkButon>
@@ -161,8 +164,8 @@ export default function ListaLeaduri() {
             ))}
           </select>
           {liste.length > 0 && (
-            <select aria-label="Filtru folder" className="camp col-span-2 sm:col-span-4" value={listaAleasa} onChange={(e) => setListaAleasa(e.target.value)}>
-              <option value="">Toate folderele</option>
+            <select aria-label="Filtru fișier" className="camp col-span-2 sm:col-span-4" value={listaAleasa} onChange={(e) => setListaAleasa(e.target.value)}>
+              <option value="">Toate fișierele</option>
               {liste.map((x) => (
                 <option key={x.id} value={x.id}>
                   Lista: {x.nume}

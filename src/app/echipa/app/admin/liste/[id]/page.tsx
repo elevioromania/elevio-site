@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Lista from "./Lista";
 
-export const metadata: Metadata = { title: "Folder de lead-uri" };
+export const metadata: Metadata = { title: "Fișier de lead-uri" };
 
 export default async function Page({ params }: PageProps<"/echipa/app/admin/liste/[id]">) {
   const { id } = await params;
