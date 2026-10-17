@@ -53,6 +53,8 @@ export default function ImportCsv({ compact, vanzatorImplicit = "", laGata }: { 
   const [vanzatori, setVanzatori] = useState<Vanzator[]>([]);
   const [fisier, setFisier] = useState<string>("");
   const [numeLista, setNumeLista] = useState("");
+  const [foldere, setFoldere] = useState<{ id: string; nume: string }[]>([]);
+  const [folderExistent, setFolderExistent] = useState("");
   const [peste, setPeste] = useState(false);
   const [listaNoua, setListaNoua] = useState<{ id: string; nume: string } | null>(null);
   const [coloane, setColoane] = useState<string[]>([]);
@@ -70,6 +72,11 @@ export default function ImportCsv({ compact, vanzatorImplicit = "", laGata }: { 
       .eq("activ", true)
       .order("nume")
       .then(({ data }) => setVanzatori(data ?? []));
+    supabaseBrowser()
+      .from("liste")
+      .select("id, nume")
+      .order("creat_la", { ascending: false })
+      .then(({ data }) => setFoldere(data ?? []));
   }, []);
 
   async function alegeFisier(e: React.ChangeEvent<HTMLInputElement>) {
@@ -86,7 +93,7 @@ export default function ImportCsv({ compact, vanzatorImplicit = "", laGata }: { 
     if (/\.(docx?|pdf)$/i.test(f.name)) {
       return setMesaj({
         tip: "eroare",
-        text: "Fișierele Word și PDF nu au coloane clare. Trimite-l lui Claude și cere-i să-l transforme în CSV sau Excel (ori să creeze el lista direct).",
+        text: "Fișierele Word și PDF nu au coloane clare. Trimite-l lui Claude și cere-i să-l transforme în CSV sau Excel (ori să adauge el lead-urile direct).",
       });
     }
     try {
@@ -165,13 +172,16 @@ export default function ImportCsv({ compact, vanzatorImplicit = "", laGata }: { 
     if (!pregatite) return;
     const bune = pregatite.filter((p) => !p.motiv).map((p) => ({ ...p.date, vanzator_id: vanzator || null, sursa: "alocat" }));
     if (!bune.length) return;
-    if (!numeLista.trim()) return setMesaj({ tip: "eroare", text: "Dă un nume listei." });
+    if (!folderExistent && !numeLista.trim()) return setMesaj({ tip: "eroare", text: "Dă un nume folderului." });
     setStare("import");
     const supabase = supabaseBrowser();
-    const { data: lista, error: eroareLista } = await supabase.from("liste").insert({ nume: numeLista.trim() }).select("id, nume").single();
+    const existent = foldere.find((f) => f.id === folderExistent);
+    const { data: lista, error: eroareLista } = existent
+      ? { data: existent, error: null }
+      : await supabase.from("liste").insert({ nume: numeLista.trim() }).select("id, nume").single();
     if (eroareLista || !lista) {
       setStare("");
-      return setMesaj({ tip: "eroare", text: "Lista nu a putut fi creată. Încearcă din nou." });
+      return setMesaj({ tip: "eroare", text: "Folderul nu a putut fi creat. Încearcă din nou." });
     }
     let importate = 0;
     for (let i = 0; i < bune.length; i += 500) {
@@ -189,7 +199,11 @@ export default function ImportCsv({ compact, vanzatorImplicit = "", laGata }: { 
     setFisier("");
     const cui = vanzatori.find((v) => v.id === vanzator)?.nume;
     setListaNoua(lista);
-    setMesaj({ tip: "succes", text: `Lista „${lista.nume}” a fost creată cu ${importate} lead-uri${cui ? `, atribuite lui ${cui}` : " (nealocate)"}.` });
+    if (!existent) setFoldere([lista, ...foldere]);
+    setMesaj({
+      tip: "succes",
+      text: `${existent ? `Am adăugat ${importate} lead-uri în folderul „${lista.nume}”` : `Folderul „${lista.nume}” a fost creat cu ${importate} lead-uri`}${cui ? `, atribuite lui ${cui}` : " (nealocate)"}.`,
+    });
     laGata?.();
   }
 
@@ -200,8 +214,8 @@ export default function ImportCsv({ compact, vanzatorImplicit = "", laGata }: { 
     <div className={compact ? "" : "max-w-4xl"}>
       {!compact && (
         <TitluPagina
-          titlu="Importă o listă de lead-uri"
-          subtitlu="Tragi fișierul aici, îi dai un nume, alegi cine o primește și gata. Lista apare în „Liste de lead-uri”."
+          titlu="Importă lead-uri"
+          subtitlu="Tragi fișierul aici, alegi folderul (unul nou sau unul existent) și cine primește lead-urile. Gata."
         />
       )}
 
@@ -246,7 +260,7 @@ export default function ImportCsv({ compact, vanzatorImplicit = "", laGata }: { 
           />
         </label>
         <p className="mt-3 text-xs text-echipa-muted">
-          Ai lead-urile într-un Word sau într-un PDF? Trimite-l lui Claude: îl transformă în fișier bun de importat sau creează lista direct.
+          Ai lead-urile într-un Word sau într-un PDF? Trimite-l lui Claude: îl transformă în fișier bun de importat sau adaugă lead-urile direct.
         </p>
       </Card>
 
@@ -258,7 +272,7 @@ export default function ImportCsv({ compact, vanzatorImplicit = "", laGata }: { 
               <>
                 {" "}
                 <Link href={`/echipa/app/admin/liste/${listaNoua.id}`} className="font-semibold underline">
-                  Deschide lista
+                  Deschide folderul
                 </Link>
               </>
             )}
@@ -297,15 +311,32 @@ export default function ImportCsv({ compact, vanzatorImplicit = "", laGata }: { 
           </div>
 
           <div className="mt-5 grid gap-3 sm:grid-cols-[1fr_1fr_auto] sm:items-end">
-            <div>
-              <label htmlFor="import-lista" className="mb-1.5 block text-sm font-medium">
-                Numele listei
+            <div className="space-y-2">
+              <label htmlFor="import-folder" className="block text-sm font-medium">
+                În ce folder intră
               </label>
-              <input id="import-lista" className="camp" placeholder="de ex. Clinici Cluj, octombrie" value={numeLista} onChange={(e) => setNumeLista(e.target.value)} />
+              <select id="import-folder" className="camp" value={folderExistent} onChange={(e) => setFolderExistent(e.target.value)}>
+                <option value="">Folder nou</option>
+                {foldere.map((f) => (
+                  <option key={f.id} value={f.id}>
+                    {f.nume}
+                  </option>
+                ))}
+              </select>
+              {!folderExistent && (
+                <input
+                  id="import-lista"
+                  aria-label="Numele folderului nou"
+                  className="camp"
+                  placeholder="Numele folderului nou (de ex. Clinici Cluj)"
+                  value={numeLista}
+                  onChange={(e) => setNumeLista(e.target.value)}
+                />
+              )}
             </div>
             <div>
               <label htmlFor="import-vanzator" className="mb-1.5 block text-sm font-medium">
-                Cine primește lista
+                Cine primește lead-urile
               </label>
               <select id="import-vanzator" className="camp" value={vanzator} onChange={(e) => setVanzator(e.target.value)}>
                 <option value="">Nealocat (le aloc mai târziu)</option>

@@ -107,11 +107,11 @@ export default function LeaduriMembru({ id, nume, laSchimbare }: { id: string; n
   async function daLista() {
     if (!listaAleasa) return;
     const lista = liste.find((l) => l.id === listaAleasa);
-    if (!confirm(`Îi dai lui ${nume} toată lista „${lista?.nume}”? Lead-urile din ea care sunt la altcineva trec la ${nume}.`)) return;
+    if (!confirm(`Îi dai lui ${nume} tot folderul „${lista?.nume}”? Lead-urile din el care sunt la altcineva trec la ${nume}.`)) return;
     setSeLucreaza(true);
     const { error, count } = await supabaseBrowser().from("leads").update({ vanzator_id: id }, { count: "exact" }).eq("lista_id", listaAleasa);
-    if (error) return gata("Nu am putut da lista.", true);
-    gata(`Lista „${lista?.nume}” (${count ?? 0} lead-uri) e acum la ${nume}.`);
+    if (error) return gata("Nu am putut da folderul.", true);
+    gata(`Folderul „${lista?.nume}” (${count ?? 0} lead-uri) e acum la ${nume}.`);
   }
 
   if (leaduri === null) return <Incarcare />;
@@ -121,8 +121,8 @@ export default function LeaduriMembru({ id, nume, laSchimbare }: { id: string; n
       {liste.length > 0 && (
         <div className="flex flex-wrap items-center gap-2 rounded-2xl border border-echipa-line/70 bg-echipa-card p-3">
           <span className="w-full text-sm font-medium sm:w-auto">Dă-i lead-uri:</span>
-          <select aria-label="Alege o listă" className="camp min-w-0 flex-1 sm:max-w-xs" value={listaAleasa} onChange={(e) => setListaAleasa(e.target.value)}>
-            <option value="">Alege o listă...</option>
+          <select aria-label="Alege un folder" className="camp min-w-0 flex-1 sm:max-w-xs" value={listaAleasa} onChange={(e) => setListaAleasa(e.target.value)}>
+            <option value="">Alege un folder...</option>
             {liste.map((l) => (
               <option key={l.id} value={l.id}>
                 {l.nume} ({l.leads[0]?.count ?? 0})
@@ -130,7 +130,7 @@ export default function LeaduriMembru({ id, nume, laSchimbare }: { id: string; n
             ))}
           </select>
           <Buton onClick={daLista} disabled={!listaAleasa || seLucreaza}>
-            Dă-i lista
+            Dă-i folderul
           </Buton>
         </div>
       )}
@@ -139,7 +139,7 @@ export default function LeaduriMembru({ id, nume, laSchimbare }: { id: string; n
 
       {leaduri.length === 0 ? (
         <p className="rounded-2xl border border-dashed border-echipa-line p-6 text-center text-sm text-echipa-muted">
-          {nume} nu are încă niciun lead. Dă-i o listă de mai sus.
+          {nume} nu are încă niciun lead. Dă-i un folder de mai sus.
         </p>
       ) : (
         <>

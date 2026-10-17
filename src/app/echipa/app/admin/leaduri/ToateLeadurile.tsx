@@ -14,6 +14,7 @@ import { supabaseBrowser } from "@/echipa/lib/supabase-browser";
 import type { Lead } from "@/echipa/lib/tipuri";
 
 type Persoana = { id: string; nume: string; activ: boolean };
+type Folder = { id: string; nume: string };
 
 export default function ToateLeadurile({ listaId, titlu = "Toate lead-urile", sus }: { listaId?: string; titlu?: string; sus?: React.ReactNode } = {}) {
   const [leaduri, setLeaduri] = useState<Lead[] | null>(null);
@@ -25,27 +26,33 @@ export default function ToateLeadurile({ listaId, titlu = "Toate lead-urile", su
   const [fNisa, setFNisa] = useState("");
   const [fOras, setFOras] = useState("");
   const [fSursa, setFSursa] = useState("");
+  const [fFolder, setFFolder] = useState("");
+  const [foldere, setFoldere] = useState<Folder[]>([]);
+  const [folderTinta, setFolderTinta] = useState("");
   const [tinta, setTinta] = useState("");
   const [mesaj, setMesaj] = useState<{ tip: "eroare" | "succes"; text: string } | null>(null);
   const [seLucreaza, setSeLucreaza] = useState(false);
 
   const incarca = useCallback(async () => {
     const supabase = supabaseBrowser();
-    const [l, p] = await Promise.all([
+    const [l, p, f] = await Promise.all([
       toatePaginile<Lead>((de, pana) => {
         let q = supabase.from("leads").select(COLOANE_LEAD);
         if (listaId) q = q.eq("lista_id", listaId);
         return q.order("creat_la", { ascending: false }).order("id").range(de, pana);
       }),
       supabase.from("profiles").select("id, nume, activ").order("nume"),
+      supabase.from("liste").select("id, nume").order("nume"),
     ]);
     setLeaduri(l.data);
     setOameni((p.data as Persoana[]) ?? []);
+    setFoldere((f.data as Folder[]) ?? []);
   }, [listaId]);
 
   useIncarca(incarca);
 
   const numeVanzator = useMemo(() => Object.fromEntries(oameni.map((o) => [o.id, o.nume])), [oameni]);
+  const numeFolder = useMemo(() => Object.fromEntries(foldere.map((f) => [f.id, f.nume])), [foldere]);
   const orase = useMemo(
     () => [...new Set((leaduri ?? []).map((l) => l.oras?.trim()).filter(Boolean) as string[])].sort((a, b) => a.localeCompare(b, "ro")),
     [leaduri],
@@ -60,9 +67,10 @@ export default function ToateLeadurile({ listaId, titlu = "Toate lead-urile", su
         (!fStatus || l.status === fStatus) &&
         (!fNisa || l.nisa === fNisa) &&
         (!fOras || l.oras?.trim() === fOras) &&
-        (!fSursa || l.sursa === fSursa),
+        (!fSursa || l.sursa === fSursa) &&
+        (!fFolder || (fFolder === "fara" ? !l.lista_id : l.lista_id === fFolder)),
     );
-  }, [leaduri, cautare, fVanzator, fStatus, fNisa, fOras, fSursa]);
+  }, [leaduri, cautare, fVanzator, fStatus, fNisa, fOras, fSursa, fFolder]);
 
   const toateAlese = filtrate.length > 0 && filtrate.every((l) => alese.has(l.id));
 
@@ -92,6 +100,37 @@ export default function ToateLeadurile({ listaId, titlu = "Toate lead-urile", su
     incarca();
   }
 
+  async function mutaInFolder() {
+    if (!alese.size || !folderTinta) return;
+    setSeLucreaza(true);
+    let folder: Folder | null = null;
+    if (folderTinta === "nou") {
+      const n = prompt("Numele folderului nou:")?.trim();
+      if (!n) return setSeLucreaza(false);
+      const { data, error } = await supabaseBrowser().from("liste").insert({ nume: n }).select("id, nume").single();
+      if (error || !data) {
+        setSeLucreaza(false);
+        return setMesaj({ tip: "eroare", text: "Nu am putut crea folderul." });
+      }
+      folder = data;
+    } else if (folderTinta !== "fara") {
+      folder = foldere.find((f) => f.id === folderTinta) ?? null;
+    }
+    const ids = [...alese];
+    for (let i = 0; i < ids.length; i += 200) {
+      const { error } = await supabaseBrowser().from("leads").update({ lista_id: folder?.id ?? null }).in("id", ids.slice(i, i + 200));
+      if (error) {
+        setSeLucreaza(false);
+        return setMesaj({ tip: "eroare", text: "Mutarea în folder a eșuat. Încearcă din nou." });
+      }
+    }
+    setSeLucreaza(false);
+    setAlese(new Set());
+    setFolderTinta("");
+    setMesaj({ tip: "succes", text: folder ? `Am mutat ${ids.length} lead-uri în folderul „${folder.nume}”.` : `Am scos ${ids.length} lead-uri din foldere.` });
+    incarca();
+  }
+
   async function stergeAlese() {
     if (!alese.size) return;
     if (!confirm(`Ștergi definitiv ${alese.size} lead-uri? Se șterg și istoricul și întâlnirile predate pentru ele.`)) return;
@@ -116,6 +155,7 @@ export default function ToateLeadurile({ listaId, titlu = "Toate lead-urile", su
       filtrate.map((l) => ({
         afacere: l.afacere,
         nisa: NISE[l.nisa]?.eticheta,
+        folder: l.lista_id ? numeFolder[l.lista_id] : "",
         oras: l.oras,
         adresa: l.adresa,
         telefon_afacere: l.telefon_afacere,
@@ -153,7 +193,7 @@ export default function ToateLeadurile({ listaId, titlu = "Toate lead-urile", su
       {sus}
 
       <div className="mb-4 grid gap-2 sm:grid-cols-3 lg:grid-cols-6">
-        <input type="search" aria-label="Caută" className="camp sm:col-span-3 lg:col-span-1" placeholder="Caută" value={cautare} onChange={(e) => setCautare(e.target.value)} />
+        <input type="search" aria-label="Caută" className="camp sm:col-span-3 lg:col-span-6" placeholder="Caută" value={cautare} onChange={(e) => setCautare(e.target.value)} />
         <select aria-label="Vânzător" className="camp" value={fVanzator} onChange={(e) => setFVanzator(e.target.value)}>
           <option value="">Toți vânzătorii</option>
           <option value="nealocat">Nealocate</option>
@@ -164,6 +204,17 @@ export default function ToateLeadurile({ listaId, titlu = "Toate lead-urile", su
             </option>
           ))}
         </select>
+        {!listaId && (
+          <select aria-label="Folder" className="camp" value={fFolder} onChange={(e) => setFFolder(e.target.value)}>
+            <option value="">Toate folderele</option>
+            <option value="fara">Fără folder</option>
+            {foldere.map((f) => (
+              <option key={f.id} value={f.id}>
+                {f.nume}
+              </option>
+            ))}
+          </select>
+        )}
         <select aria-label="Status" className="camp" value={fStatus} onChange={(e) => setFStatus(e.target.value)}>
           <option value="">Toate statusurile</option>
           {LISTA_STATUSURI.map((s) => (
@@ -218,6 +269,21 @@ export default function ToateLeadurile({ listaId, titlu = "Toate lead-urile", su
           <Buton onClick={realoca} disabled={seLucreaza}>
             {seLucreaza ? "Se salvează..." : "Atribuie"}
           </Buton>
+          <select aria-label="Mută în folder" className="camp max-w-xs flex-1" value={folderTinta} onChange={(e) => setFolderTinta(e.target.value)}>
+            <option value="">Mută în folder...</option>
+            {foldere
+              .filter((f) => f.id !== listaId)
+              .map((f) => (
+                <option key={f.id} value={f.id}>
+                  {f.nume}
+                </option>
+              ))}
+            <option value="nou">+ Folder nou...</option>
+            <option value="fara">Scoate din folder</option>
+          </select>
+          <Buton varianta="secundar" onClick={mutaInFolder} disabled={!folderTinta || seLucreaza}>
+            Mută
+          </Buton>
           <Buton varianta="pericol" onClick={stergeAlese} disabled={seLucreaza}>
             Șterge
           </Buton>
@@ -244,6 +310,7 @@ export default function ToateLeadurile({ listaId, titlu = "Toate lead-urile", su
                 </th>
                 <th className="px-3 py-3">Afacere</th>
                 <th className="px-3 py-3">Oraș</th>
+                {!listaId && <th className="px-3 py-3">Folder</th>}
                 <th className="px-3 py-3">Status</th>
                 <th className="px-3 py-3">Vânzător</th>
                 <th className="px-3 py-3">Sursa</th>
@@ -263,6 +330,7 @@ export default function ToateLeadurile({ listaId, titlu = "Toate lead-urile", su
                     <span className="block text-xs text-echipa-muted">{NISE[l.nisa]?.eticheta}</span>
                   </td>
                   <td className="px-3 py-2.5">{l.oras}</td>
+                  {!listaId && <td className="px-3 py-2.5 text-xs">{l.lista_id ? numeFolder[l.lista_id] : <span className="text-echipa-muted">-</span>}</td>}
                   <td className="px-3 py-2.5">
                     <StatusBadge status={l.status as Status} mic />
                   </td>

@@ -5,7 +5,7 @@ import { useIncarca } from "../lib/hooks";
 import { supabaseBrowser } from "../lib/supabase-browser";
 import { Buton } from "./ui";
 
-// Dă toate lead-urile dintr-o listă unui singur om (sau le face nealocate).
+// Dă toate lead-urile dintr-un folder unui singur om (sau le face nealocate).
 export default function AtribuieLista({
   listaId,
   laGata,
@@ -33,17 +33,17 @@ export default function AtribuieLista({
       .update({ vanzator_id: cui === "nealocat" ? null : cui }, { count: "exact" })
       .eq("lista_id", listaId);
     setSeLucreaza(false);
-    if (error) return laGata("Nu am putut atribui lista.", true);
+    if (error) return laGata("Nu am putut atribui folderul.", true);
     const nume = oameni.find((o) => o.id === cui)?.nume;
     setCui("");
-    laGata(nume ? `Lista (${count ?? 0} lead-uri) e acum la ${nume}.` : "Lead-urile din listă sunt acum nealocate.");
+    laGata(nume ? `Folderul (${count ?? 0} lead-uri) e acum la ${nume}.` : "Lead-urile din folder sunt acum nealocate.");
   }
 
   return (
     <div className={`flex gap-2 ${compact ? "" : "flex-wrap items-end"}`}>
-      <select aria-label="Atribuie lista lui" className="camp min-w-0 flex-1" value={cui} onChange={(e) => setCui(e.target.value)}>
-        <option value="">Atribuie lista lui...</option>
-        <option value="nealocat">Nimeni (nealocată)</option>
+      <select aria-label="Dă folderul lui" className="camp min-w-0 flex-1" value={cui} onChange={(e) => setCui(e.target.value)}>
+        <option value="">Dă folderul lui...</option>
+        <option value="nealocat">Nimeni (nealocat)</option>
         {oameni.map((o) => (
           <option key={o.id} value={o.id}>
             {o.nume}
