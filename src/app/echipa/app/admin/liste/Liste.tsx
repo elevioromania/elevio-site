@@ -4,8 +4,8 @@ import Link from "next/link";
 import { useCallback, useState } from "react";
 import { STATUSURI, type Status } from "@/echipa/config";
 import AtribuieLista from "@/echipa/components/AtribuieLista";
-import { IconIncarca, IconLeaduri } from "@/echipa/components/icons";
-import { Gol, Incarcare, LinkButon, Mesaj, TitluPagina } from "@/echipa/components/ui";
+import { IconFolder, IconIncarca, IconPlus } from "@/echipa/components/icons";
+import { Buton, Gol, Incarcare, LinkButon, Mesaj, TitluPagina } from "@/echipa/components/ui";
 import { dataScurta } from "@/echipa/lib/format";
 import { useIncarca } from "@/echipa/lib/hooks";
 import { supabaseBrowser } from "@/echipa/lib/supabase-browser";
@@ -17,17 +17,21 @@ export type ListaCuLeaduri = {
   leads: { vanzator_id: string | null; status: Status }[];
 };
 
-// Cui aparține lista: un singur om, mai mulți sau nimeni.
+// Cui aparține folderul: un singur om, mai mulți sau nimeni.
 export function proprietar(l: ListaCuLeaduri, nume: Record<string, string>) {
   const ids = [...new Set(l.leads.map((x) => x.vanzator_id))];
-  if (ids.length === 0) return "Goală";
-  if (ids.length > 1) return "Împărțită între mai mulți";
-  return ids[0] ? (nume[ids[0]] ?? "Necunoscut") : "Nealocată";
+  if (ids.length === 0) return "Gol";
+  if (ids.length > 1) return "Împărțit între mai mulți";
+  return ids[0] ? (nume[ids[0]] ?? "Necunoscut") : "Nealocat";
 }
 
+// Folderele de lead-uri (în baza de date: tabelul „liste”). Le creezi, le numești cum vrei
+// și le dai cuiva dintr-un click.
 export default function Liste() {
   const [liste, setListe] = useState<ListaCuLeaduri[] | null>(null);
   const [nume, setNume] = useState<Record<string, string>>({});
+  const [numeNou, setNumeNou] = useState("");
+  const [seLucreaza, setSeLucreaza] = useState(false);
   const [mesaj, setMesaj] = useState<{ tip: "eroare" | "succes"; text: string } | null>(null);
 
   const incarca = useCallback(async () => {
@@ -41,31 +45,57 @@ export default function Liste() {
   }, []);
   useIncarca(incarca);
 
+  async function creeaza(e: React.FormEvent) {
+    e.preventDefault();
+    const n = numeNou.trim();
+    if (!n) return;
+    setSeLucreaza(true);
+    const { error } = await supabaseBrowser().from("liste").insert({ nume: n });
+    setSeLucreaza(false);
+    if (error) return setMesaj({ tip: "eroare", text: "Nu am putut crea folderul." });
+    setNumeNou("");
+    setMesaj({ tip: "succes", text: `Folderul „${n}” a fost creat. Mută lead-uri în el din „Lead-uri și atribuire” sau importă un fișier direct în el.` });
+    incarca();
+  }
+
   return (
     <div className="max-w-4xl">
       <TitluPagina
-        titlu="Liste de lead-uri"
-        subtitlu="Fiecare fișier importat devine o listă. O dai cuiva dintr-un singur click."
+        titlu="Foldere de lead-uri"
+        subtitlu="Grupează lead-urile cum vrei (clinici, restaurante, saloane, persoane de decizie) și dă un folder întreg cuiva dintr-un click."
         actiuni={
-          <LinkButon href="/echipa/app/admin/import">
-            <IconIncarca className="h-4 w-4" /> Importă o listă
+          <LinkButon href="/echipa/app/admin/import" varianta="secundar">
+            <IconIncarca className="h-4 w-4" /> Importă lead-uri
           </LinkButon>
         }
       />
+
+      <form onSubmit={creeaza} className="mb-4 flex flex-wrap gap-2 rounded-2xl border border-echipa-line/70 bg-echipa-card p-3">
+        <label htmlFor="folder-nou" className="sr-only">
+          Numele folderului nou
+        </label>
+        <input
+          id="folder-nou"
+          className="camp min-w-0 flex-1"
+          placeholder="Numele folderului nou (de ex. Clinici București)"
+          value={numeNou}
+          onChange={(e) => setNumeNou(e.target.value)}
+        />
+        <Buton type="submit" disabled={!numeNou.trim() || seLucreaza}>
+          <IconPlus className="h-4 w-4" /> Folder nou
+        </Buton>
+      </form>
+
       {mesaj && (
         <div className="mb-4">
           <Mesaj tip={mesaj.tip}>{mesaj.text}</Mesaj>
         </div>
       )}
+
       {liste === null ? (
         <Incarcare />
       ) : liste.length === 0 ? (
-        <Gol titlu="Nicio listă încă">
-          <Link href="/echipa/app/admin/import" className="text-echipa-accent hover:underline">
-            Importă primul fișier
-          </Link>{" "}
-          și devine prima ta listă.
-        </Gol>
+        <Gol titlu="Niciun folder încă">Scrie un nume mai sus și apasă „Folder nou”.</Gol>
       ) : (
         <ul className="grid gap-3 sm:grid-cols-2">
           {liste.map((l) => {
@@ -76,7 +106,7 @@ export default function Liste() {
               <li key={l.id} className="flex flex-col rounded-2xl border border-echipa-line/70 bg-echipa-card p-4">
                 <Link href={`/echipa/app/admin/liste/${l.id}`} className="group flex items-start gap-3">
                   <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-echipa-accent/15 text-echipa-accent">
-                    <IconLeaduri className="h-6 w-6" />
+                    <IconFolder className="h-6 w-6" />
                   </span>
                   <span className="min-w-0 flex-1">
                     <span className="block truncate text-base font-semibold group-hover:text-echipa-accent">{l.nume}</span>
@@ -92,16 +122,18 @@ export default function Liste() {
                   </span>
                   <span className="rounded-full bg-white/5 px-2 py-0.5 text-echipa-muted">din {dataScurta(l.creat_la)}</span>
                 </div>
-                <div className="mt-4 border-t border-echipa-line/60 pt-3">
-                  <AtribuieLista
-                    listaId={l.id}
-                    compact
-                    laGata={(text, eroare) => {
-                      setMesaj({ tip: eroare ? "eroare" : "succes", text });
-                      incarca();
-                    }}
-                  />
-                </div>
+                {total > 0 && (
+                  <div className="mt-4 border-t border-echipa-line/60 pt-3">
+                    <AtribuieLista
+                      listaId={l.id}
+                      compact
+                      laGata={(text, eroare) => {
+                        setMesaj({ tip: eroare ? "eroare" : "succes", text });
+                        incarca();
+                      }}
+                    />
+                  </div>
+                )}
               </li>
             );
           })}

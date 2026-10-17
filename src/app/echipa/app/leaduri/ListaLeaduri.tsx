@@ -161,8 +161,8 @@ export default function ListaLeaduri() {
             ))}
           </select>
           {liste.length > 0 && (
-            <select aria-label="Filtru listă" className="camp col-span-2 sm:col-span-4" value={listaAleasa} onChange={(e) => setListaAleasa(e.target.value)}>
-              <option value="">Toate listele</option>
+            <select aria-label="Filtru folder" className="camp col-span-2 sm:col-span-4" value={listaAleasa} onChange={(e) => setListaAleasa(e.target.value)}>
+              <option value="">Toate folderele</option>
               {liste.map((x) => (
                 <option key={x.id} value={x.id}>
                   Lista: {x.nume}
