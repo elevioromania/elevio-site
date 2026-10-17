@@ -55,6 +55,10 @@ export function relativ(iso: string) {
   return dataScurta(iso);
 }
 
+export function nrFisiere(n: number) {
+  return n === 1 ? "1 fișier" : `${n} fișiere`;
+}
+
 export function linkTel(t: string | null | undefined) {
   if (!t) return "";
   return `tel:${t.replace(/[^\d+]/g, "")}`;
