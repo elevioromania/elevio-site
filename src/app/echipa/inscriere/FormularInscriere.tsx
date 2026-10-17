@@ -9,6 +9,7 @@ import { supabaseBrowser } from "@/echipa/lib/supabase-browser";
 export default function FormularInscriere() {
   const router = useRouter();
   const [f, setF] = useState({ prenume: "", nume: "", email: "", telefon: "", parola: "", confirmare: "", cod: "" });
+  const [termeni, setTermeni] = useState(false);
   const [eroare, setEroare] = useState("");
   const [seTrimite, setSeTrimite] = useState(false);
 
@@ -24,11 +25,12 @@ export default function FormularInscriere() {
     if (f.parola.length < 8) return setEroare("Parola trebuie să aibă minimum 8 caractere.");
     if (f.parola !== f.confirmare) return setEroare("Parolele nu coincid.");
     if (!f.cod.trim()) return setEroare("Scrie codul de invitație.");
+    if (!termeni) return setEroare("Bifează că accepți termenii și condițiile.");
 
     setSeTrimite(true);
     const supabase = supabaseBrowser();
     const { error } = await supabase.functions.invoke("inscriere", {
-      body: { prenume: f.prenume.trim(), nume: `${f.prenume.trim()} ${f.nume.trim()}`, email: f.email, telefon: f.telefon, parola: f.parola, cod: f.cod },
+      body: { prenume: f.prenume.trim(), nume: `${f.prenume.trim()} ${f.nume.trim()}`, email: f.email, telefon: f.telefon, parola: f.parola, cod: f.cod, termeni: true },
     });
 
     if (error) {
@@ -80,6 +82,16 @@ export default function FormularInscriere() {
       <Camp eticheta="Cod de invitație" htmlFor="cod" obligatoriu>
         <input id="cod" autoComplete="off" autoCapitalize="off" className="camp" value={f.cod} onChange={set("cod")} />
       </Camp>
+      <label className="flex cursor-pointer items-start gap-3 text-sm">
+        <input type="checkbox" className="mt-0.5 h-5 w-5 shrink-0 accent-echipa-accent" checked={termeni} onChange={(e) => setTermeni(e.target.checked)} />
+        <span>
+          Accept{" "}
+          <Link href="/echipa/termeni" target="_blank" className="text-echipa-accent underline underline-offset-2">
+            termenii și condițiile
+          </Link>
+          , inclusiv păstrarea datelor de la înscriere.
+        </span>
+      </label>
       <Buton type="submit" mare className="w-full" disabled={seTrimite}>
         {seTrimite ? "Se creează contul..." : "Creează contul"}
       </Buton>

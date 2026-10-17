@@ -51,10 +51,12 @@ Deno.serve(async (req) => {
   const telefon = String(date.telefon ?? "").trim();
   const parola = String(date.parola ?? "");
   const cod = String(date.cod ?? "").trim();
+  const termeni = date.termeni === true;
 
   if (!egal(cod, codCorect)) {
     return raspuns({ eroare: "Codul de invitație nu e corect." }, 403);
   }
+  if (!termeni) return raspuns({ eroare: "Trebuie să accepți termenii și condițiile." }, 400);
   if (nume.length < 3) return raspuns({ eroare: "Scrie numele și prenumele." }, 400);
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return raspuns({ eroare: "Adresa de e-mail nu e validă." }, 400);
   if (telefon.replace(/\D/g, "").length < 9) return raspuns({ eroare: "Numărul de telefon nu e valid." }, 400);
@@ -70,7 +72,7 @@ Deno.serve(async (req) => {
     email,
     password: parola,
     email_confirm: true,
-    user_metadata: { nume, telefon },
+    user_metadata: { nume, telefon, termeni_acceptati_la: new Date().toISOString() },
   });
 
   if (eroareCreare || !creat.user) {
