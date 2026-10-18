@@ -9,7 +9,6 @@ import {
   IconBani,
   IconCalendar,
   IconCarte,
-  IconFolder,
   IconFulger,
   IconGrafic,
   IconIesire,
@@ -36,7 +35,6 @@ const NAV: Item[] = [
   { href: "/echipa/app/mod-apel", eticheta: "Mod apel", icon: IconFulger },
   { href: "/echipa/app/leaduri-echipa", eticheta: "Lead-urile echipei", icon: IconLeaduri, roluri: ["admin"] },
   { href: "/echipa/app/leaduri", eticheta: "Lead-urile mele", icon: IconLeaduri, roluri: ["vanzator", "trainer"] },
-  { href: "/echipa/app/foldere", eticheta: "Folderele mele", icon: IconFolder, roluri: ["vanzator", "trainer"] },
   { href: "/echipa/app/calendar", eticheta: "Programează întâlnirea", icon: IconCalendar },
   { href: "/echipa/app/ghid", eticheta: "Ghid", icon: IconCarte },
   { href: "/echipa/app/obiectii", eticheta: "Obiecții", icon: IconScut },
@@ -47,7 +45,6 @@ const NAV: Item[] = [
   { href: "/echipa/app/admin", eticheta: "Admin", icon: IconGrafic, roluri: ["admin"] },
   // La admin, lead-urile proprii stau mai jos în meniu.
   { href: "/echipa/app/leaduri", eticheta: "Lead-urile mele", icon: IconLeaduri, roluri: ["admin"] },
-  { href: "/echipa/app/foldere", eticheta: "Folderele mele", icon: IconFolder, roluri: ["admin"] },
 ];
 
 const BARA_JOS: Item[] = [
