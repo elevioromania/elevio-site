@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useCallback, useMemo, useState } from "react";
 import { LISTA_STATUSURI, NISE, STATUSURI, type Status } from "@/echipa/config";
+import BandaFoldere, { FARA_FISIER, sunateIntai, type FolderInfo } from "@/echipa/components/BandaFoldere";
 import StatusBadge from "@/echipa/components/StatusBadge";
 import { Buton, Incarcare, Mesaj } from "@/echipa/components/ui";
 import { normal, relativ } from "@/echipa/lib/format";
@@ -12,7 +13,7 @@ import { supabaseBrowser } from "@/echipa/lib/supabase-browser";
 import type { Lead } from "@/echipa/lib/tipuri";
 
 type Persoana = { id: string; nume: string };
-type Lista = { id: string; nume: string; leads: { count: number }[] };
+type Lista = { id: string; nume: string; folder_id: string | null; leads: { count: number }[] };
 
 // Lead-urile unui singur om, pe profilul lui: le vezi pe status, le muți la altcineva, le ștergi
 // sau îi dai o listă întreagă.
@@ -25,21 +26,25 @@ export default function LeaduriMembru({ id, nume, laSchimbare }: { id: string; n
   const [alese, setAlese] = useState<Set<string>>(new Set());
   const [tinta, setTinta] = useState("");
   const [listaAleasa, setListaAleasa] = useState("");
+  const [fisierAles, setFisierAles] = useState("");
+  const [foldere, setFoldere] = useState<FolderInfo[]>([]);
   const [seLucreaza, setSeLucreaza] = useState(false);
   const [mesaj, setMesaj] = useState<{ tip: "eroare" | "succes"; text: string } | null>(null);
 
   const incarca = useCallback(async () => {
     const supabase = supabaseBrowser();
-    const [l, p, li] = await Promise.all([
+    const [l, p, li, fo] = await Promise.all([
       toatePaginile<Lead>((de, pana) =>
         supabase.from("leads").select(COLOANE_LEAD).eq("vanzator_id", id).order("ultimul_contact", { ascending: false, nullsFirst: false }).order("id").range(de, pana),
       ),
       supabase.from("profiles").select("id, nume").eq("activ", true).neq("id", id).order("nume"),
-      supabase.from("liste").select("id, nume, leads(count)").order("creat_la", { ascending: false }),
+      supabase.from("liste").select("id, nume, folder_id, leads(count)").order("creat_la", { ascending: false }),
+      supabase.from("foldere").select("id, nume"),
     ]);
     setLeaduri(l.data);
     setOameni((p.data as Persoana[]) ?? []);
     setListe((li.data as Lista[]) ?? []);
+    setFoldere((fo.data as FolderInfo[]) ?? []);
   }, [id]);
   useIncarca(incarca);
 
@@ -51,10 +56,17 @@ export default function LeaduriMembru({ id, nume, laSchimbare }: { id: string; n
 
   const filtrate = useMemo(() => {
     const q = normal(cautare.trim());
-    return (leaduri ?? []).filter(
-      (l) => (!status || l.status === status) && (!q || normal(l.afacere).includes(q) || normal(l.telefon_afacere).includes(q) || normal(l.oras).includes(q)),
+    const gasite = (leaduri ?? []).filter(
+      (l) =>
+        (!status || l.status === status) &&
+        (!fisierAles || (fisierAles === FARA_FISIER ? !l.lista_id : l.lista_id === fisierAles)) &&
+        (!q || normal(l.afacere).includes(q) || normal(l.telefon_afacere).includes(q) || normal(l.oras).includes(q)),
     );
-  }, [leaduri, status, cautare]);
+    // Întâi cele sunate, apoi cele neatinse.
+    const { sunate, neatinse } = sunateIntai(gasite);
+    return [...sunate, ...neatinse];
+  }, [leaduri, status, cautare, fisierAles]);
+  const nrSunateFiltrate = useMemo(() => sunateIntai(filtrate).sunate.length, [filtrate]);
 
   const toateAlese = filtrate.length > 0 && filtrate.every((l) => alese.has(l.id));
 
@@ -143,6 +155,8 @@ export default function LeaduriMembru({ id, nume, laSchimbare }: { id: string; n
         </p>
       ) : (
         <>
+          <BandaFoldere leaduri={leaduri} fisiere={liste} foldere={foldere} ales={fisierAles} laAlegere={setFisierAles} />
+
           <div className="flex flex-wrap gap-1.5">
             <Filtru activ={status === ""} onClick={() => setStatus("")} eticheta="Toate" numar={leaduri.length} />
             {LISTA_STATUSURI.filter((s) => numarate[s]).map((s) => (
@@ -182,8 +196,14 @@ export default function LeaduriMembru({ id, nume, laSchimbare }: { id: string; n
               {filtrate.length} lead-uri{status || cautare ? " găsite" : ""}. Bifează-le ca să le muți sau să le ștergi.
             </label>
             <ul>
-              {filtrate.slice(0, 300).map((l) => (
-                <li key={l.id} className="flex items-center gap-3 border-b border-echipa-line/40 px-4 py-3 last:border-0">
+              {filtrate.slice(0, 300).map((l, i) => (
+                <li key={l.id} className="contents">
+                  {(i === 0 || i === nrSunateFiltrate) && (
+                    <p className="border-b border-echipa-line/40 bg-white/[0.02] px-4 py-1.5 text-[11px] font-semibold uppercase tracking-wide text-echipa-muted">
+                      {i < nrSunateFiltrate ? `Sunate (${nrSunateFiltrate})` : `Neatinse (${filtrate.length - nrSunateFiltrate})`}
+                    </p>
+                  )}
+                  <div className="flex items-center gap-3 border-b border-echipa-line/40 px-4 py-3">
                   <input type="checkbox" aria-label={`Alege ${l.afacere}`} checked={alese.has(l.id)} onChange={() => comuta(l.id)} />
                   <Link href={`/echipa/app/leaduri/${l.id}`} className="group min-w-0 flex-1">
                     <span className="block truncate font-medium group-hover:text-echipa-accent">{l.afacere}</span>
@@ -191,7 +211,8 @@ export default function LeaduriMembru({ id, nume, laSchimbare }: { id: string; n
                       {[NISE[l.nisa]?.eticheta, l.oras, l.ultimul_contact ? `sunat ${relativ(l.ultimul_contact)}` : "nesunat"].filter(Boolean).join(" · ")}
                     </span>
                   </Link>
-                  <StatusBadge status={l.status as Status} mic />
+                    <StatusBadge status={l.status as Status} mic />
+                  </div>
                 </li>
               ))}
             </ul>

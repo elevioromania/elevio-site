@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useCallback, useMemo, useState } from "react";
 import { LISTA_NISE, LISTA_STATUSURI, NISE, STATUSURI, type Status } from "@/echipa/config";
 import { useActiuniLead } from "@/echipa/components/ActiuniLead";
+import BandaFoldere, { FARA_FISIER, sunateIntai, type FisierInfo, type FolderInfo } from "@/echipa/components/BandaFoldere";
 import { IconColoane, IconFolder, IconIncarca, IconLista, IconNotita, IconPlus, IconTelefon } from "@/echipa/components/icons";
 import { useProfil } from "@/echipa/components/ProfilContext";
 import StatusBadge from "@/echipa/components/StatusBadge";
@@ -28,7 +29,8 @@ export default function ListaLeaduri() {
   const [nisa, setNisa] = useState("");
   const [oras, setOras] = useState("");
   const [listaAleasa, setListaAleasa] = useState("");
-  const [liste, setListe] = useState<{ id: string; nume: string }[]>([]);
+  const [liste, setListe] = useState<FisierInfo[]>([]);
+  const [foldere, setFoldere] = useState<FolderInfo[]>([]);
   const [sortare, setSortare] = useState<Sortare>("pas");
   const [importDeschis, setImportDeschis] = useState(true);
 
@@ -44,8 +46,12 @@ export default function ListaLeaduri() {
     );
     if (error) setEroare(mesajEroare(error));
     setLeaduri(data);
-    const { data: l } = await supabaseBrowser().from("liste").select("id, nume").order("creat_la", { ascending: false });
-    setListe(l ?? []);
+    const [{ data: l }, { data: f }] = await Promise.all([
+      supabaseBrowser().from("liste").select("id, nume, folder_id").order("creat_la", { ascending: false }),
+      supabaseBrowser().from("foldere").select("id, nume"),
+    ]);
+    setListe((l as FisierInfo[]) ?? []);
+    setFoldere((f as FolderInfo[]) ?? []);
   }, [profil.id]);
 
   useIncarca(incarca);
@@ -65,7 +71,7 @@ export default function ListaLeaduri() {
         (!status || l.status === status) &&
         (!nisa || l.nisa === nisa) &&
         (!oras || l.oras?.trim() === oras) &&
-        (!listaAleasa || l.lista_id === listaAleasa),
+        (!listaAleasa || (listaAleasa === FARA_FISIER ? !l.lista_id : l.lista_id === listaAleasa)),
     );
     return lista.sort((a, b) => {
       if (sortare === "nume") return a.afacere.localeCompare(b.afacere, "ro");
@@ -109,6 +115,8 @@ export default function ListaLeaduri() {
       />
 
       {profil.rol === "admin" && importDeschis && <ImportCsv compact vanzatorImplicit={profil.id} laGata={incarca} />}
+
+      {leaduri && leaduri.length > 0 && <BandaFoldere leaduri={leaduri} fisiere={liste} foldere={foldere} ales={listaAleasa} laAlegere={setListaAleasa} />}
 
       <div className="mb-4 space-y-3">
         <div className="flex gap-2">
@@ -163,16 +171,6 @@ export default function ListaLeaduri() {
               </option>
             ))}
           </select>
-          {liste.length > 0 && (
-            <select aria-label="Filtru fișier" className="camp col-span-2 sm:col-span-4" value={listaAleasa} onChange={(e) => setListaAleasa(e.target.value)}>
-              <option value="">Toate fișierele</option>
-              {liste.map((x) => (
-                <option key={x.id} value={x.id}>
-                  Lista: {x.nume}
-                </option>
-              ))}
-            </select>
-          )}
           <select aria-label="Filtru oraș" className="camp" value={oras} onChange={(e) => setOras(e.target.value)}>
             <option value="">Toate orașele</option>
             {orase.map((o) => (
@@ -205,13 +203,17 @@ export default function ListaLeaduri() {
         filtrate.length === 0 ? (
           <Gol titlu="Niciun lead nu se potrivește filtrelor" />
         ) : (
-          <ul className="space-y-3">
-            {filtrate.map((l) => (
-              <li key={l.id}>
-                <CardLead lead={l} actiuni={actiuni} />
-              </li>
-            ))}
-          </ul>
+          listaAleasa ? (
+            <GrupuriSunate leaduri={filtrate} randeaza={(l) => <CardLead lead={l} actiuni={actiuni} />} />
+          ) : (
+            <ul className="space-y-3">
+              {filtrate.map((l) => (
+                <li key={l.id}>
+                  <CardLead lead={l} actiuni={actiuni} />
+                </li>
+              ))}
+            </ul>
+          )
         )
       ) : (
         <Kanban leaduri={filtrate} muta={mutaKanban} actiuni={actiuni} />
@@ -338,6 +340,36 @@ function Kanban({ leaduri, muta, actiuni }: { leaduri: Lead[]; muta: (l: Lead, s
           );
         })}
       </div>
+    </div>
+  );
+}
+
+// Lead-urile dintr-un fișier: întâi cele sunate, apoi cele neatinse.
+function GrupuriSunate({ leaduri, randeaza }: { leaduri: Lead[]; randeaza: (l: Lead) => React.ReactNode }) {
+  const { sunate, neatinse } = sunateIntai(leaduri);
+  return (
+    <div className="space-y-6">
+      {[
+        ["Sunate", sunate],
+        ["Neatinse", neatinse],
+      ].map(([titlu, lista]) => (
+        <section key={titlu as string}>
+          <h2 className="mb-2 flex items-center gap-2 text-sm font-semibold uppercase tracking-wide text-echipa-muted">
+            {titlu as string} <span className="rounded-full bg-white/5 px-2 py-0.5 text-xs tabular-nums">{(lista as Lead[]).length}</span>
+          </h2>
+          {(lista as Lead[]).length === 0 ? (
+            <p className="rounded-2xl border border-dashed border-echipa-line p-4 text-sm text-echipa-muted">
+              {titlu === "Sunate" ? "Încă nimic sunat din fișierul ăsta." : "Toate au fost sunate."}
+            </p>
+          ) : (
+            <ul className="space-y-3">
+              {(lista as Lead[]).map((l) => (
+                <li key={l.id}>{randeaza(l)}</li>
+              ))}
+            </ul>
+          )}
+        </section>
+      ))}
     </div>
   );
 }

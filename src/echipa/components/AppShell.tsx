@@ -34,8 +34,9 @@ type Item = {
 const NAV: Item[] = [
   { href: "/echipa/app", eticheta: "Acasă", icon: IconAcasa },
   { href: "/echipa/app/mod-apel", eticheta: "Mod apel", icon: IconFulger },
-  { href: "/echipa/app/leaduri", eticheta: "Lead-urile mele", icon: IconLeaduri },
-  { href: "/echipa/app/foldere", eticheta: "Folderele mele", icon: IconFolder },
+  { href: "/echipa/app/leaduri-echipa", eticheta: "Lead-urile echipei", icon: IconLeaduri, roluri: ["admin"] },
+  { href: "/echipa/app/leaduri", eticheta: "Lead-urile mele", icon: IconLeaduri, roluri: ["vanzator", "trainer"] },
+  { href: "/echipa/app/foldere", eticheta: "Folderele mele", icon: IconFolder, roluri: ["vanzator", "trainer"] },
   { href: "/echipa/app/calendar", eticheta: "Programează întâlnirea", icon: IconCalendar },
   { href: "/echipa/app/ghid", eticheta: "Ghid", icon: IconCarte },
   { href: "/echipa/app/obiectii", eticheta: "Obiecții", icon: IconScut },
@@ -44,6 +45,9 @@ const NAV: Item[] = [
   { href: "/echipa/app/comunitate", eticheta: "Echipa", icon: IconUtilizatori },
   { href: "/echipa/app/statistici", eticheta: "Statistici", icon: IconGrafic, roluri: ["trainer"] },
   { href: "/echipa/app/admin", eticheta: "Admin", icon: IconGrafic, roluri: ["admin"] },
+  // La admin, lead-urile proprii stau mai jos în meniu.
+  { href: "/echipa/app/leaduri", eticheta: "Lead-urile mele", icon: IconLeaduri, roluri: ["admin"] },
+  { href: "/echipa/app/foldere", eticheta: "Folderele mele", icon: IconFolder, roluri: ["admin"] },
 ];
 
 const BARA_JOS: Item[] = [
@@ -56,7 +60,7 @@ const BARA_JOS: Item[] = [
 // Adminul are în bara de jos Admin și Echipa în loc de Mod apel și Ghid.
 const BARA_JOS_ADMIN: Item[] = [
   { href: "/echipa/app", eticheta: "Acasă", icon: IconAcasa },
-  { href: "/echipa/app/leaduri", eticheta: "Lead-uri", icon: IconLeaduri },
+  { href: "/echipa/app/leaduri-echipa", eticheta: "Lead-uri", icon: IconLeaduri },
   { href: "/echipa/app/admin", eticheta: "Admin", icon: IconGrafic },
   { href: "/echipa/app/comunitate", eticheta: "Echipa", icon: IconUtilizatori },
 ];
