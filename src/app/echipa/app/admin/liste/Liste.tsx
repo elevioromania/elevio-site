@@ -1,10 +1,12 @@
 "use client";
 
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useCallback, useMemo, useState } from "react";
 import { type Status } from "@/echipa/config";
 import AtribuieLista from "@/echipa/components/AtribuieLista";
-import { IconCos, IconFolder, IconIncarca, IconLista, IconManer, IconPlus } from "@/echipa/components/icons";
+import { IconFolder, IconIncarca, IconLista, IconManer, IconPlus } from "@/echipa/components/icons";
+import MeniuPuncte from "@/echipa/components/MeniuPuncte";
 import { Buton, Incarcare, Mesaj, TitluPagina } from "@/echipa/components/ui";
 import { citesteFisier } from "@/echipa/lib/csv";
 import { dataScurta, nrFisiere } from "@/echipa/lib/format";
@@ -100,6 +102,15 @@ export default function Liste() {
     if (error) return anunta("Nu am putut șterge folderul.", true);
     if (selectie === f.id) setSelectie("toate");
     anunta("Folderul a fost șters. Fișierele lui sunt acum la „Fără folder”.");
+    incarca();
+  }
+
+  async function redenumeste(tabel: "foldere" | "liste", id: string, vechi: string, nou: string) {
+    const n = nou.trim();
+    if (!n || n === vechi) return;
+    const { error } = await supabaseBrowser().from(tabel).update({ nume: n }).eq("id", id);
+    if (error) return anunta("Nu am putut redenumi.", true);
+    anunta(`„${vechi}” se numește acum „${n}”.`);
     incarca();
   }
 
@@ -256,6 +267,7 @@ export default function Liste() {
                 icon={<IconFolder className="h-4 w-4" />}
                 tinta={tinta(f.id, f.id)}
                 laStergere={() => stergeFolder(f)}
+                laRedenumire={(nou) => redenumeste("foldere", f.id, f.nume, nou)}
               />
             ))}
             <ElementFolder
@@ -392,6 +404,7 @@ export default function Liste() {
                   arataFolder={selectie === "toate"}
                   laMutare={(folderId) => mutaFisier(l.id, folderId)}
                   laStergere={(cuLeaduri) => stergeFisier(l, cuLeaduri)}
+                  laRedenumire={(nou) => redenumeste("liste", l.id, l.nume, nou)}
                   laAtribuire={(text, eroare) => {
                     anunta(text, eroare);
                     incarca();
@@ -415,6 +428,7 @@ function ElementFolder({
   onClick,
   tinta,
   laStergere,
+  laRedenumire,
 }: {
   activ: boolean;
   peste?: boolean;
@@ -424,11 +438,37 @@ function ElementFolder({
   onClick: () => void;
   tinta?: React.HTMLAttributes<HTMLDivElement>;
   laStergere?: () => void;
+  laRedenumire?: (nou: string) => void;
 }) {
+  const [editare, setEditare] = useState<string | null>(null);
+  if (editare !== null && laRedenumire) {
+    return (
+      <form
+        onSubmit={(e) => {
+          e.preventDefault();
+          laRedenumire(editare);
+          setEditare(null);
+        }}
+        className="flex shrink-0 items-center gap-1.5 lg:w-full"
+      >
+        <input
+          aria-label={`Numele nou pentru ${eticheta}`}
+          className="camp min-w-0 flex-1 py-1.5 text-sm"
+          value={editare}
+          onChange={(e) => setEditare(e.target.value)}
+          onKeyDown={(e) => e.key === "Escape" && setEditare(null)}
+          autoFocus
+        />
+        <Buton type="submit" className="px-3 py-1.5 text-sm">
+          OK
+        </Buton>
+      </form>
+    );
+  }
   return (
     <div
       {...tinta}
-      className={`group flex shrink-0 items-center rounded-xl border text-sm transition lg:w-full ${
+      className={`flex shrink-0 items-center rounded-xl border text-sm transition lg:w-full ${
         peste
           ? "border-echipa-accent bg-echipa-accent/20"
           : activ
@@ -441,16 +481,16 @@ function ElementFolder({
         <span className="min-w-0 flex-1 truncate font-medium">{eticheta}</span>
         <span className="text-xs tabular-nums opacity-70">{numar}</span>
       </button>
-      {laStergere && (
-        <button
-          type="button"
-          onClick={laStergere}
-          aria-label={`Șterge folderul ${eticheta}`}
-          title="Șterge folderul"
-          className="mr-1 rounded-lg p-1.5 text-echipa-muted hover:bg-red-500/15 hover:text-red-300 lg:opacity-0 lg:group-hover:opacity-100 lg:focus:opacity-100"
-        >
-          <IconCos className="h-4 w-4" />
-        </button>
+      {(laStergere || laRedenumire) && (
+        <MeniuPuncte
+          eticheta={`Opțiuni pentru folderul ${eticheta}`}
+          className="mr-1"
+          actiuni={[
+            { eticheta: "Deschide", laClick: onClick },
+            ...(laRedenumire ? [{ eticheta: "Redenumește", laClick: () => setEditare(eticheta) }] : []),
+            ...(laStergere ? [{ eticheta: "Șterge folderul", laClick: laStergere, pericol: true }] : []),
+          ]}
+        />
       )}
     </div>
   );
@@ -464,6 +504,7 @@ function CardFisier({
   laMutare,
   laAtribuire,
   laStergere,
+  laRedenumire,
 }: {
   l: ListaCuLeaduri;
   foldere: Folder[];
@@ -472,8 +513,11 @@ function CardFisier({
   laMutare: (folderId: string | null) => void;
   laAtribuire: (text: string, eroare?: boolean) => void;
   laStergere: (cuLeaduri: boolean) => void;
+  laRedenumire: (nou: string) => void;
 }) {
+  const router = useRouter();
   const [confirmare, setConfirmare] = useState(false);
+  const [editare, setEditare] = useState<string | null>(null);
   const total = l.leads.length;
   const sunate = l.leads.filter((x) => x.status !== "nou").length;
   const intalniri = l.leads.filter((x) => x.status === "intalnire").length;
@@ -491,22 +535,45 @@ function CardFisier({
         <span className="mt-0.5 text-echipa-muted" title="Trage ca să muți în alt folder">
           <IconManer className="h-4 w-4" />
         </span>
-        <Link href={`/echipa/app/admin/liste/${l.id}`} className="group min-w-0 flex-1" draggable={false}>
-          <span className="block truncate font-semibold group-hover:text-echipa-accent">{l.nume}</span>
-          <span className="block truncate text-xs text-echipa-muted">
-            {total} lead-uri · {proprietar} · {dataScurta(l.creat_la)}
-            {arataFolder && l.folder_id && ` · ${foldere.find((f) => f.id === l.folder_id)?.nume ?? ""}`}
-          </span>
-        </Link>
-        <button
-          type="button"
-          onClick={() => setConfirmare(true)}
-          aria-label={`Șterge fișierul ${l.nume}`}
-          title="Șterge"
-          className="-mr-1 -mt-1 rounded-lg p-1.5 text-echipa-muted hover:bg-red-500/15 hover:text-red-300"
-        >
-          <IconCos className="h-4 w-4" />
-        </button>
+        {editare !== null ? (
+          <form
+            onSubmit={(e) => {
+              e.preventDefault();
+              laRedenumire(editare);
+              setEditare(null);
+            }}
+            className="flex min-w-0 flex-1 gap-1.5"
+          >
+            <input
+              aria-label={`Numele nou pentru ${l.nume}`}
+              className="camp min-w-0 flex-1 py-1.5 text-sm"
+              value={editare}
+              onChange={(e) => setEditare(e.target.value)}
+              onKeyDown={(e) => e.key === "Escape" && setEditare(null)}
+              autoFocus
+            />
+            <Buton type="submit" className="px-3 py-1.5 text-sm">
+              OK
+            </Buton>
+          </form>
+        ) : (
+          <Link href={`/echipa/app/admin/liste/${l.id}`} className="group min-w-0 flex-1" draggable={false}>
+            <span className="block truncate font-semibold group-hover:text-echipa-accent">{l.nume}</span>
+            <span className="block truncate text-xs text-echipa-muted">
+              {total} lead-uri · {proprietar} · {dataScurta(l.creat_la)}
+              {arataFolder && l.folder_id && ` · ${foldere.find((f) => f.id === l.folder_id)?.nume ?? ""}`}
+            </span>
+          </Link>
+        )}
+        <MeniuPuncte
+          eticheta={`Opțiuni pentru ${l.nume}`}
+          className="-mr-1 -mt-1"
+          actiuni={[
+            { eticheta: "Deschide", laClick: () => router.push(`/echipa/app/admin/liste/${l.id}`) },
+            { eticheta: "Redenumește", laClick: () => setEditare(l.nume) },
+            { eticheta: "Șterge", laClick: () => setConfirmare(true), pericol: true },
+          ]}
+        />
       </div>
       {confirmare && (
         <div className="mt-3 space-y-2 rounded-xl border border-red-500/40 bg-red-500/10 p-3 text-sm">

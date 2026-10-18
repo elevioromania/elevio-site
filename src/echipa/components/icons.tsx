@@ -206,3 +206,8 @@ export const IconManer = (p: P) => (
     <path d="M9 5h.01M15 5h.01M9 12h.01M15 12h.01M9 19h.01M15 19h.01" />
   </Svg>
 );
+export const IconPuncte = (p: P) => (
+  <Svg {...p}>
+    <path d="M5 12h.01M12 12h.01M19 12h.01" strokeWidth={3} />
+  </Svg>
+);
