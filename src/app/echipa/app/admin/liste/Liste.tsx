@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useCallback, useMemo, useState } from "react";
 import { type Status } from "@/echipa/config";
 import AtribuieLista from "@/echipa/components/AtribuieLista";
-import { IconFolder, IconIncarca, IconLista, IconPlus } from "@/echipa/components/icons";
+import { IconCos, IconFolder, IconIncarca, IconLista, IconManer, IconPlus } from "@/echipa/components/icons";
 import { Buton, Incarcare, Mesaj, TitluPagina } from "@/echipa/components/ui";
 import { citesteFisier } from "@/echipa/lib/csv";
 import { dataScurta, nrFisiere } from "@/echipa/lib/format";
@@ -93,13 +93,25 @@ export default function Liste() {
     incarca();
   }
 
-  async function stergeFolder() {
-    if (!folderAles) return;
-    if (!confirm(`Ștergi folderul „${folderAles.nume}”? Fișierele și lead-urile din el rămân, doar că nu mai sunt în niciun folder.`)) return;
-    const { error } = await supabaseBrowser().from("foldere").delete().eq("id", folderAles.id);
+  async function stergeFolder(f: Folder | null = folderAles) {
+    if (!f) return;
+    if (!confirm(`Ștergi folderul „${f.nume}”? Fișierele și lead-urile din el rămân, doar că nu mai sunt în niciun folder.`)) return;
+    const { error } = await supabaseBrowser().from("foldere").delete().eq("id", f.id);
     if (error) return anunta("Nu am putut șterge folderul.", true);
-    setSelectie("toate");
+    if (selectie === f.id) setSelectie("toate");
     anunta("Folderul a fost șters. Fișierele lui sunt acum la „Fără folder”.");
+    incarca();
+  }
+
+  async function stergeFisier(f: ListaCuLeaduri, cuLeaduri: boolean) {
+    const supabase = supabaseBrowser();
+    if (cuLeaduri) {
+      const { error } = await supabase.from("leads").delete().eq("lista_id", f.id);
+      if (error) return anunta("Nu am putut șterge lead-urile din fișier.", true);
+    }
+    const { error } = await supabase.from("liste").delete().eq("id", f.id);
+    if (error) return anunta("Nu am putut șterge fișierul.", true);
+    anunta(cuLeaduri ? `Am șters fișierul „${f.nume}” și cele ${f.leads.length} lead-uri din el.` : `Am șters fișierul „${f.nume}”. Lead-urile au rămas, fără fișier.`);
     incarca();
   }
 
@@ -242,7 +254,8 @@ export default function Liste() {
                 eticheta={f.nume}
                 numar={nrInFolder(f.id)}
                 icon={<IconFolder className="h-4 w-4" />}
-                {...tinta(f.id, f.id)}
+                tinta={tinta(f.id, f.id)}
+                laStergere={() => stergeFolder(f)}
               />
             ))}
             <ElementFolder
@@ -252,10 +265,10 @@ export default function Liste() {
               eticheta="Fără folder"
               numar={nrInFolder(null)}
               icon={<IconLista className="h-4 w-4 opacity-60" />}
-              {...tinta("fara", null)}
+              tinta={tinta("fara", null)}
             />
           </nav>
-          <p className="hidden text-xs text-echipa-muted lg:block">Trage un fișier pe un folder ca să-l muți. Poți trage și fișiere de pe calculator direct pe un folder.</p>
+          <p className="hidden text-xs text-echipa-muted lg:block">Ține apăsat pe un card și trage-l pe un folder de aici ca să-l muți. Poți trage și fișiere de pe calculator direct pe un folder.</p>
         </aside>
 
         {/* Fișierele din folderul ales */}
@@ -287,7 +300,7 @@ export default function Liste() {
                 <Buton varianta="fantoma" onClick={() => setRedenumire(folderAles.nume)}>
                   Redenumește
                 </Buton>
-                <Buton varianta="fantoma" onClick={stergeFolder}>
+                <Buton varianta="fantoma" onClick={() => stergeFolder()}>
                   Șterge folderul
                 </Buton>
               </div>
@@ -378,6 +391,7 @@ export default function Liste() {
                   proprietar={proprietar(l, nume)}
                   arataFolder={selectie === "toate"}
                   laMutare={(folderId) => mutaFisier(l.id, folderId)}
+                  laStergere={(cuLeaduri) => stergeFisier(l, cuLeaduri)}
                   laAtribuire={(text, eroare) => {
                     anunta(text, eroare);
                     incarca();
@@ -398,19 +412,23 @@ function ElementFolder({
   eticheta,
   numar,
   icon,
-  ...rest
+  onClick,
+  tinta,
+  laStergere,
 }: {
   activ: boolean;
   peste?: boolean;
   eticheta: string;
   numar: number;
   icon: React.ReactNode;
-} & React.ButtonHTMLAttributes<HTMLButtonElement>) {
+  onClick: () => void;
+  tinta?: React.HTMLAttributes<HTMLDivElement>;
+  laStergere?: () => void;
+}) {
   return (
-    <button
-      type="button"
-      {...rest}
-      className={`flex shrink-0 items-center gap-2 rounded-xl border px-3 py-2 text-left text-sm transition lg:w-full ${
+    <div
+      {...tinta}
+      className={`group flex shrink-0 items-center rounded-xl border text-sm transition lg:w-full ${
         peste
           ? "border-echipa-accent bg-echipa-accent/20"
           : activ
@@ -418,10 +436,23 @@ function ElementFolder({
             : "border-transparent text-echipa-muted hover:bg-white/5 hover:text-echipa-text"
       }`}
     >
-      <span className={activ ? "text-echipa-accent" : ""}>{icon}</span>
-      <span className="min-w-0 flex-1 truncate font-medium">{eticheta}</span>
-      <span className="text-xs tabular-nums opacity-70">{numar}</span>
-    </button>
+      <button type="button" onClick={onClick} className="flex min-w-0 flex-1 items-center gap-2 px-3 py-2 text-left">
+        <span className={activ ? "text-echipa-accent" : ""}>{icon}</span>
+        <span className="min-w-0 flex-1 truncate font-medium">{eticheta}</span>
+        <span className="text-xs tabular-nums opacity-70">{numar}</span>
+      </button>
+      {laStergere && (
+        <button
+          type="button"
+          onClick={laStergere}
+          aria-label={`Șterge folderul ${eticheta}`}
+          title="Șterge folderul"
+          className="mr-1 rounded-lg p-1.5 text-echipa-muted hover:bg-red-500/15 hover:text-red-300 lg:opacity-0 lg:group-hover:opacity-100 lg:focus:opacity-100"
+        >
+          <IconCos className="h-4 w-4" />
+        </button>
+      )}
+    </div>
   );
 }
 
@@ -432,6 +463,7 @@ function CardFisier({
   arataFolder,
   laMutare,
   laAtribuire,
+  laStergere,
 }: {
   l: ListaCuLeaduri;
   foldere: Folder[];
@@ -439,7 +471,9 @@ function CardFisier({
   arataFolder: boolean;
   laMutare: (folderId: string | null) => void;
   laAtribuire: (text: string, eroare?: boolean) => void;
+  laStergere: (cuLeaduri: boolean) => void;
 }) {
+  const [confirmare, setConfirmare] = useState(false);
   const total = l.leads.length;
   const sunate = l.leads.filter((x) => x.status !== "nou").length;
   const intalniri = l.leads.filter((x) => x.status === "intalnire").length;
@@ -453,13 +487,45 @@ function CardFisier({
       }}
       className="flex cursor-grab flex-col rounded-2xl border border-echipa-line/70 bg-echipa-card p-4 active:cursor-grabbing"
     >
-      <Link href={`/echipa/app/admin/liste/${l.id}`} className="group min-w-0" draggable={false}>
-        <span className="block truncate font-semibold group-hover:text-echipa-accent">{l.nume}</span>
-        <span className="block truncate text-xs text-echipa-muted">
-          {total} lead-uri · {proprietar} · {dataScurta(l.creat_la)}
-          {arataFolder && l.folder_id && ` · ${foldere.find((f) => f.id === l.folder_id)?.nume ?? ""}`}
+      <div className="flex items-start gap-2">
+        <span className="mt-0.5 text-echipa-muted" title="Trage ca să muți în alt folder">
+          <IconManer className="h-4 w-4" />
         </span>
-      </Link>
+        <Link href={`/echipa/app/admin/liste/${l.id}`} className="group min-w-0 flex-1" draggable={false}>
+          <span className="block truncate font-semibold group-hover:text-echipa-accent">{l.nume}</span>
+          <span className="block truncate text-xs text-echipa-muted">
+            {total} lead-uri · {proprietar} · {dataScurta(l.creat_la)}
+            {arataFolder && l.folder_id && ` · ${foldere.find((f) => f.id === l.folder_id)?.nume ?? ""}`}
+          </span>
+        </Link>
+        <button
+          type="button"
+          onClick={() => setConfirmare(true)}
+          aria-label={`Șterge fișierul ${l.nume}`}
+          title="Șterge"
+          className="-mr-1 -mt-1 rounded-lg p-1.5 text-echipa-muted hover:bg-red-500/15 hover:text-red-300"
+        >
+          <IconCos className="h-4 w-4" />
+        </button>
+      </div>
+      {confirmare && (
+        <div className="mt-3 space-y-2 rounded-xl border border-red-500/40 bg-red-500/10 p-3 text-sm">
+          <p className="font-medium">Ștergi „{l.nume}”?</p>
+          <div className="flex flex-col gap-1.5">
+            <Buton varianta="secundar" onClick={() => laStergere(false)}>
+              Doar fișierul (lead-urile rămân)
+            </Buton>
+            {total > 0 && (
+              <Buton varianta="pericol" onClick={() => confirm(`Ștergi definitiv și cele ${total} lead-uri? Nu se mai pot recupera.`) && laStergere(true)}>
+                Fișierul și cele {total} lead-uri
+              </Buton>
+            )}
+            <Buton varianta="fantoma" onClick={() => setConfirmare(false)}>
+              Anulează
+            </Buton>
+          </div>
+        </div>
+      )}
       <div className="mt-3">
         <div className="mb-1 flex justify-between text-[11px] text-echipa-muted">
           <span>

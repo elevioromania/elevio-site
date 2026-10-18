@@ -196,3 +196,13 @@ export const IconFolder = (p: P) => (
     <path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
   </Svg>
 );
+export const IconCos = (p: P) => (
+  <Svg {...p}>
+    <path d="M3 6h18M8 6V4h8v2M6 6l1 14h10l1-14M10 11v5M14 11v5" />
+  </Svg>
+);
+export const IconManer = (p: P) => (
+  <Svg {...p}>
+    <path d="M9 5h.01M15 5h.01M9 12h.01M15 12h.01M9 19h.01M15 19h.01" />
+  </Svg>
+);
