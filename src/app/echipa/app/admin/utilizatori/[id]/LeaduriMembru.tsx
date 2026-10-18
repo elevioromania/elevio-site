@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useCallback, useMemo, useState } from "react";
 import { LISTA_STATUSURI, NISE, STATUSURI, type Status } from "@/echipa/config";
-import BandaFoldere, { FARA_FISIER, sunateIntai, type FolderInfo } from "@/echipa/components/BandaFoldere";
+import BandaFoldere, { filtruBanda, sunateIntai, type FolderInfo } from "@/echipa/components/BandaFoldere";
 import StatusBadge from "@/echipa/components/StatusBadge";
 import { Buton, Incarcare, Mesaj } from "@/echipa/components/ui";
 import { normal, relativ } from "@/echipa/lib/format";
@@ -56,16 +56,17 @@ export default function LeaduriMembru({ id, nume, laSchimbare }: { id: string; n
 
   const filtrate = useMemo(() => {
     const q = normal(cautare.trim());
+    const dinBanda = filtruBanda(fisierAles, liste);
     const gasite = (leaduri ?? []).filter(
       (l) =>
         (!status || l.status === status) &&
-        (!fisierAles || (fisierAles === FARA_FISIER ? !l.lista_id : l.lista_id === fisierAles)) &&
+        dinBanda(l.lista_id) &&
         (!q || normal(l.afacere).includes(q) || normal(l.telefon_afacere).includes(q) || normal(l.oras).includes(q)),
     );
     // Întâi cele sunate, apoi cele neatinse.
     const { sunate, neatinse } = sunateIntai(gasite);
     return [...sunate, ...neatinse];
-  }, [leaduri, status, cautare, fisierAles]);
+  }, [leaduri, status, cautare, fisierAles, liste]);
   const nrSunateFiltrate = useMemo(() => sunateIntai(filtrate).sunate.length, [filtrate]);
 
   const toateAlese = filtrate.length > 0 && filtrate.every((l) => alese.has(l.id));

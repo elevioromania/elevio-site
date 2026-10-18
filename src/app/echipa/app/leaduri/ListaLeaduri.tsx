@@ -4,8 +4,8 @@ import Link from "next/link";
 import { useCallback, useMemo, useState } from "react";
 import { LISTA_NISE, LISTA_STATUSURI, NISE, STATUSURI, type Status } from "@/echipa/config";
 import { useActiuniLead } from "@/echipa/components/ActiuniLead";
-import BandaFoldere, { FARA_FISIER, sunateIntai, type FisierInfo, type FolderInfo } from "@/echipa/components/BandaFoldere";
-import { IconColoane, IconFolder, IconIncarca, IconLista, IconNotita, IconPlus, IconTelefon } from "@/echipa/components/icons";
+import BandaFoldere, { filtruBanda, sunateIntai, type FisierInfo, type FolderInfo } from "@/echipa/components/BandaFoldere";
+import { IconColoane, IconIncarca, IconLista, IconNotita, IconPlus, IconTelefon } from "@/echipa/components/icons";
 import { useProfil } from "@/echipa/components/ProfilContext";
 import StatusBadge from "@/echipa/components/StatusBadge";
 import { Buton, Gol, Incarcare, LinkButon, Mesaj, TitluPagina } from "@/echipa/components/ui";
@@ -65,13 +65,14 @@ export default function ListaLeaduri() {
 
   const filtrate = useMemo(() => {
     const q = normal(cautare.trim());
+    const dinBanda = filtruBanda(listaAleasa, liste);
     const lista = (leaduri ?? []).filter(
       (l) =>
         (!q || normal(l.afacere).includes(q) || normal(l.decident_nume).includes(q)) &&
         (!status || l.status === status) &&
         (!nisa || l.nisa === nisa) &&
         (!oras || l.oras?.trim() === oras) &&
-        (!listaAleasa || (listaAleasa === FARA_FISIER ? !l.lista_id : l.lista_id === listaAleasa)),
+        dinBanda(l.lista_id),
     );
     return lista.sort((a, b) => {
       if (sortare === "nume") return a.afacere.localeCompare(b.afacere, "ro");
@@ -81,7 +82,7 @@ export default function ListaLeaduri() {
       if (!b.urmatorul_pas_data) return -1;
       return a.urmatorul_pas_data.localeCompare(b.urmatorul_pas_data);
     });
-  }, [leaduri, cautare, status, nisa, oras, listaAleasa, sortare]);
+  }, [leaduri, cautare, status, nisa, oras, listaAleasa, liste, sortare]);
 
   async function mutaKanban(lead: Lead, nou: Status) {
     if (lead.status === nou) return;
@@ -104,9 +105,6 @@ export default function ListaLeaduri() {
                 <IconIncarca className="h-4 w-4" /> {importDeschis ? "Ascunde importul" : "Adaugă în bulk"}
               </Buton>
             )}
-            <LinkButon href="/echipa/app/foldere" varianta="secundar">
-              <IconFolder className="h-4 w-4" /> Folderele mele
-            </LinkButon>
             <LinkButon href="/echipa/app/leaduri/nou">
               <IconPlus className="h-4 w-4" /> Adaugă lead
             </LinkButon>
@@ -359,7 +357,7 @@ function GrupuriSunate({ leaduri, randeaza }: { leaduri: Lead[]; randeaza: (l: L
           </h2>
           {(lista as Lead[]).length === 0 ? (
             <p className="rounded-2xl border border-dashed border-echipa-line p-4 text-sm text-echipa-muted">
-              {titlu === "Sunate" ? "Încă nimic sunat din fișierul ăsta." : "Toate au fost sunate."}
+              {titlu === "Sunate" ? "Încă nimic sunat de aici." : "Toate au fost sunate."}
             </p>
           ) : (
             <ul className="space-y-3">

@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import { useCallback, useMemo, useState } from "react";
 import { type Status } from "@/echipa/config";
 import AtribuieLista from "@/echipa/components/AtribuieLista";
-import { IconFolder, IconIncarca, IconLista, IconManer, IconPlus } from "@/echipa/components/icons";
+import { IconFolder, IconIncarca, IconManer, IconPlus } from "@/echipa/components/icons";
 import MeniuPuncte from "@/echipa/components/MeniuPuncte";
 import { Buton, Incarcare, Mesaj, TitluPagina } from "@/echipa/components/ui";
 import { citesteFisier } from "@/echipa/lib/csv";
@@ -21,9 +21,8 @@ export type ListaCuLeaduri = {
   folder_id: string | null;
   leads: { vanzator_id: string | null; status: Status }[];
 };
-type Folder = { id: string; nume: string; creat_la: string };
+type Folder = { id: string; nume: string; creat_la: string; vanzator_id: string | null };
 type Persoana = { id: string; nume: string; activ: boolean };
-type Selectie = "toate" | "fara" | string;
 type RezultatIncarcare = { fisier: string; text: string; eroare?: boolean };
 
 const TIP_DRAG = "application/x-elevio-fisier";
@@ -36,16 +35,15 @@ export function proprietar(l: ListaCuLeaduri, nume: Record<string, string>) {
   return ids[0] ? (nume[ids[0]] ?? "Necunoscut") : "Nealocat";
 }
 
-// Managerul de lead-uri al adminului: foldere în stânga, fișierele din folderul ales în dreapta.
-// Fișierele se încarcă direct în folder (mai multe deodată), se trag dintr-un folder în altul
-// și se dau cuiva dintr-un click, unul câte unul sau tot folderul.
+// Managerul de lead-uri al adminului, ca un explorer de fișiere: la „Toate” vezi întâi folderele,
+// apoi fișierele care nu sunt în niciun folder. Fișierele dintr-un folder se văd după ce îl deschizi.
+// Un folder poate fi „pe numele” cuiva: tot ce intră în el trece la omul acela.
 export default function Liste() {
   const [foldere, setFoldere] = useState<Folder[] | null>(null);
   const [fisiere, setFisiere] = useState<ListaCuLeaduri[]>([]);
   const [oameni, setOameni] = useState<Persoana[]>([]);
-  const [selectie, setSelectie] = useState<Selectie>("toate");
+  const [deschis, setDeschis] = useState<string | null>(null);
   const [folderNou, setFolderNou] = useState("");
-  const [redenumire, setRedenumire] = useState<string | null>(null);
   const [cuiImport, setCuiImport] = useState("");
   const [peste, setPeste] = useState<string | null>(null);
   const [seIncarca, setSeIncarca] = useState(false);
@@ -55,7 +53,7 @@ export default function Liste() {
   const incarca = useCallback(async () => {
     const supabase = supabaseBrowser();
     const [f, l, p] = await Promise.all([
-      supabase.from("foldere").select("id, nume, creat_la").order("nume"),
+      supabase.from("foldere").select("id, nume, creat_la, vanzator_id").order("nume"),
       supabase.from("liste").select("id, nume, creat_la, folder_id, leads(vanzator_id, status)").order("creat_la", { ascending: false }),
       supabase.from("profiles").select("id, nume, activ").order("nume"),
     ]);
@@ -66,42 +64,37 @@ export default function Liste() {
   useIncarca(incarca);
 
   const nume = useMemo(() => Object.fromEntries(oameni.map((o) => [o.id, o.nume])), [oameni]);
-  const folderAles = foldere?.find((f) => f.id === selectie) ?? null;
-  const vizibile = fisiere.filter((l) => (selectie === "toate" ? true : selectie === "fara" ? !l.folder_id : l.folder_id === selectie));
-  const nrInFolder = (id: string | null) => fisiere.filter((l) => l.folder_id === id).length;
+  const folderDeschis = foldere?.find((f) => f.id === deschis) ?? null;
+  const vizibile = fisiere.filter((l) => (folderDeschis ? l.folder_id === folderDeschis.id : !l.folder_id || !foldere?.some((f) => f.id === l.folder_id)));
+  const cuiEfectiv = cuiImport || folderDeschis?.vanzator_id || "";
 
   function anunta(text: string, eroare?: boolean) {
     setMesaj({ tip: eroare ? "eroare" : "succes", text });
+  }
+
+  function deschide(id: string | null) {
+    setDeschis(id);
+    setCuiImport("");
+    setRezultate([]);
   }
 
   async function creeazaFolder(e: React.FormEvent) {
     e.preventDefault();
     const n = folderNou.trim();
     if (!n) return;
-    const { data, error } = await supabaseBrowser().from("foldere").insert({ nume: n }).select("id").single();
-    if (error || !data) return anunta("Nu am putut crea folderul.", true);
+    const { error } = await supabaseBrowser().from("foldere").insert({ nume: n });
+    if (error) return anunta("Nu am putut crea folderul.", true);
     setFolderNou("");
-    await incarca();
-    setSelectie(data.id);
-    anunta(`Folderul „${n}” e gata. Trage fișierele cu lead-uri în el.`);
-  }
-
-  async function redenumesteFolder() {
-    if (!folderAles || !redenumire?.trim()) return;
-    const { error } = await supabaseBrowser().from("foldere").update({ nume: redenumire.trim() }).eq("id", folderAles.id);
-    if (error) return anunta("Nu am putut redenumi folderul.", true);
-    setRedenumire(null);
-    anunta("Folderul a fost redenumit.");
+    anunta(`Folderul „${n}” e gata. Trage fișierele cu lead-uri pe el.`);
     incarca();
   }
 
-  async function stergeFolder(f: Folder | null = folderAles) {
-    if (!f) return;
-    if (!confirm(`Ștergi folderul „${f.nume}”? Fișierele și lead-urile din el rămân, doar că nu mai sunt în niciun folder.`)) return;
+  async function stergeFolder(f: Folder) {
+    if (!confirm(`Ștergi folderul „${f.nume}”? Fișierele și lead-urile din el rămân, la „Toate”.`)) return;
     const { error } = await supabaseBrowser().from("foldere").delete().eq("id", f.id);
     if (error) return anunta("Nu am putut șterge folderul.", true);
-    if (selectie === f.id) setSelectie("toate");
-    anunta("Folderul a fost șters. Fișierele lui sunt acum la „Fără folder”.");
+    if (deschis === f.id) deschide(null);
+    anunta("Folderul a fost șters. Fișierele lui sunt acum la „Toate”.");
     incarca();
   }
 
@@ -111,6 +104,22 @@ export default function Liste() {
     const { error } = await supabaseBrowser().from(tabel).update({ nume: n }).eq("id", id);
     if (error) return anunta("Nu am putut redenumi.", true);
     anunta(`„${vechi}” se numește acum „${n}”.`);
+    incarca();
+  }
+
+  // Pune folderul pe numele cuiva: toate lead-urile din fișierele lui trec la omul acela.
+  async function puneLaOm(f: Folder, omId: string | null) {
+    const ids = fisiere.filter((x) => x.folder_id === f.id).map((x) => x.id);
+    const om = omId ? nume[omId] : null;
+    if (om && ids.length && !confirm(`Pui folderul „${f.nume}” pe numele lui ${om}? Toate lead-urile din el trec la ${om}.`)) return;
+    const supabase = supabaseBrowser();
+    const { error } = await supabase.from("foldere").update({ vanzator_id: omId }).eq("id", f.id);
+    if (error) return anunta("Nu am putut schimba folderul.", true);
+    if (omId && ids.length) {
+      const { error: e2 } = await supabase.from("leads").update({ vanzator_id: omId }).in("lista_id", ids);
+      if (e2) return anunta("Folderul e pe numele lui, dar lead-urile nu au putut fi mutate. Încearcă din nou.", true);
+    }
+    anunta(om ? `Folderul „${f.nume}” e acum pe numele lui ${om}. Tot ce e în el (și ce pui de acum) e la ${om}.` : `Folderul „${f.nume}” nu mai e pe numele nimănui. Lead-urile au rămas unde erau.`);
     incarca();
   }
 
@@ -130,13 +139,20 @@ export default function Liste() {
     const f = fisiere.find((x) => x.id === fisierId);
     if (!f || f.folder_id === folderId) return;
     setFisiere(fisiere.map((x) => (x.id === fisierId ? { ...x, folder_id: folderId } : x)));
-    const { error } = await supabaseBrowser().from("liste").update({ folder_id: folderId }).eq("id", fisierId);
+    const supabase = supabaseBrowser();
+    const { error } = await supabase.from("liste").update({ folder_id: folderId }).eq("id", fisierId);
     if (error) {
       anunta("Nu am putut muta fișierul.", true);
       return incarca();
     }
-    const dest = folderId ? foldere?.find((x) => x.id === folderId)?.nume : null;
-    anunta(dest ? `„${f.nume}” a fost mutat în „${dest}”.` : `„${f.nume}” nu mai e în niciun folder.`);
+    const dest = folderId ? foldere?.find((x) => x.id === folderId) : null;
+    let extra = "";
+    if (dest?.vanzator_id && f.leads.length) {
+      const { error: e2 } = await supabase.from("leads").update({ vanzator_id: dest.vanzator_id }).eq("lista_id", f.id);
+      extra = e2 ? " Lead-urile nu au putut fi mutate la omul folderului." : ` Lead-urile au trecut la ${nume[dest.vanzator_id] ?? "omul folderului"}.`;
+    }
+    anunta((dest ? `„${f.nume}” a fost mutat în „${dest.nume}”.` : `„${f.nume}” a fost scos din folder.`) + extra);
+    incarca();
   }
 
   // Încarcă unul sau mai multe fișiere CSV/Excel direct într-un folder.
@@ -146,6 +162,7 @@ export default function Liste() {
       .filter((f) => !bune.includes(f))
       .map((f) => ({ fisier: f.name, text: "Doar CSV sau Excel (.xlsx). Word sau PDF îl trimiți lui Claude să-l transforme.", eroare: true }));
     if (!bune.length) return setRezultate(rez);
+    const cui = cuiImport || foldere?.find((f) => f.id === folderId)?.vanzator_id || null;
     setSeIncarca(true);
     setRezultate([]);
     setMesaj(null);
@@ -183,13 +200,13 @@ export default function Liste() {
         for (let i = 0; i < deImportat.length; i += 500) {
           const { error: e2 } = await supabase
             .from("leads")
-            .insert(deImportat.slice(i, i + 500).map((d) => ({ ...d, lista_id: fisier.id, vanzator_id: cuiImport || null, sursa: "alocat" })));
+            .insert(deImportat.slice(i, i + 500).map((d) => ({ ...d, lista_id: fisier.id, vanzator_id: cui, sursa: "alocat" })));
           if (e2) break;
           importate += Math.min(500, deImportat.length - i);
         }
         rez.push({
           fisier: f.name,
-          text: `${importate} lead-uri importate${sarite ? `, ${sarite} sărite (duplicate sau incomplete)` : ""}.`,
+          text: `${importate} lead-uri importate${cui ? ` pentru ${nume[cui] ?? ""}` : ""}${sarite ? `, ${sarite} sărite (duplicate sau incomplete)` : ""}.`,
           eroare: importate < deImportat.length,
         });
       } catch {
@@ -223,15 +240,11 @@ export default function Liste() {
 
   if (foldere === null) return <Incarcare />;
 
-  const folderDestinatie = selectie === "toate" || selectie === "fara" ? null : selectie;
-  const titluSectiune = selectie === "toate" ? "Toate fișierele" : selectie === "fara" ? "Fără folder" : (folderAles?.nume ?? "");
+  const activi = oameni.filter((o) => o.activ);
 
   return (
     <div>
-      <TitluPagina
-        titlu="Foldere de lead-uri"
-        subtitlu="Folderele le creezi și le numești tu. În fiecare folder pui fișierele cu lead-uri și le dai cuiva dintr-un click."
-      />
+      <TitluPagina titlu="Foldere de lead-uri" subtitlu="Ca în explorerul de pe calculator: folderele sus, fișierele în ele. Un folder pus pe numele cuiva îi dă tot ce e în el." />
 
       {mesaj && (
         <div className="mb-4">
@@ -239,260 +252,279 @@ export default function Liste() {
         </div>
       )}
 
-      <div className="grid gap-5 lg:grid-cols-[16rem_1fr]">
-        {/* Folderele */}
-        <aside className="space-y-3">
-          <form onSubmit={creeazaFolder} className="flex gap-2">
-            <input
-              aria-label="Numele folderului nou"
-              className="camp min-w-0 flex-1"
-              placeholder="Folder nou..."
-              value={folderNou}
-              onChange={(e) => setFolderNou(e.target.value)}
-            />
+      {/* Bara de sus: unde sunt și folder nou */}
+      <div className="mb-4 flex flex-wrap items-center gap-3">
+        <nav aria-label="Unde sunt" className="flex min-w-0 flex-1 items-center gap-1.5 text-lg font-bold">
+          <button
+            type="button"
+            onClick={() => deschide(null)}
+            {...tinta("radacina", null)}
+            className={`rounded-lg px-2 py-1 ${folderDeschis ? "text-echipa-muted hover:text-echipa-accent" : ""} ${peste === "radacina" ? "bg-echipa-accent/20 ring-2 ring-echipa-accent" : ""}`}
+          >
+            Toate
+          </button>
+          {folderDeschis && (
+            <>
+              <span className="text-echipa-muted">›</span>
+              <span className="flex min-w-0 items-center gap-1.5 truncate">
+                <IconFolder className="h-5 w-5 shrink-0 text-echipa-accent" />
+                <span className="truncate">{folderDeschis.nume}</span>
+              </span>
+            </>
+          )}
+        </nav>
+        {!folderDeschis && (
+          <form onSubmit={creeazaFolder} className="flex w-full gap-2 sm:w-auto">
+            <input aria-label="Numele folderului nou" className="camp min-w-0 flex-1 sm:w-56" placeholder="Folder nou (de ex. Ana)" value={folderNou} onChange={(e) => setFolderNou(e.target.value)} />
             <Buton type="submit" disabled={!folderNou.trim()} aria-label="Creează folderul">
-              <IconPlus className="h-4 w-4" />
+              <IconPlus className="h-4 w-4" /> Folder
             </Buton>
           </form>
-          <nav aria-label="Foldere" className="flex gap-1.5 overflow-x-auto pb-1 lg:flex-col lg:overflow-visible">
-            <ElementFolder activ={selectie === "toate"} onClick={() => setSelectie("toate")} eticheta="Toate fișierele" numar={fisiere.length} icon={<IconLista className="h-4 w-4" />} />
+        )}
+      </div>
+
+      {folderDeschis && (
+        <div className="mb-4 flex flex-wrap items-center gap-2 rounded-2xl border border-echipa-line/70 bg-echipa-card p-3 text-sm">
+          <label htmlFor="pe-numele" className="font-medium">
+            Pe numele lui:
+          </label>
+          <select id="pe-numele" className="camp min-w-0 flex-1 py-2 sm:max-w-xs" value={folderDeschis.vanzator_id ?? ""} onChange={(e) => puneLaOm(folderDeschis, e.target.value || null)}>
+            <option value="">Nimeni (îl împart eu)</option>
+            {activi.map((o) => (
+              <option key={o.id} value={o.id}>
+                {o.nume}
+              </option>
+            ))}
+          </select>
+          <span className="text-xs text-echipa-muted">Tot ce e în folder și ce pui de acum trece la omul ales.</span>
+        </div>
+      )}
+
+      {/* Încărcare */}
+      <div className="mb-5 rounded-2xl border border-echipa-line/70 bg-echipa-card p-3">
+        <label
+          {...tinta("upload", folderDeschis?.id ?? null)}
+          className={`flex min-h-20 cursor-pointer flex-col items-center justify-center gap-1 rounded-xl border-2 border-dashed p-3 text-center hover:border-echipa-accent/60 has-[:focus-visible]:ring-2 has-[:focus-visible]:ring-echipa-accent ${
+            peste === "upload" ? "border-echipa-accent bg-echipa-accent/10" : "border-echipa-line"
+          }`}
+        >
+          <IconIncarca className="h-6 w-6 text-echipa-accent" />
+          <span className="text-sm font-medium">{seIncarca ? "Se încarcă..." : "Trage aici unul sau mai multe fișiere (CSV sau Excel)"}</span>
+          <span className="text-xs text-echipa-muted">
+            {folderDeschis ? `Intră în folderul „${folderDeschis.nume}”.` : "Intră la „Toate”, fără folder. Deschide un folder ca să intre direct în el."}
+          </span>
+          <input
+            type="file"
+            multiple
+            accept=".csv,.xlsx,text/csv,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+            className="sr-only"
+            disabled={seIncarca}
+            onChange={(e) => {
+              const lista = Array.from(e.target.files ?? []);
+              e.target.value = "";
+              if (lista.length) void incarcaFisiere(lista, folderDeschis?.id ?? null);
+            }}
+          />
+        </label>
+        <div className="mt-2 flex flex-wrap items-center gap-2 text-sm">
+          <label htmlFor="cui-import" className="text-echipa-muted">
+            Lead-urile încărcate merg la:
+          </label>
+          <select id="cui-import" className="camp max-w-xs flex-1 py-2" value={cuiEfectiv} onChange={(e) => setCuiImport(e.target.value)}>
+            <option value="">Nimeni încă (le dau mai târziu)</option>
+            {activi.map((o) => (
+              <option key={o.id} value={o.id}>
+                {o.nume}
+              </option>
+            ))}
+          </select>
+          <Link href="/echipa/app/admin/import" className="ml-auto text-xs text-echipa-accent hover:underline">
+            Import avansat (aleg eu coloanele)
+          </Link>
+        </div>
+        {rezultate.length > 0 && (
+          <ul className="mt-3 space-y-1.5 text-sm">
+            {rezultate.map((r, i) => (
+              <li key={i} className={`rounded-lg px-3 py-2 ${r.eroare ? "bg-amber-500/10 text-amber-100" : "bg-emerald-500/10 text-emerald-200"}`}>
+                <strong className="font-semibold">{r.fisier}</strong>: {r.text}
+              </li>
+            ))}
+          </ul>
+        )}
+      </div>
+
+      {/* Folderele (doar la „Toate”) */}
+      {!folderDeschis && foldere.length > 0 && (
+        <section className="mb-6">
+          <h2 className="mb-2 text-xs font-semibold uppercase tracking-wide text-echipa-muted">Foldere</h2>
+          <ul className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
             {foldere.map((f) => (
-              <ElementFolder
+              <CardFolder
                 key={f.id}
-                activ={selectie === f.id}
+                f={f}
+                fisiere={fisiere.filter((x) => x.folder_id === f.id)}
+                om={f.vanzator_id ? (nume[f.vanzator_id] ?? null) : null}
+                oameni={activi}
                 peste={peste === f.id}
-                onClick={() => setSelectie(f.id)}
-                eticheta={f.nume}
-                numar={nrInFolder(f.id)}
-                icon={<IconFolder className="h-4 w-4" />}
                 tinta={tinta(f.id, f.id)}
-                laStergere={() => stergeFolder(f)}
+                laDeschidere={() => deschide(f.id)}
                 laRedenumire={(nou) => redenumeste("foldere", f.id, f.nume, nou)}
+                laOm={(omId) => puneLaOm(f, omId)}
+                laStergere={() => stergeFolder(f)}
               />
             ))}
-            <ElementFolder
-              activ={selectie === "fara"}
-              peste={peste === "fara"}
-              onClick={() => setSelectie("fara")}
-              eticheta="Fără folder"
-              numar={nrInFolder(null)}
-              icon={<IconLista className="h-4 w-4 opacity-60" />}
-              tinta={tinta("fara", null)}
-            />
-          </nav>
-          <p className="hidden text-xs text-echipa-muted lg:block">Ține apăsat pe un card și trage-l pe un folder de aici ca să-l muți. Poți trage și fișiere de pe calculator direct pe un folder.</p>
-        </aside>
+          </ul>
+        </section>
+      )}
 
-        {/* Fișierele din folderul ales */}
-        <section className="min-w-0 space-y-4">
-          <div className="flex flex-wrap items-center gap-3">
-            {folderAles && redenumire !== null ? (
-              <form
-                onSubmit={(e) => {
-                  e.preventDefault();
-                  void redenumesteFolder();
-                }}
-                className="flex flex-1 gap-2"
-              >
-                <input aria-label="Numele folderului" className="camp min-w-0 flex-1" value={redenumire} onChange={(e) => setRedenumire(e.target.value)} autoFocus />
-                <Buton type="submit">Salvează</Buton>
-                <Buton type="button" varianta="fantoma" onClick={() => setRedenumire(null)}>
-                  Anulează
-                </Buton>
-              </form>
-            ) : (
-              <h2 className="flex min-w-0 flex-1 items-center gap-2 text-xl font-bold">
-                {folderAles && <IconFolder className="h-5 w-5 shrink-0 text-echipa-accent" />}
-                <span className="truncate">{titluSectiune}</span>
-                <span className="text-sm font-normal text-echipa-muted">{nrFisiere(vizibile.length)}</span>
-              </h2>
-            )}
-            {folderAles && redenumire === null && (
-              <div className="flex gap-2">
-                <Buton varianta="fantoma" onClick={() => setRedenumire(folderAles.nume)}>
-                  Redenumește
-                </Buton>
-                <Buton varianta="fantoma" onClick={() => stergeFolder()}>
-                  Șterge folderul
-                </Buton>
-              </div>
-            )}
-          </div>
-
-          {folderAles && vizibile.length > 0 && (
-            <div className="rounded-2xl border border-echipa-line/70 bg-echipa-card p-3">
-              <AtribuieLista
-                folderId={folderAles.id}
-                compact
-                laGata={(text, eroare) => {
+      {/* Fișierele */}
+      <section>
+        <h2 className="mb-2 text-xs font-semibold uppercase tracking-wide text-echipa-muted">
+          {folderDeschis ? nrFisiere(vizibile.length) : `Fișiere fără folder (${vizibile.length})`}
+        </h2>
+        {vizibile.length === 0 ? (
+          <p className="rounded-2xl border border-dashed border-echipa-line p-8 text-center text-sm text-echipa-muted">
+            {folderDeschis ? "Folderul e gol. Trage fișiere aici sau mută-le din „Toate”." : "Toate fișierele sunt în foldere."}
+          </p>
+        ) : (
+          <ul className="grid gap-3 sm:grid-cols-2 xl:grid-cols-3">
+            {vizibile.map((l) => (
+              <CardFisier
+                key={l.id}
+                l={l}
+                foldere={foldere}
+                proprietar={proprietar(l, nume)}
+                arataFolder={false}
+                laMutare={(folderId) => mutaFisier(l.id, folderId)}
+                laAtribuire={(text, eroare) => {
                   anunta(text, eroare);
                   incarca();
                 }}
+                laStergere={(cuLeaduri) => stergeFisier(l, cuLeaduri)}
+                laRedenumire={(nou) => redenumeste("liste", l.id, l.nume, nou)}
               />
-            </div>
-          )}
-
-          {/* Încărcare */}
-          <div className="rounded-2xl border border-echipa-line/70 bg-echipa-card p-3">
-            <label
-              {...tinta("upload", folderDestinatie)}
-              className={`flex min-h-24 cursor-pointer flex-col items-center justify-center gap-1.5 rounded-xl border-2 border-dashed p-4 text-center hover:border-echipa-accent/60 has-[:focus-visible]:ring-2 has-[:focus-visible]:ring-echipa-accent ${
-                peste === "upload" ? "border-echipa-accent bg-echipa-accent/10" : "border-echipa-line"
-              }`}
-            >
-              <IconIncarca className="h-6 w-6 text-echipa-accent" />
-              <span className="text-sm font-medium">
-                {seIncarca ? "Se încarcă..." : "Trage aici unul sau mai multe fișiere (CSV sau Excel)"}
-              </span>
-              <span className="text-xs text-echipa-muted">
-                {folderDestinatie ? `Intră în folderul „${folderAles?.nume}”.` : "Intră fără folder. Alege un folder din stânga ca să intre direct în el."}
-              </span>
-              <input
-                type="file"
-                multiple
-                accept=".csv,.xlsx,text/csv,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
-                className="sr-only"
-                disabled={seIncarca}
-                onChange={(e) => {
-                  const lista = Array.from(e.target.files ?? []);
-                  e.target.value = "";
-                  if (lista.length) void incarcaFisiere(lista, folderDestinatie);
-                }}
-              />
-            </label>
-            <div className="mt-2 flex flex-wrap items-center gap-2 text-sm">
-              <label htmlFor="cui-import" className="text-echipa-muted">
-                Lead-urile încărcate merg la:
-              </label>
-              <select id="cui-import" className="camp max-w-xs flex-1 py-2" value={cuiImport} onChange={(e) => setCuiImport(e.target.value)}>
-                <option value="">Nimeni încă (le dau mai târziu)</option>
-                {oameni
-                  .filter((o) => o.activ)
-                  .map((o) => (
-                    <option key={o.id} value={o.id}>
-                      {o.nume}
-                    </option>
-                  ))}
-              </select>
-              <Link href="/echipa/app/admin/import" className="ml-auto text-xs text-echipa-accent hover:underline">
-                Import avansat (aleg eu coloanele)
-              </Link>
-            </div>
-            {rezultate.length > 0 && (
-              <ul className="mt-3 space-y-1.5 text-sm">
-                {rezultate.map((r, i) => (
-                  <li key={i} className={`rounded-lg px-3 py-2 ${r.eroare ? "bg-amber-500/10 text-amber-100" : "bg-emerald-500/10 text-emerald-200"}`}>
-                    <strong className="font-semibold">{r.fisier}</strong>: {r.text}
-                  </li>
-                ))}
-              </ul>
-            )}
-          </div>
-
-          {vizibile.length === 0 ? (
-            <p className="rounded-2xl border border-dashed border-echipa-line p-8 text-center text-sm text-echipa-muted">
-              {selectie === "toate" ? "Niciun fișier încă. Trage primul fișier mai sus." : "Folderul e gol. Trage fișiere aici sau mută-le din alt folder."}
-            </p>
-          ) : (
-            <ul className="grid gap-3 sm:grid-cols-2 xl:grid-cols-3">
-              {vizibile.map((l) => (
-                <CardFisier
-                  key={l.id}
-                  l={l}
-                  foldere={foldere}
-                  proprietar={proprietar(l, nume)}
-                  arataFolder={selectie === "toate"}
-                  laMutare={(folderId) => mutaFisier(l.id, folderId)}
-                  laStergere={(cuLeaduri) => stergeFisier(l, cuLeaduri)}
-                  laRedenumire={(nou) => redenumeste("liste", l.id, l.nume, nou)}
-                  laAtribuire={(text, eroare) => {
-                    anunta(text, eroare);
-                    incarca();
-                  }}
-                />
-              ))}
-            </ul>
-          )}
-        </section>
-      </div>
+            ))}
+          </ul>
+        )}
+      </section>
+      <p className="mt-4 hidden text-xs text-echipa-muted lg:block">
+        Ține apăsat pe un fișier și trage-l pe un folder ca să-l muți, sau pe „Toate” ca să-l scoți din folder. Poți trage și fișiere de pe calculator direct pe un folder.
+      </p>
     </div>
   );
 }
 
-function ElementFolder({
-  activ,
+// Folderul, ca un dreptunghi înalt: se deschide cu un click, primește fișiere trase pe el.
+function CardFolder({
+  f,
+  fisiere,
+  om,
+  oameni,
   peste,
-  eticheta,
-  numar,
-  icon,
-  onClick,
   tinta,
-  laStergere,
+  laDeschidere,
   laRedenumire,
+  laOm,
+  laStergere,
 }: {
-  activ: boolean;
-  peste?: boolean;
-  eticheta: string;
-  numar: number;
-  icon: React.ReactNode;
-  onClick: () => void;
-  tinta?: React.HTMLAttributes<HTMLDivElement>;
-  laStergere?: () => void;
-  laRedenumire?: (nou: string) => void;
+  f: Folder;
+  fisiere: ListaCuLeaduri[];
+  om: string | null;
+  oameni: Persoana[];
+  peste: boolean;
+  tinta: React.HTMLAttributes<HTMLLIElement>;
+  laDeschidere: () => void;
+  laRedenumire: (nou: string) => void;
+  laOm: (omId: string | null) => void;
+  laStergere: () => void;
 }) {
   const [editare, setEditare] = useState<string | null>(null);
-  if (editare !== null && laRedenumire) {
-    return (
-      <form
-        onSubmit={(e) => {
-          e.preventDefault();
-          laRedenumire(editare);
-          setEditare(null);
-        }}
-        className="flex shrink-0 items-center gap-1.5 lg:w-full"
-      >
-        <input
-          aria-label={`Numele nou pentru ${eticheta}`}
-          className="camp min-w-0 flex-1 py-1.5 text-sm"
-          value={editare}
-          onChange={(e) => setEditare(e.target.value)}
-          onKeyDown={(e) => e.key === "Escape" && setEditare(null)}
-          autoFocus
-        />
-        <Buton type="submit" className="px-3 py-1.5 text-sm">
-          OK
-        </Buton>
-      </form>
-    );
-  }
+  const [alegOm, setAlegOm] = useState(false);
+  const leaduri = fisiere.flatMap((x) => x.leads);
+  const sunate = leaduri.filter((x) => x.status !== "nou").length;
+  const procent = leaduri.length ? Math.round((sunate / leaduri.length) * 100) : 0;
   return (
-    <div
+    <li
       {...tinta}
-      className={`flex shrink-0 items-center rounded-xl border text-sm transition lg:w-full ${
-        peste
-          ? "border-echipa-accent bg-echipa-accent/20"
-          : activ
-            ? "border-echipa-accent/60 bg-echipa-accent/10 text-echipa-text"
-            : "border-transparent text-echipa-muted hover:bg-white/5 hover:text-echipa-text"
+      className={`relative flex aspect-[4/5] flex-col rounded-2xl border p-3 transition ${
+        peste ? "border-echipa-accent bg-echipa-accent/15 ring-2 ring-echipa-accent" : "border-echipa-line/70 bg-echipa-card hover:border-echipa-accent/60"
       }`}
     >
-      <button type="button" onClick={onClick} className="flex min-w-0 flex-1 items-center gap-2 px-3 py-2 text-left">
-        <span className={activ ? "text-echipa-accent" : ""}>{icon}</span>
-        <span className="min-w-0 flex-1 truncate font-medium">{eticheta}</span>
-        <span className="text-xs tabular-nums opacity-70">{numar}</span>
-      </button>
-      {(laStergere || laRedenumire) && (
+      <div className="flex items-start justify-between">
+        <button type="button" onClick={laDeschidere} aria-label={`Deschide folderul ${f.nume}`} className="text-echipa-accent">
+          <IconFolder className="h-10 w-10" />
+        </button>
         <MeniuPuncte
-          eticheta={`Opțiuni pentru folderul ${eticheta}`}
-          className="mr-1"
+          eticheta={`Opțiuni pentru folderul ${f.nume}`}
+          className="-mr-1 -mt-1"
           actiuni={[
-            { eticheta: "Deschide", laClick: onClick },
-            ...(laRedenumire ? [{ eticheta: "Redenumește", laClick: () => setEditare(eticheta) }] : []),
-            ...(laStergere ? [{ eticheta: "Șterge folderul", laClick: laStergere, pericol: true }] : []),
+            { eticheta: "Deschide", laClick: laDeschidere },
+            { eticheta: "Redenumește", laClick: () => setEditare(f.nume) },
+            { eticheta: "Pune pe numele cuiva", laClick: () => setAlegOm(true) },
+            { eticheta: "Șterge folderul", laClick: laStergere, pericol: true },
           ]}
         />
+      </div>
+      {editare !== null ? (
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+            laRedenumire(editare);
+            setEditare(null);
+          }}
+          className="mt-2 flex gap-1.5"
+        >
+          <input
+            aria-label={`Numele nou pentru ${f.nume}`}
+            className="camp min-w-0 flex-1 px-2 py-1.5 text-sm"
+            value={editare}
+            onChange={(e) => setEditare(e.target.value)}
+            onKeyDown={(e) => e.key === "Escape" && setEditare(null)}
+            autoFocus
+          />
+          <Buton type="submit" className="px-2.5 py-1.5 text-sm">
+            OK
+          </Buton>
+        </form>
+      ) : (
+        <button type="button" onClick={laDeschidere} className="mt-2 flex flex-1 flex-col text-left">
+          <span className="line-clamp-2 font-semibold leading-snug">{f.nume}</span>
+          <span className="mt-1 text-xs text-echipa-muted">
+            {nrFisiere(fisiere.length)} · {leaduri.length} lead-uri
+          </span>
+          <span className={`mt-1 truncate text-xs ${om ? "text-echipa-accent" : "text-echipa-muted"}`}>{om ? `Pe numele: ${om}` : "Pe numele nimănui"}</span>
+        </button>
       )}
-    </div>
+      {alegOm && (
+        <select
+          aria-label={`Pune folderul ${f.nume} pe numele`}
+          className="camp mt-2 px-2 py-1.5 text-sm"
+          autoFocus
+          defaultValue=""
+          onChange={(e) => {
+            setAlegOm(false);
+            if (e.target.value) laOm(e.target.value === "nimeni" ? null : e.target.value);
+          }}
+          onBlur={() => setAlegOm(false)}
+        >
+          <option value="">Alege omul...</option>
+          <option value="nimeni">Nimeni</option>
+          {oameni.map((o) => (
+            <option key={o.id} value={o.id}>
+              {o.nume}
+            </option>
+          ))}
+        </select>
+      )}
+      <span className="mt-3 block">
+        <span className="mb-1 block text-[11px] text-echipa-muted">
+          {sunate} din {leaduri.length} sunate
+        </span>
+        <span className="block h-1 overflow-hidden rounded-full bg-white/5">
+          <span className="block h-full rounded-full bg-echipa-accent" style={{ width: `${procent}%` }} />
+        </span>
+      </span>
+    </li>
   );
 }
 
