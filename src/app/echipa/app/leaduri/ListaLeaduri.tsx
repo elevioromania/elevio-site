@@ -48,7 +48,7 @@ export default function ListaLeaduri() {
     setLeaduri(data);
     const [{ data: l }, { data: f }] = await Promise.all([
       supabaseBrowser().from("liste").select("id, nume, folder_id").order("creat_la", { ascending: false }),
-      supabaseBrowser().from("foldere").select("id, nume"),
+      supabaseBrowser().from("foldere").select("id, nume, vanzator_id"),
     ]);
     setListe((l as FisierInfo[]) ?? []);
     setFoldere((f as FolderInfo[]) ?? []);
@@ -114,7 +114,7 @@ export default function ListaLeaduri() {
 
       {profil.rol === "admin" && importDeschis && <ImportCsv compact vanzatorImplicit={profil.id} laGata={incarca} />}
 
-      {leaduri && leaduri.length > 0 && <BandaFoldere leaduri={leaduri} fisiere={liste} foldere={foldere} ales={listaAleasa} laAlegere={setListaAleasa} />}
+      {leaduri && leaduri.length > 0 && <BandaFoldere leaduri={leaduri} fisiere={liste} foldere={foldere} ales={listaAleasa} laAlegere={setListaAleasa} persoana={profil} />}
 
       <div className="mb-4 space-y-3">
         <div className="flex gap-2">

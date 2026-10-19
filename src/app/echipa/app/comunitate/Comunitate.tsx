@@ -2,11 +2,11 @@
 
 import Link from "next/link";
 import { useCallback, useState } from "react";
-import { DISCORD_URL, WHATSAPP_GROUP_URL } from "@/echipa/config";
-import { IconCalendar, IconLink, IconWhatsapp } from "@/echipa/components/icons";
+import { DISCORD_URL, TITLU_IMPLICIT, TITLURI_SUGERATE, WHATSAPP_GROUP_URL } from "@/echipa/config";
+import { IconCalendar, IconLink, IconNotita, IconWhatsapp } from "@/echipa/components/icons";
 import Insigna from "@/echipa/components/Insigna";
 import { useProfil } from "@/echipa/components/ProfilContext";
-import { Card, Gol, Incarcare, TitluPagina } from "@/echipa/components/ui";
+import { Buton, Card, Gol, Incarcare, Mesaj, TitluPagina } from "@/echipa/components/ui";
 import { dataOra, linkExtern } from "@/echipa/lib/format";
 import { useIncarca } from "@/echipa/lib/hooks";
 import { supabaseBrowser } from "@/echipa/lib/supabase-browser";
@@ -18,6 +18,7 @@ export default function Comunitate() {
   const { esteAdmin } = useProfil();
   const [membri, setMembri] = useState<Membru[] | null>(null);
   const [sesiuni, setSesiuni] = useState<Sesiune[] | null>(null);
+  const [mesaj, setMesaj] = useState<{ tip: "eroare" | "succes"; text: string } | null>(null);
 
   const incarca = useCallback(async () => {
     const supabase = supabaseBrowser();
@@ -92,7 +93,12 @@ export default function Comunitate() {
 
       <section>
         <h2 className="mb-3 text-lg font-bold">Membrii echipei</h2>
-        {esteAdmin && <p className="-mt-2 mb-3 text-sm text-echipa-muted">Apasă pe un nume ca să vezi profilul complet.</p>}
+        {esteAdmin && <p className="-mt-2 mb-3 text-sm text-echipa-muted">Apasă pe un nume ca să vezi profilul complet, sau pe creion ca să-i schimbi titlul.</p>}
+        {mesaj && (
+          <div className="mb-3">
+            <Mesaj tip={mesaj.tip}>{mesaj.text}</Mesaj>
+          </div>
+        )}
         {membri === null ? (
           <Incarcare />
         ) : membri.length === 0 ? (
@@ -105,7 +111,7 @@ export default function Comunitate() {
                   <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-echipa-accent/15 font-bold text-echipa-accent">
                     {m.nume.trim().charAt(0).toUpperCase()}
                   </div>
-                  <div className="min-w-0">
+                  <div className="min-w-0 flex-1">
                     {esteAdmin ? (
                       <Link href={`/echipa/app/admin/utilizatori/${m.user_id}`} className="truncate font-semibold after:absolute after:inset-0 hover:text-echipa-accent">
                         {m.nume}
@@ -113,7 +119,17 @@ export default function Comunitate() {
                     ) : (
                       <p className="truncate font-semibold">{m.nume}</p>
                     )}
-                    <p className="truncate text-xs text-echipa-muted">{m.titlu}</p>
+                    {esteAdmin ? (
+                      <TitluEditabil
+                        m={m}
+                        laSalvare={(text, eroare) => {
+                          setMesaj({ tip: eroare ? "eroare" : "succes", text });
+                          incarca();
+                        }}
+                      />
+                    ) : (
+                      <p className="truncate text-xs text-echipa-muted">{m.titlu}</p>
+                    )}
                   </div>
                 </div>
                 {m.insigne.length > 0 && (
@@ -129,5 +145,57 @@ export default function Comunitate() {
         )}
       </section>
     </div>
+  );
+}
+
+// Titlul de sub nume, editabil de admin direct de pe card.
+function TitluEditabil({ m, laSalvare }: { m: Membru; laSalvare: (text: string, eroare?: boolean) => void }) {
+  const [editare, setEditare] = useState<string | null>(null);
+  const [seSalveaza, setSeSalveaza] = useState(false);
+
+  async function salveaza(e: React.FormEvent) {
+    e.preventDefault();
+    const nou = editare?.trim() || TITLU_IMPLICIT;
+    if (nou === m.titlu) return setEditare(null);
+    setSeSalveaza(true);
+    const { error } = await supabaseBrowser().from("profiles").update({ titlu: nou }).eq("id", m.user_id);
+    setSeSalveaza(false);
+    setEditare(null);
+    laSalvare(error ? "Nu am putut schimba titlul." : `${m.nume} are acum titlul „${nou}”.`, Boolean(error));
+  }
+
+  if (editare === null) {
+    return (
+      <button
+        type="button"
+        onClick={() => setEditare(m.titlu)}
+        aria-label={`Schimbă titlul lui ${m.nume}`}
+        className="relative z-10 flex max-w-full items-center gap-1 text-left text-xs text-echipa-muted hover:text-echipa-accent"
+      >
+        <span className="truncate">{m.titlu}</span>
+        <IconNotita className="h-3 w-3 shrink-0" />
+      </button>
+    );
+  }
+  return (
+    <form onSubmit={salveaza} className="relative z-10 mt-1 flex gap-1.5">
+      <input
+        aria-label={`Titlul lui ${m.nume}`}
+        list="titluri-echipa"
+        className="camp min-w-0 flex-1 px-2 py-1.5 text-sm"
+        value={editare}
+        onChange={(e) => setEditare(e.target.value)}
+        onKeyDown={(e) => e.key === "Escape" && setEditare(null)}
+        autoFocus
+      />
+      <datalist id="titluri-echipa">
+        {TITLURI_SUGERATE.map((t) => (
+          <option key={t} value={t} />
+        ))}
+      </datalist>
+      <Buton type="submit" className="px-2.5 py-1.5 text-sm" disabled={seSalveaza}>
+        OK
+      </Buton>
+    </form>
   );
 }

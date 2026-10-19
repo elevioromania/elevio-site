@@ -3,13 +3,31 @@
 import { IconFolder, IconLista } from "./icons";
 
 export type FisierInfo = { id: string; nume: string; folder_id: string | null };
-export type FolderInfo = { id: string; nume: string };
+export type FolderInfo = { id: string; nume: string; vanzator_id?: string | null };
 type LeadMinim = { lista_id: string | null; status: string; ultimul_contact: string | null };
 type LeadSortabil = LeadMinim & { afacere: string; actualizat_la: string };
 
 export const FARA_FISIER = "fara";
 const FOLDER = "d:";
 const FISIER = "f:";
+const GRUP = "g:";
+
+const fara = (s: string) => s.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
+
+// „Clinici Mici - Andrei” devine „Clinici Mici”: scoate de la coadă numele omului sau al folderului.
+export function numeCurat(nume: string, deScos: string[]) {
+  const scos = new Set(deScos.flatMap((n) => fara(n).split(/\s+/)).filter((t) => t.length > 1));
+  const cuvinte = nume.replace(/_+/g, " ").split(/\s+/).filter(Boolean);
+  while (cuvinte.length > 1) {
+    const ultim = cuvinte[cuvinte.length - 1];
+    if (/^[-–·|]+$/.test(ultim) || scos.has(fara(ultim).replace(/[^a-z0-9]/g, ""))) cuvinte.pop();
+    else break;
+  }
+  return cuvinte.join(" ");
+}
+
+// Mici, Medii, Mari, în ordinea asta, nu alfabetic.
+const cheieOrdine = (s: string) => fara(s).replace(/\bmici\b/g, "1").replace(/\bmedii\b/g, "2").replace(/\bmari\b/g, "3");
 
 export function eLucrat(l: LeadMinim) {
   return l.status !== "nou" || Boolean(l.ultimul_contact);
@@ -29,6 +47,10 @@ export function filtruBanda(ales: string, fisiere: FisierInfo[]): (listaId: stri
   if (!ales) return () => true;
   if (ales === FARA_FISIER) return (id) => !id;
   if (ales.startsWith(FISIER)) return (id) => id === ales.slice(FISIER.length);
+  if (ales.startsWith(GRUP)) {
+    const din = new Set(ales.slice(GRUP.length).split(","));
+    return (id) => Boolean(id && din.has(id));
+  }
   const folder = ales.slice(FOLDER.length);
   const din = new Set(fisiere.filter((f) => f.folder_id === folder).map((f) => f.id));
   return (id) => Boolean(id && din.has(id));
@@ -37,19 +59,22 @@ export function filtruBanda(ales: string, fisiere: FisierInfo[]): (listaId: stri
 type Cifre = { total: number; sunate: number };
 
 // Bandă orizontală ca într-un explorator de fișiere: întâi folderele, apoi fișierele care nu
-// sunt în niciun folder. Un click pe folder arată lead-urile din el.
+// sunt în niciun folder. Un click pe folder arată lead-urile din el. Folderul pe numele omului
+// nu apare ca atare: în locul lui apar categoriile din el (Clinici Mici, Wellness Medii...).
 export default function BandaFoldere({
   leaduri,
   fisiere,
   foldere,
   ales,
   laAlegere,
+  persoana,
 }: {
   leaduri: LeadMinim[];
   fisiere: FisierInfo[];
   foldere: FolderInfo[];
   ales: string;
   laAlegere: (id: string) => void;
+  persoana?: { id: string; nume: string };
 }) {
   const peFisier = new Map<string, Cifre>();
   for (const l of leaduri) {
@@ -63,7 +88,29 @@ export default function BandaFoldere({
   const existente = new Set(foldere.map((f) => f.id));
   const inFolder = (f: FisierInfo) => Boolean(f.folder_id && existente.has(f.folder_id));
 
+  const ePersonal = (d: FolderInfo) => {
+    if (!persoana) return false;
+    if (d.vanzator_id) return d.vanzator_id === persoana.id;
+    return fara(persoana.nume).split(/\s+/).includes(fara(d.nume).split(/\s+/)[0]);
+  };
+  const personale = foldere.filter(ePersonal);
+  const grupuri = new Map<string, { titlu: string; ids: string[]; c: Cifre }>();
+  for (const d of personale) {
+    for (const f of cuLeaduri.filter((x) => x.folder_id === d.id)) {
+      const titlu = numeCurat(f.nume, [d.nume, persoana?.nume ?? ""]);
+      const k = fara(titlu);
+      const g = grupuri.get(k) ?? { titlu, ids: [], c: { total: 0, sunate: 0 } };
+      g.ids.push(f.id);
+      g.c = { total: g.c.total + peFisier.get(f.id)!.total, sunate: g.c.sunate + peFisier.get(f.id)!.sunate };
+      grupuri.set(k, g);
+    }
+  }
+  const carduriGrupuri = [...grupuri.values()]
+    .map((g) => ({ ...g, cheie: GRUP + [...g.ids].sort().join(",") }))
+    .sort((a, b) => cheieOrdine(a.titlu).localeCompare(cheieOrdine(b.titlu), "ro"));
+
   const carduriFoldere = foldere
+    .filter((d) => !personale.includes(d))
     .map((d) => {
       const din = cuLeaduri.filter((f) => f.folder_id === d.id);
       const c = din.reduce((s, f) => ({ total: s.total + peFisier.get(f.id)!.total, sunate: s.sunate + peFisier.get(f.id)!.sunate }), { total: 0, sunate: 0 });
@@ -72,7 +119,7 @@ export default function BandaFoldere({
     .filter((d) => d.c.total > 0)
     .sort((a, b) => a.nume.localeCompare(b.nume, "ro"));
   const libere = cuLeaduri.filter((f) => !inFolder(f)).sort((a, b) => a.nume.localeCompare(b.nume, "ro"));
-  if (!carduriFoldere.length && !libere.length && !peFisier.has(FARA_FISIER)) return null;
+  if (!carduriGrupuri.length && !carduriFoldere.length && !libere.length && !peFisier.has(FARA_FISIER)) return null;
 
   const fisierAles = ales.startsWith(FISIER) ? fisiere.find((f) => f.id === ales.slice(FISIER.length)) : undefined;
   const folderDeschis = ales.startsWith(FOLDER) ? ales.slice(FOLDER.length) : fisierAles && inFolder(fisierAles) ? fisierAles.folder_id : null;
@@ -84,6 +131,9 @@ export default function BandaFoldere({
       <div className="-mx-4 overflow-x-auto px-4 pb-2 sm:mx-0 sm:px-0" role="group" aria-label="Foldere de lead-uri">
         <div className="flex gap-3">
           <Chenar activ={ales === ""} onClick={() => laAlegere("")} titlu="Toate lead-urile" detaliu="toate fișierele" c={total} icon={<IconLista className="h-9 w-9" />} />
+          {carduriGrupuri.map((g) => (
+            <Chenar key={g.cheie} activ={ales === g.cheie} onClick={() => laAlegere(g.cheie)} titlu={g.titlu} c={g.c} icon={<IconFolder className="h-9 w-9" />} folder />
+          ))}
           {carduriFoldere.map((d) => (
             <Chenar
               key={d.id}
@@ -141,7 +191,7 @@ function Chenar({
   activ: boolean;
   onClick: () => void;
   titlu: string;
-  detaliu: string;
+  detaliu?: string;
   c: Cifre;
   icon: React.ReactNode;
   folder?: boolean;
@@ -159,7 +209,8 @@ function Chenar({
       <span className={activ || folder ? "text-echipa-accent" : "text-echipa-muted"}>{icon}</span>
       <span className="mt-3 line-clamp-2 text-sm font-semibold leading-snug">{titlu}</span>
       <span className="mt-0.5 text-[11px] text-echipa-muted">
-        {detaliu} · {c.total} lead-uri
+        {detaliu ? `${detaliu} · ` : ""}
+        {c.total} lead-uri
       </span>
       <span className="mt-auto pt-3 text-[11px] text-echipa-muted">
         {c.sunate} din {c.total} sunate

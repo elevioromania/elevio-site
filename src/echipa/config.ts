@@ -30,13 +30,8 @@ export const CALENDAR_URL = process.env.NEXT_PUBLIC_CALENDAR_URL || "https://cal
 export const WHATSAPP_GROUP_URL = process.env.NEXT_PUBLIC_WHATSAPP_GROUP_URL || "";
 export const DISCORD_URL = process.env.NEXT_PUBLIC_DISCORD_URL || "";
 
-export const TITLU_IMPLICIT = "Echipa de marketing Elevio";
-export const TITLURI_SUGERATE = [
-  "Echipa de marketing Elevio",
-  "Specialist marketing",
-  "Manager de marketing",
-  "Director de vânzări",
-];
+export const TITLU_IMPLICIT = "Sales Specialist";
+export const TITLURI_SUGERATE = ["Sales Specialist", "Head of research", "Head of sales", "Fondator", "Echipa de marketing Elevio"];
 
 export const COMISION_INSTALARE_VARIANTE = [80, 100];
 
