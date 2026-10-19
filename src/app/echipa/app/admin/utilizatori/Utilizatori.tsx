@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useCallback, useState } from "react";
-import { COMISION_INSTALARE_VARIANTE, TITLURI_SUGERATE } from "@/echipa/config";
+import { COMISION_INSTALARE_VARIANTE, TITLU_IMPLICIT, TITLURI_SUGERATE } from "@/echipa/config";
 import { useProfil } from "@/echipa/components/ProfilContext";
 import { Buton, Incarcare, Mesaj, TitluPagina } from "@/echipa/components/ui";
 import { dataScurta } from "@/echipa/lib/format";
@@ -73,7 +73,7 @@ export function RandUtilizator({
     setSeLucreaza(true);
     const { error } = await supabaseBrowser()
       .from("profiles")
-      .update({ prenume: prenume.trim() || null, nume: nume.trim() || u.nume, titlu: titlu.trim() || "Echipa de marketing Elevio", rol, comision_instalare: Number(comision) || 0 })
+      .update({ prenume: prenume.trim() || null, nume: nume.trim() || u.nume, titlu: titlu.trim() || TITLU_IMPLICIT, rol, comision_instalare: Number(comision) || 0 })
       .eq("id", u.id);
     setSeLucreaza(false);
     setMesaj(error ? { tip: "eroare", text: "Nu am putut salva." } : { tip: "succes", text: `Salvat: ${u.nume}.` });

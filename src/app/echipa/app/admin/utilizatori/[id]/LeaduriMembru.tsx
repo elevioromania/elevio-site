@@ -28,6 +28,7 @@ export default function LeaduriMembru({ id, nume, laSchimbare }: { id: string; n
   const [listaAleasa, setListaAleasa] = useState("");
   const [fisierAles, setFisierAles] = useState("");
   const [foldere, setFoldere] = useState<FolderInfo[]>([]);
+  const [numeComplet, setNumeComplet] = useState(nume);
   const [seLucreaza, setSeLucreaza] = useState(false);
   const [mesaj, setMesaj] = useState<{ tip: "eroare" | "succes"; text: string } | null>(null);
 
@@ -37,15 +38,16 @@ export default function LeaduriMembru({ id, nume, laSchimbare }: { id: string; n
       toatePaginile<Lead>((de, pana) =>
         supabase.from("leads").select(COLOANE_LEAD).eq("vanzator_id", id).order("ultimul_contact", { ascending: false, nullsFirst: false }).order("id").range(de, pana),
       ),
-      supabase.from("profiles").select("id, nume").eq("activ", true).neq("id", id).order("nume"),
+      supabase.from("profiles").select("id, nume").or(`activ.eq.true,id.eq.${id}`).order("nume"),
       supabase.from("liste").select("id, nume, folder_id, leads(count)").order("creat_la", { ascending: false }),
-      supabase.from("foldere").select("id, nume"),
+      supabase.from("foldere").select("id, nume, vanzator_id"),
     ]);
     setLeaduri(l.data);
-    setOameni((p.data as Persoana[]) ?? []);
+    setOameni(((p.data as Persoana[]) ?? []).filter((o) => o.id !== id));
+    setNumeComplet((p.data as Persoana[] | null)?.find((o) => o.id === id)?.nume ?? nume);
     setListe((li.data as Lista[]) ?? []);
     setFoldere((fo.data as FolderInfo[]) ?? []);
-  }, [id]);
+  }, [id, nume]);
   useIncarca(incarca);
 
   const numarate = useMemo(() => {
@@ -156,7 +158,7 @@ export default function LeaduriMembru({ id, nume, laSchimbare }: { id: string; n
         </p>
       ) : (
         <>
-          <BandaFoldere leaduri={leaduri} fisiere={liste} foldere={foldere} ales={fisierAles} laAlegere={setFisierAles} />
+          <BandaFoldere leaduri={leaduri} fisiere={liste} foldere={foldere} ales={fisierAles} laAlegere={setFisierAles} persoana={{ id, nume: numeComplet }} />
 
           <div className="flex flex-wrap gap-1.5">
             <Filtru activ={status === ""} onClick={() => setStatus("")} eticheta="Toate" numar={leaduri.length} />
