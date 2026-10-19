@@ -7,6 +7,7 @@ import FormularLead, { curata, dateGoale } from "@/echipa/components/FormularLea
 import { IconInapoi } from "@/echipa/components/icons";
 import { useProfil } from "@/echipa/components/ProfilContext";
 import { Buton, Card, Mesaj, TitluPagina } from "@/echipa/components/ui";
+import { areMero, areTelefon } from "@/echipa/lib/curatenie";
 import { MESAJ_DUPLICAT, mesajEroare } from "@/echipa/lib/leaduri";
 import { useIncarca } from "@/echipa/lib/hooks";
 import { supabaseBrowser } from "@/echipa/lib/supabase-browser";
@@ -30,6 +31,8 @@ export default function LeadNou() {
     e.preventDefault();
     setEroare("");
     if (!date.afacere.trim()) return setEroare("Scrie numele afacerii.");
+    if (!areTelefon(date)) return setEroare("Adaugă un număr de telefon. Fără telefon lead-ul nu poate fi sunat.");
+    if (areMero(date.site)) return setEroare("Afacerea folosește deja Mero, așa că nu e un lead potrivit pentru noi.");
     setSeSalveaza(true);
     const supabase = supabaseBrowser();
 

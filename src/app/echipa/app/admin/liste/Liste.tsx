@@ -184,7 +184,7 @@ export default function Liste() {
         const deImportat = verificate.filter((r) => !r.motiv).map((r) => r.date);
         const sarite = verificate.length - deImportat.length;
         if (!deImportat.length) {
-          rez.push({ fisier: f.name, text: `Nimic nou: toate cele ${verificate.length} rânduri erau duplicate sau incomplete.`, eroare: true });
+          rez.push({ fisier: f.name, text: `Nimic nou: toate cele ${verificate.length} rânduri erau duplicate, fără telefon, cu Mero sau incomplete.`, eroare: true });
           continue;
         }
         const { data: fisier, error } = await supabase
@@ -206,7 +206,7 @@ export default function Liste() {
         }
         rez.push({
           fisier: f.name,
-          text: `${importate} lead-uri importate${cui ? ` pentru ${nume[cui] ?? ""}` : ""}${sarite ? `, ${sarite} sărite (duplicate sau incomplete)` : ""}.`,
+          text: `${importate} lead-uri importate${cui ? ` pentru ${nume[cui] ?? ""}` : ""}${sarite ? `, ${sarite} sărite (duplicate, fără telefon, cu Mero sau incomplete)` : ""}.`,
           eroare: importate < deImportat.length,
         });
       } catch {

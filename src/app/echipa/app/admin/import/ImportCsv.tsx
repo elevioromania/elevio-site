@@ -304,7 +304,7 @@ export default function ImportCsv({ compact, vanzatorImplicit = "", laGata }: { 
               <h2 className="font-semibold">Rezultatul verificării</h2>
               <p className="text-sm text-echipa-muted">
                 <span className="text-emerald-300">{nrBune} de importat</span>
-                {nrDuplicate > 0 && <span className="text-amber-300">, {nrDuplicate} sărite (duplicate sau incomplete)</span>}
+                {nrDuplicate > 0 && <span className="text-amber-300">, {nrDuplicate} sărite (duplicate, fără telefon, cu Mero sau incomplete)</span>}
               </p>
             </div>
             <Buton varianta="succes" mare onClick={importa} disabled={!nrBune || stare !== ""}>

@@ -4,6 +4,7 @@
 import type { SupabaseClient } from "@supabase/supabase-js";
 import { LISTA_NISE, type Nisa } from "../config";
 import { normal } from "./format";
+import { motivCuratenie } from "./curatenie";
 
 // Câmpurile din baza de date și numele de coloană recomandat în CSV.
 export const CAMPURI: { camp: string; eticheta: string; coloana: string; obligatoriu?: boolean; alias?: RegExp }[] = [
@@ -67,7 +68,8 @@ export function transforma(randuri: Record<string, string>[], mapare: Record<str
 
 export type RandPregatit = { date: Record<string, string | null>; motiv: string | null };
 
-// Marchează rândurile fără nume, cele care există deja în baza de date și dublurile din fișier.
+// Marchează rândurile fără nume, fără telefon sau cu Mero, cele care există deja în baza de date
+// și dublurile din fișier.
 // `vazute` se poate da mai departe între fișiere, ca să prindă dublurile dintre ele.
 export async function verificaRanduri(
   supabase: SupabaseClient,
@@ -88,6 +90,7 @@ export async function verificaRanduri(
   return transformate.map((r, i) => {
     let motiv: string | null = null;
     if (!r.afacere) motiv = "Lipsește numele afacerii";
+    else if (motivCuratenie(r)) motiv = motivCuratenie(r);
     else if (existente[i]) motiv = "Există deja în baza de date";
     else {
       const k = cheieLocala(r);
