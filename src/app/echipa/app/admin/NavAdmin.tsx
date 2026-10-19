@@ -9,6 +9,7 @@ const TABURI = [
   { href: "/echipa/app/admin/leaduri", eticheta: "Lead-uri și atribuire" },
   { href: "/echipa/app/admin/liste", eticheta: "Foldere de lead-uri" },
   { href: "/echipa/app/admin/import", eticheta: "Importă lead-uri" },
+  { href: "/echipa/app/admin/curatenie", eticheta: "Curățenie lead-uri" },
   { href: "/echipa/app/admin/comisioane", eticheta: "Lead-uri închise și comisioane" },
   { href: "/echipa/app/admin/sesiuni", eticheta: "Sesiuni și anunțuri" },
   { href: "/echipa/app/admin/utilizatori", eticheta: "Utilizatori" },
