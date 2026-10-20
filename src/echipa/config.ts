@@ -200,6 +200,7 @@ export const LISTA_NISE = Object.keys(NISE) as Nisa[];
 export type Status =
   | "nou"
   | "nu_a_raspuns"
+  | "mesaj_trimis"
   | "de_resunat"
   | "aproape"
   | "intalnire"
@@ -220,6 +221,12 @@ export const STATUSURI: Record<Status, InfoStatus> = {
     culoare: "Mov",
     hex: "#B794F6",
     descriere: "De încercat din nou, la altă oră sau în altă zi",
+  },
+  mesaj_trimis: {
+    eticheta: "Mesaj / mail trimis",
+    culoare: "Turcoaz",
+    hex: "#2DD4BF",
+    descriere: "I-ai scris pe mesaj, WhatsApp sau mail și aștepți răspuns",
   },
   de_resunat: {
     eticheta: "De resunat",

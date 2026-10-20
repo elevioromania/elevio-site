@@ -97,18 +97,18 @@ export default function SchimbareRapida({
           {status === lead.status && (
             <label className="flex items-center gap-2 text-sm">
               <input type="checkbox" checked={amSunat} onChange={(e) => setAmSunat(e.target.checked)} />
-              Am sunat acum (se numără ca apel)
+              {status === "mesaj_trimis" ? "Am mai trimis un mesaj acum (se numără ca activitate)" : "Am sunat acum (se numără ca apel)"}
             </label>
           )}
           <Camp eticheta="Notiță" htmlFor="sr-notita">
-            <textarea id="sr-notita" rows={2} className="camp" placeholder="Cum a mers apelul?" value={notita} onChange={(e) => setNotita(e.target.value)} />
+            <textarea id="sr-notita" rows={2} className="camp" placeholder={status === "mesaj_trimis" ? "Ce i-ai scris și pe unde (WhatsApp, SMS, mail)?" : "Cum a mers apelul?"} value={notita} onChange={(e) => setNotita(e.target.value)} />
           </Camp>
           <div className="grid gap-4 sm:grid-cols-2">
             <Camp eticheta="Următorul pas: când" htmlFor="sr-pas-data">
               <input id="sr-pas-data" type="datetime-local" className="camp" value={pasData} onChange={(e) => setPasData(e.target.value)} />
             </Camp>
             <Camp eticheta="Ce faci" htmlFor="sr-pas-text">
-              <input id="sr-pas-text" className="camp" placeholder="De ex. sun după 14:00" value={pasText} onChange={(e) => setPasText(e.target.value)} />
+              <input id="sr-pas-text" className="camp" placeholder={status === "mesaj_trimis" ? "De ex. revin dacă nu răspunde până joi" : "De ex. sun după 14:00"} value={pasText} onChange={(e) => setPasText(e.target.value)} />
             </Camp>
           </div>
         </div>
