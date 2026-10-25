@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Logo from "./Logo";
+import LegalFooterLinks from "./LegalFooterLinks";
 
 export default function Footer() {
   return (
@@ -57,6 +58,12 @@ export default function Footer() {
               </a>
             </li>
           </ul>
+        </div>
+      </div>
+
+      <div className="border-t border-white/10">
+        <div className="container-elevio py-6">
+          <LegalFooterLinks />
         </div>
       </div>
 

@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useState, type FormEvent } from "react";
 
 const BUSINESS_TYPES = [
@@ -189,6 +190,13 @@ export default function LeadForm({
 
       <p className="text-center text-xs text-elevio-dark/45">
         Te contactăm doar pentru demo. Zero spam, zero newslettere.
+      </p>
+      <p className="text-center text-xs text-elevio-dark/45">
+        Prin trimiterea formularului, datele tale sunt prelucrate conform{" "}
+        <Link href="/confidentialitate" className="underline underline-offset-2 hover:text-elevio-primary">
+          Politicii de confidențialitate
+        </Link>
+        .
       </p>
     </form>
   );

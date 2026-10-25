@@ -1,5 +1,6 @@
 import Link from "next/link";
 import MarketingLogo from "./MarketingLogo";
+import LegalFooterLinks from "../LegalFooterLinks";
 
 export default function MarketingFooter() {
   return (
@@ -51,6 +52,12 @@ export default function MarketingFooter() {
               </a>
             </li>
           </ul>
+        </div>
+      </div>
+
+      <div className="border-t border-marketing-border">
+        <div className="container-elevio py-6">
+          <LegalFooterLinks hoverClass="hover:text-marketing-accent" />
         </div>
       </div>
 

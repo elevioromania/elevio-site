@@ -55,7 +55,7 @@ export default function PricingCards() {
                   tier.highlighted ? "text-white/60" : "text-elevio-dark/50"
                 }`}
               >
-                {tier.period}
+                {tier.period} + TVA
               </span>
             </div>
             <p

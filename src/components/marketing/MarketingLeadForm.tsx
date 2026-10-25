@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useState, type FormEvent } from "react";
 
 const SERVICES = [
@@ -186,6 +187,13 @@ export default function MarketingLeadForm() {
 
       <p className="text-center text-xs text-white/45">
         Te contactăm doar pentru ofertă. Zero spam, zero newslettere.
+      </p>
+      <p className="text-center text-xs text-white/45">
+        Prin trimiterea formularului, datele tale sunt prelucrate conform{" "}
+        <Link href="/confidentialitate" className="underline underline-offset-2 hover:text-marketing-accent">
+          Politicii de confidențialitate
+        </Link>
+        .
       </p>
     </form>
   );

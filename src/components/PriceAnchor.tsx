@@ -6,7 +6,7 @@ const ROWS = [
   {
     label: "Cost lunar",
     human: "800€+ · salariu, taxe, training",
-    elevio: `De la ${CHEAPEST_TIER.price}, totul inclus`,
+    elevio: `De la ${CHEAPEST_TIER.price} + TVA`,
   },
   {
     label: "Program",
@@ -45,7 +45,7 @@ export default function PriceAnchor({
           <h2 className="mt-3 text-balance text-3xl font-extrabold tracking-tight text-elevio-dark sm:text-4xl">
             Un angajat la recepție costă 800€+ pe lună.
             <br />
-            Elevio pornește de la {CHEAPEST_TIER.price}.
+            Elevio pornește de la {CHEAPEST_TIER.price} + TVA.
           </h2>
           <p className="mx-auto mt-4 inline-block rounded-full bg-elevio-accent/15 px-4 py-1.5 text-xs font-semibold text-elevio-accent">
             {LAUNCH_OFFER_TEXT}
