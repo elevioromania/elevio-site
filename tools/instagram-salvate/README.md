@@ -22,7 +22,21 @@ Windows `set ANTHROPIC_API_KEY=...` / macOS-Linux `export ANTHROPIC_API_KEY=...`
 **Fără cheie?** Rulează doar `login`, `descarca`, `transcrie`, apoi cere-i lui Claude Code să facă
 analiza (skill-ul `instagram-salvate` îi explică exact cum).
 
-## Folosire
+## Varianta fără risc pentru cont (recomandată, merge și de pe telefon)
+
+1. În aplicația Instagram: Profil → ☰ → Centrul de conturi → Informațiile și permisiunile tale →
+   Exportă informațiile tale → Creează export → Exportă pe dispozitiv → Personalizează: bifează doar
+   **Salvate** → Interval: **Tot timpul** → Format: **JSON** → Începe exportul.
+2. Când e gata (minute–ore), descarci zip-ul și:
+   ```bash
+   python ig_salvate.py importa cale/catre/export.zip
+   python ig_salvate.py descarca-fara-cont      # ca vizitator anonim, contul nu e implicat
+   python ig_salvate.py transcrie
+   ```
+Postările care nu se pot lua anonim (cele doar cu poze, cele private) rămân cu link și pot fi luate
+ulterior cu varianta cu login, doar pentru ele.
+
+## Folosire (varianta cu login)
 
 ```bash
 python ig_salvate.py login            # se deschide un browser: te loghezi TU pe Instagram (cu 2FA)

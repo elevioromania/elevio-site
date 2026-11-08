@@ -338,6 +338,94 @@ def cmd_descarca(args) -> None:
     log(f"Gata: {total} postări salvate ({noi} noi) în {POSTARI}")
 
 
+# ─────── varianta FĂRĂ RISC: exportul oficial + descărcare fără cont ───────
+
+RE_LINK = re.compile(r"https?://(?:www\.)?instagram\.com/(p|reel|reels|tv)/([A-Za-z0-9_-]{5,})")
+
+
+def cmd_importa(args) -> None:
+    """Citește exportul oficial Instagram („Descarcă informațiile tale” → Elemente salvate)
+    și creează câte un dosar pentru fiecare postare salvată. Zero risc: nu atinge contul."""
+    import zipfile
+
+    sursa = Path(args.cale).expanduser()
+    texte: list[str] = []
+    if sursa.is_dir():
+        for f in sorted(sursa.rglob("*")):
+            if f.suffix.lower() in (".json", ".html", ".txt"):
+                texte.append(f.read_text(encoding="utf-8", errors="ignore"))
+    elif sursa.suffix.lower() == ".zip":
+        with zipfile.ZipFile(sursa) as z:
+            for n in z.namelist():
+                if n.lower().endswith((".json", ".html")) and ("saved" in n.lower() or "salvat" in n.lower() or args.tot_zipul):
+                    texte.append(z.read(n).decode("utf-8", errors="ignore"))
+    else:
+        texte.append(sursa.read_text(encoding="utf-8", errors="ignore"))
+
+    vazute: dict[str, str] = {}
+    for t in texte:
+        for tip, cod in RE_LINK.findall(t.replace("\\/", "/")):
+            vazute.setdefault(cod, "reel" if tip.startswith("reel") else tip)
+    if not vazute:
+        sys.exit("N-am găsit niciun link de postare în export. Verifică dacă ai bifat „Elemente salvate”.")
+    noi = 0
+    for i, (cod, tip) in enumerate(vazute.items(), 1):
+        dosar = POSTARI / cod
+        if (dosar / "meta.json").exists():
+            continue
+        scrie_json(dosar / "meta.json", {
+            "cod": cod, "url": f"https://www.instagram.com/{'reel' if tip == 'reel' else 'p'}/{cod}/",
+            "tip": tip, "autor": None, "descriere": "", "elemente": [], "colectii": [],
+            "ordine_salvare": i, "sursa": "export-oficial",
+        })
+        noi += 1
+    log(f"Import: {len(vazute)} postări salvate găsite în export ({noi} noi) → {POSTARI}")
+
+
+def cmd_descarca_fara_cont(args) -> None:
+    """Descarcă postările importate ca vizitator anonim (fără cookie) — contul tău nu e implicat."""
+    try:
+        import yt_dlp
+    except ImportError:
+        sys.exit("Lipsește yt-dlp: pip install yt-dlp")
+    de_facut = [d for d in toate_postarile()
+                if not citeste_json(d / "meta.json", {}).get("descarcat_anonim") and not list(d.glob("video_*.mp4"))]
+    if args.limita:
+        de_facut = de_facut[: args.limita]
+    log(f"Descarc anonim {len(de_facut)} postări (încet, cu pauze)…")
+    esecuri_la_rand = 0
+    for i, dosar in enumerate(de_facut, 1):
+        meta = citeste_json(dosar / "meta.json", {})
+        opt = {"outtmpl": str(dosar / "video_%(playlist_index|1)s.%(ext)s"), "format": "best[ext=mp4]/best",
+               "quiet": True, "no_warnings": True, "noprogress": True, "retries": 2,
+               "cookiefile": None, "merge_output_format": "mp4"}
+        try:
+            with yt_dlp.YoutubeDL(opt) as ydl:
+                info = ydl.extract_info(meta["url"], download=True)
+            prim = (info.get("entries") or [info])[0] if info else {}
+            meta.update({
+                "descriere": (info or {}).get("description") or prim.get("description") or meta.get("descriere", ""),
+                "autor": prim.get("uploader_id") or prim.get("channel") or prim.get("uploader") or meta.get("autor"),
+                "autor_nume": prim.get("uploader"),
+                "descarcat_anonim": True,
+            })
+            scrie_json(dosar / "meta.json", meta)
+            esecuri_la_rand = 0
+            log(f"[{i}/{len(de_facut)}] {dosar.name} @{meta.get('autor')} ✓")
+        except Exception as e:
+            esecuri_la_rand += 1
+            mesaj = str(e).splitlines()[0][:160]
+            meta["eroare_anonim"] = mesaj
+            scrie_json(dosar / "meta.json", meta)
+            log(f"[{i}/{len(de_facut)}] {dosar.name} ✗ {mesaj}")
+            if esecuri_la_rand >= 8:
+                log("8 eșecuri la rând — Instagram blochează accesul anonim acum. Opresc; reia mai târziu.")
+                break
+        pauza(args.pauza_min, args.pauza_min * 2)
+    ok = sum(1 for d in toate_postarile() if citeste_json(d / "meta.json", {}).get("descarcat_anonim"))
+    log(f"Gata. Descărcate anonim până acum: {ok}. Postările doar-cu-poze nu se pot lua anonim (rămân cu link).")
+
+
 # ───────────────────────────── 3. transcriere ─────────────────────────────
 
 def ffmpeg_exe() -> str | None:
@@ -732,6 +820,7 @@ def main() -> None:
     def comune(p, descarcare=False, transcriere=False, analiza=False):
         p.add_argument("--limita", type=int, default=0, help="procesează doar primele N postări (test)")
         p.add_argument("--refa", action="store_true", help="refă și ce e deja făcut")
+        p.add_argument("--pauza-min", type=float, default=8.0, help="pauza minimă (secunde) între postări la descărcarea anonimă")
         if descarcare:
             p.add_argument("--max-elemente", type=int, default=10, help="max. elemente dintr-un carusel")
         if transcriere:
@@ -742,6 +831,7 @@ def main() -> None:
 
     for nume, f, kw in [
         ("descarca", cmd_descarca, dict(descarcare=True)),
+        ("descarca-fara-cont", cmd_descarca_fara_cont, {}),
         ("transcrie", cmd_transcrie, dict(transcriere=True)),
         ("analizeaza", cmd_analizeaza, dict(analiza=True)),
         ("randeaza", cmd_randeaza, {}),
@@ -754,6 +844,11 @@ def main() -> None:
         p.set_defaults(f=f)
         if nume == "seo":
             p.set_defaults(effort="high")  # sinteza merită mai multă gândire
+
+    p = sub.add_parser("importa", help="importă exportul oficial Instagram (zip/folder/json) — fără risc")
+    p.add_argument("cale")
+    p.add_argument("--tot-zipul", action="store_true", help="caută link-uri în tot zip-ul, nu doar în fișierele „saved”")
+    p.set_defaults(f=cmd_importa)
 
     args = ap.parse_args()
     args.f(args)
