@@ -135,13 +135,6 @@ Aproape tot planul se face **fără bani**: munca e scrisul paginilor (fac eu) �
 - Testul cu Google Ads, înlocuit cu **testul de titluri din Search Console** (gratuit, mai lent). Keyword Planner merge și cu un cont Google Ads fără nicio campanie activă: arată intervale de volum în loc de cifre exacte, dar e suficient.
 - Gamma, dacă nu vrei nici cei ~15 €: Gamma gratuit pentru prezentările de vânzări, iar pentru SEO ghidurile merg pe **Google Sites** sau **Notion** public (gratuit, se indexează).
 
----|---|
-| Gamma Pro: necesar ca paginile Gamma să fie indexate de Google; implicit nu sunt | ~10–20 USD/lună |
-| Opțional: un advertorial pe un site românesc de business (în loc de directoarele internaționale plătite) | ~50–200 EUR |
-| Comunicat pe comunicatedepresa.ro, pachetul Premium (3 linkuri do-follow) | 48 EUR |
-| Domeniul elevioai.ro | ~10 EUR/an |
-| Opțional: Google Ads 5–7 zile pe 3 variante de titlu, ca test de CTR, plus acces complet la Keyword Planner | ~100–150 EUR |
-| **Total** | **~80 EUR minim; ~250–400 EUR cu advertorialul și testul Ads** |
 
 ---
 
