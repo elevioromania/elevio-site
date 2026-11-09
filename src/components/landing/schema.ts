@@ -17,7 +17,7 @@ export const ELEVIO_ORG = {
   url: SITE_URL,
   description: "Elevio AI, recepționer vocal AI în limba română.",
   disambiguatingDescription:
-    "Elevio AI este un recepționer vocal AI pentru firme din România. Nu are legătură cu platforma școlară elevio.ro sau cu produsul elev.io.",
+    "Elevio AI (elevio-agency.ro) este un recepționer vocal AI pentru firme din România. Nu are legătură cu platforma școlară elevio.ro, cu produsul elev.io, cu elevio-ai.com sau cu Levio Health.",
 };
 
 export function faqPageSchema(items: FaqItem[]) {

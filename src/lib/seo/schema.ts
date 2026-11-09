@@ -25,7 +25,7 @@ export function organizationJsonLd(): JsonLdObject {
     image: absoluteUrl("/opengraph-image"),
     description: DEFAULT_DESCRIPTION,
     disambiguatingDescription:
-      "Elevio AI este un recepționer vocal AI pentru firme din România. Nu are legătură cu platforma școlară Elevio (elevio.ro) sau cu Elevio (elev.io).",
+      "Elevio AI (elevio-agency.ro) este un recepționer vocal AI pentru firme din România. Nu are legătură cu platforma școlară Elevio (elevio.ro), cu Elevio (elev.io), cu elevio-ai.com sau cu Levio Health.",
     email: CONTACT_EMAIL,
     areaServed: { "@type": "Country", name: "România", identifier: "RO" },
     knowsLanguage: ["ro", "en"],
