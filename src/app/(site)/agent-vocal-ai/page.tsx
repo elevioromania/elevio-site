@@ -3,6 +3,7 @@ import Link from "next/link";
 import AudioProof from "@/components/AudioProof";
 import CallDemoCard from "@/components/CallDemoCard";
 import CardGrid from "@/components/landing/CardGrid";
+import AboutFounder from "@/components/landing/AboutFounder";
 import CompareTable from "@/components/landing/CompareTable";
 import DemoCta from "@/components/landing/DemoCta";
 import FaqBlock from "@/components/landing/FaqBlock";
@@ -102,6 +103,18 @@ const FAQ: FaqItem[] = [
   {
     q: "Cât durează până pornește și există contract pe termen lung?",
     a: "Configurarea durează câteva zile. Nu există contract pe termen lung.",
+  },
+  {
+    q: "Câte apeluri preia în același timp?",
+    a: "2 apeluri simultane la START, 5 la PRO și 10 la BUSINESS. Clienții nu mai primesc „ocupat” când sună mai mulți deodată.",
+  },
+  {
+    q: "Pot să-l pun doar pe apelurile la care nu răspund?",
+    a: "Da. Agentul poate prelua toate apelurile sau doar pe cele la care nu răspunde nimeni. Pe mobil se face cu [redirecționarea condiționată](/ghid/redirectionare-apeluri).",
+  },
+  {
+    q: "Clienții află că vorbesc cu un AI?",
+    a: "Da. Agentul se prezintă ca asistent virtual din prima frază. E corect față de clienți și e cerut de AI Act. Detalii în ghidul despre [AI Act și GDPR](/ghid/ai-act-gdpr-receptioner-ai).",
   },
 ];
 
@@ -236,6 +249,8 @@ export default function AgentVocalAiPage() {
       </Section>
 
       <FaqBlock items={FAQ} />
+
+      <AboutFounder />
 
       <RelatedLinks
         links={[

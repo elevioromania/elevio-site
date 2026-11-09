@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import CardGrid from "@/components/landing/CardGrid";
+import AboutFounder from "@/components/landing/AboutFounder";
 import CompareTable from "@/components/landing/CompareTable";
 import DemoCta from "@/components/landing/DemoCta";
 import FaqBlock from "@/components/landing/FaqBlock";
@@ -88,6 +89,18 @@ const FAQ: FaqItem[] = [
   {
     q: "Cât costă un robot telefonic AI pentru programări?",
     a: "La Elevio AI, de la 150 €/lună (START), 300 €/lună (PRO) sau 600 €/lună (BUSINESS), toate + TVA, plus taxa de implementare. Programarea automată în calendar și confirmarea prin SMS sunt incluse de la planul PRO. Detalii pe pagina de [prețuri](/preturi).",
+  },
+  {
+    q: "Câte apeluri preia robotul în același timp?",
+    a: "2 apeluri simultane la START, 5 la PRO și 10 la BUSINESS, deci clienții nu mai așteaptă la coadă.",
+  },
+  {
+    q: "În ce limbi vorbește?",
+    a: "În română, la toate planurile. De la planul PRO vorbește și engleză.",
+  },
+  {
+    q: "Pot păstra meniul IVR pe care îl am?",
+    a: "Da. O opțiune din meniu sau apelurile din afara programului pot fi trimise către robotul AI. Diferențele le găsești în ghidul [robot telefonic AI vs IVR](/ghid/robot-telefonic-vs-ivr).",
   },
 ];
 
@@ -218,6 +231,8 @@ export default function RobotTelefonicAiPage() {
       </Section>
 
       <FaqBlock items={FAQ} />
+
+      <AboutFounder />
 
       <RelatedLinks
         links={[
