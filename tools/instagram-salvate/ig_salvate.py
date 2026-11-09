@@ -97,10 +97,16 @@ def pauza(a: float, b: float) -> None:
     time.sleep(random.uniform(a, b))
 
 
+RECENTE = int(os.environ.get("IG_RECENTE", "0") or 0)  # setat din --recente
+
+
 def toate_postarile() -> list[Path]:
+    """Dosarele postărilor, de la cea mai recent salvată; doar primele RECENTE dacă e setat."""
     if not POSTARI.exists():
         return []
-    return sorted(p for p in POSTARI.iterdir() if (p / "meta.json").exists())
+    dosare = [p for p in POSTARI.iterdir() if (p / "meta.json").exists()]
+    dosare.sort(key=lambda p: (citeste_json(p / "meta.json", {}).get("ordine_salvare") or 10**9, p.name))
+    return dosare[:RECENTE] if RECENTE else dosare
 
 
 # ───────────────────────────── 1. login ─────────────────────────────
@@ -343,6 +349,28 @@ def cmd_descarca(args) -> None:
 RE_LINK = re.compile(r"https?://(?:www\.)?instagram\.com/(p|reel|reels|tv)/([A-Za-z0-9_-]{5,})")
 
 
+def parseaza_export_html(t: str) -> dict[str, dict]:
+    """Din saved_posts.html / saved_collections.html: cod → autor, descriere, data salvării."""
+    import html as h
+
+    rez: dict[str, dict] = {}
+    bucati = re.split(r'URL<div><a target="_blank" href="', t)
+    colectie = None
+    for b in bucati[1:]:
+        m = RE_LINK.match(b)
+        if not m:
+            continue
+        cap = re.search(r'>Caption</td><td[^>]*>(.*?)</td>', b, re.S)
+        user = re.search(r'>Username</td><td[^>]*>(.*?)</td>', b, re.S)
+        data = re.search(r'_a6-o">([A-Z][a-z]{2} \d{1,2}, \d{4}[^<]*)</div>', b)
+        rez[m.group(2)] = {
+            "descriere": h.unescape(re.sub(r"<[^>]+>", "", cap.group(1))).strip() if cap else "",
+            "autor": h.unescape(user.group(1)).strip() if user else None,
+            "salvat_la": data.group(1).strip() if data else None,
+        }
+    return rez
+
+
 def cmd_importa(args) -> None:
     """Citește exportul oficial Instagram („Descarcă informațiile tale” → Elemente salvate)
     și creează câte un dosar pentru fiecare postare salvată. Zero risc: nu atinge contul."""
@@ -363,7 +391,9 @@ def cmd_importa(args) -> None:
         texte.append(sursa.read_text(encoding="utf-8", errors="ignore"))
 
     vazute: dict[str, str] = {}
+    detalii: dict[str, dict] = {}
     for t in texte:
+        detalii.update({k: v for k, v in parseaza_export_html(t).items() if k not in detalii})
         for tip, cod in RE_LINK.findall(t.replace("\\/", "/")):
             vazute.setdefault(cod, "reel" if tip.startswith("reel") else tip)
     if not vazute:
@@ -371,11 +401,18 @@ def cmd_importa(args) -> None:
     noi = 0
     for i, (cod, tip) in enumerate(vazute.items(), 1):
         dosar = POSTARI / cod
-        if (dosar / "meta.json").exists():
+        d = detalii.get(cod, {})
+        vechi = citeste_json(dosar / "meta.json", None)
+        if vechi:  # completăm doar ce lipsește
+            for k in ("autor", "descriere", "salvat_la"):
+                if d.get(k) and not vechi.get(k):
+                    vechi[k] = d[k]
+            scrie_json(dosar / "meta.json", vechi)
             continue
         scrie_json(dosar / "meta.json", {
             "cod": cod, "url": f"https://www.instagram.com/{'reel' if tip == 'reel' else 'p'}/{cod}/",
-            "tip": tip, "autor": None, "descriere": "", "elemente": [], "colectii": [],
+            "tip": tip, "autor": d.get("autor"), "descriere": d.get("descriere", ""),
+            "salvat_la": d.get("salvat_la"), "elemente": [], "colectii": d.get("colectii", []),
             "ordine_salvare": i, "sursa": "export-oficial",
         })
         noi += 1
@@ -400,12 +437,21 @@ def cmd_descarca_fara_cont(args) -> None:
                "quiet": True, "no_warnings": True, "noprogress": True, "retries": 2,
                "cookiefile": None, "merge_output_format": "mp4"}
         try:
-            with yt_dlp.YoutubeDL(opt) as ydl:
-                info = ydl.extract_info(meta["url"], download=True)
+            for incercare in range(3):
+                try:
+                    with yt_dlp.YoutubeDL(opt) as ydl:
+                        info = ydl.extract_info(meta["url"], download=True)
+                    break
+                except Exception as e:
+                    if "429" not in str(e) or incercare == 2:
+                        raise
+                    asteapta = 120 * (incercare + 1)
+                    log(f"    Instagram zice „prea multe cereri” — aștept {asteapta}s…")
+                    time.sleep(asteapta)
             prim = (info.get("entries") or [info])[0] if info else {}
             meta.update({
-                "descriere": (info or {}).get("description") or prim.get("description") or meta.get("descriere", ""),
-                "autor": prim.get("uploader_id") or prim.get("channel") or prim.get("uploader") or meta.get("autor"),
+                "descriere": meta.get("descriere") or (info or {}).get("description") or prim.get("description") or "",
+                "autor": meta.get("autor") or prim.get("channel") or prim.get("uploader_id"),
                 "autor_nume": prim.get("uploader"),
                 "descarcat_anonim": True,
             })
@@ -418,7 +464,7 @@ def cmd_descarca_fara_cont(args) -> None:
             meta["eroare_anonim"] = mesaj
             scrie_json(dosar / "meta.json", meta)
             log(f"[{i}/{len(de_facut)}] {dosar.name} ✗ {mesaj}")
-            if esecuri_la_rand >= 8:
+            if esecuri_la_rand >= 6:
                 log("8 eșecuri la rând — Instagram blochează accesul anonim acum. Opresc; reia mai târziu.")
                 break
         pauza(args.pauza_min, args.pauza_min * 2)
@@ -819,6 +865,7 @@ def main() -> None:
 
     def comune(p, descarcare=False, transcriere=False, analiza=False):
         p.add_argument("--limita", type=int, default=0, help="procesează doar primele N postări (test)")
+        p.add_argument("--recente", type=int, default=0, help="lucrează doar pe cele mai recent salvate N postări")
         p.add_argument("--refa", action="store_true", help="refă și ce e deja făcut")
         p.add_argument("--pauza-min", type=float, default=8.0, help="pauza minimă (secunde) între postări la descărcarea anonimă")
         if descarcare:
@@ -851,6 +898,9 @@ def main() -> None:
     p.set_defaults(f=cmd_importa)
 
     args = ap.parse_args()
+    global RECENTE
+    if getattr(args, "recente", 0):
+        RECENTE = args.recente
     args.f(args)
 
 
