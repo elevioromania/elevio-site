@@ -34,6 +34,12 @@ export const PUBLIC_ROUTES: PublicRoute[] = [
   { path: "/confidentialitate", changeFrequency: "yearly", priority: 0.3, lastModified: "2026-11-09" },
   { path: "/cookies", changeFrequency: "yearly", priority: 0.3, lastModified: "2026-11-09" },
   { path: "/termeni", changeFrequency: "yearly", priority: 0.3, lastModified: "2026-11-09" },
+  // Pagini SEO principale (noiembrie 2026)
+  { path: "/agent-vocal-ai", changeFrequency: "monthly", priority: 0.9, lastModified: "2026-11-09" },
+  { path: "/receptioner-virtual", changeFrequency: "monthly", priority: 0.9, lastModified: "2026-11-09" },
+  { path: "/robot-telefonic-ai", changeFrequency: "monthly", priority: 0.9, lastModified: "2026-11-09" },
+  { path: "/ghid", changeFrequency: "weekly", priority: 0.7, lastModified: "2026-11-09" },
+  // Ghidurile se adaugă automat din src/lib/ghiduri.ts (vezi sitemap.ts).
 ];
 
 /** URL absolut pentru o cale relativă: absoluteUrl("/preturi"). */

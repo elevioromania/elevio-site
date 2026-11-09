@@ -1,3 +1,5 @@
+import type { Metadata } from "next";
+import { pageMetadata as sharedPageMetadata } from "@/lib/seo/metadata";
 import { plainText } from "./RichText";
 import type { Crumb, FaqItem } from "./types";
 
@@ -92,7 +94,12 @@ export function serviceSchema({
   };
 }
 
-/** Metadatele comune: canonical absolut (layout-ul nu are metadataBase), Open Graph. */
+/**
+ * Metadatele comune ale paginilor noi. Delegă la helper-ul global
+ * (src/lib/seo/metadata.ts), ca toate paginile să aibă aceeași imagine OG,
+ * același canonical și aceleași câmpuri Twitter. Titlurile de aici conțin deja
+ * „Elevio AI” (sau sunt complete), deci sunt folosite exact, fără șablon.
+ */
 export function pageMetadata({
   path,
   title,
@@ -103,20 +110,7 @@ export function pageMetadata({
   title: string;
   description: string;
   type?: "website" | "article";
-}) {
-  const url = absoluteUrl(path);
-  return {
-    title,
-    description,
-    alternates: { canonical: url },
-    openGraph: {
-      title,
-      description,
-      url,
-      type,
-      locale: "ro_RO",
-      siteName: "Elevio AI",
-    },
-    twitter: { card: "summary" as const, title, description },
-  };
+}): Metadata {
+  const base = sharedPageMetadata({ title, description, path, absoluteTitle: true });
+  return { ...base, openGraph: { ...base.openGraph, type } };
 }
