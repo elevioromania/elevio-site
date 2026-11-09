@@ -62,7 +62,7 @@ export default function DesprePage() {
             <p>Iar ceea ce construim astăzi este doar începutul.</p>
 
             <p className="text-sm text-elevio-dark/50">
-              Avem și o divizie de marketing pentru afaceri locale —{" "}
+              Avem și o divizie de marketing pentru afaceri locale:{" "}
               <Link
                 href="/marketing"
                 className="font-medium text-elevio-primary underline underline-offset-2 hover:text-elevio-accent"
@@ -79,7 +79,7 @@ export default function DesprePage() {
               <p className="mt-2 text-sm leading-relaxed text-elevio-dark/75">
                 Elevio nu improvizează niciodată. Când nu are un răspuns
                 sigur la o întrebare, transferă apelul direct pe telefonul
-                tău, în câteva secunde — nu inventează informații despre
+                tău, în câteva secunde. Nu inventează informații despre
                 afacerea ta.
               </p>
             </div>
@@ -92,7 +92,7 @@ export default function DesprePage() {
             <ul className="mt-4 space-y-4 text-sm text-elevio-dark/75">
               <li>
                 <strong className="block text-elevio-dark">Poziționare</strong>
-                Niciun apel ratat, niciun client pierdut — recepționer vocal
+                Niciun apel ratat, niciun client pierdut: recepționer vocal
                 AI în română, 24/7.
               </li>
               <li>

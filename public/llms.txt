@@ -1,15 +1,18 @@
 # Elevio AI
 
-> Elevio AI este un recepționer vocal AI în limba română, disponibil 24/7, pentru firme mici din România: răspunde la telefon în locul echipei, preia programări și comenzi, oferă informații și transferă apelul la un om când nu are un răspuns sigur. Elevio AI nu are legătură cu platforma școlară Elevio (elevio.ro) sau cu Elevio (elev.io).
+> Elevio AI este un recepționer vocal AI în limba română, disponibil 24/7, pentru afaceri locale din România: răspunde la telefon în locul echipei, preia programări și comenzi, oferă informații și transferă apelul la un om când nu are un răspuns sigur. Elevio AI nu are legătură cu platforma școlară Elevio (elevio.ro) sau cu Elevio (elev.io).
 
 Site oficial: https://elevio-agency.ro. Contact: elevioromania@gmail.com.
+LinkedIn: https://www.linkedin.com/company/144838334 · Fondator: David Morega (https://www.linkedin.com/in/david-morega/).
 
 ## Fapte cheie
 
 - Ce face: preia apelurile pe numărul de telefon existent al firmei, răspunde în ~1 secundă, 24/7, preia programări, rezervări și comenzi, răspunde la întrebări frecvente și trimite echipei un rezumat după fiecare apel.
 - Regula de încredere: nu improvizează. Când nu are un răspuns sigur, transferă apelul pe telefonul firmei, în câteva secunde.
-- Pentru cine: firme mici din România care trăiesc din telefon: restaurante și cafenele, magazine, service-uri auto, cabinete medicale și clinici, saloane și studiouri beauty.
-- Limbi: română; planul PRO adaugă engleza.
+- Pentru cine: afaceri locale din România care trăiesc din telefon: restaurante și cafenele, magazine, service-uri auto, cabinete medicale și clinici, saloane și studiouri beauty.
+- Limbi: română și engleză (engleza e inclusă de la planul PRO).
+- Preia mai multe apeluri în același timp (2, 5 sau 10 simultan, în funcție de plan).
+- Clienți: lucrează deja cu clinici stomatologice, un centru de kinetoterapie și un restaurant.
 - Integrări: calendar (Cal.com, Calendly), confirmări prin SMS / WhatsApp (în planul PRO și peste).
 - Moduri de lucru: recepție completă (preia toate apelurile) sau recepție de rezervă (răspunde doar când echipa nu poate).
 - Fără contract pe termen lung: clientul poate renunța oricând, fără penalizări.

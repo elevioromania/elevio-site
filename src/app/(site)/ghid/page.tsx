@@ -60,7 +60,7 @@ export default function GhiduriPage() {
       <LandingHero
         crumbs={CRUMBS}
         eyebrow="Ghiduri"
-        title="Ghiduri despre agenții vocali AI, pentru firme mici"
+        title="Ghiduri despre agenții vocali AI, pentru afaceri locale"
         lead={
           <p>
             Aici găsești răspunsuri clare la întrebările pe care și le pun patronii

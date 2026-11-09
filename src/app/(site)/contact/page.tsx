@@ -43,7 +43,7 @@ export default function ContactPage() {
               </p>
               <p>
                 Răspundem în aceeași zi lucrătoare. Pentru cel mai rapid mod
-                de a auzi cum sună Elevio, folosește formularul — te sunăm
+                de a auzi cum sună Elevio, folosește formularul: te sunăm
                 imediat.
               </p>
             </div>

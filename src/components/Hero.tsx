@@ -15,7 +15,7 @@ export default function Hero() {
         <div>
           {/* H1-ul paginii e cuvântul cheie (SEO); arată ca insigna de dinainte. */}
           <h1 className="inline-flex items-center rounded-full bg-white/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-wide text-elevio-accent">
-            Elevio AI — recepționer vocal AI în limba română
+            Elevio AI: recepționer vocal AI în limba română
           </h1>
 
           <p className="mt-6 text-balance text-4xl font-extrabold leading-tight tracking-tight text-white sm:text-5xl">
@@ -26,7 +26,7 @@ export default function Hero() {
 
           <p className="mt-6 max-w-xl text-lg leading-relaxed text-white/70">
             Elevio este recepționerul vocal AI care răspunde clienților tăi în
-            română, 24/7 — preia rezervări, oferă informații și răspunde
+            română, 24/7: preia rezervări, oferă informații și răspunde
             tuturor întrebărilor.
           </p>
 

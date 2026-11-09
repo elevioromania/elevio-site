@@ -58,26 +58,26 @@ export default function ConfidentialitatePage() {
       <ul>
         <li>
           <strong>Ca să răspundem cererii tale</strong> (demo, ofertă, mostră
-          audio trimisă pe email, telefonul de follow-up) — temei: demersuri
+          audio trimisă pe email, telefonul de follow-up). Temei: demersuri
           făcute la cererea ta înaintea încheierii unui contract (art. 6 alin.
           (1) lit. b GDPR).
         </li>
         <li>
-          <strong>Ca să prestăm serviciile contractate</strong> — temei:
+          <strong>Ca să prestăm serviciile contractate</strong>. Temei:
           executarea contractului (art. 6 alin. (1) lit. b GDPR).
         </li>
         <li>
-          <strong>Prospectare comercială către firme</strong> — temei: interesul
+          <strong>Prospectare comercială către firme</strong>. Temei: interesul
           nostru legitim de a prezenta serviciile Elevio altor afaceri (art. 6
           alin. (1) lit. f GDPR). Te poți opune oricând, iar atunci nu te mai
           contactăm.
         </li>
         <li>
-          <strong>Obligații legale</strong> (facturare, contabilitate) — temei:
+          <strong>Obligații legale</strong> (facturare, contabilitate). Temei:
           obligație legală (art. 6 alin. (1) lit. c GDPR).
         </li>
         <li>
-          <strong>Securitatea site-ului</strong> — temei: interes legitim (art.
+          <strong>Securitatea site-ului</strong>. Temei: interes legitim (art.
           6 alin. (1) lit. f GDPR).
         </li>
       </ul>
@@ -102,9 +102,9 @@ export default function ConfidentialitatePage() {
         numele nostru și conform instrucțiunilor noastre:
       </p>
       <ul>
-        <li>Netlify — găzduirea site-ului;</li>
-        <li>Google (Gmail / Google Workspace) — email;</li>
-        <li>Supabase — baza de date a platformei interne de lucru;</li>
+        <li>Netlify: găzduirea site-ului;</li>
+        <li>Google (Gmail / Google Workspace): email;</li>
+        <li>Supabase: baza de date a platformei interne de lucru;</li>
         <li>
           furnizorii tehnologiei de voce și inteligență artificială folosite
           pentru agenții vocali, în cazul clienților care folosesc serviciul.

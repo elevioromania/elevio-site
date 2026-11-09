@@ -10,7 +10,7 @@ const TURNS = [
   { who: "client", text: "Da, perfect, vă rog." },
   {
     who: "elevio",
-    text: "Gata — rezervare confirmată, diseară la 20:00, 4 persoane. Primiți acum un SMS de confirmare.",
+    text: "Gata, rezervare confirmată, diseară la 20:00, 4 persoane. Primiți acum un SMS de confirmare.",
   },
 ];
 

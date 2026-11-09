@@ -17,6 +17,8 @@ Fondator, Elevio AI
 https://elevio-agency.ro
 ```
 
+> Mailurile de **vânzare către clienți** (stilul „Passive Script”) sunt în `vanzari/cold-email-clienti.md`. Fișierul ăsta e doar pentru redacții, bloguri și parteneri (SEO).
+
 ---
 
 ## (a) Includere în listă
@@ -35,7 +37,7 @@ Salut, {{prenume}},
 
 Lucrez la Elevio AI, un recepționer vocal AI în limba română. Răspunde 24/7 pe numărul existent al firmei, preia programări și comenzi, verifică disponibilitatea în calendar (Cal.com, Calendly) și transferă apelul la proprietar în câteva secunde când nu e sigur. Clientul primește confirmare prin SMS.
 
-Ai fi dispus să adaugi Elevio AI în listă, la agenți vocali sau la automatizări pentru firme mici? Îți trimit eu o descriere scurtă și corectă, gata de lipit.
+Ai fi dispus să adaugi Elevio AI în listă, la agenți vocali sau la automatizări pentru afaceri locale? Îți trimit eu o descriere scurtă și corectă, gata de lipit.
 
 Dacă nu e de interes, spune-mi și nu te mai deranjez.
 
@@ -63,7 +65,7 @@ David
 **Ce articol oferi:**
 - e-commerce → „Câte comenzi pierde un magazin online care nu răspunde la telefon (și cum repari asta)” (`articol-ecommerce.md`)
 - meserii, construcții, instalații → „Instalatori, electricieni, acoperișuri: cum nu mai pierzi urgențele de la telefon” (`articol-meseriasi.md`)
-- antreprenoriat, IMM, tehnologie → „Agenți vocali AI în 2027: ce trebuie să știe o firmă mică din România înainte să aleagă” (`articol-imm-2027.md`)
+- antreprenoriat, IMM, tehnologie → „Agenți vocali AI în 2027: ce trebuie să știe o afacere locală din România înainte să aleagă” (`articol-imm-2027.md`)
 
 **Subiect (alege unul):**
 1. Articol gata scris pentru {{nume_blog}}, gratuit
@@ -106,15 +108,15 @@ David
 
 **Subiect (alege unul):**
 1. Sursă pentru un material despre IMM-uri și apelurile pierdute
-2. Cât costă o firmă mică un telefon nepreluat? Un comentariu pentru {{publicatie}}
-3. Comentariu despre AI la telefon în firmele mici, dacă vă e util
+2. Cât costă o afacere locală un telefon nepreluat? Un comentariu pentru {{publicatie}}
+3. Comentariu despre AI la telefon în afacerile locale, dacă vă e util
 
 ```text
 Salut, {{prenume}},
 
-{{personalizare}} (ex.: Am citit materialul tău despre lipsa de personal în firmele mici și cum se descurcă patronii cu tot mai puțini oameni.)
+{{personalizare}} (ex.: Am citit materialul tău despre lipsa de personal în afacerile locale și cum se descurcă patronii cu tot mai puțini oameni.)
 
-Sunt fondatorul Elevio AI, un recepționer vocal AI în limba română pentru firme mici. Pentru un material despre IMM-uri, AI sau lipsa de personal, îți pot da un comentariu scurt despre:
+Sunt fondatorul Elevio AI, un recepționer vocal AI în limba română pentru afaceri locale. Pentru un material despre IMM-uri, AI sau lipsa de personal, îți pot da un comentariu scurt despre:
 - cât pierde o firmă din apelurile nepreluate (calcul ilustrativ, nu studiu);
 - ce poate și ce nu poate face azi un agent vocal AI în română;
 - de ce apelantul trebuie să știe că vorbește cu un AI.
@@ -158,7 +160,7 @@ Salut, {{prenume}},
 
 {{personalizare}} (ex.: Am văzut că {{nume_firma}} scrie des pe blog despre cum își umplu saloanele agenda și mi s-a părut foarte practic ghidul despre programările online.)
 
-Eu construiesc Elevio AI, un recepționer vocal AI în limba română. Preia apelurile 24/7 pe numărul existent al firmei, colectează detaliile programării sau comenzii și le transmite structurat. Voi rezolvați partea online; noi, partea de telefon, care la firmele mici rămâne des nepreluată.
+Eu construiesc Elevio AI, un recepționer vocal AI în limba română. Preia apelurile 24/7 pe numărul existent al firmei, colectează detaliile programării sau comenzii și le transmite structurat. Voi rezolvați partea online; noi, partea de telefon, care la afacerile locale rămâne des nepreluată.
 
 Ai fi deschis la un schimb: scriem noi un articol util pentru blogul vostru (de exemplu despre apelurile ratate), iar voi apăreți ca recomandare într-un ghid de pe site-ul nostru?
 
@@ -198,7 +200,7 @@ Salut, {{prenume}},
 
 Mă interesează un articol sponsorizat pe {{nume_blog}}, pentru că cititorii tăi sunt exact oamenii cu care lucrăm: proprietari de {{nisa}}. Suntem Elevio AI, un recepționer vocal AI în limba română, care preia apelurile firmelor 24/7.
 
-Pot scrie eu articolul: util, nu reclamă, cu un singur link, marcat clar ca sponsorizat. Suntem o firmă mică, la început, cu un buget modest.
+Pot scrie eu articolul: util, nu reclamă, cu un singur link, marcat clar ca sponsorizat. Suntem o afacere locală, la început, cu un buget modest.
 
 Care e prețul pentru un astfel de articol?
 

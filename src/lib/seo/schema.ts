@@ -28,10 +28,15 @@ export function organizationJsonLd(): JsonLdObject {
       "Elevio AI este un recepționer vocal AI pentru firme din România. Nu are legătură cu platforma școlară Elevio (elevio.ro) sau cu Elevio (elev.io).",
     email: CONTACT_EMAIL,
     areaServed: { "@type": "Country", name: "România", identifier: "RO" },
-    knowsLanguage: "ro",
-    // TODO: adăugăm URL-urile profilurilor LinkedIn, YouTube și Facebook
-    // când sunt create.
-    sameAs: [],
+    knowsLanguage: ["ro", "en"],
+    // Profilurile oficiale; adaugă aici YouTube / Facebook când există.
+    sameAs: ["https://www.linkedin.com/company/144838334"],
+    founder: {
+      "@type": "Person",
+      name: "David Morega",
+      jobTitle: "Fondator",
+      sameAs: ["https://www.linkedin.com/in/david-morega/"],
+    },
   };
 }
 
@@ -59,7 +64,7 @@ export function receptionistServiceJsonLd(tiers: PricingTier[]): JsonLdObject {
     "@context": CONTEXT,
     "@type": "Service",
     "@id": `${SITE_URL}/preturi#service`,
-    name: "Elevio AI — recepționer vocal AI în limba română",
+    name: "Elevio AI, recepționer vocal AI în limba română",
     serviceType: "Recepționer vocal AI",
     description: DEFAULT_DESCRIPTION,
     url: absoluteUrl("/preturi"),

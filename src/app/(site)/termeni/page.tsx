@@ -97,7 +97,7 @@ export default function TermeniPage() {
         instanțelor din România. Consumatorii pot apela și la procedura de
         soluționare alternativă a litigiilor, pe site-ul{" "}
         <a href="https://anpc.ro/ce-este-sal/" target="_blank" rel="noopener noreferrer">
-          ANPC — SAL
+          ANPC: SAL
         </a>
         .
       </p>

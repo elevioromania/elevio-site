@@ -167,7 +167,7 @@ export default function MarketingLeadForm() {
           className="mt-1.5 w-full resize-y rounded-xl border border-marketing-border bg-marketing-surface px-4 py-3 text-sm text-white placeholder:text-white/35 focus:border-marketing-accent focus:outline-none focus:ring-2 focus:ring-marketing-accent/20"
         />
         <p className="mt-1 text-xs text-white/45">
-          Opțional — ne ajută să pregătim o ofertă potrivită pentru tine.
+          Opțional: ne ajută să pregătim o ofertă potrivită pentru tine.
         </p>
       </div>
 

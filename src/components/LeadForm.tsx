@@ -170,7 +170,7 @@ export default function LeadForm({
           className="mt-1.5 w-full resize-y rounded-xl border border-elevio-border bg-white px-4 py-3 text-sm text-elevio-dark placeholder:text-elevio-dark/35 focus:border-elevio-primary focus:outline-none focus:ring-2 focus:ring-elevio-primary/20"
         />
         <p className="mt-1 text-xs text-elevio-dark/45">
-          Opțional — ne ajută să configurăm agentul potrivit pentru tine.
+          Opțional: ne ajută să configurăm agentul potrivit pentru tine.
         </p>
       </div>
 
