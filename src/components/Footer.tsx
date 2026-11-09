@@ -5,7 +5,7 @@ import LegalFooterLinks from "./LegalFooterLinks";
 export default function Footer() {
   return (
     <footer className="border-t border-white/10 bg-elevio-dark text-white">
-      <div className="container-elevio grid gap-10 py-14 md:grid-cols-4">
+      <div className="container-elevio grid gap-10 py-14 md:grid-cols-5">
         <div className="md:col-span-2">
           <Logo />
           <p className="mt-4 max-w-sm text-sm leading-relaxed text-white/60">
@@ -33,6 +33,25 @@ export default function Footer() {
                 Demo gratuit
               </Link>
             </li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 className="text-sm font-semibold text-white">Soluții</h3>
+          <ul className="mt-4 space-y-3 text-sm text-white/60">
+            {[
+              ["/agent-vocal-ai", "Agent vocal AI"],
+              ["/receptioner-virtual", "Recepționer virtual"],
+              ["/robot-telefonic-ai", "Robot telefonic AI"],
+              ["/industrii", "Pe industrii"],
+              ["/ghid", "Ghiduri"],
+            ].map(([href, label]) => (
+              <li key={href}>
+                <Link href={href} className="hover:text-elevio-accent">
+                  {label}
+                </Link>
+              </li>
+            ))}
           </ul>
         </div>
 
@@ -69,7 +88,7 @@ export default function Footer() {
 
       <div className="border-t border-white/10">
         <div className="container-elevio flex flex-col items-center justify-between gap-2 py-6 text-xs text-white/40 md:flex-row">
-          <p>© {new Date().getFullYear()} Elevio. Toate drepturile rezervate.</p>
+          <p>© {new Date().getFullYear()} Elevio AI. Toate drepturile rezervate.</p>
           <p>Făcut cu grijă, în România.</p>
         </div>
       </div>
