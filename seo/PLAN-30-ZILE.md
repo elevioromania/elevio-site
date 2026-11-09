@@ -19,7 +19,7 @@ Coloana **Cine:** 🤖 = fac eu (cod, conținut, draft-uri) · 👤 = faci tu (c
 
 ### 0.1 Trei probleme care blochează tot
 
-1. **Site-ul live e în urmă față de cod (verificat în Netlify).**
+1. ✅ **Rezolvat pe 9 noiembrie: site-ul live era în urmă față de cod (verificat în Netlify).**
    - Deploy-ul de producție e din **20 octombrie** (commit `f4006fe`).
    - Ultimul commit de pe `main` (`194e7b5`: pagini legale, GDPR la formular, insigna ANPC, „+TVA” la prețuri) **nu a fost publicat niciodată**. Sitemap-ul live are 6 URL-uri în loc de 9.
    - Auto-deploy-ul de pe GitHub probabil nu e activ: deploy-ul vine prin API.
@@ -118,23 +118,27 @@ G2 și Capterra au avut **0 citări** în studiul DerivateX. Le facem pentru bac
 - elevio.ro poate avea drept anterior în România, iar Dixa (elev.io) poate avea marcă UE.
 - Dacă e liber, depui „Elevio AI” la OSIM: costă de ordinul sutelor de lei. O verificare cu un consilier de proprietate industrială e recomandată.
 
-### 1.4 Bugetul: varianta aproape gratuită (sub 20 €) ✅
+### 1.4 Bugetul pe luna asta: maximum 25 € ✅ (decis pe 9 noiembrie)
 
-Aproape tot planul se face **fără bani**: munca e scrisul paginilor (fac eu) și publicarea pe canale gratuite (faci tu). Singurele cheltuieli care merită:
+Gamma Pro rămâne pentru luna următoare. Tot restul planului e **gratuit**. Singura cheltuială este **un articol plătit (sau două mai mici), în total maximum 25 €**.
 
-| Ce | Cost | Obligatoriu? |
+| Ce | Cost | Note |
 |---|---|---|
-| **Gamma Pro, o singură lună:** indexarea în Google e disponibilă doar pe Pro, iar în luna aceea publicăm toate site-urile Gamma. După ce se anulează abonamentul, verificăm dacă rămân indexate; dacă nu, mutăm conținutul pe Google Sites (gratuit). Prețul exact e pe gamma.app/pricing. | ~10–20 USD | Recomandat |
-| Domeniul elevioai.ro (protecție) | ~10 €/an | Opțional, oricând |
-| Comunicat pe comunicatedepresa.ro, pachetul Basic | 9 € | Opțional; pitch-ul direct la redacții e gratuit și valorează mai mult |
-| **Total** | **~15–20 €** | |
+| **Articolul plătit**, varianta 1: comunicat pe comunicatedepresa.ro, pachetul Basic (9 €), care merge la redacții. Plus, din restul de ~15 €, un articol sponsorizat pe un blog românesc de nișă (e-commerce, antreprenoriat, meserii), negociat prin outreach-ul din 4.9. | ~9 € + ~15 € | Recomandat: două mențiuni în loc de una |
+| **Articolul plătit**, varianta 2: comunicatedepresa.ro, pachetul Standard (1 link do-follow, distribuit la ~2.100 de jurnaliști) | 28 € (ușor peste buget; TVA neclar) | Dacă vrei un singur pachet simplu |
+| Domeniul elevioai.ro | ~10 €/an | Amânat |
+| Gamma Pro | ~10–20 USD | Amânat pe luna următoare |
+| **Total luna asta** | **≤ 25 €** | |
 
-**Ce am scos și cu ce l-am înlocuit (gratuit):**
-- Comunicatul plătit Premium, înlocuit cu **pitch-uri directe gratuite** la start-up.ro, StartupCafe, ZF Hi-Tech și Wall-Street.ro. Callio a ajuns pe start-up.ro tot așa.
-- Advertorialul, înlocuit cu **cereri de includere** în listele existente (loleworks, cosimo.dev, aitfel.ro, natix.ro, spotmedia).
-- Testul cu Google Ads, înlocuit cu **testul de titluri din Search Console** (gratuit, mai lent). Keyword Planner merge și cu un cont Google Ads fără nicio campanie activă: arată intervale de volum în loc de cifre exacte, dar e suficient.
-- Gamma, dacă nu vrei nici cei ~15 €: Gamma gratuit pentru prezentările de vânzări, iar pentru SEO ghidurile merg pe **Google Sites** sau **Notion** public (gratuit, se indexează).
+**Cum înlocuim Gamma Pro luna asta:**
+- Ghidurile externe (4.4) merg pe **Google Sites**, care e gratuit, se indexează și se poate verifica în Search Console. Când iei Gamma Pro, le republicăm și acolo, mai frumos.
+- **Gamma gratuit** îl folosești pentru prezentările de vânzări, unde contează designul, nu indexarea.
 
+**Ce mai e gratuit:**
+- **Pitch-uri directe** la start-up.ro, StartupCafe, ZF Hi-Tech și Wall-Street.ro. Callio a ajuns pe start-up.ro tot așa.
+- **Cereri de includere** în listele existente (loleworks, cosimo.dev, aitfel.ro, natix.ro, spotmedia).
+- **Outreach prin e-mail cu tool-ul tău** pentru articole gratuite (vezi 4.9).
+- **Testul de titluri** din Search Console. Keyword Planner merge și cu un cont Google Ads fără nicio campanie activă.
 
 ---
 
@@ -219,7 +223,7 @@ Lista e deschisă. Dacă vinzi deja într-un domeniu care nu e aici, îl adăug�
 - **Anul apare în title, H1 și URL.** URL-ul rămâne fix, iar în ianuarie 2028 îl actualizăm, nu facem altul. Așa păstrăm tot ce a adunat pagina.
 - **Data actualizării e vizibilă pe pagină** („Actualizat: noiembrie 2026”) și în schema `dateModified`. **Actualizăm lunar** cu prețuri noi și concurenți noi. Asta e semnalul de prospețime.
 - **Nu inventăm date „din 2027”.** Ce nu se știe încă (salariul minim, prețurile din 2027) apare marcat ca estimare, cu sursa ultimei valori reale.
-- **Aceeași temă pe toate canalele:** articol LinkedIn „Agenți vocali AI în 2027: ghid pentru firmele din România”, site Gamma „Agenți vocali AI în România 2027”, video YouTube „Recepționer AI în 2027: ce trebuie să știi”. Toate trimit spre pagina de comparație de pe site.
+- **Aceeași temă pe toate canalele:** articol LinkedIn „Agenți vocali AI în 2027: ghid pentru firmele din România”, ghid extern (Google Sites, apoi Gamma) „Agenți vocali AI în România 2027”, video YouTube „Recepționer AI în 2027: ce trebuie să știi”. Toate trimit spre pagina de comparație de pe site.
 - **În ianuarie 2027** (după cele 30 de zile): un al doilea val de pagini 2027 pe domenii, de exemplu „Cel mai bun robot telefonic pentru service auto în 2027”, plus cereri de includere în listele „top 2027” pe care le publică alții.
 
 
@@ -236,7 +240,7 @@ Lista e deschisă. Dacă vinzi deja într-un domeniu care nu e aici, îl adăug�
 
 | Zi | Task | Cine |
 |---|---|---|
-| L 10 | **Repar deploy-ul Netlify:** producția e pe commit-ul din 20 octombrie. Verific legătura cu GitHub / auto-deploy-ul și declanșez deploy pentru `main`. | 🤖 (conectorul Netlify vede proiectul `elevio-site`) + 👤 confirmare |
+| ✅ 9 nov | **Deploy reparat:** `main` (commit `194e7b5`) e live, cu 9 pagini în sitemap și paginile legale. **De știut:** site-ul se publică prin upload (API), nu automat din GitHub. După fiecare merge pe `main` trebuie dat deploy (îl dau eu) sau activat auto-deploy-ul din Netlify → Site configuration → Build & deploy → Link repository. | 🤖 |
 | L 10 | Decizia de brand „Elevio AI” și de domeniu (1.1–1.2). Cumperi elevioai.ro. | 👤 |
 | L 10 | **Google Search Console:** proprietate de tip Domain, verificare prin DNS (CyberFolks sau Netlify DNS), apoi trimiți `sitemap.xml`. | 👤 (te ghidez pas cu pas) |
 | L 10 | **Bing Webmaster Tools:** import din Search Console, cu un click. Asta e ChatGPT + Copilot. | 👤 |
@@ -262,7 +266,8 @@ Lista e deschisă. Dacă vinzi deja într-un domeniu care nu e aici, îl adăug�
 | Mi 19 | **Grupuri de Facebook de antreprenori** (Grupul Antreprenorilor din România, Antreprenori – Start Up Romania, Romanian Startups) și grupurile pe domenii (meseriași, e-commerce, cabinete): intri și răspunzi util, la fel ca pe Reddit (vezi 4.6). | 👤 + 🤖 draft-uri |
 | Mi 19 | **Comunicat de presă** (doar fapte reale): de exemplu „Elevio AI lansează un recepționer vocal AI în limba română pentru cabinete, saloane și service-uri auto, disponibil 24/7”. Fraza „recepționer vocal AI” apare în titlu și în prima propoziție. Trimis **gratuit** direct la redacții, împreună cu pitch-ul din 20 nov. Opțional pe comunicatedepresa.ro Basic (9 €). | 🤖 text, 👤 trimitere |
 | J 20 | **Pitch la presă** (subiect cu date, nu „am lansat”): start-up.ro (hello@start-up.ro, sau direct vlad@start-up.ro), StartupCafe (redactie@startupcafe.ro), ZF Hi-Tech (adrian.seceleanu@zf.ro), Wall-Street.ro (redactie@wall-street.ro). Callio a obținut articol pe start-up.ro, deci se poate. | 🤖 draft-uri personalizate, 👤 trimitere |
-| V 21 | **Gamma** (vezi 4.4): primul **site Gamma public**, „Ghidul recepționerului AI pentru cabinete stomatologice”, cu indexarea activată și link spre pagina de nișă. | 👤 Gamma Pro o lună (sau Google Sites gratuit), 🤖 conținut |
+| V 21 | **Primul ghid extern pe Google Sites** (vezi 4.4): „Ghidul recepționerului AI pentru cabinete stomatologice”, cu link spre pagina de nișă. Gamma Pro vine luna viitoare. | 👤 publici, 🤖 conținut |
+| V 21 | **Outreach prin e-mail, lotul 1** (vezi 4.9): 30–40 de bloguri și site-uri românești. | 👤 trimiți cu tool-ul tău, 🤖 lista + mesajele |
 | S–D | Al doilea articol LinkedIn + 3 postări; al doilea video YouTube (demo magazin online: apel despre o comandă); încep activitatea pe Reddit (vezi 4.3). | 👤 + 🤖 |
 
 ### Săptămâna 3 (24–30 nov): ghidurile pe care le citează ChatGPT
@@ -275,7 +280,7 @@ Lista e deschisă. Dacă vinzi deja într-un domeniu care nu e aici, îl adăug�
 | L 24 – V 28 | **Valul 2, 9 pagini pe domenii:** clinici medicale, veterinare, kinetoterapie, clinici estetice, restaurante, hoteluri și pensiuni, imobiliare, curățenie și mutări, construcții. | 🤖 + 👤 review |
 | J 27 | 8–12 pagini scurte `/intrebari/*` (câte o întrebare reală pe pagină, răspuns în 2 propoziții, apoi detalii). Pornesc de la întrebările de la apelurile demo: 👤 îmi spui ce te întreabă clienții. | 🤖 |
 | V 28 | **Cereri de includere în liste existente:** loleworks.com (acceptă corecturi pe mail), cosimo.dev, aitfel.ro, natix.ro, spotmedia.ro. Plus CloudTalk RO (lista lor „best AI voice agents” nu are niciun român), unde e o șansă mică, dar merită. | 🤖 mailuri, 👤 trimitere |
-| S–D | Al doilea și al treilea site Gamma (magazine online, meserii: acoperișuri / instalatori / electricieni); LinkedIn; YouTube #3 (demo urgență la instalator sau acoperișuri); Reddit. | 👤 + 🤖 |
+| S–D | Al doilea și al treilea ghid pe Google Sites (magazine online, meserii: acoperișuri / instalatori / electricieni); outreach prin e-mail, lotul 2 + follow-up la lotul 1; LinkedIn; YouTube #3 (demo urgență la instalator sau acoperișuri); Reddit. | 👤 + 🤖 |
 
 ### Săptămâna 4 (1–9 dec): autoritate, lansare, măsurare
 
@@ -329,7 +334,10 @@ Reddit e domeniul cel mai citat de AI, dar e și cel mai ușor de stricat: un po
 - **Ce NU faci:** conturi noi, același text în mai multe subreddit-uri, upvote-uri cumpărate, lansare directă pe r/Romania.
 - 🤖 îți dau zilnic 1–2 thread-uri relevante și un draft de răspuns, iar tu postezi.
 
-### 4.4 Gamma
+### 4.4 Ghiduri externe: Google Sites acum, Gamma luna viitoare
+
+**Luna asta (fără buget):** aceleași ghiduri le publicăm pe **Google Sites**. E gratuit, se indexează în Google și se verifică în Search Console. Gamma gratuit rămâne pentru prezentările de vânzări. Restul secțiunii se aplică pentru când iei Gamma Pro.
+
 
 **Important, verificat în documentația Gamma:**
 - Site-urile Gamma noi **nu sunt indexate implicit**.
@@ -378,6 +386,31 @@ Cum îl folosim:
 
 ---
 
+### 4.9 Outreach prin e-mail cu tool-ul tău (pentru articole și mențiuni gratuite)
+
+**Merită? Da, dar doar mic și personalizat.** Ce se trimite în masă („vreți să scrieți gratis despre noi?”) are rată de răspuns aproape zero și poate strica reputația domeniului de e-mail. Ce funcționează e să le oferi ceva util: un subiect pentru audiența lor, date, un articol scris gata de noi sau un demo gratuit pentru cititorii lor.
+
+**Cui scriem** (30–40 de adrese în total, în 2 loturi):
+1. **Autorii listelor existente** cu „firme / unelte AI în România”: loleworks.com (acceptă corecturi pe mail), cosimo.dev, aitfel.ro, natix.ro, spotmedia.ro. Le cerem să adauge Elevio AI, cu informații corecte.
+2. **Bloguri de nișă** care vorbesc cu clienții noștri:
+   - e-commerce (bloguri pentru magazine online, comunitatea GPeC);
+   - antreprenoriat și IMM;
+   - meserii și construcții;
+   - stomatologie, beauty, auto.
+
+   Le oferim un **articol scris de noi, gata de publicat** (guest post), de exemplu „Câte comenzi pierde un magazin online care nu răspunde la telefon”, cu un singur link spre noi.
+3. **Jurnaliști și podcast-uri** (start-up.ro, StartupCafe, ZF Hi-Tech, Inovatorii, Pastila de antreprenoriat). Pitch-ul are un subiect cu date, nu „am lansat un produs”.
+4. **Furnizori complementari** (soft de programări, CRM, platforme de magazin online, firme de web design): articole sau mențiuni reciproce, eventual o integrare.
+
+**Cum:**
+- Fiecare mail are o primă frază personalizată: articolul lor și de ce se potrivește.
+- Maximum 3 paragrafe, o singură cerere clară, un follow-up după 4–5 zile și apoi stop.
+- 🤖 fac lista (site, persoană, de ce ei, ce le oferim) și mesajele, 👤 le trimiți cu tool-ul tău.
+- **Volum mic** (10–15 pe zi), dintr-o adresă reală (a ta) și cu opțiunea clară de dezabonare. E outreach B2B către adrese publice de redacție sau contact, în linie cu GDPR (interes legitim, cu opt-out).
+- **Bugetul de 25 €** îl folosim pe blogul care cere o taxă mică pentru publicare, dacă are audiența potrivită.
+
+**Așteptare realistă:** din 40 de mailuri bine țintite, 3–6 răspunsuri și 1–3 articole sau mențiuni. Sunt puține ca număr, dar fiecare link de pe un site românesc relevant contează mult pentru un domeniu nou.
+
 ## 5. Ce NU facem (ne-ar putea arunca înapoi)
 
 - Mii de pagini automate oraș × industrie. Concurența o face, dar Google a lovit în 2026 site-urile AI SaaS cu pagini și liste auto-promoționale generate la scară.
@@ -407,7 +440,7 @@ Cum îl folosim:
 
 ## 7. Ce am nevoie de la tine (acces)
 
-1. **Netlify:** conectorul vede proiectul `elevio-site`. Am nevoie de acordul tău să declanșez un deploy de producție și să verific setarea de auto-deploy din GitHub.
+1. ✅ **Netlify:** deploy-ul e făcut. Opțional: activează auto-deploy-ul din GitHub (Netlify → Site configuration → Build & deploy), ca fiecare merge pe `main` să se publice singur.
 2. **DNS (CyberFolks sau Netlify DNS):** acces sau 10 minute împreună, pentru verificarea Search Console și eventual pentru elevioai.ro.
 3. **Search Console + Bing:** după ce le creezi, adaugă-mă prin Claude Code cu un connector sau cu mcp-gsc (îți arăt cum), ca să citesc datele în auditul săptămânal.
 4. **Capabilitățile și integrările exacte ale Elevio** (calendar, CRM, platforme de magazin online, transfer de apel, SMS), ca să nu promitem pe pagini ce nu face produsul.
