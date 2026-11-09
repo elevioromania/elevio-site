@@ -7,7 +7,9 @@ description: Orice lucru de SEO pentru elevio-agency.ro — audit, pagini noi, t
 
 Elevio = recepționer vocal AI în română, 24/7, pentru firme mici din România (clinici, cabinete stomatologice, saloane, service-uri auto etc.). Site: **https://elevio-agency.ro**, Next.js App Router, pe Netlify. Conversia care contează: **cerere de demo** (`/demo`) și lead-uri din formular, nu traficul în sine.
 
-Planul concret e în `tools/instagram-salvate/rezultate/PLAN-SEO.md`. Breakdown-ul fiecărui reel e în `tools/instagram-salvate/rezultate/seo/`. Marcaj folosit mai jos: **[reel]** = sfat din reel-uri, **[completare]** = adăugat de noi (bune practici).
+**Planul activ e `seo/PLAN-30-ZILE.md`**: research complet de concurență, AI search și canale externe, plus planul pe zile. Mai vechi: `tools/instagram-salvate/rezultate/PLAN-SEO.md`.
+
+**Brand:** numele public e **„Elevio AI”** peste tot. „Elevio” simplu se ciocnește cu elevio.ro (platformă școlară din România) și cu elev.io (SaaS de knowledge base). În schema JSON-LD pune `disambiguatingDescription`. Concurentul de referință la SEO e callio.ro. Breakdown-ul fiecărui reel e în `tools/instagram-salvate/rezultate/seo/`. Marcaj folosit mai jos: **[reel]** = sfat din reel-uri, **[completare]** = adăugat de noi (bune practici).
 
 ## 1. Principii
 
