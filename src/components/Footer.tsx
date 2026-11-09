@@ -83,6 +83,17 @@ export default function Footer() {
       <div className="border-t border-white/10">
         <div className="container-elevio py-6">
           <LegalFooterLinks />
+          <p className="mt-4 text-xs text-white/50">
+            Citești ghidurile noastre?{" "}
+            <a
+              href="https://google.com/preferences/source?q=elevio-agency.ro"
+              target="_blank"
+              rel="noopener"
+              className="underline hover:text-elevio-accent"
+            >
+              Adaugă Elevio AI ca sursă preferată pe Google
+            </a>
+          </p>
         </div>
       </div>
 
