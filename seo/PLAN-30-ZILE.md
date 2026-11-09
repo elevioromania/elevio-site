@@ -1,6 +1,6 @@
 # Planul de 30 de zile: Elevio pe primele locuri în Google și ChatGPT
 
-**Start:** luni, 10 noiembrie 2026 · **Final:** 9 decembrie 2026 · Verificat pe 9 noiembrie 2026.
+**Piața: România.** **Start:** luni, 10 noiembrie 2026 · **Final:** 9 decembrie 2026 · Verificat pe 9 noiembrie 2026.
 
 **Pe ce se bazează:**
 - research pe concurență: peste 25 de furnizori din România, verificați pe site-urile lor;
@@ -8,6 +8,8 @@
 - canalele externe din România: presă, directoare, Reddit, LinkedIn, Gamma, asociații;
 - cele 14 reel-uri SEO salvate (`tools/instagram-salvate/rezultate/seo/`);
 - datele de autocomplete Google pentru limba română.
+
+**Focus: doar piața din România.** Tot conținutul e în română, iar canalele sunt cele unde stau patronii români: Google.ro, ChatGPT în română, LinkedIn, Facebook, YouTube, presă și comunități românești. Canalele internaționale rămân doar unde aduc identitate de brand (Crunchbase) și sunt marcate opțional.
 
 Coloana **Cine:** 🤖 = fac eu (cod, conținut, draft-uri) · 👤 = faci tu (conturi, publicare, bani, decizii).
 
@@ -40,15 +42,22 @@ Coloana **Cine:** 🤖 = fac eu (cod, conținut, draft-uri) · 👤 = faci tu (c
 
 ### 0.2 Unde putem câștiga repede (concurență slabă)
 
-- **„secretară virtuală” / „secretară virtuală AI”.** E cea mai bună oportunitate: site-urile care apar sunt subțiri, iar o parte sunt servicii cu oameni, nu AI.
 - **„robot telefonic AI” / „robot telefonic programări”.** Apare în autocomplete Google. Doar voxbee.ro are un H1 exact.
-- **Saloane și service-uri auto.** Callio face doar clinici, iar jucătorii locali acoperă slab aceste nișe.
-- **Comparația independentă „agenți vocali AI în România 2026”, cu prețuri.** Nu există. Lista CloudTalk are doar furnizori internaționali. E exact tipul de pagină pe care îl citează ChatGPT: 43,8% din sursele citate de ChatGPT la întrebări „best X” sunt astfel de liste (Ahrefs, decembrie 2025).
+- **Domeniile pe care nu le acoperă nimeni bine.** Concurenții români se concentrează pe clinici (Callio), vânzări și lead-uri (LeadVoz) și câteva verticale (salon, service auto, pensiuni, asigurări, imobiliare). **Nu am găsit niciun concurent român cu pagini dedicate pentru:**
+  - **e-commerce / magazine online**: LeadVoz doar menționează magazinele în reclamă;
+  - **meserii și servicii la domiciliu**: reparații acoperișuri, instalatori, electricieni, centrale termice, curățenie, mutări, renovări;
+  - **servicii profesionale**: avocați, notari, contabili;
+  - **restaurante, școli de șoferi, săli de fitness, rent-a-car.**
+
+  Cine face primul o pagină bună pe nișa respectivă o câștigă: concurența e aproape zero, iar fiecare pagină aduce o căutare long-tail plus un răspuns pe care ChatGPT îl poate cita. Lista completă e în secțiunea 2.2.
+- **Conținutul pentru 2027, publicat de acum.** Nimeni nu a scris încă „cei mai buni agenți vocali AI în 2027”. Prima pagină bună pe o căutare cu anul viitor tinde să ia poziția și s-o țină (reel-ul [De-IHn-Bf8t](https://www.instagram.com/reel/De-IHn-Bf8t/)). Detalii în secțiunea 2.3.
+- **Comparația independentă „cei mai buni agenți vocali AI în România 2027”, cu prețuri.** Nu există. Lista CloudTalk are doar furnizori internaționali. E exact tipul de pagină pe care îl citează ChatGPT: 43,8% din sursele citate de ChatGPT la întrebări „best X” sunt astfel de liste (Ahrefs, decembrie 2025).
 - **Pagini lipsă la toată lumea:**
   - „cât costă un recepționer AI vs o recepționeră (salariu 2026)”;
   - „robot telefonic AI vs IVR / centrală clasică”;
   - „GDPR + AI Act art. 50 pentru clinici”;
-  - „recepționer AI pentru salon”;
+  - „agent vocal AI pentru magazin online (comenzi, retururi, status livrare)”;
+  - „robot telefonic pentru firme de reparații acoperișuri / instalatori”;
   - „robot telefonic pentru service auto / vulcanizare”.
 
 ### 0.3 Cum aleg sursele asistenții AI (verificat)
@@ -76,7 +85,7 @@ G2 și Capterra au avut **0 citări** în studiul DerivateX. Le facem pentru bac
 | În 30 de zile, realist | Durează 2–6 luni |
 |---|---|
 | Primul loc la „Elevio AI”, „Elevio recepționer”, „Elevio agent vocal” | Top 3 la „agent vocal AI” / „recepționer AI” |
-| Top 10, poate top 3, pe long-tail: „secretară virtuală AI salon”, „robot telefonic programări service auto” | Citări constante în ChatGPT la întrebări generice |
+| Top 10, poate top 3, pe long-tail: „agent vocal AI magazin online”, „robot telefonic firmă acoperișuri”, „cei mai buni agenți vocali AI 2027” | Citări constante în ChatGPT la întrebări generice |
 | Toate paginile indexate în Google și Bing | Indexarea în Brave, deci în Claude |
 | Apariția în ChatGPT la întrebări cu numele nostru sau foarte specifice | Wikidata, Knowledge Panel |
 | 8–12 mențiuni externe (presă, directoare, LinkedIn, YouTube, Gamma) | „Elevio” simplu înaintea elevio.ro (poate niciodată) |
@@ -114,11 +123,11 @@ G2 și Capterra au avut **0 citări** în studiul DerivateX. Le facem pentru bac
 | Ce | Cost |
 |---|---|
 | Gamma Pro: necesar ca paginile Gamma să fie indexate de Google; implicit nu sunt | ~10–20 USD/lună |
-| There's An AI For That (listare permanentă) | 49 USD |
+| Opțional: un advertorial pe un site românesc de business (în loc de directoarele internaționale plătite) | ~50–200 EUR |
 | Comunicat pe comunicatedepresa.ro, pachetul Premium (3 linkuri do-follow) | 48 EUR |
 | Domeniul elevioai.ro | ~10 EUR/an |
 | Opțional: Google Ads 5–7 zile pe 3 variante de titlu, ca test de CTR, plus acces complet la Keyword Planner | ~100–150 EUR |
-| **Total** | **~150 EUR, sau ~300 EUR cu testul Ads** |
+| **Total** | **~80 EUR minim; ~250–400 EUR cu advertorialul și testul Ads** |
 
 ---
 
@@ -131,22 +140,81 @@ Fiecare pagină are **o singură** interogare principală, ca să nu se canibali
 | `/` (homepage) | recepționer vocal AI | Elevio AI, recepționer AI, asistent vocal AI pentru firme |
 | `/agent-vocal-ai` | agent vocal AI | agent AI vocal, agent vocal AI România, agent vocal ro |
 | `/receptioner-virtual` | recepționer virtual | receptionist AI, receptionist ai romania, recepție virtuală |
-| `/secretara-virtuala` | secretară virtuală AI | secretară virtuală, asistent virtual telefon |
 | `/robot-telefonic-ai` | robot telefonic AI | robot telefonic programări, robot centrală telefonică |
-| `/receptioner-ai-cabinet-stomatologic` | recepționer AI cabinet stomatologic | agent vocal stomatologie, programări dentist telefon |
-| `/receptioner-ai-clinica` | recepționer AI clinică | programări telefonice clinică, asistent vocal clinică medicală |
-| `/receptioner-ai-salon` | recepționer AI salon | programări salon automat, secretară virtuală salon |
-| `/robot-telefonic-service-auto` | robot telefonic service auto | programări service auto, vulcanizare programări telefon |
+| `/industrii` | agent vocal AI pe industrii | hub cu toate domeniile (2.2), linkuri spre fiecare |
+| `/industrii/{domeniu}` | vezi 2.2 | câte o pagină pe domeniu |
 | `/preturi` | preț recepționer AI | cât costă un agent vocal AI |
-| `/ghid/cat-costa-receptioner-ai-vs-receptionera` | cât costă un recepționer AI | salariu recepționeră 2026 vs AI |
-| `/ghid/agenti-vocali-ai-romania-comparatie` | cei mai buni agenți vocali AI România | comparație recepționer AI, alternative |
+| `/ghid/cat-costa-receptioner-ai-2027` | cât costă un recepționer AI | 2027, salariu recepționeră vs AI, preț agent vocal AI |
+| `/ghid/cei-mai-buni-agenti-vocali-ai-romania-2027` | cei mai buni agenți vocali AI România 2027 | comparație recepționer AI, alternative, 2026 (vezi 2.3) |
 | `/ghid/robot-telefonic-ai-vs-ivr` | robot telefonic AI vs IVR | centrală telefonică clasică vs AI |
 | `/ghid/ai-act-gdpr-receptioner-ai` | AI Act recepționer AI / GDPR apeluri AI | e legal să răspundă un robot la telefon |
 | `/ghid/ce-este-un-agent-vocal-ai` | ce este un agent vocal AI | cum funcționează un recepționer AI |
-| `/ghid/apeluri-pierdute-cabinet` | apeluri pierdute cabinet / clinică | cât pierde un cabinet din apeluri nepreluate |
+| `/ghid/apeluri-pierdute-firme-mici` | apeluri pierdute firmă | cât pierde o firmă mică din apeluri nepreluate (exemple pe 4–5 domenii) |
+| `/ghid/agent-vocal-ai-ecommerce` | agent vocal AI magazin online | suport telefonic automat e-commerce, status comandă telefon |
 | `/intrebari/*` (8–12 pagini scurte) | câte o întrebare reală | „funcționează în română?”, „poate face programări în calendarul meu?”, „ce se întâmplă dacă nu știe un răspuns?”, „merge cu numărul meu actual?”… |
 
 **Pasul 1, ziua 2:** validez volumele cu Google Keyword Planner (cont Google Ads gratuit 👤, apoi export 🤖) și extrag interogările pe care le face ChatGPT în spate pentru 15 întrebări, cu metoda din DevTools. Harta finală intră în `seo/keyword-map.csv`.
+
+### 2.2 Paginile pe domenii (`/industrii/...`)
+
+**Toate domeniile din România în care Elevio poate prelua apeluri**, grupate pe valuri. Întâi vin domeniile cu bani și concurență mică, apoi cele unde concurența e mai mare.
+
+| Val | Domeniu | URL | Interogarea principală | De ce sună clienții (scenariul de pe pagină) |
+|---|---|---|---|---|
+| **1** (săpt. 2) | **Magazine online / e-commerce** | `/industrii/magazine-online` | agent vocal AI magazin online | status comandă, retururi, livrare, stoc, comandă telefonică |
+| 1 | **Reparații acoperișuri** | `/industrii/reparatii-acoperisuri` | robot telefonic firmă acoperișuri | infiltrații urgente, cerere de ofertă, programare la evaluare |
+| 1 | **Instalatori** | `/industrii/instalatori` | robot telefonic instalator | urgențe (țeavă spartă), programare intervenție, zona de deplasare, tarif |
+| 1 | **Electricieni** | `/industrii/electricieni` | agent vocal AI electrician | urgențe, programare, ofertă |
+| 1 | **Centrale termice / climatizare** | `/industrii/centrale-termice-climatizare` | programări revizie centrală telefon | revizii anuale (sezon de vârf), defecte, montaj aer condiționat |
+| 1 | **Cabinete stomatologice** | `/industrii/cabinete-stomatologice` | recepționer AI cabinet stomatologic | programări, urgențe dentare, prețuri, reprogramări |
+| 1 | **Saloane & frizerii** | `/industrii/saloane-frizerii` | recepționer AI salon | programări pe specialist și serviciu, anulări, prețuri |
+| 1 | **Service auto** | `/industrii/service-auto` | robot telefonic service auto | programări, ITP, vulcanizare, estimări, status mașină |
+| **2** (săpt. 3) | Clinici medicale | `/industrii/clinici-medicale` | recepționer AI clinică | programări pe medic, analize, decontare CAS |
+| 2 | Clinici veterinare | `/industrii/clinici-veterinare` | programări veterinar telefon | urgențe, vaccinări, programări |
+| 2 | Kinetoterapie / fizioterapie | `/industrii/kinetoterapie` | programări kinetoterapie | ședințe, abonamente |
+| 2 | Clinici estetice / dermatologie | `/industrii/clinici-estetice` | programări clinică estetică | consultații, proceduri, prețuri |
+| 2 | Restaurante | `/industrii/restaurante` | rezervări restaurant telefon automat | rezervări, program, meniu, evenimente |
+| 2 | Hoteluri & pensiuni | `/industrii/hoteluri-pensiuni` | recepție virtuală pensiune | disponibilitate, rezervări, check-in, prețuri |
+| 2 | Imobiliare | `/industrii/imobiliare` | agent vocal AI imobiliare | calificare lead-uri, programare vizionări |
+| 2 | Curățenie & mutări | `/industrii/curatenie-mutari` | programări firmă curățenie | oferte, programări, zone |
+| 2 | Construcții & renovări | `/industrii/constructii-renovari` | robot telefonic firmă construcții | cereri de ofertă, programare evaluare |
+| **3** (săpt. 4) | Avocați & notari | `/industrii/avocati-notari` | recepționer virtual cabinet avocatură | programări consultații, filtrare cazuri |
+| 3 | Contabilitate | `/industrii/contabilitate` | asistent telefonic firmă contabilitate | programări, întrebări frecvente, termene |
+| 3 | Școli de șoferi | `/industrii/scoli-soferi` | programări școală de șoferi | înscrieri, programări ore, prețuri |
+| 3 | Săli de fitness | `/industrii/sali-fitness` | recepție telefonică sală fitness | abonamente, program, clase |
+| 3 | Rent-a-car | `/industrii/rent-a-car` | rezervări rent a car telefon | disponibilitate, prețuri, rezervări |
+| 3 | Asigurări & credite | `/industrii/asigurari-credite` | agent vocal AI asigurări | calificare lead-uri, programare cu consultantul |
+| 3 | Ferestre PVC / tâmplărie | `/industrii/tamplarie-pvc` | robot telefonic firmă termopane | cereri de ofertă, programare măsurători |
+
+Lista e deschisă. Dacă vinzi deja într-un domeniu care nu e aici, îl adăugăm primul, pentru că acolo avem povești reale.
+
+**Reguli ca să nu fie „pagini subțiri”** (Google penalizează paginile identice în care se schimbă doar denumirea):
+- Fiecare pagină are **scenariul ei real**: întrebările concrete pe care le pun clienții din acel domeniu, un exemplu de conversație, ce face Elevio cu urgențele din domeniu (o țeavă spartă la 23:00 nu e același lucru cu o programare la tuns).
+- Fiecare pagină are un **FAQ propriu** (minimum 5 întrebări specifice), calculul de cost adaptat („un instalator care ratează 3 urgențe pe săptămână…”) și CTA spre /demo.
+- **Promitem doar ce face Elevio azi.** La e-commerce, „status comandă” apare doar dacă avem integrarea cu platforma magazinului (Shopify, WooCommerce, Gomag, MerchantPro etc.). 👤 Îmi confirmi lista exactă de capabilități și integrări înainte să scriu paginile.
+- Mostrele audio și testimonialele reale pe domeniu ridică pagina peste concurență. Le adăugăm pe măsură ce le ai.
+- Ritmul: **8 pagini pe săptămână**, nu 200 dintr-odată. Le scriu eu, iar tu le citești înainte de publicare.
+
+### 2.3 SEO pentru 2027, început de acum
+
+**Ideea:** căutările cu anul viitor („cei mai buni … 2027”, „cât costă … în 2027”) încep să apară din noiembrie–decembrie, iar în ianuarie explodează. Acum nu are nimeni astfel de pagini în română, în nișa noastră. Prima pagină bună, publicată și indexată din timp, adună vechime, linkuri și citări până când apar concurenții. De aceea tinde să rămână sus (reel-ul [De-IHn-Bf8t](https://www.instagram.com/reel/De-IHn-Bf8t/)). În plus, ChatGPT preferă listele actualizate recent: 79% dintre listele citate fuseseră actualizate în anul curent (Ahrefs).
+
+**Paginile 2027** (publicate în săptămânile 2–3, ca să fie indexate înainte de ianuarie):
+
+| Pagina | Interogarea | Ce conține |
+|---|---|---|
+| `/ghid/cei-mai-buni-agenti-vocali-ai-romania-2027` | cei mai buni agenți vocali AI România 2027 | Comparație onestă cu toți furnizorii români: prețuri publice cu sursă și dată, criterii clare, inclusiv unde alții sunt mai buni. **Pagina-vedetă pentru ChatGPT.** |
+| `/ghid/cat-costa-receptioner-ai-2027` | cât costă un recepționer AI 2027 | Prețuri de piață + salariul minim din 2027, când e anunțat oficial (până atunci cel din 2026, marcat clar), calculator |
+| `/ghid/tendinte-agenti-vocali-ai-2027` | agenți vocali AI 2027 / AI pentru firme mici 2027 | Ce se schimbă în 2027: AI Act (obligațiile de transparență), voci mai naturale în română, integrări. Opinia ta de fondator. |
+| `/ghid/automatizare-firma-mica-2027` | automatizare firmă mică 2027 | Ghid practic pe domenii (meserii, e-commerce, cabinete): ce automatizezi întâi, cu agentul vocal ca prim pas |
+
+**Regulile pentru paginile 2027:**
+- **Anul apare în title, H1 și URL.** URL-ul rămâne fix, iar în ianuarie 2028 îl actualizăm, nu facem altul. Așa păstrăm tot ce a adunat pagina.
+- **Data actualizării e vizibilă pe pagină** („Actualizat: noiembrie 2026”) și în schema `dateModified`. **Actualizăm lunar** cu prețuri noi și concurenți noi. Asta e semnalul de prospețime.
+- **Nu inventăm date „din 2027”.** Ce nu se știe încă (salariul minim, prețurile din 2027) apare marcat ca estimare, cu sursa ultimei valori reale.
+- **Aceeași temă pe toate canalele:** articol LinkedIn „Agenți vocali AI în 2027: ghid pentru firmele din România”, site Gamma „Agenți vocali AI în România 2027”, video YouTube „Recepționer AI în 2027: ce trebuie să știi”. Toate trimit spre pagina de comparație de pe site.
+- **În ianuarie 2027** (după cele 30 de zile): un al doilea val de pagini 2027 pe domenii, de exemplu „Cel mai bun robot telefonic pentru service auto în 2027”, plus cereri de includere în listele „top 2027” pe care le publică alții.
+
 
 **Regula de conținut pentru fiecare pagină:**
 - Răspunsul e în primele 2 propoziții.
@@ -171,44 +239,47 @@ Fiecare pagină are **o singură** interogare principală, ca să nu se canibali
 | Mi 12 | **Pagina de companie LinkedIn „Elevio AI”:** tagline „Recepționer vocal AI în limba română”, site, industrie, produse, logo, copertă; angajații legați de pagină. Profilul tău: headline „Fondator Elevio AI · recepționer vocal AI”. | 👤 (texte de la mine 🤖) |
 | J 13 | **Canalul de YouTube „Elevio AI”:** primul video, un **demo real de apel în română** (2–3 min), titlu „Recepționer vocal AI în română: apel real de programare la cabinet”, cu descriere + transcriere. | 👤 înregistrare, 🤖 titluri/descrieri/transcriere |
 | J 13 | **Crunchbase** (profil gratuit), **Apple Business Connect**. | 👤 |
-| V 14 | Primele **4 pagini de bani**: `/agent-vocal-ai`, `/receptioner-virtual`, `/secretara-virtuala`, `/robot-telefonic-ai`, fiecare cu FAQ + schema + 3 linkuri interne. | 🤖 |
+| V 14 | Primele **3 pagini de bani** + hub-ul de industrii: `/agent-vocal-ai`, `/receptioner-virtual`, `/robot-telefonic-ai`, `/industrii`, fiecare cu FAQ, schema și 3 linkuri interne. | 🤖 |
 | V 14 | **Listafirme / Termene / Risco:** verifici că datele de la ONRC sunt corecte și le ceri să adauge site-ul. Primești de la mine textul mailului. | 👤 |
 | S–D | Primul **articol LinkedIn** (vezi secțiunea 4.2) + 2 postări scurte. | 👤 publici, 🤖 draft |
 
-**Sfârșitul săptămânii 1:** site corect tehnic, indexat în Google și Bing, cu 4 pagini noi, LinkedIn și YouTube active.
+**Sfârșitul săptămânii 1:** site corect tehnic, indexat în Google și Bing, cu 4 pagini noi, LinkedIn și YouTube active. 👤 Îmi confirmi lista de capabilități și integrări Elevio (vezi 2.2) ca să pot scrie paginile pe domenii.
 
-### Săptămâna 2 (17–23 nov): pagini de nișă + primele mențiuni externe
+### Săptămâna 2 (17–23 nov): primul val de pagini pe domenii + paginile 2027 + primele mențiuni externe
 
 | Zi | Task | Cine |
 |---|---|---|
-| L 17 | 4 pagini de nișă: cabinet stomatologic, clinică, salon, service auto. Fiecare cu scenariu real, mostră audio (dacă o avem), FAQ specific și CTA spre /demo. | 🤖 (👤 îmi dai mostrele audio pe nișă, dacă există) |
-| M 18 | **Directoare gratuite:** SaaSHub (intri automat și în lista de startup-uri din București), AlternativeTo, Capterra/GetApp, G2, Product Hunt (doar profilul, lansarea vine în săptămâna 4), AI Agents Directory (categoria Voice), Voice Agent Index, AI Agents Listing (stork.ai), StartupBlink, Seedtable. Toate cu același text. | 👤 conturi, 🤖 texte RO + EN gata de lipit |
-| M 18 | **There's An AI For That** (49 USD). | 👤 |
+| L 17 – V 21 | **Valul 1, 8 pagini pe domenii** (2.2): magazine online, reparații acoperișuri, instalatori, electricieni, centrale termice, cabinete stomatologice, saloane și frizerii, service auto. Fiecare cu scenariu real, FAQ specific, calcul de cost și CTA spre /demo. Plus ghidul `/ghid/agent-vocal-ai-ecommerce`. | 🤖 scriu, 👤 citești înainte de publicare (+ mostre audio dacă există) |
+| Ma 18 | **Paginile 2027 (2.3):** „Cei mai buni agenți vocali AI din România în 2027” (mutată aici din săptămâna 3, ca să fie indexată cât mai devreme) și „Cât costă un recepționer AI în 2027”. | 🤖 |
+| M 18 | **Listări românești + cele care alimentează listele pe România:** SaaSHub (te pune automat în pagina de startup-uri din București), StartupBlink România, RankMyAI (top unelte AI România), Seedtable România, plus Crunchbase (identitate de brand). Opțional, fără prioritate: Capterra, G2. Toate cu același text în română. | 👤 conturi, 🤖 texte gata de lipit |
+| Mi 19 | **Grupuri de Facebook de antreprenori** (Grupul Antreprenorilor din România, Antreprenori – Start Up Romania, Romanian Startups) și grupurile pe domenii (meseriași, e-commerce, cabinete): intri și răspunzi util, la fel ca pe Reddit (vezi 4.6). | 👤 + 🤖 draft-uri |
 | Mi 19 | **Comunicat de presă** (doar fapte reale): de exemplu „Elevio AI lansează un recepționer vocal AI în limba română pentru cabinete, saloane și service-uri auto, disponibil 24/7”. Fraza „recepționer vocal AI” apare în titlu și în prima propoziție. Distribuit pe **comunicatedepresa.ro Premium** (48 EUR, 3 linkuri do-follow). | 🤖 text, 👤 plată și trimitere |
 | J 20 | **Pitch la presă** (subiect cu date, nu „am lansat”): start-up.ro (hello@start-up.ro, sau direct vlad@start-up.ro), StartupCafe (redactie@startupcafe.ro), ZF Hi-Tech (adrian.seceleanu@zf.ro), Wall-Street.ro (redactie@wall-street.ro). Callio a obținut articol pe start-up.ro, deci se poate. | 🤖 draft-uri personalizate, 👤 trimitere |
 | V 21 | **Gamma** (vezi 4.4): primul **site Gamma public**, „Ghidul recepționerului AI pentru cabinete stomatologice”, cu indexarea activată și link spre pagina de nișă. | 👤 cont Pro, 🤖 conținut |
-| S–D | Al doilea articol LinkedIn + 3 postări; al doilea video YouTube (demo salon); încep activitatea pe Reddit (vezi 4.3). | 👤 + 🤖 |
+| S–D | Al doilea articol LinkedIn + 3 postări; al doilea video YouTube (demo magazin online: apel despre o comandă); încep activitatea pe Reddit (vezi 4.3). | 👤 + 🤖 |
 
 ### Săptămâna 3 (24–30 nov): ghidurile pe care le citează ChatGPT
 
 | Zi | Task | Cine |
 |---|---|---|
-| L 24 | **„Agenți vocali AI în România 2026: comparație onestă”.** Tabel cu prețurile publice ale concurenților (Callio 139–299 €, Agentul Vocal 299–499 €/lună, Vocalyy 600–3.360 lei, Voxbee, Estera de la 49 €…), criterii clare, data actualizării. Elevio inclus corect, inclusiv acolo unde alții sunt mai buni. Fiecare preț are sursă și dată. | 🤖 |
+| L 24 | **Completez comparația 2027** cu toate datele: Tabel cu prețurile publice ale concurenților (Callio 139–299 €, Agentul Vocal 299–499 €/lună, Vocalyy 600–3.360 lei, Voxbee, Estera de la 49 €…), criterii clare, data actualizării. Elevio inclus corect, inclusiv acolo unde alții sunt mai buni. Fiecare preț are sursă și dată. | 🤖 |
 | M 25 | „Cât costă un recepționer AI vs o recepționeră în 2026”: calcul cu salariul minim brut din 2026 plus taxe, comparat cu 150 €/lună, plus calculator simplu pe pagină. | 🤖 |
 | Mi 26 | „AI Act art. 50 + GDPR: e legal să răspundă un AI la telefon?” (cu surse oficiale) și „Robot telefonic AI vs IVR”. | 🤖 |
+| L 24 – V 28 | **Valul 2, 9 pagini pe domenii:** clinici medicale, veterinare, kinetoterapie, clinici estetice, restaurante, hoteluri și pensiuni, imobiliare, curățenie și mutări, construcții. | 🤖 + 👤 review |
 | J 27 | 8–12 pagini scurte `/intrebari/*` (câte o întrebare reală pe pagină, răspuns în 2 propoziții, apoi detalii). Pornesc de la întrebările de la apelurile demo: 👤 îmi spui ce te întreabă clienții. | 🤖 |
 | V 28 | **Cereri de includere în liste existente:** loleworks.com (acceptă corecturi pe mail), cosimo.dev, aitfel.ro, natix.ro, spotmedia.ro. Plus CloudTalk RO (lista lor „best AI voice agents” nu are niciun român), unde e o șansă mică, dar merită. | 🤖 mailuri, 👤 trimitere |
-| S–D | Al doilea și al treilea site Gamma (salon, service auto); LinkedIn; YouTube #3 (service auto); Reddit. | 👤 + 🤖 |
+| S–D | Al doilea și al treilea site Gamma (magazine online, meserii: acoperișuri / instalatori / electricieni); LinkedIn; YouTube #3 (demo urgență la instalator sau acoperișuri); Reddit. | 👤 + 🤖 |
 
 ### Săptămâna 4 (1–9 dec): autoritate, lansare, măsurare
 
 | Zi | Task | Cine |
 |---|---|---|
-| L 1 | **Product Hunt launch** (după ce ai strâns 10–20 de oameni care să susțină în ziua lansării). | 👤 |
-| M 2 | **Asociații:** CMSR / PMSR (stomatologi), PADIR / ANSBR (beauty), CCIB / CCIR (Camera de Comerț), IMM România. Scopul: o listare, un articol în newsletter sau un webinar „Cum nu mai pierzi apeluri la cabinet”. | 👤 (🤖 mailuri) |
+| L 1 | **Lansare în comunitatea românească:** postare de lansare pe LinkedIn (tu + pagina companiei), în grupurile de Facebook de antreprenori (unde regulile permit) și mesaj către ROTSA (asociația startup-urilor tech). Product Hunt nu, pentru că publicul e internațional. | 👤 + 🤖 texte |
+| M 2 | **Asociații:** ARMO (Asociația Magazinelor Online) și comunitatea GPeC (e-commerce), CMSR / PMSR (stomatologi), PADIR / ANSBR (beauty), FIHR (hoteluri), CCIB / CCIR (Camera de Comerț), IMM România. Contactele de la ARMO, GPeC și FIHR nu le-am verificat încă. Scopul: o listare, un articol în newsletter sau un webinar „Cum nu mai pierzi apeluri și comenzi la telefon”. | 👤 (🤖 mailuri) |
 | Mi 3 | **Prima verificare AI:** cele 25 de întrebări din `seo/ai-prompts.md` în ChatGPT, Claude, Gemini, Perplexity și Copilot. Notăm unde apărem, ce se spune și ce surse se citează. Sursele citate devin ținte de outreach. | 🤖 + 👤 (ChatGPT logat) |
 | J 4 | **Search Console:** paginile cu impresii pe pozițiile 8–20 primesc completări + linkuri interne; cele cu CTR mic primesc titluri noi. | 🤖 |
 | V 5 | Podcast-uri: pitch la Inovatorii / Work in Progress (start-up.ro), Pastila de antreprenoriat, Permis de Antreprenor. | 🤖 draft, 👤 trimitere |
+| Mi 3 – V 5 | **Valul 3, 7 pagini pe domenii:** avocați și notari, contabilitate, școli de șoferi, săli de fitness, rent-a-car, asigurări și credite, tâmplărie PVC. | 🤖 + 👤 review |
 | L 8 | 2 pagini noi pe orașe, doar cu conținut real (de ex. „Recepționer AI București”), **doar** dacă Search Console arată căutări pe orașe. Nu facem mii de pagini automate. | 🤖 |
 | Ma 9 | **Raportul de 30 de zile** (`seo/reports/2026-12-09.md`) + planul pentru lunile 2–3. | 🤖 |
 
@@ -232,9 +303,9 @@ Date: articolele sunt 50–66% din conținutul LinkedIn citat de AI (Semrush 202
 **Ritmul:** 1 articol pe săptămână (500–2.000 de cuvinte, titlul formulat ca întrebare) + 3–4 postări scurte (50–300 de cuvinte), de pe **profilul tău**. Pagina de companie le redistribuie.
 
 **Cele 4 articole din cele 30 de zile** (le scriu eu, tu le ajustezi pe vocea ta):
-1. „Ce este un recepționer vocal AI și cât costă pentru un cabinet stomatologic în 2026?”
-2. „Câte apeluri pierde un salon pe lună și ce înseamnă asta în bani”
-3. „Agent vocal AI sau secretară? Calcul real pentru o firmă mică din România”
+1. „Ce este un recepționer vocal AI și cât costă în 2027? Ghid pentru firmele mici din România”
+2. „Câte comenzi pierde un magazin online care nu răspunde la telefon”
+3. „Un instalator ratează 3 urgențe pe săptămână. Cât îl costă? (calcul pentru meseriași)”
 4. „E legal ca un AI să răspundă la telefonul firmei tale? AI Act și GDPR, pe scurt”
 
 Fiecare articol: răspunsul în prima frază, link spre pagina corespunzătoare de pe site, iar la final „Elevio AI, recepționer vocal AI în română”.
@@ -247,8 +318,6 @@ Reddit e domeniul cel mai citat de AI, dar e și cel mai ușor de stricat: un po
   - r/Romania (~1,1 milioane de membri): doar răspunsuri utile, niciodată reclamă;
   - r/antreprenoriat (mic, dar exact pe subiect);
   - r/programare: un post tehnic, „cum am făcut recunoaștere vocală în română: latență, diacritice, accente”, care e cinstit și interesant;
-  - r/AI_Agents: firul săptămânal „Project Display”;
-  - r/SaaS, r/smallbusiness: doar valoare, fără reclamă.
 - **Regula 90/10:** de pe contul tău personal, cu istoric. Răspunzi la întrebări de genul „cum nu mai pierd apeluri / programări”. Menționezi Elevio doar când chiar e răspunsul, cu „disclaimer: e produsul meu”.
 - **Ce NU faci:** conturi noi, același text în mai multe subreddit-uri, upvote-uri cumpărate, lansare directă pe r/Romania.
 - 🤖 îți dau zilnic 1–2 thread-uri relevante și un draft de răspuns, iar tu postezi.
@@ -263,23 +332,28 @@ Reddit e domeniul cel mai citat de AI, dar e și cel mai ușor de stricat: un po
 Cum îl folosim:
 - **3–4 site-uri Gamma cu conținut UNIC**, nu copii ale site-ului:
   - „Ghidul recepționerului AI pentru cabinete stomatologice”;
-  - „Cum automatizezi programările la salon”;
+  - „Agent vocal AI pentru magazine online: comenzi, retururi, livrări”;
+  - „Ghid pentru meseriași: cum nu mai pierzi urgențe la telefon (acoperișuri, instalații, electrice)”;
   - „Robot telefonic pentru service auto: ghid practic”;
-  - „Agenți vocali AI în România: ce trebuie să știi înainte să alegi”.
+  - „Agenți vocali AI în România 2027: ce trebuie să știi înainte să alegi”.
 - Fiecare: titlu și descriere setate din Page Setup, conținut util, 1–2 linkuri spre pagina de nișă de pe elevio-agency.ro, verificat în Search Console.
 - **Prezentări Gamma pentru vânzări:** aceleași deck-uri le folosești în pitch la clinici, deci au dublă utilizare.
 - **Riscul:** subdomeniul gamma.site are autoritate mică, iar duplicatele concurează cu propriul site. De aceea conținutul e unic și trimite spre noi.
 
 ### 4.5 YouTube (al doilea cel mai citat domeniu în răspunsurile AI)
 
-- 4 video-uri în 30 de zile, fiecare un **demo real de apel în română** pe o nișă (cabinet, salon, service, recepție generală).
+- 4 video-uri în 30 de zile, fiecare un **demo real de apel în română** pe un domeniu (cabinet stomatologic, magazin online, urgență la instalator sau acoperișuri, service auto).
 - Titlul conține cuvântul cheie, descrierea are 150 de cuvinte și link spre pagina de nișă, iar transcrierea e încărcată.
 - Shorts de 30–45 de secunde din aceleași apeluri, cu subtitrări. Avem deja Whisper în tool-ul de Instagram, deci pot genera subtitrările.
 - Video-urile le pun și pe paginile de nișă (schema `VideoObject`).
 
-### 4.6 X / Twitter
+### 4.6 Facebook & Instagram (unde stau patronii români)
 
-Valoare mică pentru SEO în România. Facem contul „Elevio AI” pentru consecvența numelui și reluăm în engleză demo-urile și postările de pe LinkedIn (pentru comunitatea internațională de voice AI, de exemplu replies la postările Vapi, Retell, ElevenLabs). 15 minute pe săptămână, nu mai mult.
+În România, patronii de saloane, service-uri, firme de meserii și magazine online sunt pe **Facebook**, mult mai mult decât pe Reddit sau X.
+- **Grupuri de antreprenori:** Grupul Antreprenorilor din România (~125.000 de membri, cifră veche, de verificat), Antreprenori – Start Up Romania, Romanian Startups. Plus grupurile pe domenii: meseriași, e-commerce (comunitatea GPeC), cabinete stomatologice, saloane.
+- Aceeași regulă ca pe Reddit: răspunsuri utile de pe profilul tău și Elevio menționat doar când e chiar răspunsul.
+- Pagina de Facebook și profilul de Instagram „Elevio AI”: aceleași clipuri demo ca pe YouTube (format Reels), pentru consecvența numelui și pentru patronii care caută pe Facebook.
+- **X / Twitter:** în România nu aduce aproape nimic. Rezervăm doar numele „Elevio AI” și atât.
 
 ### 4.7 Presă și PR
 
@@ -290,8 +364,9 @@ Valoare mică pentru SEO în România. Facem contul „Elevio AI” pentru conse
 
 ### 4.8 Directoare (pentru backlink și consecvența entității, nu pentru citări)
 
-- **Gratuite:** SaaSHub, AlternativeTo, Capterra/GetApp (video în engleză), G2, Crunchbase, Product Hunt, AI Agents Directory, Voice Agent Index, AI Agents Listing, StartupBlink, Seedtable, RankMyAI România.
-- **Plătit:** There's An AI For That (49 USD, listare permanentă).
+- **Românești sau cu pagini pe România:** ListaFirme / Termene / Risco (datele de la ONRC), SaaSHub (pagina București), StartupBlink România, RankMyAI România, Seedtable România.
+- **Identitate de brand:** Crunchbase, LinkedIn.
+- **Opțional, fără prioritate:** Capterra, G2, AlternativeTo. Internaționale, aduc doar un backlink.
 - **Același text peste tot:** „Elevio AI, recepționer vocal AI în limba română pentru firme mici: răspunde 24/7, face programări, preia lead-uri.”
 
 ---
@@ -328,10 +403,11 @@ Valoare mică pentru SEO în România. Facem contul „Elevio AI” pentru conse
 1. **Netlify:** conectorul vede proiectul `elevio-site`. Am nevoie de acordul tău să declanșez un deploy de producție și să verific setarea de auto-deploy din GitHub.
 2. **DNS (CyberFolks sau Netlify DNS):** acces sau 10 minute împreună, pentru verificarea Search Console și eventual pentru elevioai.ro.
 3. **Search Console + Bing:** după ce le creezi, adaugă-mă prin Claude Code cu un connector sau cu mcp-gsc (îți arăt cum), ca să citesc datele în auditul săptămânal.
-4. **Mostre audio reale pe nișe** (cabinet, salon, service), cu acordul celor înregistrați, pentru paginile de nișă și YouTube.
-5. **Întrebările reale** pe care ți le pun clienții la demo-uri. Din ele fac paginile `/intrebari/*`.
-6. **Testimoniale reale**, când le ai: nume, firmă, oraș și o frază. Sunt cel mai puternic semnal pe care îl putem adăuga.
-7. Deciziile din secțiunea 1: nume, domeniu, marcă, buget.
+4. **Capabilitățile și integrările exacte ale Elevio** (calendar, CRM, platforme de magazin online, transfer de apel, SMS), ca să nu promitem pe pagini ce nu face produsul.
+5. **Mostre audio reale pe domenii** (magazin online, meserii, cabinet, salon, service), cu acordul celor înregistrați, pentru paginile pe domenii și YouTube.
+6. **Întrebările reale** pe care ți le pun clienții la demo-uri. Din ele fac paginile `/intrebari/*`.
+7. **Testimoniale reale**, când le ai: nume, firmă, oraș și o frază. Sunt cel mai puternic semnal pe care îl putem adăuga.
+8. Deciziile din secțiunea 1: nume, domeniu, marcă, buget.
 
 ---
 
@@ -350,4 +426,3 @@ Valoare mică pentru SEO în România. Facem contul „Elevio AI” pentru conse
 - **Google, reputația site-ului (2026):** https://developers.google.com/search/blog/2026/08/update-site-reputation-policy
 - **Wikidata, notabilitate:** https://www.wikidata.org/wiki/Wikidata:Notability
 - **comunicatedepresa.ro:** https://www.comunicatedepresa.ro/servicii/
-- **There's An AI For That:** https://theresanaiforthat.com/get-featured/
