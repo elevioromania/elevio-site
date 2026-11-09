@@ -582,7 +582,7 @@ class Analiza(BaseModel):
 
 
 CONTEXT_ELEVIO = (
-    "Elevio (elevio.ro) este un recepționer vocal AI în limba română pentru firme mici din România "
+    "Elevio (elevio-agency.ro) este un recepționer vocal AI în limba română pentru firme mici din România "
     "(clinici, saloane, service-uri etc.): răspunde la telefon, face programări, preia lead-uri. "
     "Site-ul e făcut în Next.js (App Router), găzduit pe Netlify, pagini: acasă, prețuri, demo, despre, contact."
 )
