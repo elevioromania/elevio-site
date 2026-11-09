@@ -426,7 +426,11 @@ def cmd_descarca_fara_cont(args) -> None:
     except ImportError:
         sys.exit("Lipsește yt-dlp: pip install yt-dlp")
     de_facut = [d for d in toate_postarile()
-                if not citeste_json(d / "meta.json", {}).get("descarcat_anonim") and not list(d.glob("video_*.mp4"))]
+                if not citeste_json(d / "meta.json", {}).get("descarcat_anonim") and not list(d.glob("video_*.mp4"))
+                and (citeste_json(d / "analiza.json", {}) or {}).get("categorie") != "irelevant"]
+    if args.prioritate:  # ex. cele de SEO primele
+        prim = [c.strip() for c in args.prioritate.split(",") if c.strip()]
+        de_facut.sort(key=lambda d: prim.index(d.name) if d.name in prim else len(prim))
     if args.limita:
         de_facut = de_facut[: args.limita]
     log(f"Descarc anonim {len(de_facut)} postări (încet, cu pauze)…")
@@ -863,7 +867,9 @@ def main() -> None:
     p.add_argument("--sessionid", help=argparse.SUPPRESS)
     p.set_defaults(f=cmd_login)
 
-    def comune(p, descarcare=False, transcriere=False, analiza=False):
+    def comune(p, descarcare=False, transcriere=False, analiza=False, prioritate=False):
+        if prioritate:
+            p.add_argument("--prioritate", default="", help="coduri de postări (separate prin virgulă) de procesat primele")
         p.add_argument("--limita", type=int, default=0, help="procesează doar primele N postări (test)")
         p.add_argument("--recente", type=int, default=0, help="lucrează doar pe cele mai recent salvate N postări")
         p.add_argument("--refa", action="store_true", help="refă și ce e deja făcut")
@@ -878,7 +884,7 @@ def main() -> None:
 
     for nume, f, kw in [
         ("descarca", cmd_descarca, dict(descarcare=True)),
-        ("descarca-fara-cont", cmd_descarca_fara_cont, {}),
+        ("descarca-fara-cont", cmd_descarca_fara_cont, dict(prioritate=True)),
         ("transcrie", cmd_transcrie, dict(transcriere=True)),
         ("analizeaza", cmd_analizeaza, dict(analiza=True)),
         ("randeaza", cmd_randeaza, {}),
