@@ -1743,6 +1743,238 @@ export const GHIDURI: Ghid[] = [
     ],
     legate: [LINK_RECEPTIONER, LINK_COST, LINK_AGENT],
   },
+  // ---------------------------------------------------------------------------
+  {
+    slug: "receptioner-ai-cal-com-calendly",
+    titlu: "Recepționer AI cu Cal.com sau Calendly: programări prin telefon, direct în calendar",
+    metaTitle: "Recepționer AI cu Cal.com și Calendly: cum funcționează",
+    metaDescription:
+      "Cum face un recepționer AI programări prin telefon direct în Cal.com sau Calendly: disponibilitate în timp real, confirmare prin SMS, reprogramări și ce configurezi.",
+    interogare: "recepționer AI Cal.com Calendly",
+    variante: [
+      "programări telefonice Calendly",
+      "agent vocal AI Cal.com",
+      "programări automate prin telefon în calendar",
+    ],
+    eyebrow: "Integrări",
+    rezumat:
+      "Un recepționer AI legat de Cal.com sau Calendly verifică în timpul apelului ce ore sunt libere, propune clientului variante și face programarea direct în calendar. Clientul primește confirmarea prin SMS, iar tu vezi programarea ca pe oricare alta.",
+    descriereCard:
+      "Cum arată o programare prin telefon făcută de un asistent AI direct în Cal.com sau Calendly și ce trebuie configurat.",
+    datePublished: "2026-11-11",
+    dateModified: "2026-11-11",
+    sectiuni: [
+      {
+        id: "de-ce",
+        titlu: "De ce contează legătura cu calendarul",
+        blocuri: [
+          {
+            tip: "p",
+            text: "Un asistent care doar notează „clientul vrea o programare joi” te lasă tot pe tine să suni înapoi. Legat de calendar, asistentul termină treaba în timpul apelului: vede ce e liber, propune o oră, confirmă și trimite SMS-ul. Clientul închide telefonul cu programarea făcută.",
+          },
+        ],
+      },
+      {
+        id: "cum-arata",
+        titlu: "Cum arată un apel",
+        blocuri: [
+          {
+            tip: "lista",
+            numerotata: true,
+            items: [
+              "Clientul spune ce vrea: „O consultație joi după-amiază, dacă se poate.”",
+              "Asistentul verifică în calendar orele libere pentru tipul acela de programare.",
+              "Propune două-trei variante: „Am liber joi la 15:00 sau la 17:30.”",
+              "Cere datele necesare: numele și numărul de telefon (sau ce ai stabilit tu).",
+              "Face programarea în calendar și confirmă verbal.",
+              "Clientul primește un SMS de confirmare, iar tu primești rezumatul apelului.",
+            ],
+          },
+        ],
+      },
+      {
+        id: "cal-com-calendly",
+        titlu: "Cal.com sau Calendly",
+        blocuri: [
+          {
+            tip: "p",
+            text: "Amândouă sunt aplicații de programări online care se sincronizează cu Google Calendar sau Outlook. Diferențele de bază:",
+          },
+          {
+            tip: "tabel",
+            cap: ["", "Cal.com", "Calendly"],
+            randuri: [
+              ["Tip", "Open source, are și variantă găzduită", "Serviciu găzduit"],
+              ["Tipuri de programări", "Da, cu durate și reguli diferite", "Da, cu durate și reguli diferite"],
+              ["Sincronizare calendar", "Google, Outlook și altele", "Google, Outlook și altele"],
+              ["Pagină de programare online", "Da", "Da"],
+            ],
+            nota: "Pentru detalii și prețuri actuale, verifică site-ul fiecărei aplicații.",
+          },
+          {
+            tip: "p",
+            text: "Dacă folosești deja una dintre ele pentru programări online, asistentul AI o folosește pe aceeași. Programările de la telefon și cele de pe site ajung în același loc, fără suprapuneri.",
+          },
+        ],
+      },
+      {
+        id: "configurare",
+        titlu: "Ce configurezi",
+        blocuri: [
+          {
+            tip: "lista",
+            items: [
+              "**Tipurile de programări:** consultație, control, igienizare, ofertă, cu durata fiecăreia.",
+              "**Programul:** zilele și orele în care se pot face programări, pauzele, zilele libere.",
+              "**Cine lucrează:** dacă ai mai mulți medici sau specialiști, fiecare cu calendarul lui.",
+              "**Ce date ceri:** de regulă numele și telefonul. Cere doar ce îți trebuie (GDPR).",
+              "**Reprogramări și anulări:** dacă le poate face asistentul sau le trimite la tine.",
+              "**Confirmarea:** textul SMS-ului.",
+            ],
+          },
+        ],
+      },
+      {
+        id: "elevio",
+        titlu: "La Elevio AI",
+        blocuri: [
+          {
+            tip: "p",
+            text: "Elevio AI face programări în calendar (Cal.com, Calendly), cu verificarea disponibilității în timp real, reprogramări, anulări și confirmări prin SMS sau WhatsApp, de la planul PRO. Planul START preia cererea de programare cu toate detaliile și o trimite echipei spre confirmare. Detalii pe pagina de [prețuri](/preturi).",
+          },
+        ],
+      },
+    ],
+    faq: [
+      {
+        q: "Poate un asistent AI să facă programări direct în Calendly?",
+        a: "Da, dacă e legat de contul tău de Calendly. Verifică disponibilitatea în timpul apelului și creează programarea ca pe una făcută de pe pagina ta de programări.",
+      },
+      {
+        q: "Ce se întâmplă dacă ora cerută e ocupată?",
+        a: "Asistentul vede asta în calendar și propune alte ore libere, apropiate de ce a cerut clientul.",
+      },
+      {
+        q: "Trebuie să renunț la programările online de pe site?",
+        a: "Nu. Programările de la telefon și cele online ajung în același calendar.",
+      },
+      {
+        q: "Merge cu Google Calendar?",
+        a: "Cal.com și Calendly se sincronizează cu Google Calendar, deci programările făcute de asistent apar și acolo.",
+      },
+    ],
+    legate: [LINK_AGENT, LINK_ROBOT, LINK_RECEPTIONER],
+  },
+  // ---------------------------------------------------------------------------
+  {
+    slug: "cum-testezi-agent-vocal-ai-romana",
+    titlu: "Cum testezi un agent vocal AI în română înainte să-l cumperi",
+    metaTitle: "Cum testezi un agent vocal AI în română: 12 teste",
+    metaDescription:
+      "12 teste simple pe care le faci la telefon ca să vezi dacă un agent vocal AI vorbește bine românește: nume, cifre, întreruperi, diacritici, transfer la om.",
+    interogare: "asistent vocal AI care vorbește bine românește",
+    variante: [
+      "agent vocal AI limba română",
+      "test agent vocal AI",
+      "AI care vorbește română la telefon",
+    ],
+    eyebrow: "Ghid practic",
+    rezumat:
+      "Cel mai sigur test e un apel adevărat. Sună la numărul demo al furnizorului și încearcă 12 situații: nume și adrese, cifre, întreruperi, o întrebare neprevăzută, un client nervos și cererea de a vorbi cu un om. Notează unde se încurcă.",
+    descriereCard:
+      "Lista de teste pe care le faci la telefon, ce urmărești la fiecare și ce întrebi furnizorul după.",
+    datePublished: "2026-11-11",
+    dateModified: "2026-11-11",
+    sectiuni: [
+      {
+        id: "de-ce",
+        titlu: "De ce nu e suficient un demo pe site",
+        blocuri: [
+          {
+            tip: "p",
+            text: "O mostră audio arată vocea în cel mai bun caz. Clienții tăi vorbesc repede, prescurtează, schimbă ideea la jumătate și sună din mașină. Ca să vezi cum se descurcă agentul, trebuie să-l pui în situațiile acestea.",
+          },
+        ],
+      },
+      {
+        id: "teste",
+        titlu: "12 teste la telefon",
+        blocuri: [
+          {
+            tip: "lista",
+            numerotata: true,
+            items: [
+              "**Un nume dificil:** „Ștefănescu-Pîrvulescu”. Îl repetă corect?",
+              "**O adresă:** „Strada Mihai Eminescu 24, bloc C3, scara 2”.",
+              "**Un număr de telefon** dictat în grupuri: „07… 23… 45…”.",
+              "**O dată relativă:** „joia viitoare” sau „poimâine dimineață”.",
+              "**O întrerupere:** vorbește peste el în mijlocul frazei. Se oprește și te ascultă?",
+              "**O schimbare de idee:** „Joi la 10… de fapt, mai bine vineri.”",
+              "**O întrebare la care nu are răspuns.** Inventează sau spune că nu știe?",
+              "**Vorbește repede**, ca un client grăbit.",
+              "**Vorbește cu zgomot în fundal** (geam deschis, mașină).",
+              "**Un client nervos:** „Am sunat de trei ori și nu răspunde nimeni!”",
+              "**Cere un om:** „Vreau să vorbesc cu cineva de la voi.” Cât de repede transferă?",
+              "**Întreabă-l direct:** „Ești robot?” Răspunsul corect: da, e asistent virtual.",
+            ],
+          },
+        ],
+      },
+      {
+        id: "ce-urmaresti",
+        titlu: "Ce urmărești",
+        blocuri: [
+          {
+            tip: "tabel",
+            cap: ["Ce", "Bine", "Semnal de alarmă"],
+            randuri: [
+              ["Pronunția", "Naturală, cu diacritici", "Accent străin, cuvinte „citite” greșit"],
+              ["Pauzele", "Răspunde repede, fără tăceri lungi", "Tăceri de câteva secunde"],
+              ["Întreruperile", "Se oprește și ascultă", "Continuă să vorbească"],
+              ["Cifre și nume", "Le repetă ca să confirme", "Le notează greșit, fără confirmare"],
+              ["Ce nu știe", "Spune că verifică sau transferă", "Inventează un răspuns"],
+              ["Transferul", "În câteva secunde", "Nu poate sau te ține pe loc"],
+            ],
+          },
+        ],
+      },
+      {
+        id: "dupa",
+        titlu: "Ce întrebi furnizorul după test",
+        blocuri: [
+          {
+            tip: "lista",
+            items: [
+              "Ce primesc după fiecare apel: transcript, rezumat, înregistrare?",
+              "Cum se configurează pe afacerea mea (program, servicii, prețuri, reguli de transfer) și cine o face?",
+              "Câte apeluri preia în același timp?",
+              "Merge pe numărul meu actual?",
+              "Unde se păstrează datele și cât timp?",
+            ],
+          },
+          {
+            tip: "p",
+            text: "Elevio AI poate fi testat exact așa: ceri un apel demo pe pagina de [demo](/demo) sau asculți mostra de pe pagina [agent vocal AI](/agent-vocal-ai). Comparația cu alți furnizori din România e în ghidul [cei mai buni agenți vocali AI în 2027](/ghid/cei-mai-buni-agenti-vocali-ai-romania-2027).",
+          },
+        ],
+      },
+    ],
+    faq: [
+      {
+        q: "Care asistent vocal AI vorbește cel mai bine românește?",
+        a: "Depinde de vocea și de modelul folosit, iar calitatea se schimbă de la o lună la alta. Cel mai sigur e să suni la numărul demo al fiecărui furnizor și să faci testele de mai sus.",
+      },
+      {
+        q: "Cât ar trebui să dureze testul?",
+        a: "5–10 minute pe furnizor. Fă aceleași teste la fiecare, ca să-i poți compara.",
+      },
+      {
+        q: "E normal ca agentul să spună că e AI?",
+        a: "Da, și e și obligatoriu: AI Act cere ca oamenii să știe că vorbesc cu un AI. Vezi ghidul despre [AI Act și GDPR](/ghid/ai-act-gdpr-receptioner-ai).",
+      },
+    ],
+    legate: [LINK_COMPARATIE, LINK_AGENT, LINK_CE_ESTE],
+  },
 ];
 
 export function getGhid(slug: string): Ghid | undefined {
