@@ -97,7 +97,8 @@ export default function DesprePage() {
               </li>
               <li>
                 <strong className="block text-elevio-dark">Pentru cine</strong>
-                Restaurante & cafenele, magazine, service-uri auto.
+                Afaceri locale care trăiesc din telefon: clinici stomatologice și medicale, kinetoterapie,
+                restaurante, magazine online, meserii, service-uri auto.
               </li>
               <li>
                 <strong className="block text-elevio-dark">Exemplu real</strong>
@@ -110,6 +111,88 @@ export default function DesprePage() {
             >
               Programează un demo
             </Link>
+          </div>
+        </div>
+
+        <div className="container-elevio mt-16 grid gap-12 lg:grid-cols-2">
+          <div className="space-y-4 text-elevio-dark/75 leading-relaxed">
+            <h2 className="text-2xl font-extrabold tracking-tight text-elevio-dark">Cine e în spatele Elevio AI</h2>
+            <p>
+              Elevio AI e construit în București de{" "}
+              <a
+                href="https://www.linkedin.com/in/david-morega/"
+                className="font-medium text-elevio-primary underline underline-offset-2 hover:text-elevio-accent"
+                rel="noopener"
+                target="_blank"
+              >
+                David Morega
+              </a>
+              , fondator. Fiecare asistent e configurat de echipa noastră pe afacerea clientului, nu lăsat să se
+              descurce singur.
+            </p>
+            <p>
+              Lucrăm deja cu clinici stomatologice, un centru de kinetoterapie și restaurante, plus magazine online și
+              echipe de vânzări. Clinicile cu care lucrăm au recuperat multe programări cu asistentul, deși aveau deja
+              pe cineva la recepție.
+            </p>
+          </div>
+
+          <div className="space-y-4 text-elevio-dark/75 leading-relaxed">
+            <h2 className="text-2xl font-extrabold tracking-tight text-elevio-dark">Cum lucrăm</h2>
+            <ol className="list-decimal space-y-2 pl-5">
+              <li>Discutăm la un demo cum sună telefonul la tine: cine sună, când și ce vrea.</li>
+              <li>
+                Configurăm asistentul pe afacerea ta: programul, serviciile, întrebările frecvente, regulile de
+                transfer și calendarul.
+              </li>
+              <li>Îl conectăm la numărul pe care îl ai deja. Alegi dacă preia toate apelurile sau doar pe cele pierdute.</li>
+              <li>Urmărim apelurile și ajustăm răspunsurile, ca asistentul să sune tot mai bine pe domeniul tău.</li>
+            </ol>
+          </div>
+
+          <div className="space-y-4 text-elevio-dark/75 leading-relaxed">
+            <h2 className="text-2xl font-extrabold tracking-tight text-elevio-dark">Ce nu face asistentul</h2>
+            <ul className="list-disc space-y-2 pl-5">
+              <li>Nu se dă drept om: se prezintă de la început ca asistent virtual.</li>
+              <li>Nu inventează prețuri, termene sau informații despre afacerea ta.</li>
+              <li>Nu ia decizii în locul tău: situațiile neobișnuite ajung la tine.</li>
+              <li>Nu te ține captiv: numărul de telefon rămâne al tău.</li>
+            </ul>
+          </div>
+
+          <div className="space-y-4 text-elevio-dark/75 leading-relaxed">
+            <h2 className="text-2xl font-extrabold tracking-tight text-elevio-dark">Unde ne găsești</h2>
+            <ul className="space-y-2">
+              <li>
+                Email:{" "}
+                <a href="mailto:elevioromania@gmail.com" className="font-medium text-elevio-primary underline underline-offset-2">
+                  elevioromania@gmail.com
+                </a>
+              </li>
+              <li>
+                LinkedIn:{" "}
+                <a
+                  href="https://www.linkedin.com/company/144838334"
+                  className="font-medium text-elevio-primary underline underline-offset-2"
+                  rel="noopener"
+                  target="_blank"
+                >
+                  Elevio AI
+                </a>
+              </li>
+              <li>
+                Prețuri și planuri:{" "}
+                <Link href="/preturi" className="font-medium text-elevio-primary underline underline-offset-2">
+                  pagina de prețuri
+                </Link>
+              </li>
+              <li>
+                Ghiduri despre recepția telefonică:{" "}
+                <Link href="/ghid" className="font-medium text-elevio-primary underline underline-offset-2">
+                  toate ghidurile
+                </Link>
+              </li>
+            </ul>
           </div>
         </div>
 
