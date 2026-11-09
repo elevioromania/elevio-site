@@ -96,7 +96,7 @@ G2 și Capterra au avut **0 citări** în studiul DerivateX. Le facem pentru bac
 
 ## 1. Decizii de luat în prima zi 👤
 
-### 1.1 Numele public: „Elevio AI”
+### 1.1 Numele public: „Elevio AI” ✅ (decis pe 9 noiembrie)
 
 - Peste tot același nume: titlul site-ului, LinkedIn, YouTube, Google, directoare, comunicate.
 - Descriptorul fix: **„Elevio AI, recepționer vocal AI în limba română”**.
@@ -109,7 +109,7 @@ G2 și Capterra au avut **0 citări** în studiul DerivateX. Le facem pentru bac
 
 `elevio-agency.ro` sună a agenție, nu a produs. **elevioai.ro** și **elevio-ai.ro** par libere: nu au DNS. Disponibilitatea trebuie confirmată la registrar.
 
-- **Varianta A (recomandată pe 30 de zile):** rămâi pe elevio-agency.ro. Cumperi elevioai.ro și îl redirecționezi 301, ca să-l ai și să nu ți-l ia altcineva. Mutarea pe alt domeniu se face mai târziu, cu redirect-uri 301, când site-ul se schimbă oricum.
+- **Varianta A (recomandată pe 30 de zile):** rămâi pe elevio-agency.ro. Pentru SEO **nu e obligatoriu** un domeniu nou: Google și ChatGPT lucrează la fel de bine cu elevio-agency.ro. elevioai.ro e doar o protecție, ca să nu-l ia altcineva (~10 €/an); îl cumperi când vrei, cu redirect 301 spre site. Mutarea pe alt domeniu se face mai târziu, cu redirect-uri 301, când site-ul se schimbă oricum.
 - **Varianta B:** muți acum totul pe elevioai.ro. Domeniul e nou, deci nu pierzi autoritate. Dar trebuie refăcut tot ce e legat de domeniu (email, Search Console, profiluri). Merită doar dacă decizi în primele 2 zile.
 
 ### 1.3 Marca
@@ -118,10 +118,24 @@ G2 și Capterra au avut **0 citări** în studiul DerivateX. Le facem pentru bac
 - elevio.ro poate avea drept anterior în România, iar Dixa (elev.io) poate avea marcă UE.
 - Dacă e liber, depui „Elevio AI” la OSIM: costă de ordinul sutelor de lei. O verificare cu un consilier de proprietate industrială e recomandată.
 
-### 1.4 Bugetul pe 30 de zile (estimativ)
+### 1.4 Bugetul: varianta aproape gratuită (sub 20 €) ✅
 
-| Ce | Cost |
-|---|---|
+Aproape tot planul se face **fără bani**: munca e scrisul paginilor (fac eu) și publicarea pe canale gratuite (faci tu). Singurele cheltuieli care merită:
+
+| Ce | Cost | Obligatoriu? |
+|---|---|---|
+| **Gamma Pro, o singură lună:** indexarea în Google e disponibilă doar pe Pro, iar în luna aceea publicăm toate site-urile Gamma. După ce se anulează abonamentul, verificăm dacă rămân indexate; dacă nu, mutăm conținutul pe Google Sites (gratuit). Prețul exact e pe gamma.app/pricing. | ~10–20 USD | Recomandat |
+| Domeniul elevioai.ro (protecție) | ~10 €/an | Opțional, oricând |
+| Comunicat pe comunicatedepresa.ro, pachetul Basic | 9 € | Opțional; pitch-ul direct la redacții e gratuit și valorează mai mult |
+| **Total** | **~15–20 €** | |
+
+**Ce am scos și cu ce l-am înlocuit (gratuit):**
+- Comunicatul plătit Premium, înlocuit cu **pitch-uri directe gratuite** la start-up.ro, StartupCafe, ZF Hi-Tech și Wall-Street.ro. Callio a ajuns pe start-up.ro tot așa.
+- Advertorialul, înlocuit cu **cereri de includere** în listele existente (loleworks, cosimo.dev, aitfel.ro, natix.ro, spotmedia).
+- Testul cu Google Ads, înlocuit cu **testul de titluri din Search Console** (gratuit, mai lent). Keyword Planner merge și cu un cont Google Ads fără nicio campanie activă: arată intervale de volum în loc de cifre exacte, dar e suficient.
+- Gamma, dacă nu vrei nici cei ~15 €: Gamma gratuit pentru prezentările de vânzări, iar pentru SEO ghidurile merg pe **Google Sites** sau **Notion** public (gratuit, se indexează).
+
+---|---|
 | Gamma Pro: necesar ca paginile Gamma să fie indexate de Google; implicit nu sunt | ~10–20 USD/lună |
 | Opțional: un advertorial pe un site românesc de business (în loc de directoarele internaționale plătite) | ~50–200 EUR |
 | Comunicat pe comunicatedepresa.ro, pachetul Premium (3 linkuri do-follow) | 48 EUR |
@@ -253,9 +267,9 @@ Lista e deschisă. Dacă vinzi deja într-un domeniu care nu e aici, îl adăug�
 | Ma 18 | **Paginile 2027 (2.3):** „Cei mai buni agenți vocali AI din România în 2027” (mutată aici din săptămâna 3, ca să fie indexată cât mai devreme) și „Cât costă un recepționer AI în 2027”. | 🤖 |
 | M 18 | **Listări românești + cele care alimentează listele pe România:** SaaSHub (te pune automat în pagina de startup-uri din București), StartupBlink România, RankMyAI (top unelte AI România), Seedtable România, plus Crunchbase (identitate de brand). Opțional, fără prioritate: Capterra, G2. Toate cu același text în română. | 👤 conturi, 🤖 texte gata de lipit |
 | Mi 19 | **Grupuri de Facebook de antreprenori** (Grupul Antreprenorilor din România, Antreprenori – Start Up Romania, Romanian Startups) și grupurile pe domenii (meseriași, e-commerce, cabinete): intri și răspunzi util, la fel ca pe Reddit (vezi 4.6). | 👤 + 🤖 draft-uri |
-| Mi 19 | **Comunicat de presă** (doar fapte reale): de exemplu „Elevio AI lansează un recepționer vocal AI în limba română pentru cabinete, saloane și service-uri auto, disponibil 24/7”. Fraza „recepționer vocal AI” apare în titlu și în prima propoziție. Distribuit pe **comunicatedepresa.ro Premium** (48 EUR, 3 linkuri do-follow). | 🤖 text, 👤 plată și trimitere |
+| Mi 19 | **Comunicat de presă** (doar fapte reale): de exemplu „Elevio AI lansează un recepționer vocal AI în limba română pentru cabinete, saloane și service-uri auto, disponibil 24/7”. Fraza „recepționer vocal AI” apare în titlu și în prima propoziție. Trimis **gratuit** direct la redacții, împreună cu pitch-ul din 20 nov. Opțional pe comunicatedepresa.ro Basic (9 €). | 🤖 text, 👤 trimitere |
 | J 20 | **Pitch la presă** (subiect cu date, nu „am lansat”): start-up.ro (hello@start-up.ro, sau direct vlad@start-up.ro), StartupCafe (redactie@startupcafe.ro), ZF Hi-Tech (adrian.seceleanu@zf.ro), Wall-Street.ro (redactie@wall-street.ro). Callio a obținut articol pe start-up.ro, deci se poate. | 🤖 draft-uri personalizate, 👤 trimitere |
-| V 21 | **Gamma** (vezi 4.4): primul **site Gamma public**, „Ghidul recepționerului AI pentru cabinete stomatologice”, cu indexarea activată și link spre pagina de nișă. | 👤 cont Pro, 🤖 conținut |
+| V 21 | **Gamma** (vezi 4.4): primul **site Gamma public**, „Ghidul recepționerului AI pentru cabinete stomatologice”, cu indexarea activată și link spre pagina de nișă. | 👤 Gamma Pro o lună (sau Google Sites gratuit), 🤖 conținut |
 | S–D | Al doilea articol LinkedIn + 3 postări; al doilea video YouTube (demo magazin online: apel despre o comandă); încep activitatea pe Reddit (vezi 4.3). | 👤 + 🤖 |
 
 ### Săptămâna 3 (24–30 nov): ghidurile pe care le citează ChatGPT
@@ -357,7 +371,7 @@ Cum îl folosim:
 
 ### 4.7 Presă și PR
 
-- Comunicat pe comunicatedepresa.ro (48 EUR) + pitch-uri personalizate (vezi săptămâna 2).
+- Comunicat trimis gratuit la redacții (opțional comunicatedepresa.ro Basic, 9 €) + pitch-uri personalizate (vezi săptămâna 2).
 - Subiectul care prinde: **date**, de exemplu „X% din apelurile la cabinetele mici rămân nepreluate”. Le putem aduna din apelurile demo, cu acordul clienților, sau dintr-un mini-sondaj de 20 de cabinete. Plus fondatorul disponibil pentru interviu.
 - Tribună de opinie pe Republica.ro: „De ce firmele mici din România pierd clienți la telefon”.
 - **Wikidata:** abia după 1–2 articole independente în presă. Fără ele, item-ul se șterge.
