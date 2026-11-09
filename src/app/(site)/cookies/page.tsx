@@ -1,15 +1,18 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo/metadata";
 import Link from "next/link";
 import { LegalDoc, LegalHeading, LEGAL_CONTACT_EMAIL } from "@/components/LegalDoc";
 
-export const metadata: Metadata = {
-  title: "Politica de cookie-uri — Elevio",
-  description: "Ce cookie-uri folosește site-ul elevio-agency.ro și de ce.",
-};
+export const metadata: Metadata = pageMetadata({
+  title: "Politica de cookie-uri",
+  description:
+    "Politica de cookie-uri Elevio AI: site-ul elevio-agency.ro nu folosește cookie-uri de statistică, marketing sau urmărire, doar elemente strict necesare.",
+  path: "/cookies",
+});
 
 export default function CookiesPage() {
   return (
-    <LegalDoc title="Politica de cookie-uri" updated="26 octombrie 2026">
+    <LegalDoc title="Politica de cookie-uri" path="/cookies" updated="26 octombrie 2026">
       <LegalHeading>1. Ce sunt cookie-urile</LegalHeading>
       <p>
         Cookie-urile sunt fișiere text mici pe care un site le salvează în

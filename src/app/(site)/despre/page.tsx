@@ -1,16 +1,22 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo/metadata";
 import Link from "next/link";
 import PageIntro from "@/components/PageIntro";
+import JsonLd from "@/components/JsonLd";
+import { breadcrumbJsonLd } from "@/lib/seo/schema";
 
-export const metadata: Metadata = {
-  title: "Despre Elevio",
+export const metadata: Metadata = pageMetadata({
+  title: "Despre Elevio AI: recepționer vocal AI construit în România",
   description:
-    "Elevio este recepționerul vocal AI construit pentru afaceri românești care trăiesc din telefon.",
-};
+    "Elevio AI construiește în România un recepționer vocal AI pentru firmele care trăiesc din telefon: răspunde 24/7 în română și nu improvizează niciodată.",
+  path: "/despre",
+  absoluteTitle: true,
+});
 
 export default function DesprePage() {
   return (
     <>
+      <JsonLd data={breadcrumbJsonLd([{ name: "Despre noi", path: "/despre" }])} />
       <PageIntro
         eyebrow="Despre noi"
         title="Construim Elevio pentru afaceri care nu-și pot permite să piardă un apel"

@@ -1,15 +1,22 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo/metadata";
 import PageIntro from "@/components/PageIntro";
 import LeadForm from "@/components/LeadForm";
+import JsonLd from "@/components/JsonLd";
+import { breadcrumbJsonLd } from "@/lib/seo/schema";
 
-export const metadata: Metadata = {
-  title: "Contact — Elevio",
-  description: "Scrie-ne sau cere un apel demo de la Elevio.",
-};
+export const metadata: Metadata = pageMetadata({
+  title: "Contact Elevio AI: cere un demo de recepționer vocal AI",
+  description:
+    "Contactează Elevio AI: completezi formularul și te sunăm cu un demo de recepționer vocal AI, sau ne scrii pe email. Răspundem în aceeași zi lucrătoare.",
+  path: "/contact",
+  absoluteTitle: true,
+});
 
 export default function ContactPage() {
   return (
     <>
+      <JsonLd data={breadcrumbJsonLd([{ name: "Contact", path: "/contact" }])} />
       <PageIntro
         eyebrow="Contact"
         title="Hai să vorbim"

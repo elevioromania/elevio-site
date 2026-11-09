@@ -1,18 +1,13 @@
 import type { MetadataRoute } from "next";
+import { PUBLIC_ROUTES, absoluteUrl } from "@/lib/seo/routes";
 
-const BASE_URL = "https://elevio-agency.ro";
-
+// Paginile vin din registrul `src/lib/seo/routes.ts`: o pagină nouă se adaugă
+// acolo, nu aici.
 export default function sitemap(): MetadataRoute.Sitemap {
-  const lastModified = new Date();
-  return [
-    { url: BASE_URL, lastModified, changeFrequency: "weekly", priority: 1 },
-    { url: `${BASE_URL}/preturi`, lastModified, changeFrequency: "monthly", priority: 0.9 },
-    { url: `${BASE_URL}/demo`, lastModified, changeFrequency: "monthly", priority: 0.9 },
-    { url: `${BASE_URL}/marketing`, lastModified, changeFrequency: "monthly", priority: 0.8 },
-    { url: `${BASE_URL}/despre`, lastModified, changeFrequency: "yearly", priority: 0.6 },
-    { url: `${BASE_URL}/contact`, lastModified, changeFrequency: "yearly", priority: 0.6 },
-    { url: `${BASE_URL}/confidentialitate`, lastModified, changeFrequency: "yearly", priority: 0.3 },
-    { url: `${BASE_URL}/cookies`, lastModified, changeFrequency: "yearly", priority: 0.3 },
-    { url: `${BASE_URL}/termeni`, lastModified, changeFrequency: "yearly", priority: 0.3 },
-  ];
+  return PUBLIC_ROUTES.map((route) => ({
+    url: absoluteUrl(route.path),
+    ...(route.lastModified ? { lastModified: route.lastModified } : {}),
+    changeFrequency: route.changeFrequency,
+    priority: route.priority,
+  }));
 }

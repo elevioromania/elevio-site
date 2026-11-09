@@ -14,11 +14,10 @@ const NAV_LINKS = [
 
 export default function Header() {
   const pathname = usePathname();
-  const [open, setOpen] = useState(false);
-
-  useEffect(() => {
-    setOpen(false);
-  }, [pathname]);
+  // Meniul mobil rămâne deschis doar pe pagina pe care a fost deschis:
+  // la navigare se închide singur, fără setState într-un efect.
+  const [openOn, setOpenOn] = useState<string | null>(null);
+  const open = openOn === pathname;
 
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
@@ -66,7 +65,7 @@ export default function Header() {
           aria-label={open ? "Închide meniul" : "Deschide meniul"}
           aria-expanded={open}
           aria-controls="mobile-menu"
-          onClick={() => setOpen((v) => !v)}
+          onClick={() => setOpenOn(open ? null : pathname)}
           className="relative flex h-10 w-10 items-center justify-center rounded-lg text-white md:hidden"
         >
           <span className="sr-only">Meniu</span>

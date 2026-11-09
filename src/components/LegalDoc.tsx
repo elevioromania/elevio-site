@@ -1,18 +1,24 @@
 import PageIntro from "./PageIntro";
+import JsonLd from "./JsonLd";
+import { breadcrumbJsonLd } from "@/lib/seo/schema";
 
 export const LEGAL_CONTACT_EMAIL = "elevioromania@gmail.com";
 
 export function LegalDoc({
   title,
+  path,
   updated,
   children,
 }: {
   title: string;
+  /** Calea paginii ("/termeni"), pentru BreadcrumbList. */
+  path: string;
   updated: string;
   children: React.ReactNode;
 }) {
   return (
     <>
+      <JsonLd data={breadcrumbJsonLd([{ name: title, path }])} />
       <PageIntro eyebrow="Informații legale" title={title} text={`Ultima actualizare: ${updated}`} />
       <section className="py-16">
         <div className="container-elevio">
