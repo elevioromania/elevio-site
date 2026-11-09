@@ -16,7 +16,7 @@ import type { Crumb, FaqItem } from "@/components/landing/types";
 const PATH = "/receptioner-virtual";
 const TITLE = "Recepționer virtual AI în română, non-stop | Elevio AI";
 const DESCRIPTION =
-  "Recepționer virtual cu AI pentru afaceri locale: răspunde la telefon 24/7, în română, face programări în calendar, trimite SMS și îți dă rezumatul fiecărui apel.";
+  "Recepționer virtual AI pentru afaceri locale: răspunde la telefon 24/7, în română, face programări, trimite SMS și rezumatul apelului. De la 150 €/lună + TVA.";
 
 export const metadata: Metadata = pageMetadata({ path: PATH, title: TITLE, description: DESCRIPTION });
 
@@ -257,6 +257,16 @@ export default function ReceptionerVirtualPage() {
             href: "/ghid/ai-act-gdpr-receptioner-ai",
             title: "AI Act și GDPR pentru recepționerul AI",
             text: "Ce trebuie să le spui clienților și cum tratezi înregistrările și transcrierile.",
+          },
+          {
+            href: "/ghid/apeluri-pierdute-firma",
+            title: "Apeluri pierdute la firmă",
+            text: "Când se pierd apelurile, cum le numeri și ce soluții există, de la cele gratuite la cele automate.",
+          },
+          {
+            href: "/ghid/centrala-telefonica-virtuala-vs-receptioner-ai",
+            title: "Centrală telefonică virtuală sau recepționer AI",
+            text: "Ce face fiecare și când are sens să le folosești împreună.",
           },
         ]}
       />

@@ -71,7 +71,7 @@ export default async function DemoPage({
                 <p className="text-sm leading-relaxed text-elevio-dark/70">
                   Dacă vrei să continui, un coleg din echipa Elevio te sună cu
                   detalii pentru configurarea exactă pe afacerea ta, exact
-                  cum am făcut pentru Clypt România, care a salvat deja peste
+                  cum am făcut pentru Clypt România, care a economisit deja peste
                   2.000€ cu Elevio.
                 </p>
               </li>

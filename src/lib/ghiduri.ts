@@ -965,6 +965,539 @@ export const GHIDURI: Ghid[] = [
     ],
     legate: [LINK_CE_ESTE, LINK_RECEPTIONER, LINK_COMPARATIE],
   },
+  // ---------------------------------------------------------------------------
+  {
+    slug: "redirectionare-apeluri",
+    titlu: "Redirecționare apeluri: coduri, activare, verificare și anulare",
+    metaTitle: "Redirecționare apeluri: coduri **21*, **61*, ##002#",
+    metaDescription:
+      "Cum redirecționezi apelurile de pe mobil: coduri pentru toate apelurile (**21*), când nu răspunzi (**61*), ocupat (**67*), fără semnal (**62*) și anulare (##002#).",
+    interogare: "redirecționare apeluri",
+    variante: [
+      "cod redirecționare apeluri",
+      "cum redirecționez apelurile",
+      "anulare redirecționare apeluri",
+      "redirecționare apeluri Orange Vodafone Digi",
+    ],
+    eyebrow: "Ghid practic",
+    rezumat:
+      "Redirecționarea se activează din tastatura telefonului, cu un cod: **21*număr# pentru toate apelurile, **61*număr# când nu răspunzi, **67*număr# când ești ocupat și **62*număr# când nu ai semnal. Toate se anulează cu ##002#.",
+    descriereCard:
+      "Codurile pentru fiecare situație, cum verifici ce e activ, cum anulezi și către cine merită să redirecționezi telefonul firmei.",
+    datePublished: "2026-11-10",
+    dateModified: "2026-11-10",
+    sectiuni: [
+      {
+        id: "coduri",
+        titlu: "Codurile de redirecționare, pe situații",
+        blocuri: [
+          {
+            tip: "p",
+            text: "Codurile de mai jos sunt coduri GSM standard. Funcționează la operatorii mobili din România (Orange, Vodafone, Digi și ceilalți), pe orice telefon, Android sau iPhone. În loc de „număr” scrii numărul către care vrei să trimiți apelurile, de preferat în format internațional (de exemplu +40 7xx xxx xxx).",
+          },
+          {
+            tip: "tabel",
+            cap: ["Situația", "Activare", "Verificare", "Anulare"],
+            randuri: [
+              ["Toate apelurile, mereu", "**21*număr#", "*#21#", "##21#"],
+              ["Când nu răspunzi", "**61*număr#", "*#61#", "##61#"],
+              ["Când ești ocupat", "**67*număr#", "*#67#", "##67#"],
+              ["Când nu ai semnal sau telefonul e închis", "**62*număr#", "*#62#", "##62#"],
+              ["Toate cele condiționate (61, 62, 67) deodată", "**004*număr#", "", "##004#"],
+              ["Anulează orice redirecționare", "", "", "##002#"],
+            ],
+            legenda: "După ce tastezi codul, apeși tasta de apel. Telefonul afișează un mesaj de confirmare de la rețea.",
+          },
+          {
+            tip: "h3",
+            text: "Câte secunde sună înainte să se redirecționeze",
+          },
+          {
+            tip: "p",
+            text: "La redirecționarea „când nu răspunzi” poți alege după câte secunde pleacă apelul mai departe: **61*număr**20# trimite apelul după 20 de secunde. Rețelele acceptă de obicei valori între 5 și 30 de secunde, din 5 în 5.",
+          },
+        ],
+      },
+      {
+        id: "pe-care-o-alegi",
+        titlu: "Pe care o alegi",
+        blocuri: [
+          {
+            tip: "lista",
+            items: [
+              "**Lipsești o perioadă (concediu, spital, alt număr):** toate apelurile, cu **21*.",
+              "**Vrei să răspunzi tu când poți, iar restul să nu se piardă:** combinația „când nu răspunzi” + „ocupat” + „fără semnal”, cel mai simplu cu **004*.",
+              "**Ai un singur telefon pentru firmă și ești des pe teren:** tot redirecționările condiționate. Clientul te sună întâi pe tine și ajunge mai departe doar dacă nu poți.",
+            ],
+          },
+        ],
+      },
+      {
+        id: "setari-telefon",
+        titlu: "Din setările telefonului, fără coduri",
+        blocuri: [
+          {
+            tip: "lista",
+            items: [
+              "**iPhone:** Setări → Telefon (sau Aplicații → Telefon) → Redirecționare apeluri. iPhone are doar redirecționarea tuturor apelurilor; pentru cele condiționate folosești codurile.",
+              "**Android:** aplicația Telefon → meniul cu trei puncte → Setări → Conturi de apelare sau Setări suplimentare → Redirecționare apeluri. Aici găsești și variantele condiționate.",
+            ],
+          },
+          {
+            tip: "nota",
+            ton: "info",
+            text: "Meniurile diferă puțin de la un model la altul. Dacă nu găsești opțiunea, codurile din tabel funcționează pe orice telefon.",
+          },
+        ],
+      },
+      {
+        id: "cost",
+        titlu: "Cât costă",
+        blocuri: [
+          {
+            tip: "p",
+            text: "Activarea e gratuită. Apelul redirecționat se taxează, de regulă, ca un apel făcut de pe numărul tău către numărul destinație, după abonamentul tău. Dacă ai minute naționale incluse, de obicei intră în ele. Pentru redirecționări către numere din străinătate sau speciale, verifică tariful la operator.",
+          },
+        ],
+      },
+      {
+        id: "mesageria",
+        titlu: "Mesageria vocală e tot o redirecționare",
+        blocuri: [
+          {
+            tip: "p",
+            text: "Când apelantul ajunge în căsuța vocală, de fapt apelul a fost redirecționat „când nu răspunzi” către numărul mesageriei. Dacă vrei să trimiți apelurile în altă parte, anulezi întâi mesageria (cu ##002# sau din setări) și activezi noua redirecționare.",
+          },
+          {
+            tip: "p",
+            text: "Problema mesageriei la o firmă: puțini clienți lasă mesaj. Cine are o urgență sau vrea o programare sună la următorul număr din listă.",
+          },
+        ],
+      },
+      {
+        id: "nu-functioneaza",
+        titlu: "Dacă nu funcționează",
+        blocuri: [
+          {
+            tip: "lista",
+            numerotata: true,
+            items: [
+              "Verifică dacă e deja activă altă redirecționare, cu *#21#, *#61#, *#62#, *#67#.",
+              "Anulează tot cu ##002# și activează din nou.",
+              "Scrie numărul destinație cu prefix internațional (+40).",
+              "Dacă ai cartelă prepaid, verifică să ai credit: unele oferte nu permit redirecționarea fără credit.",
+              "Dacă tot nu merge, sună la serviciul clienți al operatorului: uneori serviciul trebuie activat pe abonament.",
+            ],
+          },
+        ],
+      },
+      {
+        id: "firma",
+        titlu: "Pentru telefonul unei firme: către cine redirecționezi",
+        blocuri: [
+          {
+            tip: "p",
+            text: "La o afacere locală, redirecționarea rezolvă doar jumătate din problemă: apelul nu se mai pierde, dar trebuie să-l preia cineva. Variantele obișnuite sunt un coleg, un dispecerat sau un [recepționer virtual AI](/receptioner-virtual).",
+          },
+          {
+            tip: "p",
+            text: "Cu un recepționer AI, redirecționarea condiționată (**004*) face ca tu să răspunzi primul, iar apelurile pe care nu le poți prelua să ajungă la asistent. El vorbește cu clientul în română, face programarea în calendar, îi trimite un SMS de confirmare și îți trimite un rezumat al apelului. Elevio AI lucrează exact așa, pe numărul existent al firmei. Vezi [cum funcționează](/agent-vocal-ai) și [prețurile](/preturi).",
+          },
+        ],
+      },
+    ],
+    faq: [
+      {
+        q: "Care e codul pentru redirecționarea tuturor apelurilor?",
+        a: "**21*număr# și apoi tasta de apel. Se anulează cu ##21# sau, împreună cu toate celelalte, cu ##002#.",
+      },
+      {
+        q: "Cum anulez redirecționarea apelurilor?",
+        a: "Tastezi ##002# și apeși tasta de apel. Codul anulează toate redirecționările active, inclusiv mesageria vocală.",
+      },
+      {
+        q: "Cum verific dacă am redirecționarea activă?",
+        a: "Cu *#21# pentru toate apelurile, *#61# pentru „nu răspund”, *#62# pentru „fără semnal” și *#67# pentru „ocupat”. Telefonul îți arată numărul către care se trimit apelurile.",
+      },
+      {
+        q: "Codurile sunt aceleași la Orange, Vodafone și Digi?",
+        a: "Da, sunt coduri GSM standard. Diferă doar tarifarea apelurilor redirecționate, după abonament.",
+      },
+      {
+        q: "Pot redirecționa apelurile către un recepționer AI?",
+        a: "Da. Activezi redirecționarea către numărul asistentului, de obicei doar pentru apelurile la care nu răspunzi (**004*), ca tu să rămâi primul care răspunde.",
+      },
+    ],
+    legate: [LINK_RECEPTIONER, LINK_AGENT, LINK_COST],
+  },
+  // ---------------------------------------------------------------------------
+  {
+    slug: "centrala-telefonica-virtuala-vs-receptioner-ai",
+    titlu: "Centrală telefonică virtuală sau recepționer AI: ce alegi pentru o afacere locală",
+    metaTitle: "Centrală telefonică virtuală sau recepționer AI?",
+    metaDescription:
+      "Ce face o centrală telefonică virtuală (meniuri, cozi, interioare), ce face un recepționer AI (răspunde, programează, transferă) și când merită fiecare.",
+    interogare: "centrală telefonică virtuală",
+    variante: [
+      "centrală telefonică virtuală pentru firme",
+      "centrală telefonică virtuală vs recepționer AI",
+      "PBX virtual",
+    ],
+    eyebrow: "Comparație",
+    rezumat:
+      "O centrală telefonică virtuală împarte apelurile între oameni: meniuri, cozi, interioare. Un recepționer AI vorbește el cu clientul: răspunde la întrebări, face programări și transferă doar ce are nevoie de un om. Multe firme le folosesc împreună.",
+    descriereCard:
+      "Ce face fiecare, comparația pe nevoi concrete și când are sens să le legi una de alta.",
+    datePublished: "2026-11-10",
+    dateModified: "2026-11-10",
+    sectiuni: [
+      {
+        id: "centrala",
+        titlu: "Ce face o centrală telefonică virtuală",
+        blocuri: [
+          {
+            tip: "p",
+            text: "O centrală telefonică virtuală (PBX în cloud) e varianta modernă a centralei din birou. Nu mai ai un aparat în dulap: totul rulează la furnizor, iar colegii răspund din aplicație, de pe telefon sau de pe calculator.",
+          },
+          {
+            tip: "lista",
+            items: [
+              "**Meniu vocal (IVR):** „pentru programări apăsați 1, pentru contabilitate apăsați 2”.",
+              "**Cozi de apeluri:** apelanții așteaptă cu muzică până se eliberează cineva.",
+              "**Interioare:** fiecare coleg are numărul lui scurt, iar apelurile se transferă între ei.",
+              "**Program de lucru:** în afara programului, un mesaj înregistrat sau mesageria.",
+              "**Rapoarte:** câte apeluri au intrat, câte au fost preluate, câte s-au pierdut.",
+            ],
+          },
+          {
+            tip: "p",
+            text: "Ce nu face: nu vorbește cu clientul. Dacă nu e niciun om liber, apelul rămâne în coadă, ajunge la mesagerie sau se pierde.",
+          },
+        ],
+      },
+      {
+        id: "receptioner",
+        titlu: "Ce face un recepționer AI",
+        blocuri: [
+          {
+            tip: "p",
+            text: "Un [recepționer AI](/receptioner-virtual) e un asistent vocal care poartă conversația în locul unui om. Clientul vorbește normal, fără taste.",
+          },
+          {
+            tip: "lista",
+            items: [
+              "Răspunde la întrebările care se repetă: program, adresă, servicii, ce acte trebuie aduse.",
+              "Face programări direct în calendar și trimite confirmarea prin SMS.",
+              "Transferă apelul la un om când clientul are nevoie sau când nu are un răspuns sigur.",
+              "Preia mai multe apeluri deodată, deci nu există coadă.",
+              "După fiecare apel trimite un rezumat și transcrierea.",
+            ],
+          },
+        ],
+      },
+      {
+        id: "comparatie",
+        titlu: "Comparația, pe nevoi",
+        blocuri: [
+          {
+            tip: "tabel",
+            cap: ["Nevoia", "Centrală virtuală", "Recepționer AI"],
+            randuri: [
+              ["Împart apelurile între 5+ colegi", "Da, e făcută pentru asta", "Poate transfera, dar nu e rolul principal"],
+              ["Nu pierd apelurile după program", "Doar mesaj sau mesagerie", "Da, vorbește cu clientul 24/7"],
+              ["Fac programări prin telefon fără un om", "Nu", "Da, în calendar"],
+              ["Răspund la aceleași întrebări de 20 de ori pe zi", "Nu", "Da"],
+              ["Vârfuri de apeluri (campanii, sezon)", "Coadă de așteptare", "Preia mai multe apeluri deodată"],
+              ["Clientul vorbește liber, fără taste", "Nu, meniu cu taste", "Da"],
+            ],
+          },
+        ],
+      },
+      {
+        id: "cand",
+        titlu: "Când alegi una, când pe cealaltă",
+        blocuri: [
+          {
+            tip: "lista",
+            items: [
+              "**Ai o echipă mare care răspunde toată ziua:** centrala virtuală e baza. Un recepționer AI poate prelua apelurile din afara programului.",
+              "**Ai o afacere locală, cu 1–3 oameni care fac și altceva decât să răspundă la telefon:** recepționerul AI rezolvă direct problema apelurilor pierdute.",
+              "**Primești mai ales cereri de programare:** recepționerul AI, pentru că termină treaba singur, nu doar direcționează apelul.",
+            ],
+          },
+        ],
+      },
+      {
+        id: "impreuna",
+        titlu: "Cum le folosești împreună",
+        blocuri: [
+          {
+            tip: "p",
+            text: "Cele mai multe centrale virtuale pot trimite apelul către un număr extern: în afara programului, când coada e plină sau când nu răspunde nimeni într-un anumit timp. Numărul acela poate fi recepționerul AI. Pe un singur telefon mobil, același efect îl obții cu [redirecționarea condiționată](/ghid/redirectionare-apeluri).",
+          },
+          {
+            tip: "p",
+            text: "Elevio AI lucrează pe numărul existent al firmei, în două moduri: preia toate apelurile sau doar pe cele la care nu răspunde nimeni. Vezi [prețurile](/preturi) sau ascultă cum sună la [demo](/demo).",
+          },
+        ],
+      },
+    ],
+    faq: [
+      {
+        q: "Ce este o centrală telefonică virtuală?",
+        a: "Un sistem de telefonie în cloud care împarte apelurile firmei între colegi, cu meniuri, cozi și interioare, fără echipament în birou.",
+      },
+      {
+        q: "Un recepționer AI înlocuiește centrala telefonică?",
+        a: "Nu neapărat. Centrala împarte apelurile între oameni, recepționerul AI vorbește cu clientul. La o afacere locală mică, recepționerul AI poate fi suficient. La o echipă mare, cele două se completează.",
+      },
+      {
+        q: "Pot păstra numărul de telefon actual?",
+        a: "Da, la ambele variante. Recepționerul AI preia apelurile prin redirecționare sau prin centrala pe care o ai deja.",
+      },
+      {
+        q: "Ce e mai bun pentru programări?",
+        a: "Recepționerul AI, pentru că face programarea singur, în calendar. Centrala doar duce apelul la un om care o face.",
+      },
+    ],
+    legate: [LINK_ROBOT, LINK_RECEPTIONER, LINK_CE_ESTE],
+  },
+  // ---------------------------------------------------------------------------
+  {
+    slug: "apeluri-pierdute-firma",
+    titlu: "Apeluri pierdute la firmă: de ce se întâmplă și cum le recuperezi",
+    metaTitle: "Apeluri pierdute la firmă: cauze și soluții concrete",
+    metaDescription:
+      "De ce pierde o afacere locală apeluri, cum afli câte pierzi, cât te costă și 6 soluții, de la apel înapoi și SMS automat la redirecționare și recepționer AI.",
+    interogare: "apeluri pierdute firmă",
+    variante: [
+      "apeluri ratate clienți",
+      "cum nu mai pierd apeluri",
+      "clienți care nu răspund la telefon firma",
+    ],
+    eyebrow: "Ghid practic",
+    rezumat:
+      "O afacere locală pierde apeluri mai ales după program, în pauze și când cineva e deja la telefon. Primul pas e să le numeri. Apoi alegi soluția după volum: apel înapoi rapid, SMS automat, redirecționare sau un recepționer AI care preia apelurile pe care nu le poți prelua tu.",
+    descriereCard:
+      "Când se pierd apelurile, cum le numeri, un exemplu de calcul al costului și ce soluții există, de la cele gratuite la recepționerul AI.",
+    datePublished: "2026-11-10",
+    dateModified: "2026-11-10",
+    sectiuni: [
+      {
+        id: "cand",
+        titlu: "Când se pierd apelurile",
+        blocuri: [
+          {
+            tip: "lista",
+            items: [
+              "**După program și în weekend.** Clienții sună când au ei timp: seara, după serviciu, sau sâmbătă.",
+              "**Când cineva e deja la telefon.** Al doilea client primește „ocupat” sau ajunge la mesagerie.",
+              "**Când omul de la telefon face altceva:** e cu un pacient, e pe o lucrare, servește la masă.",
+              "**În pauze și la schimbul de tură.**",
+              "**În vârfuri:** luni dimineață, înainte de sărbători, în sezon.",
+            ],
+          },
+        ],
+      },
+      {
+        id: "numara",
+        titlu: "Cum afli câte apeluri pierzi",
+        blocuri: [
+          {
+            tip: "lista",
+            numerotata: true,
+            items: [
+              "**Lista de apeluri ratate din telefon.** Notează timp de o săptămână câte apeluri nepreluate ai și la ce oră.",
+              "**Raportul operatorului sau al centralei.** Multe centrale virtuale arată apelurile pierdute și durata de așteptare.",
+              "**Întreabă clienții noi** cum te-au găsit și dacă au mai încercat să sune.",
+            ],
+          },
+          {
+            tip: "nota",
+            ton: "info",
+            text: "Uită-te mai ales la ore. Dacă apelurile pierdute se adună seara sau la prânz, soluția e alta decât dacă se pierd pentru că ai prea multe deodată.",
+          },
+        ],
+      },
+      {
+        id: "cost",
+        titlu: "Cât te costă un apel pierdut",
+        blocuri: [
+          {
+            tip: "p",
+            text: "Formula e simplă: apeluri pierdute pe lună × cât îți aduce în medie un client care sună × cât de des un apel devine client.",
+          },
+          {
+            tip: "nota",
+            ton: "exemplu",
+            titlu: "Exemplu de calcul (cifre inventate, doar pentru ilustrare)",
+            text: "2 apeluri pierdute pe zi lucrătoare înseamnă aproximativ 44 pe lună. Dacă unul din patru ar fi devenit o programare de 300 de lei, pierderea e de aproximativ 11 programări, adică 3.300 de lei pe lună. Pune cifrele tale în locul acestora.",
+          },
+          {
+            tip: "p",
+            text: "Calculul complet, cu varianta de recepționer AI, îl găsești în ghidul [cât costă un recepționer AI](/ghid/cat-costa-receptioner-ai-2027).",
+          },
+        ],
+      },
+      {
+        id: "solutii",
+        titlu: "6 soluții, de la cele gratuite la cele automate",
+        blocuri: [
+          {
+            tip: "tabel",
+            cap: ["Soluția", "Cost", "Ce rezolvă", "Ce nu rezolvă"],
+            randuri: [
+              ["Suni înapoi repede", "Gratuit", "Clienții răbdători", "Seara și urgențele: până suni, clientul a ales pe altcineva"],
+              ["SMS automat la apel ratat", "Mic (aplicație sau centrală)", "Clientul știe că ai văzut apelul", "Nu face programarea"],
+              ["Mesageria vocală", "Gratuit", "Puțin: mulți închid fără mesaj", "Aproape tot"],
+              ["Redirecționare către un coleg", "Timpul colegului", "Apelurile din program", "Seara, weekendul, vârfurile"],
+              ["Programare online pe site", "Mic", "Clienții care preferă să scrie", "Clienții care sună"],
+              ["Recepționer AI", "Abonament lunar", "Seara, weekendul, vârfurile: vorbește cu clientul și face programarea", "Situațiile care cer un om (le transferă)"],
+            ],
+          },
+          {
+            tip: "p",
+            text: "Pentru redirecționare ai codurile în ghidul [redirecționare apeluri](/ghid/redirectionare-apeluri). Pentru varianta automată, vezi ce face un [recepționer virtual AI](/receptioner-virtual).",
+          },
+        ],
+      },
+      {
+        id: "plan",
+        titlu: "Un plan simplu pentru următoarea lună",
+        blocuri: [
+          {
+            tip: "lista",
+            numerotata: true,
+            items: [
+              "Săptămâna 1: numără apelurile pierdute și notează orele.",
+              "Săptămâna 2: activează redirecționarea condiționată către cine poate răspunde și un SMS automat la apel ratat.",
+              "Săptămâna 3: dacă tot pierzi apeluri seara sau în vârfuri, testează un recepționer AI doar pe apelurile pe care nu le preiei.",
+              "Săptămâna 4: compară numărul de programări cu luna dinainte.",
+            ],
+          },
+        ],
+      },
+    ],
+    faq: [
+      {
+        q: "Care e cea mai ieftină soluție pentru apeluri pierdute?",
+        a: "Apelul înapoi rapid și redirecționarea condiționată către un coleg. Sunt gratuite, dar nu acoperă seara, weekendul și momentele în care toată lumea e ocupată.",
+      },
+      {
+        q: "Merită un recepționer AI pentru o firmă mică?",
+        a: "Merită dacă pierzi constant apeluri pe care nu le poți prelua și un client nou îți aduce mai mult decât costul lunar. Fă întâi calculul de mai sus cu cifrele tale.",
+      },
+      {
+        q: "Cum le spun clienților că a răspuns un asistent?",
+        a: "Asistentul se prezintă singur ca asistent virtual, din prima frază. E și o cerință legală (AI Act). Detalii în ghidul despre [AI Act și GDPR](/ghid/ai-act-gdpr-receptioner-ai).",
+      },
+    ],
+    legate: [LINK_COST, LINK_RECEPTIONER, LINK_LEGAL],
+  },
+  // ---------------------------------------------------------------------------
+  {
+    slug: "robot-telefonic-vs-ivr",
+    titlu: "Robot telefonic AI vs IVR: care e diferența și ce alegi",
+    metaTitle: "Robot telefonic AI vs IVR: diferențe și ce alegi",
+    metaDescription:
+      "IVR-ul te pune să apeși taste, robotul telefonic AI vorbește cu tine. Diferențele pe scurt, un tabel comparativ și când merită fiecare pentru o afacere locală.",
+    interogare: "robot telefonic vs IVR",
+    variante: [
+      "ce este IVR",
+      "IVR vs AI",
+      "diferența robot telefonic IVR",
+    ],
+    eyebrow: "Comparație",
+    rezumat:
+      "Un IVR e un meniu înregistrat: clientul apasă taste ca să ajungă undeva. Un robot telefonic AI poartă o conversație: clientul spune ce vrea, iar robotul răspunde, face programarea sau transferă la un om.",
+    descriereCard:
+      "Ce e un IVR, ce e un robot telefonic AI, tabelul comparativ și când are sens fiecare.",
+    datePublished: "2026-11-10",
+    dateModified: "2026-11-10",
+    sectiuni: [
+      {
+        id: "ivr",
+        titlu: "Ce este un IVR",
+        blocuri: [
+          {
+            tip: "p",
+            text: "IVR vine de la „Interactive Voice Response”. E meniul pe care îl auzi la bancă sau la operator: „pentru informații apăsați 1, pentru reclamații apăsați 2”. Mesajele sunt înregistrate dinainte, iar sistemul înțelege doar tastele (uneori și câteva cuvinte-cheie).",
+          },
+          {
+            tip: "p",
+            text: "Rolul lui e să trimită apelul la departamentul potrivit. Nu rezolvă cererea: la capătul meniului tot un om trebuie să răspundă.",
+          },
+        ],
+      },
+      {
+        id: "robot-ai",
+        titlu: "Ce este un robot telefonic AI",
+        blocuri: [
+          {
+            tip: "p",
+            text: "Un [robot telefonic AI](/robot-telefonic-ai) (sau agent vocal AI) înțelege vorbirea liberă și răspunde cu voce naturală. Clientul spune „aș vrea o programare joi după-amiază”, iar robotul verifică calendarul, propune o oră și confirmă.",
+          },
+        ],
+      },
+      {
+        id: "tabel",
+        titlu: "Diferențele, pe scurt",
+        blocuri: [
+          {
+            tip: "tabel",
+            cap: ["", "IVR", "Robot telefonic AI"],
+            randuri: [
+              ["Cum vorbește clientul", "Apasă taste", "Vorbește liber, în română"],
+              ["Ce face", "Direcționează apelul", "Rezolvă cererea: informații, programări, transfer"],
+              ["Întrebări neprevăzute", "Nu le înțelege", "Răspunde din ce știe sau transferă"],
+              ["După program", "Mesaj înregistrat", "Conversație completă, 24/7"],
+              ["Mai multe apeluri deodată", "Coadă", "Le preia în paralel"],
+              ["Configurare", "Înregistrări + arbore de taste", "Informațiile firmei + regulile de transfer"],
+            ],
+          },
+        ],
+      },
+      {
+        id: "cand",
+        titlu: "Când merită fiecare",
+        blocuri: [
+          {
+            tip: "lista",
+            items: [
+              "**IVR:** firme mari, cu multe departamente și oameni care răspund toată ziua. Meniul doar împarte apelurile.",
+              "**Robot telefonic AI:** afaceri locale unde nu e mereu cineva liber la telefon, iar apelurile sunt mai ales programări, rezervări și întrebări care se repetă.",
+              "**Amândouă:** IVR-ul rămâne în față, iar opțiunea „programări” sau apelurile din afara programului merg la robotul AI.",
+            ],
+          },
+          {
+            tip: "nota",
+            ton: "atentie",
+            titlu: "Ce să verifici la un robot AI",
+            text: "Să se prezinte ca asistent virtual, să transfere repede la un om când nu știe și să nu inventeze răspunsuri. Sună la demo și pune o întrebare la care nu se așteaptă.",
+          },
+          {
+            tip: "p",
+            text: "Elevio AI e un robot telefonic AI în română, pentru afaceri locale. Vezi [cum funcționează](/robot-telefonic-ai) și [prețurile](/preturi).",
+          },
+        ],
+      },
+    ],
+    faq: [
+      {
+        q: "IVR-ul e același lucru cu robotul telefonic?",
+        a: "Nu. „Robot telefonic” se folosea pentru IVR, adică meniul cu taste. Un robot telefonic AI poartă însă o conversație și rezolvă cererea, nu doar o direcționează.",
+      },
+      {
+        q: "Pot păstra IVR-ul și adăuga un robot AI?",
+        a: "Da. O opțiune din meniu sau apelurile din afara programului se pot trimite către robotul AI.",
+      },
+      {
+        q: "Clienților le place să vorbească cu un AI?",
+        a: "Le place mai puțin să apese taste sau să nu răspundă nimeni. Contează ca asistentul să fie clar că e AI, să fie util și să transfere repede la un om când e nevoie.",
+      },
+    ],
+    legate: [LINK_ROBOT, LINK_CE_ESTE, LINK_AGENT],
+  },
 ];
 
 export function getGhid(slug: string): Ghid | undefined {

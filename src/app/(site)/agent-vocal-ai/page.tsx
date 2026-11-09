@@ -18,7 +18,7 @@ import type { Crumb, FaqItem } from "@/components/landing/types";
 const PATH = "/agent-vocal-ai";
 const TITLE = "Agent vocal AI în română pentru firme, 24/7 | Elevio AI";
 const DESCRIPTION =
-  "Agent vocal AI care răspunde la telefon în română, 24/7, pe numărul tău: face programări în calendar, trimite SMS de confirmare și îți dă rezumatul apelului.";
+  "Agent vocal AI care răspunde la telefon în română, 24/7, pe numărul tău: face programări, trimite SMS de confirmare și rezumatul apelului. De la 150 €/lună + TVA.";
 
 export const metadata: Metadata = pageMetadata({ path: PATH, title: TITLE, description: DESCRIPTION });
 
@@ -253,6 +253,11 @@ export default function AgentVocalAiPage() {
             href: "/ghid/cat-costa-receptioner-ai-2027",
             title: "Cât costă un recepționer AI în 2027",
             text: "Costul unui agent vocal AI față de un angajat la recepție, cu un exemplu de calcul.",
+          },
+          {
+            href: "/ghid/apeluri-pierdute-firma",
+            title: "Apeluri pierdute la firmă",
+            text: "De ce se pierd apelurile și cum le recuperezi.",
           },
         ]}
       />

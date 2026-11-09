@@ -15,7 +15,7 @@ import type { Crumb, FaqItem } from "@/components/landing/types";
 const PATH = "/robot-telefonic-ai";
 const TITLE = "Robot telefonic AI pentru programări, fără taste | Elevio AI";
 const DESCRIPTION =
-  "Robot telefonic AI care vorbește liber cu clienții în română, fără taste: face programări în calendar, trimite SMS și transferă apelul la tine când e nevoie.";
+  "Robot telefonic AI care vorbește liber cu clienții în română, fără taste: face programări, trimite SMS și transferă apelul la tine. De la 150 €/lună + TVA.";
 
 export const metadata: Metadata = pageMetadata({ path: PATH, title: TITLE, description: DESCRIPTION });
 
@@ -235,6 +235,16 @@ export default function RobotTelefonicAiPage() {
             href: "/ghid/cei-mai-buni-agenti-vocali-ai-romania-2027",
             title: "Agenți vocali AI din România în 2027",
             text: "Comparație onestă între furnizori, cu prețuri publice și sursă.",
+          },
+          {
+            href: "/ghid/robot-telefonic-vs-ivr",
+            title: "Robot telefonic AI vs IVR",
+            text: "Meniul cu taste față de conversația liberă: diferențele și ce alegi.",
+          },
+          {
+            href: "/ghid/redirectionare-apeluri",
+            title: "Redirecționare apeluri: coduri",
+            text: "Codurile pentru toate apelurile, când nu răspunzi, ocupat sau fără semnal, și cum le anulezi.",
           },
         ]}
       />

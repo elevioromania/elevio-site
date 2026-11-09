@@ -16,7 +16,7 @@ export default function SocialProof() {
             Client real
           </span>
           <h2 className="text-balance text-2xl font-extrabold tracking-tight text-elevio-dark sm:text-3xl">
-            Clypt România a salvat peste 2.000€ prin implementarea unui
+            Clypt România a economisit peste 2.000€ prin implementarea unui
             singur agent AI.
           </h2>
           <p className="max-w-xl text-elevio-dark/70">
