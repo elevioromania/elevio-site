@@ -29,11 +29,13 @@ export default function FAQ() {
                 +
               </span>
             </button>
-            {isOpen && (
-              <div className="px-6 pb-5 text-sm leading-relaxed text-elevio-dark/70">
-                {item.a}
-              </div>
-            )}
+            {/* Răspunsul e mereu în HTML (Google îl citește, la fel ca FAQPage din schema); doar se ascunde vizual. */}
+            <div
+              hidden={!isOpen}
+              className="px-6 pb-5 text-sm leading-relaxed text-elevio-dark/70"
+            >
+              {item.a}
+            </div>
           </div>
         );
       })}
