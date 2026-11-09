@@ -1,18 +1,28 @@
 import type { MetadataRoute } from "next";
+import { PUBLIC_ROUTES, absoluteUrl } from "@/lib/seo/routes";
+import { GHIDURI } from "@/lib/ghiduri";
+import { INDUSTRII } from "@/lib/industrii";
 
-const BASE_URL = "https://elevio-agency.ro";
-
+// Paginile fixe vin din registrul `src/lib/seo/routes.ts`; paginile generate
+// din date (ghiduri) se adaugă din fișierele lor de date.
 export default function sitemap(): MetadataRoute.Sitemap {
-  const lastModified = new Date();
-  return [
-    { url: BASE_URL, lastModified, changeFrequency: "weekly", priority: 1 },
-    { url: `${BASE_URL}/preturi`, lastModified, changeFrequency: "monthly", priority: 0.9 },
-    { url: `${BASE_URL}/demo`, lastModified, changeFrequency: "monthly", priority: 0.9 },
-    { url: `${BASE_URL}/marketing`, lastModified, changeFrequency: "monthly", priority: 0.8 },
-    { url: `${BASE_URL}/despre`, lastModified, changeFrequency: "yearly", priority: 0.6 },
-    { url: `${BASE_URL}/contact`, lastModified, changeFrequency: "yearly", priority: 0.6 },
-    { url: `${BASE_URL}/confidentialitate`, lastModified, changeFrequency: "yearly", priority: 0.3 },
-    { url: `${BASE_URL}/cookies`, lastModified, changeFrequency: "yearly", priority: 0.3 },
-    { url: `${BASE_URL}/termeni`, lastModified, changeFrequency: "yearly", priority: 0.3 },
-  ];
+  const fixe = PUBLIC_ROUTES.map((route) => ({
+    url: absoluteUrl(route.path),
+    ...(route.lastModified ? { lastModified: route.lastModified } : {}),
+    changeFrequency: route.changeFrequency,
+    priority: route.priority,
+  }));
+  const ghiduri = GHIDURI.map((g) => ({
+    url: absoluteUrl(`/ghid/${g.slug}`),
+    lastModified: g.dateModified,
+    changeFrequency: "monthly" as const,
+    priority: 0.8,
+  }));
+  const industrii = INDUSTRII.map((ind) => ({
+    url: absoluteUrl(`/industrii/${ind.slug}`),
+    lastModified: "2026-11-09",
+    changeFrequency: "monthly" as const,
+    priority: 0.8,
+  }));
+  return [...fixe, ...ghiduri, ...industrii];
 }

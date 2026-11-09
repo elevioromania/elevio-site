@@ -1,15 +1,18 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo/metadata";
 import Link from "next/link";
 import { LegalDoc, LegalHeading, LEGAL_CONTACT_EMAIL } from "@/components/LegalDoc";
 
-export const metadata: Metadata = {
-  title: "Termeni și condiții — Elevio",
-  description: "Termenii și condițiile de utilizare ale site-ului elevio-agency.ro și ale serviciilor Elevio.",
-};
+export const metadata: Metadata = pageMetadata({
+  title: "Termeni și condiții",
+  description:
+    "Termenii și condițiile de utilizare ale site-ului elevio-agency.ro și ale serviciilor Elevio AI: informații, prețuri fără TVA, răspundere și contact.",
+  path: "/termeni",
+});
 
 export default function TermeniPage() {
   return (
-    <LegalDoc title="Termeni și condiții" updated="26 octombrie 2026">
+    <LegalDoc title="Termeni și condiții" path="/termeni" updated="26 octombrie 2026">
       <p>
         Acești termeni se aplică folosirii site-ului elevio-agency.ro.
         Folosind site-ul, ești de acord cu ei. Dacă nu ești de acord, te rugăm

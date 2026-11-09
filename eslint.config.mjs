@@ -14,6 +14,8 @@ const eslintConfig = defineConfig([
     "next-env.d.ts",
     // Edge Functions Supabase (Deno), nu fac parte din aplicația Next.js.
     "supabase/**",
+    // Copiile de lucru temporare ale agenților Claude Code (git worktrees).
+    ".claude/**",
   ]),
 ]);
 

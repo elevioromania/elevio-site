@@ -1,4 +1,15 @@
+import type { Metadata } from "next";
 import MarketingLeadForm from "@/components/marketing/MarketingLeadForm";
+import JsonLd from "@/components/JsonLd";
+import { pageMetadata } from "@/lib/seo/metadata";
+import { breadcrumbJsonLd } from "@/lib/seo/schema";
+
+export const metadata: Metadata = pageMetadata({
+  title: "Recenzii Google Maps, site-uri și social media",
+  description:
+    "Elevio Marketing, divizia de marketing Elevio AI: recenzii Google Maps, profil Google optimizat, site-uri web și social media pentru afaceri locale.",
+  path: "/marketing",
+});
 
 const SERVICES = [
   {
@@ -44,6 +55,7 @@ const STEPS = [
 export default function MarketingPage() {
   return (
     <>
+      <JsonLd data={breadcrumbJsonLd([{ name: "Elevio Marketing", path: "/marketing" }])} />
       <section className="py-20 sm:py-28">
         <div className="container-elevio">
           <div className="max-w-2xl">

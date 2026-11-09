@@ -13,15 +13,16 @@ export default function Hero() {
       />
       <div className="container-elevio grid items-center gap-12 py-16 md:py-24 lg:grid-cols-2">
         <div>
-          <span className="inline-flex items-center rounded-full bg-white/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-wide text-elevio-accent">
-            Recepționer vocal AI · România
-          </span>
+          {/* H1-ul paginii e cuvântul cheie (SEO); arată ca insigna de dinainte. */}
+          <h1 className="inline-flex items-center rounded-full bg-white/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-wide text-elevio-accent">
+            Elevio AI — recepționer vocal AI în limba română
+          </h1>
 
-          <h1 className="mt-6 text-balance text-4xl font-extrabold leading-tight tracking-tight text-white sm:text-5xl">
+          <p className="mt-6 text-balance text-4xl font-extrabold leading-tight tracking-tight text-white sm:text-5xl">
             <span className="text-elevio-accent">Niciun</span> apel ratat.
             <br />
             <span className="text-elevio-accent">Niciun</span> client pierdut.
-          </h1>
+          </p>
 
           <p className="mt-6 max-w-xl text-lg leading-relaxed text-white/70">
             Elevio este recepționerul vocal AI care răspunde clienților tăi în
