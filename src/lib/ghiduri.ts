@@ -1498,6 +1498,251 @@ export const GHIDURI: Ghid[] = [
     ],
     legate: [LINK_ROBOT, LINK_CE_ESTE, LINK_AGENT],
   },
+  // ---------------------------------------------------------------------------
+  {
+    slug: "secretariat-telefonic",
+    titlu: "Secretariat telefonic: externalizat, virtual sau cu AI",
+    metaTitle: "Secretariat telefonic: externalizat, virtual sau AI",
+    metaDescription:
+      "Ce face un secretariat telefonic, cum funcționează varianta externalizată, cea virtuală și cea cu AI, ce întrebi înainte și ce se potrivește unei firme mici.",
+    interogare: "secretariat telefonic",
+    variante: [
+      "secretariat telefonic externalizat",
+      "secretariat virtual",
+      "secretariat telefonic automat",
+      "preluare apeluri externalizată",
+    ],
+    eyebrow: "Ghid practic",
+    rezumat:
+      "Un secretariat telefonic răspunde la telefonul firmei în locul tău. Poate fi un om angajat, o firmă externă care preia apelurile pentru mai mulți clienți sau un asistent AI care vorbește singur cu clienții, 24/7.",
+    descriereCard:
+      "Cele trei variante de secretariat telefonic, ce face fiecare, ce întrebi furnizorul și cum alegi.",
+    datePublished: "2026-11-11",
+    dateModified: "2026-11-11",
+    sectiuni: [
+      {
+        id: "ce-face",
+        titlu: "Ce face un secretariat telefonic",
+        blocuri: [
+          {
+            tip: "lista",
+            items: [
+              "Răspunde la telefon cu numele firmei.",
+              "Dă informații de bază: program, adresă, servicii.",
+              "Notează mesaje și cereri de ofertă.",
+              "Face sau notează programări.",
+              "Transferă apelurile importante la omul potrivit.",
+            ],
+          },
+          {
+            tip: "p",
+            text: "Pentru o firmă de avocatură, un cabinet medical sau o afacere locală, rolul lui e același: niciun client să nu sune în gol.",
+          },
+        ],
+      },
+      {
+        id: "variante",
+        titlu: "Trei variante",
+        blocuri: [
+          {
+            tip: "h3",
+            text: "1. Secretară angajată",
+          },
+          {
+            tip: "p",
+            text: "Cunoaște firma cel mai bine și primește clienții la birou. Limitele: programul de lucru, concediile, pauzele și un singur apel deodată.",
+          },
+          {
+            tip: "h3",
+            text: "2. Secretariat telefonic externalizat",
+          },
+          {
+            tip: "p",
+            text: "O firmă specializată, cu operatori care răspund pentru mai mulți clienți, după un script primit de la tine. Avantaj: răspunde un om. Limite: operatorul nu e doar al tău, programul depinde de furnizor, iar tarifele se calculează de obicei pe apel, pe minut sau pe pachet.",
+          },
+          {
+            tip: "h3",
+            text: "3. Secretariat telefonic cu AI",
+          },
+          {
+            tip: "p",
+            text: "Un [recepționer virtual AI](/receptioner-virtual) care vorbește cu clientul în română, 24/7. Răspunde la întrebările care se repetă, face programări în calendar, trimite confirmări prin SMS și transferă la un om ce are nevoie de un om. Preia mai multe apeluri deodată și trimite un rezumat după fiecare apel.",
+          },
+        ],
+      },
+      {
+        id: "comparatie",
+        titlu: "Comparația, pe scurt",
+        blocuri: [
+          {
+            tip: "tabel",
+            cap: ["", "Secretară angajată", "Secretariat externalizat", "Secretariat cu AI"],
+            randuri: [
+              ["Program", "Programul firmei", "Programul furnizorului", "24/7"],
+              ["Apeluri simultane", "Unul", "Depinde de furnizor", "Mai multe deodată"],
+              ["Cunoaște firma", "Foarte bine", "Din script", "Din informațiile configurate"],
+              ["Programări", "Da", "De obicei notează cererea", "Da, direct în calendar"],
+              ["Situații delicate", "Le gestionează", "Le notează sau transferă", "Le transferă la tine"],
+              ["Ce rămâne scris", "Ce notează", "Un mesaj sau un e-mail", "Transcript și rezumat pentru fiecare apel"],
+            ],
+          },
+        ],
+      },
+      {
+        id: "intrebari",
+        titlu: "Ce întrebi un furnizor, înainte să semnezi",
+        blocuri: [
+          {
+            tip: "lista",
+            numerotata: true,
+            items: [
+              "Cine răspunde și în ce program? Ce se întâmplă noaptea și în weekend?",
+              "Cum se calculează prețul: pe apel, pe minut sau abonament? Există cost de pornire?",
+              "Pot păstra numărul de telefon actual?",
+              "Cum ajung la mine mesajele și programările, și cât de repede?",
+              "Ce se întâmplă cu urgențele?",
+              "Unde se păstrează înregistrările și datele clienților, și cât timp (GDPR)?",
+              "Pot asculta un apel de test înainte?",
+            ],
+          },
+        ],
+      },
+      {
+        id: "avocatura",
+        titlu: "Exemplu: o firmă de avocatură",
+        blocuri: [
+          {
+            tip: "p",
+            text: "La un cabinet de avocatură, telefonul sună în timp ce avocatul e în instanță sau în ședință. Clienții noi vor o primă discuție, clienții existenți vor un termen sau o informație despre dosar. Un secretariat telefonic, uman sau AI, preia datele, programează consultația și îi spune clientului clar când va fi sunat înapoi. Informațiile despre dosare rămân la avocat: asistentul nu dă consultanță juridică.",
+          },
+          {
+            tip: "p",
+            text: "Elevio AI are o pagină dedicată pentru [avocați și notari](/industrii/avocati-notari). Pentru costuri, vezi [prețurile](/preturi).",
+          },
+        ],
+      },
+    ],
+    faq: [
+      {
+        q: "Ce este un secretariat telefonic?",
+        a: "Un serviciu care răspunde la telefonul firmei în locul tău: dă informații, notează mesaje, face programări și transferă apelurile importante.",
+      },
+      {
+        q: "Care e diferența dintre secretariatul externalizat și cel cu AI?",
+        a: "La cel externalizat răspunde un operator uman, care lucrează pentru mai mulți clienți. La cel cu AI răspunde un asistent vocal, 24/7, care poate prelua mai multe apeluri deodată și face programări direct în calendar.",
+      },
+      {
+        q: "Clienții află că vorbesc cu un asistent AI?",
+        a: "Da. Asistentul se prezintă ca asistent virtual. Vezi ghidul despre [AI Act și GDPR](/ghid/ai-act-gdpr-receptioner-ai).",
+      },
+    ],
+    legate: [LINK_RECEPTIONER, LINK_COST, LINK_LEGAL],
+  },
+  // ---------------------------------------------------------------------------
+  {
+    slug: "mesaj-automat-apel-ratat",
+    titlu: "Mesaj automat la apel ratat: SMS, WhatsApp sau recepționer AI",
+    metaTitle: "Mesaj automat la apel ratat: cum îl setezi pentru firmă",
+    metaDescription:
+      "Cum trimiți automat un SMS sau un mesaj pe WhatsApp când pierzi un apel, ce să scrii în el, ce limite are și când e mai bine ca apelul să fie preluat direct.",
+    interogare: "mesaj automat apel ratat",
+    variante: [
+      "SMS automat apel pierdut",
+      "răspuns automat la apel ratat",
+      "mesaj automat după program",
+    ],
+    eyebrow: "Ghid practic",
+    rezumat:
+      "Un mesaj automat la apel ratat îi spune clientului că i-ai văzut apelul și când revii. Se setează dintr-o aplicație, din centrala telefonică sau din WhatsApp Business. Ajută, dar nu face programarea: clientul tot trebuie să aștepte să-l suni.",
+    descriereCard:
+      "De unde setezi un mesaj automat la apel ratat, modele de text și când e mai bine ca apelul să fie preluat direct.",
+    datePublished: "2026-11-11",
+    dateModified: "2026-11-11",
+    sectiuni: [
+      {
+        id: "unde",
+        titlu: "De unde se setează",
+        blocuri: [
+          {
+            tip: "lista",
+            items: [
+              "**Centrala telefonică virtuală.** Multe centrale pot trimite automat un SMS la apelurile nepreluate. E varianta cea mai curată, dacă ai deja centrală.",
+              "**O aplicație pe telefonul firmei.** Pe Android există aplicații care trimit SMS la apel ratat. Verifică permisiunile cerute și unde ajung datele.",
+              "**WhatsApp Business.** Are mesaj de bun venit și mesaj de absență, dar pentru mesajele scrise pe WhatsApp, nu pentru apelurile pe numărul obișnuit.",
+              "**Respingerea cu mesaj.** Majoritatea telefoanelor îți dau un SMS rapid când respingi un apel („Te sun în 10 minute”). E manual, nu automat.",
+            ],
+          },
+          {
+            tip: "nota",
+            ton: "info",
+            text: "Pe iPhone nu există o setare care să trimită singură un SMS la orice apel ratat. Ai nevoie de o centrală sau de un serviciu extern.",
+          },
+        ],
+      },
+      {
+        id: "modele",
+        titlu: "Ce să scrii în mesaj",
+        blocuri: [
+          {
+            tip: "p",
+            text: "Scurt, cu numele firmei, cu ce urmează și, dacă ai, cu un link de programare online.",
+          },
+          {
+            tip: "lista",
+            items: [
+              "„Bună ziua, ați sunat la [Firma]. Nu am putut răspunde acum. Vă sunăm înapoi în cel mult o oră, în programul de lucru.”",
+              "„Bună ziua, ați sunat la [Firma], în afara programului (L–V, 9–18). Vă sunăm mâine dimineață. Pentru programări: [link].”",
+              "„Am văzut apelul dumneavoastră. Dacă e o urgență, scrieți-ne aici și revenim imediat.”",
+            ],
+          },
+        ],
+      },
+      {
+        id: "limite",
+        titlu: "Limitele mesajului automat",
+        blocuri: [
+          {
+            tip: "lista",
+            items: [
+              "Clientul tot trebuie să aștepte. Cine are o urgență sună la următorul număr.",
+              "Programarea nu se face până nu revii tu.",
+              "Dacă nu suni înapoi cum ai promis, mesajul face mai mult rău decât bine.",
+              "Ai nevoie de acordul clientului pentru mesaje de marketing. Un mesaj de serviciu („vă sunăm înapoi”) e altceva, dar nu adăuga oferte în el.",
+            ],
+          },
+        ],
+      },
+      {
+        id: "alternativa",
+        titlu: "Alternativa: apelul preluat direct",
+        blocuri: [
+          {
+            tip: "p",
+            text: "Dacă pierzi multe apeluri, mai eficient e ca apelul să fie preluat pe loc. Un [recepționer virtual AI](/receptioner-virtual) vorbește cu clientul, face programarea în calendar și abia apoi îi trimite SMS-ul de confirmare. Cum îl pui doar pe apelurile la care nu răspunzi, vezi în ghidul [redirecționare apeluri](/ghid/redirectionare-apeluri).",
+          },
+          {
+            tip: "p",
+            text: "Un plan complet pentru apelurile pierdute găsești în ghidul [apeluri pierdute la firmă](/ghid/apeluri-pierdute-firma).",
+          },
+        ],
+      },
+    ],
+    faq: [
+      {
+        q: "Pot trimite automat un SMS la fiecare apel ratat?",
+        a: "Da, dintr-o centrală telefonică virtuală sau dintr-o aplicație pe Android. Pe iPhone ai nevoie de o centrală sau de un serviciu extern.",
+      },
+      {
+        q: "WhatsApp Business trimite mesaj la apel ratat?",
+        a: "Mesajele automate din WhatsApp Business (bun venit, absență) răspund la mesajele scrise pe WhatsApp, nu la apelurile pe numărul obișnuit.",
+      },
+      {
+        q: "E mai bun un SMS automat sau un recepționer AI?",
+        a: "SMS-ul automat e ieftin și îi spune clientului că revii. Recepționerul AI rezolvă cererea pe loc: răspunde, face programarea și trimite confirmarea. Dacă pierzi puține apeluri, SMS-ul ajunge. Dacă pierzi multe, merită apelul preluat direct.",
+      },
+    ],
+    legate: [LINK_RECEPTIONER, LINK_COST, LINK_AGENT],
+  },
 ];
 
 export function getGhid(slug: string): Ghid | undefined {
