@@ -1,4 +1,4 @@
-# Articole LinkedIn (SEO), săptămânile 1–4
+# Articole LinkedIn (SEO), săptămânile 1–5
 
 Le publici de pe profilul tău, ca **Articol** (Scrie un articol), nu ca postare. Pagina de companie le redistribuie.
 - Ritmul: unul pe săptămână, de preferat marțea sau miercurea dimineața.
@@ -8,15 +8,81 @@ Le publici de pe profilul tău, ca **Articol** (Scrie un articol), nu ca postare
 
 Textele respectă regulile Elevio: fără linie de pauză, „afaceri locale”, fără prețuri, fără cifre inventate.
 
+**Vocea** (după postarea lui David despre restaurant): pornești de la o situație reală, spusă simplu. Fraze scurte. Spui direct „am construit Elevio ca să rezolv exact asta”. Concret, fără jargon. La final: o discuție de 10 minute sau o întrebare.
+
 ---
 
-## Articolul 1 (săptămâna 1)
+## Articolul 0 (săptămâna 1, primul publicat): restaurante
+
+**Titlu:** Câte rezervări pierde un restaurant când nu poate nimeni răspunde la telefon?
+
+Luna trecută, un patron de restaurant din România mi-a spus ceva ce nu mi-a mai ieșit din cap.
+
+În orele de vârf de la cină, telefonul suna de 15–20 de ori. El răspundea la cam jumătate.
+
+Restul? Rezervări pierdute. Comenzi pierdute. Clienți care au sunat pur și simplu la altcineva.
+
+Nu pierdea clienți din cauza mâncării. Nici din cauza servirii. Îi pierdea pentru că nimeni nu poate fizic să răspundă la telefon și să conducă o bucătărie în același timp.
+
+**De ce apelurile ratate nu se văd**
+
+Un client care sună și nu dă de nimeni nu lasă mesaj. Nu scrie o recenzie. Nu apare în niciun raport.
+
+Sună la restaurantul următor din Google. Și rezervă acolo.
+
+Patronul vede mesele ocupate. Nu le vede pe cele care ar fi putut fi ocupate.
+
+**Când se pierd cele mai multe apeluri**
+
+- vineri și sâmbătă seara, exact când toată echipa e în tură;
+- la prânz, în orele de livrare;
+- înainte de deschidere și după închidere, când oamenii își fac planurile pentru a doua zi.
+
+**Problema pe care am construit Elevio s-o rezolve**
+
+Exact asta e problema pentru care am construit Elevio.
+
+Un recepționer vocal AI care răspunde la fiecare apel, în română, preia rezervarea sau comanda, verifică disponibilitatea reală și dă apelul unui om doar atunci când chiar contează.
+
+Fără apeluri pierdute în orele de vârf. Fără clienți pierduți în favoarea celui care răspunde primul.
+
+Restaurantul cu care lucrăm a recuperat multe rezervări cu asistentul.
+
+**Ce face, concret**
+
+- Răspunde pe numărul pe care restaurantul îl are deja.
+- Preia rezervarea: numele, ora, numărul de persoane, cerințele speciale.
+- Clientul primește confirmare prin SMS.
+- Preia mai multe apeluri în același timp, deci nimeni nu dă de ton ocupat vineri seara.
+- Când întrebarea iese din ce știe, transferă apelul către echipă.
+
+Mai multe despre cum funcționează pentru restaurante: https://elevio-agency.ro/industrii/restaurante
+
+Dacă afacerea voastră trăiește din telefon, restaurant, clinică, salon sau service auto, merită o discuție de 10 minute.
+
+Voi câte apeluri credeți că pierdeți vineri seara?
+
+**Postarea de însoțire:**
+
+Un patron de restaurant mi-a spus luna trecută că, la cină, telefonul sună de 15–20 de ori.
+
+El răspunde la jumătate.
+
+Restul sunt rezervări pierdute. Clienți care au sunat la altcineva.
+
+Nu din cauza mâncării. Din cauza unui telefon la care nu putea răspunde nimeni.
+
+Am scris tot mai jos. Voi câte apeluri pierdeți vineri seara?
+
+---
+
+## Articolul 1 (săptămâna 2)
 
 **Titlu:** Ce este un recepționer vocal AI și ce face concret pentru o clinică?
 
 Un recepționer vocal AI este un asistent care răspunde la telefonul clinicii atunci când nu poate nimeni de la recepție: după program, în weekend sau când recepția e cu un pacient în față. Face programări direct în calendar, răspunde la întrebări despre program și servicii și transferă apelul către echipă când e nevoie.
 
-Asta e definiția scurtă. Mai jos e partea care contează pentru un manager de clinică.
+Asta e definiția scurtă. Am construit Elevio ca să rezolve exact problema asta, așa că mai jos e partea care contează pentru un manager de clinică.
 
 **Ce se întâmplă azi cu apelurile de după program**
 
@@ -58,7 +124,7 @@ Un recepționer vocal AI nu înlocuiește recepția. Se ocupă de apelurile la c
 
 Dacă vreți să auziți cum sună, aici e un apel demo: https://elevio-agency.ro/agent-vocal-ai
 
-Voi cum gestionați apelurile de după program?
+Dacă clinica voastră pierde apeluri seara sau în weekend, merită o discuție de 10 minute. Voi cum gestionați apelurile de după program?
 
 **Postarea de însoțire:**
 
@@ -74,7 +140,7 @@ Articolul complet e mai jos. Cum gestionați voi apelurile de seară?
 
 ---
 
-## Articolul 2 (săptămâna 2)
+## Articolul 2 (săptămâna 3)
 
 **Titlu:** Câte programări pierde o clinică din apelurile de după program?
 
@@ -132,7 +198,7 @@ V-ați uitat vreodată la lista apelurilor nepreluate?
 
 ---
 
-## Articolul 3 (săptămâna 3)
+## Articolul 3 (săptămâna 4)
 
 **Titlu:** E legal ca un asistent AI să răspundă la telefonul clinicii? AI Act și GDPR, pe înțeles
 
@@ -184,7 +250,7 @@ Am pus tot pe înțeles în articolul de mai jos.
 
 ---
 
-## Articolul 4 (săptămâna 4): pentru 2027
+## Articolul 4 (săptămâna 5): pentru 2027
 
 **Titlu:** Agenți vocali AI în 2027: ce să verificați înainte să alegeți unul
 
