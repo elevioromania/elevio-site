@@ -4,25 +4,18 @@ import { INDUSTRII, industriiPeCategorii } from "@/lib/industrii";
 import Breadcrumbs from "@/components/industrii/Breadcrumbs";
 import CtaIndustrie from "@/components/industrii/CtaIndustrie";
 import JsonLd, { SITE_URL, breadcrumbLd } from "@/components/industrii/JsonLd";
+import { pageMetadata } from "@/lib/seo/metadata";
 
 const TITLU = "Agent vocal AI pe industrii: magazine, meserii, clinici";
 const DESCRIERE =
   "Elevio AI, recepționer vocal AI în română, 24/7, configurat pe domeniul tău: magazine online, meserii, clinici, saloane, service-uri auto și altele.";
 
-export const metadata: Metadata = {
-  metadataBase: new URL(SITE_URL),
+export const metadata: Metadata = pageMetadata({
   title: TITLU,
   description: DESCRIERE,
-  alternates: { canonical: "/industrii" },
-  openGraph: {
-    title: TITLU,
-    description: DESCRIERE,
-    url: "/industrii",
-    siteName: "Elevio AI",
-    locale: "ro_RO",
-    type: "website",
-  },
-};
+  path: "/industrii",
+  absoluteTitle: true,
+});
 
 const LA_FEL_PESTE_TOT = [
   "Răspunde 24/7, în română, cu o voce naturală, pe numărul pe care îl ai deja.",

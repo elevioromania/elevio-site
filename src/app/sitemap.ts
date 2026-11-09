@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next";
 import { PUBLIC_ROUTES, absoluteUrl } from "@/lib/seo/routes";
 import { GHIDURI } from "@/lib/ghiduri";
+import { INDUSTRII } from "@/lib/industrii";
 
 // Paginile fixe vin din registrul `src/lib/seo/routes.ts`; paginile generate
 // din date (ghiduri) se adaugă din fișierele lor de date.
@@ -17,5 +18,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
     changeFrequency: "monthly" as const,
     priority: 0.8,
   }));
-  return [...fixe, ...ghiduri];
+  const industrii = INDUSTRII.map((ind) => ({
+    url: absoluteUrl(`/industrii/${ind.slug}`),
+    lastModified: "2026-11-09",
+    changeFrequency: "monthly" as const,
+    priority: 0.8,
+  }));
+  return [...fixe, ...ghiduri, ...industrii];
 }

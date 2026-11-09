@@ -39,7 +39,9 @@ export const PUBLIC_ROUTES: PublicRoute[] = [
   { path: "/receptioner-virtual", changeFrequency: "monthly", priority: 0.9, lastModified: "2026-11-09" },
   { path: "/robot-telefonic-ai", changeFrequency: "monthly", priority: 0.9, lastModified: "2026-11-09" },
   { path: "/ghid", changeFrequency: "weekly", priority: 0.7, lastModified: "2026-11-09" },
-  // Ghidurile se adaugă automat din src/lib/ghiduri.ts (vezi sitemap.ts).
+  { path: "/industrii", changeFrequency: "monthly", priority: 0.8, lastModified: "2026-11-09" },
+  // Ghidurile și paginile pe industrii se adaugă automat din src/lib/ghiduri.ts
+  // și src/lib/industrii.ts (vezi sitemap.ts).
 ];
 
 /** URL absolut pentru o cale relativă: absoluteUrl("/preturi"). */

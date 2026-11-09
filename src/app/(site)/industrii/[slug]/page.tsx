@@ -7,6 +7,7 @@ import CtaIndustrie from "@/components/industrii/CtaIndustrie";
 import FaqIndustrie from "@/components/industrii/FaqIndustrie";
 import ScenariuApel from "@/components/industrii/ScenariuApel";
 import JsonLd, { SITE_URL, breadcrumbLd } from "@/components/industrii/JsonLd";
+import { pageMetadata } from "@/lib/seo/metadata";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -21,21 +22,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const ind = getIndustrie(slug);
   if (!ind) return {};
-  const cale = `/industrii/${ind.slug}`;
-  return {
-    metadataBase: new URL(SITE_URL),
+  return pageMetadata({
     title: ind.titluSEO,
     description: ind.descriere,
-    alternates: { canonical: cale },
-    openGraph: {
-      title: ind.titluSEO,
-      description: ind.descriere,
-      url: cale,
-      siteName: "Elevio AI",
-      locale: "ro_RO",
-      type: "website",
-    },
-  };
+    path: `/industrii/${ind.slug}`,
+    absoluteTitle: true,
+  });
 }
 
 const DE_BAZA = [
