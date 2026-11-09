@@ -1,12 +1,7 @@
-import type { Metadata } from "next";
 import MarketingHeader from "@/components/marketing/MarketingHeader";
 import MarketingFooter from "@/components/marketing/MarketingFooter";
 
-export const metadata: Metadata = {
-  title: "Elevio Marketing — Recenzii Google Maps, site-uri și social media",
-  description:
-    "Divizia de marketing Elevio: recenzii Google Maps, optimizare profil, site-uri web și profile social media pentru afaceri locale.",
-};
+// Metadatele paginii (titlu, descriere, canonical) sunt în ./page.tsx.
 
 export default function MarketingLayout({ children }: { children: React.ReactNode }) {
   return (

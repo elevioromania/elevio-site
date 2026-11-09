@@ -1,16 +1,18 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo/metadata";
 import Link from "next/link";
 import { LegalDoc, LegalHeading, LEGAL_CONTACT_EMAIL } from "@/components/LegalDoc";
 
-export const metadata: Metadata = {
-  title: "Politica de confidențialitate — Elevio",
+export const metadata: Metadata = pageMetadata({
+  title: "Politica de confidențialitate",
   description:
-    "Cum colectează, folosește și protejează Elevio datele personale, conform Regulamentului (UE) 2016/679 (GDPR).",
-};
+    "Politica de confidențialitate Elevio AI: ce date personale colectăm prin site și formulare, de ce le folosim, cât le păstrăm și ce drepturi ai conform GDPR.",
+  path: "/confidentialitate",
+});
 
 export default function ConfidentialitatePage() {
   return (
-    <LegalDoc title="Politica de confidențialitate" updated="26 octombrie 2026">
+    <LegalDoc title="Politica de confidențialitate" path="/confidentialitate" updated="26 octombrie 2026">
       <p>
         Această politică explică ce date personale colectează Elevio prin
         site-ul elevio-agency.ro și în activitatea comercială, de ce le

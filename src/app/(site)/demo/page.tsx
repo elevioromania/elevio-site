@@ -1,12 +1,16 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo/metadata";
 import PageIntro from "@/components/PageIntro";
 import LeadForm from "@/components/LeadForm";
+import JsonLd from "@/components/JsonLd";
+import { breadcrumbJsonLd } from "@/lib/seo/schema";
 
-export const metadata: Metadata = {
-  title: "Demo gratuit — Elevio",
+export const metadata: Metadata = pageMetadata({
+  title: "Demo gratuit: recepționer vocal AI în română",
   description:
-    "Cere un demo gratuit și primești pe email o mostră audio de la Elevio, recepționerul vocal AI.",
-};
+    "Cere un demo gratuit Elevio AI și primești pe email o mostră audio: auzi cum ar răspunde recepționerul vocal AI clienților afacerii tale. Fără obligații.",
+  path: "/demo",
+});
 
 const VALID_TYPES = new Set([
   "restaurant",
@@ -28,6 +32,7 @@ export default async function DemoPage({
 
   return (
     <>
+      <JsonLd data={breadcrumbJsonLd([{ name: "Demo gratuit", path: "/demo" }])} />
       <PageIntro
         eyebrow="Demo gratuit"
         title="Ascultă-l tu însuți. Apoi decide."

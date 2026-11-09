@@ -1,18 +1,30 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo/metadata";
 import PageIntro from "@/components/PageIntro";
 import PricingCards from "@/components/PricingCards";
 import PriceAnchor from "@/components/PriceAnchor";
 import FAQSection from "@/components/FAQSection";
+import JsonLd from "@/components/JsonLd";
+import { PRICING_TIERS } from "@/lib/pricing";
+import { breadcrumbJsonLd, receptionistServiceJsonLd } from "@/lib/seo/schema";
 
-export const metadata: Metadata = {
-  title: "Prețuri — Elevio",
+export const metadata: Metadata = pageMetadata({
+  title: "Prețuri recepționer AI și agent vocal AI",
   description:
-    "Trei planuri simple: START de la 150€/lună, PRO (cel mai ales) de la 300€/lună, BUSINESS de la 600€/lună (+ TVA) — recepționer vocal AI în română, 24/7.",
-};
+    "Prețuri Elevio AI: START de la 150 €/lună, PRO de la 300 €/lună, BUSINESS de la 600 €/lună (+ TVA). Recepționer vocal AI în română, 24/7, pentru firme.",
+  path: "/preturi",
+});
 
 export default function PreturiPage() {
   return (
     <>
+      <JsonLd
+        data={[
+          // Ofertele vin din aceleași planuri pe care le afișează PricingCards.
+          receptionistServiceJsonLd(PRICING_TIERS),
+          breadcrumbJsonLd([{ name: "Prețuri", path: "/preturi" }]),
+        ]}
+      />
       <PageIntro
         eyebrow="Prețuri"
         title="Planuri simple, ușor de înțeles"
