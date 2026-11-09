@@ -68,12 +68,14 @@ const RESPONSABILITATI = [
 ];
 
 const COMPARATIE = [
-  ["Program", "De obicei, programul firmei", "24/7, inclusiv weekend și sărbători"],
-  ["Când e ocupat cu un client", "Apelul așteaptă sau se pierde", "Răspunde la telefon în locul tău"],
-  ["Concedii, pauze, absențe", "Trebuie acoperite de altcineva", "Nu are"],
-  ["Ce rămâne scris după apel", "Ce apucă să noteze", "Transcript și rezumat pentru fiecare apel"],
-  ["Întâmpinarea clienților la birou", "Da", "Nu, răspunde doar la telefon"],
-  ["Situații neobișnuite", "Decide pe loc", "Transferă apelul la tine în câteva secunde"],
+  ["Program", "De obicei, programul firmei", "Mereu, dar clientul doar lasă mesaj", "Mereu, dar clientul apasă taste", "24/7, inclusiv weekend și sărbători"],
+  ["Când e ocupat cu un client", "Apelul așteaptă sau se pierde", "Ajunge la mesagerie", "Apelul stă în coadă", "Răspunde la telefon în locul tău"],
+  ["Programări", "Da", "Nu, doar mesaj", "Nu, doar direcționează apelul", "Da, în calendar, cu SMS de confirmare"],
+  ["Mai multe apeluri deodată", "Unul singur", "Da, dar fără conversație", "Coadă de așteptare", "Da, de la 2 la 10, în funcție de plan"],
+  ["Concedii, pauze, absențe", "Trebuie acoperite de altcineva", "Nu are", "Nu are", "Nu are"],
+  ["Ce rămâne scris după apel", "Ce apucă să noteze", "Înregistrarea, dacă există", "Statistici de apeluri", "Transcript și rezumat pentru fiecare apel"],
+  ["Întâmpinarea clienților la birou", "Da", "Nu", "Nu", "Nu, răspunde doar la telefon"],
+  ["Situații neobișnuite", "Decide pe loc", "Nimic", "Opțiune din meniu", "Transferă apelul la tine în câteva secunde"],
 ];
 
 const PASI_START = [
@@ -115,6 +117,22 @@ const FAQ: FaqItem[] = [
   {
     q: "Cât costă recepționerul virtual Elevio AI?",
     a: "Planurile pornesc de la 150 €/lună (START), 300 €/lună (PRO) și 600 €/lună (BUSINESS), toate + TVA, plus taxa de implementare. Fără contract pe termen lung. Detalii pe pagina de [prețuri](/preturi).",
+  },
+  {
+    q: "Câte apeluri poate prelua în același timp?",
+    a: "Depinde de plan: 2 apeluri simultane la START, 5 la PRO și 10 la BUSINESS. Clienții nu mai primesc „ocupat” când sună mai mulți deodată.",
+  },
+  {
+    q: "În ce limbi vorbește?",
+    a: "În română, la toate planurile. De la planul PRO vorbește și engleză.",
+  },
+  {
+    q: "Pot să-l folosesc doar pentru apelurile la care nu răspund?",
+    a: "Da. Ai două moduri: preia toate apelurile sau doar pe cele la care nu răspunde nimeni de la firmă. Pe un telefon mobil, al doilea mod se face prin [redirecționarea condiționată](/ghid/redirectionare-apeluri).",
+  },
+  {
+    q: "Ce se întâmplă când nu știe răspunsul?",
+    a: "Nu improvizează. Îi spune clientului că îl pune în legătură cu echipa și transferă apelul pe telefonul firmei, sau notează cererea pentru o revenire.",
   },
 ];
 
@@ -180,11 +198,16 @@ export default function ReceptionerVirtualPage() {
       <Section
         id="comparatie"
         eyebrow="Comparație"
-        title="Recepționer virtual AI vs angajat la recepție"
+        title="Recepționer virtual AI față de alternative"
         intro={
           <p>
             Nu e o întrecere: multe firme îi folosesc împreună. Recepționerul AI
-            preia apelurile când angajatul e ocupat, în pauză sau acasă. Despre bani,
+            preia apelurile când angajatul e ocupat, în pauză sau acasă. Despre centrala
+            cu meniu, vezi{" "}
+            <Link href="/ghid/centrala-telefonica-virtuala-vs-receptioner-ai" className={linkClass}>
+              centrală telefonică virtuală sau recepționer AI
+            </Link>
+            . Despre bani,
             citește{" "}
             <Link href="/ghid/cat-costa-receptioner-ai-2027" className={linkClass}>
               cât costă un recepționer AI în 2027
@@ -195,9 +218,10 @@ export default function ReceptionerVirtualPage() {
         tinted
       >
         <CompareTable
-          head={["", "Angajat la recepție", "Recepționer virtual AI"]}
+          head={["", "Angajat la recepție", "Mesagerie vocală", "Centrală cu meniu", "Recepționer virtual AI"]}
           rows={COMPARATIE}
-          highlight={2}
+          highlight={4}
+          minWidth={820}
         />
       </Section>
 
@@ -240,6 +264,33 @@ export default function ReceptionerVirtualPage() {
       </Section>
 
       <FaqBlock items={FAQ} />
+
+      <Section
+        id="cine-suntem"
+        eyebrow="Cine suntem"
+        title="Cine construiește Elevio AI"
+        intro={
+          <>
+            <p>
+              Elevio AI e construit în București de{" "}
+              <a href="https://www.linkedin.com/in/david-morega/" className={linkClass} rel="noopener" target="_blank">
+                David Morega
+              </a>
+              , fondator. Configurăm fiecare asistent pe afacerea clientului: programul, serviciile, întrebările
+              frecvente, regulile de transfer și calendarul.
+            </p>
+            <p>
+              Lucrăm deja cu clinici stomatologice, un centru de kinetoterapie și restaurante. Clinicile cu care
+              lucrăm au recuperat multe programări cu asistentul, deși aveau deja pe cineva la recepție. Mai multe
+              despre noi, pe pagina{" "}
+              <Link href="/despre" className={linkClass}>
+                Despre
+              </Link>
+              .
+            </p>
+          </>
+        }
+      />
 
       <RelatedLinks
         links={[
