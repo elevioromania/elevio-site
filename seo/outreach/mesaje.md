@@ -17,6 +17,27 @@ Fondator, Elevio AI
 https://elevio-agency.ro
 ```
 
+## ⭐ Stilul standard (de la 9.11.2026): „Passive Script”
+
+Stilul ales de David. Folosește-l la toate loturile; șabloanele (a)–(e) de mai jos rămân doar ca sursă de idei.
+
+```text
+Subiect: 3–6 cuvinte, cu literă mică, despre subiectul lor (ex.: „comenzile pierdute la telefon”)
+
+{prenume sau „Bună,”}, am lucrat în ultima vreme cu {firme din nișa lor} pe {problema concretă}.
+
+Nicio grabă, dar dacă vreodată {rezultatul dorit de ei: actualizați lista / vă trebuie un articol gata scris despre X}, vă pot trimite {resursa}. Sau doar un connect pe LinkedIn, deocamdată.
+
+David Morega
+Elevio AI · https://elevio-agency.ro
+```
+
+**Reguli:**
+- Maximum 60–70 de cuvinte, fără presiune și fără pitch.
+- O singură ofertă, plus ieșirea ușoară („un connect pe LinkedIn”).
+- **Nu inventăm clienți sau branduri.** Formula din original („been working with a few {xyz brands}”) o adaptăm doar la ce e adevărat: „am lucrat cu firme mici / meseriași / magazine online pe partea de telefon”. Studiile de caz cu nume le adăugăm abia când există clienți reali care și-au dat acordul.
+- Follow-up după 4–5 zile, în același fir: o propoziție („Revin scurt, se mai potrivește?”), apoi stop.
+
 ---
 
 ## (a) Includere în listă
