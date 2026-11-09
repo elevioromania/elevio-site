@@ -36,7 +36,7 @@ export default async function DemoPage({
       <PageIntro
         eyebrow="Demo gratuit"
         title="Ascultă-l tu însuți. Apoi decide."
-        text="Completează formularul și primești pe email o mostră audio Elevio — auzi cum ar răspunde clienților afacerii tale. Fără obligații."
+        text="Completează formularul și primești pe email o mostră audio Elevio: auzi cum ar răspunde clienților afacerii tale. Fără obligații."
       />
 
       <section className="py-16">
@@ -61,7 +61,7 @@ export default async function DemoPage({
                 </span>
                 <p className="text-sm leading-relaxed text-elevio-dark/70">
                   Asculți cum ar suna Elevio dacă ar răspunde la telefon
-                  pentru afacerea ta — direct din inbox, în ritmul tău.
+                  pentru afacerea ta, direct din inbox, în ritmul tău.
                 </p>
               </li>
               <li className="flex gap-4">
@@ -70,7 +70,7 @@ export default async function DemoPage({
                 </span>
                 <p className="text-sm leading-relaxed text-elevio-dark/70">
                   Dacă vrei să continui, un coleg din echipa Elevio te sună cu
-                  detalii pentru configurarea exactă pe afacerea ta — exact
+                  detalii pentru configurarea exactă pe afacerea ta, exact
                   cum am făcut pentru Clypt România, care a salvat deja peste
                   2.000€ cu Elevio.
                 </p>

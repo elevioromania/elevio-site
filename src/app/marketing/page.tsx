@@ -14,23 +14,23 @@ export const metadata: Metadata = pageMetadata({
 const SERVICES = [
   {
     title: "Recenzii Google Maps",
-    text: "Metodă dovedită prin care generăm un volum mare de recenzii reale, într-un timp scurt — profilul tău urcă vizibil în încrederea clienților și în clasamentul local.",
+    text: "Metodă dovedită prin care generăm un volum mare de recenzii reale, într-un timp scurt. Profilul tău urcă vizibil în încrederea clienților și în clasamentul local.",
   },
   {
     title: "Optimizare profil Google Maps",
-    text: "Poze profesionale, descrieri corecte, meniu sau listă de servicii actualizată, categorii potrivite — profilul care apare când cineva te caută pe hartă, făcut ca lumea.",
+    text: "Poze profesionale, descrieri corecte, meniu sau listă de servicii actualizată, categorii potrivite: profilul care apare când cineva te caută pe hartă, făcut ca lumea.",
   },
   {
     title: "Construire site web",
-    text: "Un site simplu, rapid și clar, care prezintă afacerea ta și convertește vizitatori în clienți — nu doar o carte de vizită online.",
+    text: "Un site simplu, rapid și clar, care prezintă afacerea ta și convertește vizitatori în clienți, nu doar o carte de vizită online.",
   },
   {
     title: "Profile social media",
-    text: "Instagram, Facebook, TikTok — creăm și structurăm profilele afacerii tale, gata de conținut, cu identitate vizuală consistentă.",
+    text: "Instagram, Facebook, TikTok: creăm și structurăm profilele afacerii tale, gata de conținut, cu identitate vizuală consistentă.",
   },
   {
     title: "Reclame organice și plătite",
-    text: "Campanii gândite pentru afaceri locale — de la conținut organic care aduce vizibilitate constantă, până la reclame plătite, targetate exact pe clienții tăi.",
+    text: "Campanii gândite pentru afaceri locale: de la conținut organic care aduce vizibilitate constantă, până la reclame plătite, targetate exact pe clienții tăi.",
   },
 ];
 
@@ -48,7 +48,7 @@ const STEPS = [
   {
     n: "3",
     title: "Începem treaba",
-    text: "Odată de acord, ne apucăm de treabă — de la primele recenzii noi, la profilul optimizat sau site-ul live.",
+    text: "Odată de acord, ne apucăm de treabă: de la primele recenzii noi, la profilul optimizat sau site-ul live.",
   },
 ];
 
@@ -68,7 +68,7 @@ export default function MarketingPage() {
             </h1>
             <p className="mt-6 text-lg leading-relaxed text-white/70">
               Recenzii Google Maps, profil optimizat, site web și social
-              media — tot ce are nevoie o afacere locală ca să fie găsită și
+              media: tot ce are nevoie o afacere locală ca să fie găsită și
               aleasă, gestionat de o singură echipă.
             </p>
             <div className="mt-8 flex flex-wrap gap-4">

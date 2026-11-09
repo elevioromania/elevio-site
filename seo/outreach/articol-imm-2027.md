@@ -1,4 +1,4 @@
-# Agenți vocali AI în 2027: ce trebuie să știe o firmă mică din România înainte să aleagă
+# Agenți vocali AI în 2027: ce trebuie să știe o afacere locală din România înainte să aleagă
 
 Înainte să alegi un agent vocal AI, verifică cinci lucruri: cât de bine vorbește și înțelege limba română, cum transferă apelul la un om, dacă se leagă de calendarul tău, cum tratează datele personale și dacă îi spune clar apelantului că vorbește cu un AI. Prețul, contractul și rapoartele contează și ele, dar abia după ce agentul trece aceste cinci teste.
 
@@ -79,7 +79,7 @@ Pune furnizorii într-un tabel cu cele opt puncte de mai sus și notează-i dup�
 
 ### Cât durează să pornesc un agent vocal AI?
 
-Depinde de furnizor și de cât de complexe sunt regulile tale. Pentru o firmă mică, cu programări sau comenzi simple, configurarea poate dura doar câteva zile. Mai important e să-ți rezervi o perioadă de test înainte să-l lași să răspundă singur.
+Depinde de furnizor și de cât de complexe sunt regulile tale. Pentru o afacere locală, cu programări sau comenzi simple, configurarea poate dura doar câteva zile. Mai important e să-ți rezervi o perioadă de test înainte să-l lași să răspundă singur.
 
 ### Ce fac dacă agentul greșește?
 

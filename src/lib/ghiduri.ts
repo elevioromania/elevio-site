@@ -112,7 +112,7 @@ export const GHIDURI: Ghid[] = [
               "**Vrei în principal vânzări și calificarea lead-urilor:** LeadVoz e concentrat pe asta (preț la cerere).",
               "**Ai un call-center:** Agent Vocal (agentvocal.ro) e orientat pe automatizarea call-center-ului (preț nepublicat).",
               "**Primești puține apeluri:** un tarif pe minut, ca la AgentVocalAI.ro (0,185–0,29 €/min), poate ieși mai ieftin decât un abonament.",
-              "**Ești o firmă mică și vrei programări, rezervări și comenzi pe numărul existent:** Elevio AI, de la 150 €/lună + TVA. Detalii pe pagina de [prețuri](/preturi).",
+              "**Ai o afacere locală și vrei programări, rezervări și comenzi pe numărul existent:** Elevio AI, de la 150 €/lună + TVA. Detalii pe pagina de [prețuri](/preturi).",
             ],
           },
         ],
@@ -165,19 +165,19 @@ export const GHIDURI: Ghid[] = [
               ],
               [
                 "AgentVocalAI.ro (White Hat Technology)",
-                "—",
+                "neevaluat",
                 "Pe minut",
                 `0,185–0,29 €/min. Sursa: [agentvocalai.ro](https://agentvocalai.ro), ${VERIFICAT}`,
               ],
               [
                 "Agentul Vocal (agentulvocal.ro)",
-                "—",
+                "neevaluat",
                 "Abonament lunar",
                 `299 / 399 / 499 €/lună. Sursa: [agentulvocal.ro](https://agentulvocal.ro), ${VERIFICAT}`,
               ],
               [
                 "Automatizez.ro",
-                "—",
+                "neevaluat",
                 "Setup + abonament",
                 `1.200 € setup + 250 €/lună. Sursa: [automatizez.ro](https://automatizez.ro), ${VERIFICAT}`,
               ],
@@ -189,13 +189,13 @@ export const GHIDURI: Ghid[] = [
               ],
               [
                 "Elevio AI (noi)",
-                "Firme mici: programări, rezervări, comenzi",
+                "Afaceri locale: programări, rezervări, comenzi",
                 "Abonament lunar + implementare",
                 `150 / 300 / 600 €/lună + TVA, plus taxa de implementare. Sursa: [elevio-agency.ro/preturi](/preturi), ${VERIFICAT}`,
               ],
               [
                 "Estera (tryestera.com/ro)",
-                "—",
+                "neevaluat",
                 "Neclar",
                 `De la 49 € (**neconfirmat**: nu am putut confirma prețul). Sursa: [tryestera.com/ro](https://tryestera.com/ro), ${VERIFICAT}`,
               ],
@@ -207,18 +207,18 @@ export const GHIDURI: Ghid[] = [
               ],
               [
                 "Receptionerul Virtual (aireceptionist.ro)",
-                "—",
+                "neevaluat",
                 "Pachete",
                 `299 / 399 / 1.099 / 2.099 lei. Sursa: [aireceptionist.ro](https://aireceptionist.ro), ${VERIFICAT}`,
               ],
               [
                 "Vocalyy (vocalyy.ro)",
-                "—",
+                "neevaluat",
                 "Abonament lunar",
                 `599,99–3.359,99 lei/lună. Sursa: [vocalyy.ro](https://vocalyy.ro), ${VERIFICAT}`,
               ],
             ],
-            nota: "„—” înseamnă că nu am evaluat încă pe ce domenii se concentrează furnizorul. Prețurile se schimbă: le-am verificat în noiembrie 2026 și actualizăm tabelul lunar. Nu am verificat pentru fiecare furnizor dacă prețul include TVA sau ce conține fiecare pachet (minute, apeluri, funcții).",
+            nota: "„neevaluat” înseamnă că nu am evaluat încă pe ce domenii se concentrează furnizorul. Prețurile se schimbă: le-am verificat în noiembrie 2026 și actualizăm tabelul lunar. Nu am verificat pentru fiecare furnizor dacă prețul include TVA sau ce conține fiecare pachet (minute, apeluri, funcții).",
           },
         ],
       },
@@ -297,7 +297,7 @@ export const GHIDURI: Ghid[] = [
     faq: [
       {
         q: "Care este cel mai bun agent vocal AI din România?",
-        a: "Depinde de ce ai nevoie. Pentru clinici, Callio e specializat pe clinici. Pentru vânzări și lead-uri, LeadVoz. Pentru volume mici, un tarif pe minut poate ieși mai ieftin. Pentru firme mici care vor programări, rezervări și comenzi pe numărul existent, Elevio AI e o opțiune de la 150 €/lună + TVA. Testează 2–3 furnizori la demo înainte să alegi.",
+        a: "Depinde de ce ai nevoie. Pentru clinici, Callio e specializat pe clinici. Pentru vânzări și lead-uri, LeadVoz. Pentru volume mici, un tarif pe minut poate ieși mai ieftin. Pentru afaceri locale care vor programări, rezervări și comenzi pe numărul existent, Elevio AI e o opțiune de la 150 €/lună + TVA. Testează 2–3 furnizori la demo înainte să alegi.",
       },
       {
         q: "Cât costă un agent vocal AI în România?",
@@ -774,7 +774,7 @@ export const GHIDURI: Ghid[] = [
       },
       {
         id: "cand-merita",
-        titlu: "Când are sens pentru o firmă mică",
+        titlu: "Când are sens pentru o afacere locală",
         blocuri: [
           {
             tip: "lista",

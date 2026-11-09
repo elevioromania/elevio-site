@@ -1,12 +1,12 @@
 const MODES = [
   {
     title: "Recepție completă",
-    text: "Elevio preia toate apelurile, tot timpul — recepție 100% automatizată, non-stop, fără nicio pauză.",
+    text: "Elevio preia toate apelurile, tot timpul: recepție 100% automatizată, non-stop, fără nicio pauză.",
     live: true,
   },
   {
     title: "Recepție de rezervă",
-    text: "Elevio intervine doar când echipa ta nu poate răspunde — ocupată, în pauză, sau în afara programului. Linia rămâne mereu acoperită, fără să înlocuiești pe nimeni.",
+    text: "Elevio intervine doar când echipa ta nu poate răspunde: în afara programului, în weekend sau în pauză. Linia rămâne mereu acoperită, fără să înlocuiești pe nimeni.",
     live: false,
   },
 ];

@@ -40,10 +40,10 @@ export async function sendLeadNotification(lead: Lead): Promise<{ ok: boolean; e
 
   try {
     await transporter.sendMail({
-      from: `"Elevio — Site" <${process.env.GMAIL_USER}>`,
+      from: `"Elevio AI · Site" <${process.env.GMAIL_USER}>`,
       to,
       replyTo: lead.email,
-      subject: `Lead nou: ${lead.name} — ${businessTypeLabel(lead.businessType)}`,
+      subject: `Lead nou: ${lead.name} · ${businessTypeLabel(lead.businessType)}`,
       text: [
         `Nume: ${lead.name}`,
         `Telefon: ${lead.phone}`,
@@ -86,7 +86,7 @@ export async function sendDemoAudioEmail(lead: Lead): Promise<{ ok: boolean; err
     await transporter.sendMail({
       from: `"Elevio" <${process.env.GMAIL_USER}>`,
       to: lead.email,
-      subject: "Mostra ta audio Elevio — recepționerul vocal AI",
+      subject: "Mostra ta audio Elevio AI: recepționerul vocal AI",
       text: audioAvailable
         ? `Bună, ${lead.name}!\n\nMulțumim că ai cerut un demo Elevio. Ai atașat un fișier audio cu o mostră a modului în care Elevio răspunde la telefon pentru ${businessTypeLabel(lead.businessType)}.\n\nUn coleg din echipa Elevio te contactează în curând cu detalii pentru afacerea ta.\n\nEchipa Elevio`
         : `Bună, ${lead.name}!\n\nMulțumim că ai cerut un demo Elevio. Un coleg din echipa Elevio te contactează în curând, cu o mostră audio și toate detaliile pentru ${businessTypeLabel(lead.businessType)}.\n\nEchipa Elevio`,
@@ -98,7 +98,7 @@ export async function sendDemoAudioEmail(lead: Lead): Promise<{ ok: boolean; err
             ? `<p>Ai atașat mai jos o mostră audio a modului în care Elevio ar răspunde la telefon pentru <strong>${businessTypeLabel(lead.businessType)}</strong>.</p>`
             : `<p>Un coleg din echipa noastră îți trimite în curând o mostră audio și toate detaliile pentru <strong>${businessTypeLabel(lead.businessType)}</strong>.</p>`
         }
-        <p>Fără obligații — o asculți, apoi decizi.</p>
+        <p>Fără obligații: o asculți, apoi decizi.</p>
         <p>Echipa Elevio</p>
       `,
       attachments: audioAvailable
@@ -124,7 +124,7 @@ export async function sendMarketingLeadNotification(
 
   try {
     await transporter.sendMail({
-      from: `"Elevio Marketing — Site" <${process.env.GMAIL_USER}>`,
+      from: `"Elevio Marketing · Site" <${process.env.GMAIL_USER}>`,
       to,
       replyTo: lead.email,
       subject: `Lead nou Elevio Marketing: ${lead.name}`,

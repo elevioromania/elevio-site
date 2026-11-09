@@ -4,38 +4,38 @@ const VERTICALS = [
   {
     tag: "restaurant",
     title: "Restaurante & cafenele",
-    text: "Rezervări preluate non-stop — inclusiv vineri seara, când tot personalul e în tură. Numărul de persoane, ora și numele, notate exact.",
+    text: "Rezervări preluate non-stop, inclusiv vineri seara, când tot personalul e în tură. Numărul de persoane, ora și numele, notate exact.",
     tags: "Restaurante · cafenele · grupuri HoReCa",
   },
   {
     tag: "magazin",
     title: "Magazine",
-    text: "Program, stoc, comenzi și întrebări frecvente — preluate imediat, fără să suni degeaba clientul înapoi peste o oră.",
+    text: "Program, stoc, comenzi și întrebări frecvente: preluate imediat, fără să suni degeaba clientul înapoi peste o oră.",
     tags: "Magazine locale · lanțuri de retail · showroom-uri",
   },
   {
     tag: "service_auto",
     title: "Service-uri auto",
-    text: "Programări la revizie sau intervenții, cu marca, modelul și problema mașinii preluate din telefon — mecanicii știu exact ce îi așteaptă.",
+    text: "Programări la revizie sau intervenții, cu marca, modelul și problema mașinii preluate din telefon. Mecanicii știu exact ce îi așteaptă.",
     tags: "Service-uri auto · ateliere · vulcanizări",
   },
   {
     tag: "medical",
     title: "Cabinete medicale & clinici",
-    text: "Programări preluate corect din prima — dată, oră, tip de consultație — fără să aglomerezi recepția între doi pacienți.",
+    text: "Programări preluate corect din prima (dată, oră, tip de consultație), fără să aglomerezi recepția între doi pacienți.",
     tags: "Cabinete stomatologice · clinici · cabinete individuale",
   },
   {
     tag: "beauty",
     title: "Saloane & studiouri beauty",
-    text: "Programări pe stilist sau specialist, confirmate automat prin SMS — clienta știe exact când și la cine vine.",
+    text: "Programări pe stilist sau specialist, confirmate automat prin SMS: clienta știe exact când și la cine vine.",
     tags: "Saloane de coafură · manichiură · cosmetică",
   },
   {
     tag: "altul",
     title: "Orice afacere care răspunde la telefon",
-    text: "Nu te încadrezi în categoriile de mai sus? Elevio se adaptează pe serviciile și regulile oricărei afaceri — dacă ai clienți care sună, funcționează.",
-    tags: "Servicii, birouri, cabinete — orice domeniu",
+    text: "Nu te încadrezi în categoriile de mai sus? Elevio se adaptează pe serviciile și regulile oricărei afaceri. Dacă ai clienți care sună, funcționează.",
+    tags: "Servicii, birouri, cabinete: orice domeniu",
   },
 ];
 
@@ -49,7 +49,7 @@ export default function Verticals() {
           </h2>
           <p className="mt-4 text-elevio-dark/70">
             Elevio se configurează pe serviciile, programul și regulile tale
-            — nu e un robot generic care citește un meniu.
+            Nu e un robot generic care citește un meniu.
           </p>
         </div>
 

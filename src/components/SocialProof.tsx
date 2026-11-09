@@ -21,7 +21,7 @@ export default function SocialProof() {
           </h2>
           <p className="max-w-xl text-elevio-dark/70">
             Fără personal suplimentar la recepție, fără ore pierdute la
-            telefon — rezultatul unei singure implementări Elevio.
+            telefon: rezultatul unei singure implementări Elevio.
           </p>
         </div>
       </div>

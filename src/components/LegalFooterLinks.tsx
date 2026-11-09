@@ -12,7 +12,7 @@ function AnpcSalBadge() {
       href="https://anpc.ro/ce-este-sal/"
       target="_blank"
       rel="noopener noreferrer nofollow"
-      aria-label="ANPC — Soluționarea alternativă a litigiilor"
+      aria-label="ANPC: Soluționarea alternativă a litigiilor"
       className="inline-flex h-[50px] w-[250px] items-center gap-3 rounded-md border border-white/20 bg-white px-3 text-left transition-opacity hover:opacity-90"
     >
       <span className="rounded bg-[#1d3c88] px-1.5 py-1 text-xs font-extrabold tracking-wide text-white">

@@ -16,7 +16,7 @@ import type { Crumb, FaqItem } from "@/components/landing/types";
 const PATH = "/receptioner-virtual";
 const TITLE = "Recepționer virtual AI în română, non-stop | Elevio AI";
 const DESCRIPTION =
-  "Recepționer virtual cu AI pentru firme mici: răspunde la telefon 24/7, în română, face programări în calendar, trimite SMS și îți dă rezumatul fiecărui apel.";
+  "Recepționer virtual cu AI pentru afaceri locale: răspunde la telefon 24/7, în română, face programări în calendar, trimite SMS și îți dă rezumatul fiecărui apel.";
 
 export const metadata: Metadata = pageMetadata({ path: PATH, title: TITLE, description: DESCRIPTION });
 
@@ -251,7 +251,7 @@ export default function ReceptionerVirtualPage() {
           {
             href: "/ghid/ce-este-un-agent-vocal-ai",
             title: "Ce este un agent vocal AI",
-            text: "Cum funcționează, ce limite are și când merită pentru o firmă mică.",
+            text: "Cum funcționează, ce limite are și când merită pentru o afacere locală.",
           },
           {
             href: "/ghid/ai-act-gdpr-receptioner-ai",

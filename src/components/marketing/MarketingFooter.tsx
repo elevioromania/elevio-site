@@ -9,7 +9,7 @@ export default function MarketingFooter() {
         <div className="md:col-span-2">
           <MarketingLogo />
           <p className="mt-4 max-w-sm text-sm leading-relaxed text-white/60">
-            Divizia de marketing Elevio — recenzii Google Maps, profile
+            Divizia de marketing Elevio: recenzii Google Maps, profile
             optimizate, site-uri web și social media, pentru afaceri locale.
           </p>
         </div>

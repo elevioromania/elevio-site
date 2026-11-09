@@ -2,7 +2,7 @@ const STEPS = [
   {
     number: "1",
     title: "Clientul sună pe numărul tău existent",
-    text: "Nu schimbi nimic: păstrezi numărul de telefon, iar Elevio răspunde instant, la orice oră — inclusiv când echipa e ocupată sau afacerea e închisă.",
+    text: "Nu schimbi nimic: păstrezi numărul de telefon, iar Elevio răspunde instant, la orice oră, inclusiv după program sau când nu poate răspunde nimeni.",
   },
   {
     number: "2",
@@ -29,7 +29,7 @@ export default function HowItWorks() {
           </h2>
           <p className="mt-4 text-elevio-dark/70">
             Configurarea o facem noi, de la început până la sfârșit. Pentru
-            tine și pentru clienții tăi, totul rămâne la fel — doar că
+            tine și pentru clienții tăi, totul rămâne la fel, doar că
             telefonul nu mai sună în gol.
           </p>
         </div>

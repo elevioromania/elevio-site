@@ -353,7 +353,7 @@ const VAL_1: Industrie[] = [
       },
       {
         q: "După o furtună sună mulți oameni deodată. Ce se întâmplă?",
-        a: "Fiecare apel primit ajunge în lista ta cu adresa și problema, ca să decizi pe cine suni întâi. Câte apeluri pot fi preluate în același timp depinde de plan; detaliile sunt pe pagina de prețuri.",
+        a: "Fiecare apel primit ajunge în lista ta cu adresa și problema, ca să decizi pe cine suni întâi. Elevio AI preia mai multe apeluri în același timp (de la 2 la 10 simultan, în funcție de plan), deci nimeni nu dă de ton ocupat nici când sună mai mulți deodată.",
       },
       {
         q: "Clienții mei sunt mai în vârstă. Se descurcă?",
@@ -1821,7 +1821,7 @@ const VAL_2: Industrie[] = [
       },
       {
         q: "Vorbește și cu turiștii străini?",
-        a: "Elevio AI e construit pentru apeluri în română. Dacă ai mulți oaspeți străini, întreabă la demo ce opțiuni există pentru alte limbi; ce include fiecare plan vezi pe pagina de prețuri.",
+        a: "Da. Elevio AI vorbește română și engleză (engleza e inclusă de la planul PRO), așa că poate prelua și rezervările oaspeților străini.",
       },
       {
         q: "Am doar 6 camere. Merită?",
@@ -2698,7 +2698,7 @@ const VAL_3: Industrie[] = [
       },
       {
         q: "Vorbește și cu turiștii străini?",
-        a: "Elevio AI e construit pentru apeluri în română. Dacă ai mulți clienți străini, întreabă la demo ce opțiuni există pentru alte limbi; ce include fiecare plan vezi pe pagina de prețuri.",
+        a: "Da. Elevio AI vorbește română și engleză (engleza e inclusă de la planul PRO), așa că poate prelua și cererile clienților străini.",
       },
       {
         q: "Ce face când un client sună după un accident?",

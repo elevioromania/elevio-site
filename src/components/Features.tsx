@@ -1,7 +1,7 @@
 const FEATURES = [
   {
     title: "Română naturală",
-    text: "Vorbește fluent, cu intonație firească și ton cald, profesionist — nu ca un robot care citește un script.",
+    text: "Vorbește fluent, cu intonație firească și ton cald, profesionist, nu ca un robot care citește un script.",
   },
   {
     title: "Non-stop, 24/7",
@@ -9,7 +9,7 @@ const FEATURES = [
   },
   {
     title: "Preluare rezervări & comenzi",
-    text: "Colectează toate detaliile necesare — nume, dată, oră, cerințe speciale — și le transmite gata structurate echipei tale.",
+    text: "Colectează toate detaliile necesare (nume, dată, oră, cerințe speciale) și le transmite gata structurate echipei tale.",
   },
   {
     title: "Confirmări automate",
@@ -21,7 +21,7 @@ const FEATURES = [
   },
   {
     title: "Nu improvizează niciodată",
-    text: "Când nu are un răspuns sigur, Elevio nu inventează — transferă apelul direct pe telefonul tău, în câteva secunde.",
+    text: "Când nu are un răspuns sigur, Elevio nu inventează: transferă apelul direct pe telefonul tău, în câteva secunde.",
   },
 ];
 
