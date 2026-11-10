@@ -3,6 +3,7 @@ import Link from "next/link";
 import AudioProof from "@/components/AudioProof";
 import CallDemoCard from "@/components/CallDemoCard";
 import CardGrid from "@/components/landing/CardGrid";
+import AboutFounder from "@/components/landing/AboutFounder";
 import CompareTable from "@/components/landing/CompareTable";
 import DemoCta from "@/components/landing/DemoCta";
 import FaqBlock from "@/components/landing/FaqBlock";
@@ -18,7 +19,7 @@ import type { Crumb, FaqItem } from "@/components/landing/types";
 const PATH = "/agent-vocal-ai";
 const TITLE = "Agent vocal AI în română pentru firme, 24/7 | Elevio AI";
 const DESCRIPTION =
-  "Agent vocal AI care răspunde la telefon în română, 24/7, pe numărul tău: face programări în calendar, trimite SMS de confirmare și îți dă rezumatul apelului.";
+  "Agent vocal AI care răspunde la telefon în română, 24/7, pe numărul tău: face programări, trimite SMS de confirmare și rezumatul apelului. De la 150 €/lună + TVA.";
 
 export const metadata: Metadata = pageMetadata({ path: PATH, title: TITLE, description: DESCRIPTION });
 
@@ -102,6 +103,18 @@ const FAQ: FaqItem[] = [
   {
     q: "Cât durează până pornește și există contract pe termen lung?",
     a: "Configurarea durează câteva zile. Nu există contract pe termen lung.",
+  },
+  {
+    q: "Câte apeluri preia în același timp?",
+    a: "2 apeluri simultane la START, 5 la PRO și 10 la BUSINESS. Clienții nu mai primesc „ocupat” când sună mai mulți deodată.",
+  },
+  {
+    q: "Pot să-l pun doar pe apelurile la care nu răspund?",
+    a: "Da. Agentul poate prelua toate apelurile sau doar pe cele la care nu răspunde nimeni. Pe mobil se face cu [redirecționarea condiționată](/ghid/redirectionare-apeluri).",
+  },
+  {
+    q: "Clienții află că vorbesc cu un AI?",
+    a: "Da. Agentul se prezintă ca asistent virtual din prima frază. E corect față de clienți și e cerut de AI Act. Detalii în ghidul despre [AI Act și GDPR](/ghid/ai-act-gdpr-receptioner-ai).",
   },
 ];
 
@@ -237,6 +250,8 @@ export default function AgentVocalAiPage() {
 
       <FaqBlock items={FAQ} />
 
+      <AboutFounder />
+
       <RelatedLinks
         links={[
           {
@@ -253,6 +268,11 @@ export default function AgentVocalAiPage() {
             href: "/ghid/cat-costa-receptioner-ai-2027",
             title: "Cât costă un recepționer AI în 2027",
             text: "Costul unui agent vocal AI față de un angajat la recepție, cu un exemplu de calcul.",
+          },
+          {
+            href: "/ghid/apeluri-pierdute-firma",
+            title: "Apeluri pierdute la firmă",
+            text: "De ce se pierd apelurile și cum le recuperezi.",
           },
         ]}
       />

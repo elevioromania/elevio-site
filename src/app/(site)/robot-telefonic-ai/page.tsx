@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import CardGrid from "@/components/landing/CardGrid";
+import AboutFounder from "@/components/landing/AboutFounder";
 import CompareTable from "@/components/landing/CompareTable";
 import DemoCta from "@/components/landing/DemoCta";
 import FaqBlock from "@/components/landing/FaqBlock";
@@ -15,7 +16,7 @@ import type { Crumb, FaqItem } from "@/components/landing/types";
 const PATH = "/robot-telefonic-ai";
 const TITLE = "Robot telefonic AI pentru programări, fără taste | Elevio AI";
 const DESCRIPTION =
-  "Robot telefonic AI care vorbește liber cu clienții în română, fără taste: face programări în calendar, trimite SMS și transferă apelul la tine când e nevoie.";
+  "Robot telefonic AI care vorbește liber cu clienții în română, fără taste: face programări, trimite SMS și transferă apelul la tine. De la 150 €/lună + TVA.";
 
 export const metadata: Metadata = pageMetadata({ path: PATH, title: TITLE, description: DESCRIPTION });
 
@@ -88,6 +89,18 @@ const FAQ: FaqItem[] = [
   {
     q: "Cât costă un robot telefonic AI pentru programări?",
     a: "La Elevio AI, de la 150 €/lună (START), 300 €/lună (PRO) sau 600 €/lună (BUSINESS), toate + TVA, plus taxa de implementare. Programarea automată în calendar și confirmarea prin SMS sunt incluse de la planul PRO. Detalii pe pagina de [prețuri](/preturi).",
+  },
+  {
+    q: "Câte apeluri preia robotul în același timp?",
+    a: "2 apeluri simultane la START, 5 la PRO și 10 la BUSINESS, deci clienții nu mai așteaptă la coadă.",
+  },
+  {
+    q: "În ce limbi vorbește?",
+    a: "În română, la toate planurile. De la planul PRO vorbește și engleză.",
+  },
+  {
+    q: "Pot păstra meniul IVR pe care îl am?",
+    a: "Da. O opțiune din meniu sau apelurile din afara programului pot fi trimise către robotul AI. Diferențele le găsești în ghidul [robot telefonic AI vs IVR](/ghid/robot-telefonic-vs-ivr).",
   },
 ];
 
@@ -219,6 +232,8 @@ export default function RobotTelefonicAiPage() {
 
       <FaqBlock items={FAQ} />
 
+      <AboutFounder />
+
       <RelatedLinks
         links={[
           {
@@ -235,6 +250,16 @@ export default function RobotTelefonicAiPage() {
             href: "/ghid/cei-mai-buni-agenti-vocali-ai-romania-2027",
             title: "Agenți vocali AI din România în 2027",
             text: "Comparație onestă între furnizori, cu prețuri publice și sursă.",
+          },
+          {
+            href: "/ghid/robot-telefonic-vs-ivr",
+            title: "Robot telefonic AI vs IVR",
+            text: "Meniul cu taste față de conversația liberă: diferențele și ce alegi.",
+          },
+          {
+            href: "/ghid/redirectionare-apeluri",
+            title: "Redirecționare apeluri: coduri",
+            text: "Codurile pentru toate apelurile, când nu răspunzi, ocupat sau fără semnal, și cum le anulezi.",
           },
         ]}
       />

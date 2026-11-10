@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { INDUSTRII, getIndustrie } from "@/lib/industrii";
+import { INDUSTRII, getIndustrie, type Categorie } from "@/lib/industrii";
+import { getGhid } from "@/lib/ghiduri";
 import Breadcrumbs from "@/components/industrii/Breadcrumbs";
 import CtaIndustrie from "@/components/industrii/CtaIndustrie";
 import FaqIndustrie from "@/components/industrii/FaqIndustrie";
@@ -12,6 +13,18 @@ import { pageMetadata } from "@/lib/seo/metadata";
 type Props = { params: Promise<{ slug: string }> };
 
 // Doar cele 24 de pagini generate la build; orice alt slug dă 404.
+
+// Ghidurile cele mai utile pentru fiecare categorie (linkuri interne spre /ghid).
+const GHIDURI_PE_CATEGORIE: Record<Categorie, string[]> = {
+  "Comerț": ["agent-vocal-ai-ecommerce", "mesaj-automat-apel-ratat", "apeluri-pierdute-firma"],
+  "Meserii & casă": ["redirectionare-apeluri", "apeluri-pierdute-firma", "mesaj-automat-apel-ratat"],
+  "Sănătate": ["receptioner-ai-cal-com-calendly", "ai-act-gdpr-receptioner-ai", "apeluri-pierdute-firma"],
+  "Beauty & wellness": ["receptioner-ai-cal-com-calendly", "apeluri-pierdute-firma", "mesaj-automat-apel-ratat"],
+  "Auto": ["receptioner-ai-cal-com-calendly", "redirectionare-apeluri", "apeluri-pierdute-firma"],
+  "HoReCa & turism": ["apeluri-pierdute-firma", "centrala-telefonica-virtuala-vs-receptioner-ai", "mesaj-automat-apel-ratat"],
+  "Servicii profesionale": ["secretariat-telefonic", "receptioner-ai-cal-com-calendly", "apeluri-pierdute-firma"],
+};
+
 export const dynamicParams = false;
 
 export function generateStaticParams() {
@@ -46,6 +59,9 @@ export default async function IndustriePage({ params }: Props) {
   const inrudite = ind.industriiInrudite
     .map((s) => getIndustrie(s))
     .filter((i) => i !== undefined);
+  const ghiduri = GHIDURI_PE_CATEGORIE[ind.categorie]
+    .map((slug) => getGhid(slug))
+    .filter((g) => g !== undefined);
 
   const jsonLd = [
     {
@@ -319,6 +335,31 @@ export default async function IndustriePage({ params }: Props) {
                   </span>
                   <span className="mt-3 text-sm font-semibold text-elevio-primary group-hover:text-elevio-dark">
                     Vezi pagina →
+                  </span>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
+      {/* Ghiduri utile */}
+      <section className="pb-20">
+        <div className="container-elevio">
+          <h2 className="text-2xl font-extrabold tracking-tight text-elevio-dark">
+            Ghiduri utile
+          </h2>
+          <ul className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {ghiduri.map((g) => (
+              <li key={g.slug}>
+                <Link
+                  href={`/ghid/${g.slug}`}
+                  className="group flex h-full flex-col rounded-2xl border border-elevio-border bg-white p-5 shadow-sm transition-shadow duration-300 hover:shadow-md"
+                >
+                  <span className="text-base font-semibold text-elevio-dark">{g.titlu}</span>
+                  <span className="mt-1 flex-1 text-sm text-elevio-dark/65">{g.descriereCard}</span>
+                  <span className="mt-3 text-sm font-semibold text-elevio-primary group-hover:text-elevio-dark">
+                    Citește ghidul →
                   </span>
                 </Link>
               </li>

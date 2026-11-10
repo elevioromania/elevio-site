@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import CardGrid from "@/components/landing/CardGrid";
+import AboutFounder from "@/components/landing/AboutFounder";
 import CompareTable from "@/components/landing/CompareTable";
 import DemoCta from "@/components/landing/DemoCta";
 import FaqBlock from "@/components/landing/FaqBlock";
@@ -16,7 +17,7 @@ import type { Crumb, FaqItem } from "@/components/landing/types";
 const PATH = "/receptioner-virtual";
 const TITLE = "Recepționer virtual AI în română, non-stop | Elevio AI";
 const DESCRIPTION =
-  "Recepționer virtual cu AI pentru afaceri locale: răspunde la telefon 24/7, în română, face programări în calendar, trimite SMS și îți dă rezumatul fiecărui apel.";
+  "Recepționer virtual AI pentru afaceri locale: răspunde la telefon 24/7, în română, face programări, trimite SMS și rezumatul apelului. De la 150 €/lună + TVA.";
 
 export const metadata: Metadata = pageMetadata({ path: PATH, title: TITLE, description: DESCRIPTION });
 
@@ -68,12 +69,14 @@ const RESPONSABILITATI = [
 ];
 
 const COMPARATIE = [
-  ["Program", "De obicei, programul firmei", "24/7, inclusiv weekend și sărbători"],
-  ["Când e ocupat cu un client", "Apelul așteaptă sau se pierde", "Răspunde la telefon în locul tău"],
-  ["Concedii, pauze, absențe", "Trebuie acoperite de altcineva", "Nu are"],
-  ["Ce rămâne scris după apel", "Ce apucă să noteze", "Transcript și rezumat pentru fiecare apel"],
-  ["Întâmpinarea clienților la birou", "Da", "Nu, răspunde doar la telefon"],
-  ["Situații neobișnuite", "Decide pe loc", "Transferă apelul la tine în câteva secunde"],
+  ["Program", "De obicei, programul firmei", "Mereu, dar clientul doar lasă mesaj", "Mereu, dar clientul apasă taste", "24/7, inclusiv weekend și sărbători"],
+  ["Când e ocupat cu un client", "Apelul așteaptă sau se pierde", "Ajunge la mesagerie", "Apelul stă în coadă", "Răspunde la telefon în locul tău"],
+  ["Programări", "Da", "Nu, doar mesaj", "Nu, doar direcționează apelul", "Da, în calendar, cu SMS de confirmare"],
+  ["Mai multe apeluri deodată", "Unul singur", "Da, dar fără conversație", "Coadă de așteptare", "Da, de la 2 la 10, în funcție de plan"],
+  ["Concedii, pauze, absențe", "Trebuie acoperite de altcineva", "Nu are", "Nu are", "Nu are"],
+  ["Ce rămâne scris după apel", "Ce apucă să noteze", "Înregistrarea, dacă există", "Statistici de apeluri", "Transcript și rezumat pentru fiecare apel"],
+  ["Întâmpinarea clienților la birou", "Da", "Nu", "Nu", "Nu, răspunde doar la telefon"],
+  ["Situații neobișnuite", "Decide pe loc", "Nimic", "Opțiune din meniu", "Transferă apelul la tine în câteva secunde"],
 ];
 
 const PASI_START = [
@@ -115,6 +118,22 @@ const FAQ: FaqItem[] = [
   {
     q: "Cât costă recepționerul virtual Elevio AI?",
     a: "Planurile pornesc de la 150 €/lună (START), 300 €/lună (PRO) și 600 €/lună (BUSINESS), toate + TVA, plus taxa de implementare. Fără contract pe termen lung. Detalii pe pagina de [prețuri](/preturi).",
+  },
+  {
+    q: "Câte apeluri poate prelua în același timp?",
+    a: "Depinde de plan: 2 apeluri simultane la START, 5 la PRO și 10 la BUSINESS. Clienții nu mai primesc „ocupat” când sună mai mulți deodată.",
+  },
+  {
+    q: "În ce limbi vorbește?",
+    a: "În română, la toate planurile. De la planul PRO vorbește și engleză.",
+  },
+  {
+    q: "Pot să-l folosesc doar pentru apelurile la care nu răspund?",
+    a: "Da. Ai două moduri: preia toate apelurile sau doar pe cele la care nu răspunde nimeni de la firmă. Pe un telefon mobil, al doilea mod se face prin [redirecționarea condiționată](/ghid/redirectionare-apeluri).",
+  },
+  {
+    q: "Ce se întâmplă când nu știe răspunsul?",
+    a: "Nu improvizează. Îi spune clientului că îl pune în legătură cu echipa și transferă apelul pe telefonul firmei, sau notează cererea pentru o revenire.",
   },
 ];
 
@@ -180,11 +199,16 @@ export default function ReceptionerVirtualPage() {
       <Section
         id="comparatie"
         eyebrow="Comparație"
-        title="Recepționer virtual AI vs angajat la recepție"
+        title="Recepționer virtual AI față de alternative"
         intro={
           <p>
             Nu e o întrecere: multe firme îi folosesc împreună. Recepționerul AI
-            preia apelurile când angajatul e ocupat, în pauză sau acasă. Despre bani,
+            preia apelurile când angajatul e ocupat, în pauză sau acasă. Despre centrala
+            cu meniu, vezi{" "}
+            <Link href="/ghid/centrala-telefonica-virtuala-vs-receptioner-ai" className={linkClass}>
+              centrală telefonică virtuală sau recepționer AI
+            </Link>
+            . Despre bani,
             citește{" "}
             <Link href="/ghid/cat-costa-receptioner-ai-2027" className={linkClass}>
               cât costă un recepționer AI în 2027
@@ -195,9 +219,10 @@ export default function ReceptionerVirtualPage() {
         tinted
       >
         <CompareTable
-          head={["", "Angajat la recepție", "Recepționer virtual AI"]}
+          head={["", "Angajat la recepție", "Mesagerie vocală", "Centrală cu meniu", "Recepționer virtual AI"]}
           rows={COMPARATIE}
-          highlight={2}
+          highlight={4}
+          minWidth={820}
         />
       </Section>
 
@@ -241,6 +266,8 @@ export default function ReceptionerVirtualPage() {
 
       <FaqBlock items={FAQ} />
 
+      <AboutFounder />
+
       <RelatedLinks
         links={[
           {
@@ -257,6 +284,16 @@ export default function ReceptionerVirtualPage() {
             href: "/ghid/ai-act-gdpr-receptioner-ai",
             title: "AI Act și GDPR pentru recepționerul AI",
             text: "Ce trebuie să le spui clienților și cum tratezi înregistrările și transcrierile.",
+          },
+          {
+            href: "/ghid/apeluri-pierdute-firma",
+            title: "Apeluri pierdute la firmă",
+            text: "Când se pierd apelurile, cum le numeri și ce soluții există, de la cele gratuite la cele automate.",
+          },
+          {
+            href: "/ghid/centrala-telefonica-virtuala-vs-receptioner-ai",
+            title: "Centrală telefonică virtuală sau recepționer AI",
+            text: "Ce face fiecare și când are sens să le folosești împreună.",
           },
         ]}
       />
