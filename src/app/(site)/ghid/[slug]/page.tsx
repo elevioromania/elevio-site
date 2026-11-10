@@ -9,7 +9,7 @@ import RelatedLinks from "@/components/landing/RelatedLinks";
 import RichText from "@/components/landing/RichText";
 import { articleSchema, breadcrumbSchema, pageMetadata } from "@/components/landing/schema";
 import type { Crumb } from "@/components/landing/types";
-import { GHID_DATA_TEXT, GHIDURI, getGhid } from "@/lib/ghiduri";
+import { GHIDURI, formatDataRo, getGhid } from "@/lib/ghiduri";
 
 // Doar ghidurile din listă; orice alt slug dă 404.
 export const dynamicParams = false;
@@ -74,7 +74,7 @@ export default async function GhidPage({ params }: PageProps<"/ghid/[slug]">) {
         }
         meta={
           <>
-            Actualizat: <time dateTime={ghid.dateModified}>{GHID_DATA_TEXT}</time> · Echipa
+            Actualizat: <time dateTime={ghid.dateModified}>{formatDataRo(ghid.dateModified)}</time> · Echipa
             Elevio AI
           </>
         }

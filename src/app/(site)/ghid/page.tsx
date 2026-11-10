@@ -7,7 +7,9 @@ import LandingHero from "@/components/landing/LandingHero";
 import Section from "@/components/landing/Section";
 import { absoluteUrl, breadcrumbSchema, pageMetadata } from "@/components/landing/schema";
 import type { Crumb, FaqItem } from "@/components/landing/types";
-import { GHID_DATA_TEXT, GHIDURI } from "@/lib/ghiduri";
+import { GHIDURI, formatDataRo } from "@/lib/ghiduri";
+
+const ULTIMA_ACTUALIZARE = GHIDURI.map((g) => g.dateModified).sort().at(-1) ?? "";
 
 const PATH = "/ghid";
 const TITLE = "Ghiduri despre agenți vocali AI pentru firme | Elevio AI";
@@ -69,7 +71,7 @@ export default function GhiduriPage() {
             sursă.
           </p>
         }
-        meta={<>Actualizat: {GHID_DATA_TEXT}</>}
+        meta={<>Actualizat: {formatDataRo(ULTIMA_ACTUALIZARE)}</>}
         secondary={{ href: "/agent-vocal-ai", label: "Ce face agentul vocal AI Elevio" }}
       />
 
@@ -113,7 +115,7 @@ export default function GhiduriPage() {
                   {g.descriereCard}
                 </p>
                 <span className="mt-4 text-xs text-elevio-dark/45">
-                  Actualizat: {GHID_DATA_TEXT}
+                  Actualizat: {formatDataRo(g.dateModified)}
                 </span>
               </Link>
             </li>

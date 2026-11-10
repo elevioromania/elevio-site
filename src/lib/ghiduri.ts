@@ -5,7 +5,16 @@ import type { FaqItem, LinkCard, SectiuneGhid } from "@/components/landing/types
 // e marcat ca exemplu, iar prețurile concurenților au sursă și dată.
 
 export const GHID_DATA_ISO = "2026-11-09";
-export const GHID_DATA_TEXT = "9 noiembrie 2026";
+const LUNI = [
+  "ianuarie", "februarie", "martie", "aprilie", "mai", "iunie",
+  "iulie", "august", "septembrie", "octombrie", "noiembrie", "decembrie",
+];
+
+/** "2026-11-10" → "10 noiembrie 2026" (data afișată pe fiecare ghid). */
+export function formatDataRo(iso: string): string {
+  const [an, luna, zi] = iso.split("-").map(Number);
+  return `${zi} ${LUNI[luna - 1]} ${an}`;
+}
 
 export type Ghid = {
   slug: string;
@@ -1517,8 +1526,8 @@ export const GHIDURI: Ghid[] = [
       "Un secretariat telefonic răspunde la telefonul firmei în locul tău. Poate fi un om angajat, o firmă externă care preia apelurile pentru mai mulți clienți sau un asistent AI care vorbește singur cu clienții, 24/7.",
     descriereCard:
       "Cele trei variante de secretariat telefonic, ce face fiecare, ce întrebi furnizorul și cum alegi.",
-    datePublished: "2026-11-11",
-    dateModified: "2026-11-11",
+    datePublished: "2026-11-10",
+    dateModified: "2026-11-10",
     sectiuni: [
       {
         id: "ce-face",
@@ -1656,8 +1665,8 @@ export const GHIDURI: Ghid[] = [
       "Un mesaj automat la apel ratat îi spune clientului că i-ai văzut apelul și când revii. Se setează dintr-o aplicație, din centrala telefonică sau din WhatsApp Business. Ajută, dar nu face programarea: clientul tot trebuie să aștepte să-l suni.",
     descriereCard:
       "De unde setezi un mesaj automat la apel ratat, modele de text și când e mai bine ca apelul să fie preluat direct.",
-    datePublished: "2026-11-11",
-    dateModified: "2026-11-11",
+    datePublished: "2026-11-10",
+    dateModified: "2026-11-10",
     sectiuni: [
       {
         id: "unde",
@@ -1761,8 +1770,8 @@ export const GHIDURI: Ghid[] = [
       "Un recepționer AI legat de Cal.com sau Calendly verifică în timpul apelului ce ore sunt libere, propune clientului variante și face programarea direct în calendar. Clientul primește confirmarea prin SMS, iar tu vezi programarea ca pe oricare alta.",
     descriereCard:
       "Cum arată o programare prin telefon făcută de un asistent AI direct în Cal.com sau Calendly și ce trebuie configurat.",
-    datePublished: "2026-11-11",
-    dateModified: "2026-11-11",
+    datePublished: "2026-11-10",
+    dateModified: "2026-11-10",
     sectiuni: [
       {
         id: "de-ce",
@@ -1883,8 +1892,8 @@ export const GHIDURI: Ghid[] = [
       "Cel mai sigur test e un apel adevărat. Sună la numărul demo al furnizorului și încearcă 12 situații: nume și adrese, cifre, întreruperi, o întrebare neprevăzută, un client nervos și cererea de a vorbi cu un om. Notează unde se încurcă.",
     descriereCard:
       "Lista de teste pe care le faci la telefon, ce urmărești la fiecare și ce întrebi furnizorul după.",
-    datePublished: "2026-11-11",
-    dateModified: "2026-11-11",
+    datePublished: "2026-11-10",
+    dateModified: "2026-11-10",
     sectiuni: [
       {
         id: "de-ce",
