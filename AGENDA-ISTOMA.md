@@ -149,5 +149,5 @@ x-agenda-cheie: <cheia clinicii de la pasul 4>
 
 - **Ți-a venit mailul „Agenda ...: calendarul nu se poate citi”**: verifică în iStoma că sincronizarea e pornită pentru medicul respectiv. Apoi verifică dacă adresa iCal s-a schimbat (Google o schimbă dacă cineva apasă „Resetează”). Adresa nouă o pui în `agenda_medici.calendar_ics`.
 - **Agentul oferă ore deja ocupate în iStoma**: calculatorul de la recepție nu sincronizează. Fie iStoma e închis, fie nu e bifat „Acest calculator comunică cu calendarul google”.
-- **Mailurile către recepție nu ajung**: pleacă de pe contul Gmail al site-ului (`GMAIL_USER` în Netlify). Spune-le să caute și în Spam și să marcheze adresa ca sigură.
+- **Mailurile către recepție nu ajung**: pleacă de pe contul Gmail al site-ului (`GMAIL_USER` și `GMAIL_APP_PASSWORD` în Netlify). În `agenda_rezervari`, coloana `email_trimis` arată dacă mailul a plecat, iar `eroare_email` arată de ce nu. Dacă a plecat, spune-le să caute și în Spam și să marcheze adresa ca sigură.
 - **Toate cererile din baza de date**: tabelul `agenda_rezervari` din Supabase (`tip = 'cerere'`).

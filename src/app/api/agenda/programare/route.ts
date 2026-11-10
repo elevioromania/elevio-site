@@ -1,4 +1,4 @@
-import { dateAgenda, marcheazaEmailTrimis, salveazaCerere } from "@/lib/agenda/baza";
+import { dateAgenda, noteazaEmail, salveazaCerere } from "@/lib/agenda/baza";
 import { ocupare, propuneOre, semnaleazaCalendare } from "@/lib/agenda/agenda";
 import { trimiteCerere } from "@/lib/agenda/email";
 import { NEAUTORIZAT, cheieDin, citesteCorp, raspuns, valoare } from "@/lib/agenda/http";
@@ -118,7 +118,7 @@ export async function POST(request: Request) {
     verificata,
     callId,
   });
-  if (salvata.ok && email.ok) await marcheazaEmailTrimis(cheie, salvata.id).catch(() => undefined);
+  if (salvata.ok) await noteazaEmail(cheie, salvata.id, email.ok ? null : (email.error ?? "eroare necunoscută")).catch(() => undefined);
   if (!email.ok) console.error("[agenda] mailul către recepție nu a plecat:", email.error);
 
   if (!salvata.ok && !email.ok) {

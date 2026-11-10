@@ -70,8 +70,9 @@ export async function salveazaCerere(
   return data as { ok: true; id: string } | { ok: false; motiv: "ocupat" };
 }
 
-export async function marcheazaEmailTrimis(cheie: string, id: string): Promise<void> {
-  await client().rpc("agenda_email_trimis", { p_cheie: cheie, p_id: id });
+// Notează lângă cerere dacă mailul către recepție a plecat (și de ce nu, dacă n-a plecat).
+export async function noteazaEmail(cheie: string, id: string, eroare: string | null): Promise<void> {
+  await client().rpc("agenda_rezultat_email", { p_cheie: cheie, p_id: id, p_eroare: eroare });
 }
 
 // true dacă trebuie trimisă acum alerta (cel mult una pe oră pentru o clinică).
