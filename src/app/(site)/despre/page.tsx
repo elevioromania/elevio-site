@@ -6,11 +6,10 @@ import JsonLd from "@/components/JsonLd";
 import { breadcrumbJsonLd } from "@/lib/seo/schema";
 
 export const metadata: Metadata = pageMetadata({
-  title: "Despre Elevio AI: recepționer vocal AI construit în România",
+  title: "Despre noi: echipa din spatele recepționerului vocal AI",
   description:
-    "Elevio AI construiește în România un recepționer vocal AI pentru firmele care trăiesc din telefon: răspunde 24/7 în română și nu improvizează niciodată.",
+    "Cine suntem și de ce construim în România un recepționer vocal AI pentru afaceri locale care trăiesc din telefon: răspunde 24/7 și nu improvizează niciodată.",
   path: "/despre",
-  absoluteTitle: true,
 });
 
 export default function DesprePage() {
@@ -25,6 +24,14 @@ export default function DesprePage() {
       <section className="py-16">
         <div className="container-elevio grid gap-12 lg:grid-cols-3">
           <div className="lg:col-span-2 space-y-6 text-elevio-dark/75 leading-relaxed">
+            <p>
+              Aceasta e povestea echipei. Ce face produsul, concret, găsești pe
+              pagina principală{" "}
+              <Link href="/" className="font-semibold text-elevio-primary underline">
+                Elevio AI: recepționer vocal AI în limba română
+              </Link>
+              .
+            </p>
             <p>
               Suntem o agenție formată pe baza unei viziuni: să ajutăm
               companiile să lucreze mai inteligent, mai eficient și fără
