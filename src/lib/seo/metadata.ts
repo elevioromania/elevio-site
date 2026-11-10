@@ -26,6 +26,11 @@ export const SHARED_OPEN_GRAPH = {
   images: [OG_IMAGE],
 };
 
+// Fluxul RSS al ghidurilor, anunțat în <head> pe toate paginile.
+export const RSS_ALTERNATE = {
+  "application/rss+xml": [{ url: "/ghid/rss.xml", title: `Ghiduri ${BRAND_NAME}` }],
+};
+
 /**
  * Metadatele unei pagini publice: titlu, descriere, canonical, Open Graph și
  * Twitter, toate din aceleași valori.
@@ -50,7 +55,7 @@ export function pageMetadata({
   return {
     title: absoluteTitle ? { absolute: title } : title,
     description,
-    alternates: { canonical: path },
+    alternates: { canonical: path, types: RSS_ALTERNATE },
     openGraph: {
       ...SHARED_OPEN_GRAPH,
       title: fullTitle,

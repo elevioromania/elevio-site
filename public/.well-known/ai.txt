@@ -1,0 +1,13 @@
+# Elevio AI (https://elevio-agency.ro)
+# Crawlerele AI au acces la paginile publice, aceleași reguli ca în robots.txt.
+User-Agent: *
+Allow: /
+Disallow: /api/
+Disallow: /echipa/
+
+# Resurse pentru motoarele AI
+LLMs: https://elevio-agency.ro/llms.txt
+Summary: https://elevio-agency.ro/ai/summary.json
+FAQ: https://elevio-agency.ro/ai/faq.json
+Feed: https://elevio-agency.ro/ghid/rss.xml
+Sitemap: https://elevio-agency.ro/sitemap.xml

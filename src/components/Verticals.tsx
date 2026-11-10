@@ -3,36 +3,42 @@ import Link from "next/link";
 const VERTICALS = [
   {
     tag: "restaurant",
+    pagina: "/industrii/restaurante",
     title: "Restaurante & cafenele",
     text: "Rezervări preluate non-stop, inclusiv vineri seara, când tot personalul e în tură. Numărul de persoane, ora și numele, notate exact.",
     tags: "Restaurante · cafenele · grupuri HoReCa",
   },
   {
     tag: "magazin",
+    pagina: "/industrii/magazine-online",
     title: "Magazine",
     text: "Program, stoc, comenzi și întrebări frecvente: preluate imediat, fără să suni degeaba clientul înapoi peste o oră.",
     tags: "Magazine locale · lanțuri de retail · showroom-uri",
   },
   {
     tag: "service_auto",
+    pagina: "/industrii/service-auto",
     title: "Service-uri auto",
     text: "Programări la revizie sau intervenții, cu marca, modelul și problema mașinii preluate din telefon. Mecanicii știu exact ce îi așteaptă.",
     tags: "Service-uri auto · ateliere · vulcanizări",
   },
   {
     tag: "medical",
+    pagina: "/industrii/cabinete-stomatologice",
     title: "Cabinete medicale & clinici",
     text: "Programări preluate corect din prima (dată, oră, tip de consultație), fără să aglomerezi recepția între doi pacienți.",
     tags: "Cabinete stomatologice · clinici · cabinete individuale",
   },
   {
     tag: "beauty",
+    pagina: "/industrii/saloane-frizerii",
     title: "Saloane & studiouri beauty",
     text: "Programări pe stilist sau specialist, confirmate automat prin SMS: clienta știe exact când și la cine vine.",
     tags: "Saloane de coafură · manichiură · cosmetică",
   },
   {
     tag: "altul",
+    pagina: "/industrii",
     title: "Orice afacere care răspunde la telefon",
     text: "Nu te încadrezi în categoriile de mai sus? Elevio se adaptează pe serviciile și regulile oricărei afaceri. Dacă ai clienți care sună, funcționează.",
     tags: "Servicii, birouri, cabinete: orice domeniu",
@@ -68,12 +74,20 @@ export default function Verticals() {
               <p className="mt-4 text-xs font-medium uppercase tracking-wide text-elevio-dark/40">
                 {v.tags}
               </p>
-              <Link
-                href={`/demo?tip=${v.tag}`}
-                className="mt-4 inline-flex items-center text-sm font-semibold text-elevio-primary hover:text-elevio-dark"
-              >
-                Vreau demo →
-              </Link>
+              <div className="mt-4 flex flex-wrap gap-x-4 gap-y-1">
+                <Link
+                  href={v.pagina}
+                  className="inline-flex items-center text-sm font-semibold text-elevio-primary hover:text-elevio-dark"
+                >
+                  Cum funcționează →
+                </Link>
+                <Link
+                  href={`/demo?tip=${v.tag}`}
+                  className="inline-flex items-center text-sm font-semibold text-elevio-dark/60 hover:text-elevio-dark"
+                >
+                  Vreau demo
+                </Link>
+              </div>
             </div>
           ))}
         </div>

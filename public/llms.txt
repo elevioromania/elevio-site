@@ -32,6 +32,26 @@ LinkedIn: https://www.linkedin.com/company/144838334 · Fondator: David Morega (
 - [Despre](https://elevio-agency.ro/despre): cine suntem și regula noastră de încredere.
 - [Contact](https://elevio-agency.ro/contact): date de contact și formular.
 - [Elevio Marketing](https://elevio-agency.ro/marketing): divizia de marketing pentru afaceri locale (recenzii Google Maps, site-uri, social media).
+- [Agent vocal AI](https://elevio-agency.ro/agent-vocal-ai): ce este un agent vocal AI pentru firme și ce face Elevio AI.
+- [Recepționer virtual](https://elevio-agency.ro/receptioner-virtual): recepționerul AI care răspunde la telefon în locul echipei.
+- [Robot telefonic AI](https://elevio-agency.ro/robot-telefonic-ai): robot telefonic care înțelege conversația și face programări.
+- [Industrii](https://elevio-agency.ro/industrii): cum lucrează Elevio AI în 24 de domenii (clinici, restaurante, service-uri, saloane și altele).
+
+## Ghiduri
+
+- [Cei mai buni agenți vocali AI din România în 2027](https://elevio-agency.ro/ghid/cei-mai-buni-agenti-vocali-ai-romania-2027)
+- [Cât costă un recepționer AI în 2027 (și cât un angajat)](https://elevio-agency.ro/ghid/cat-costa-receptioner-ai-2027)
+- [Agent vocal AI pentru magazinul online: ce face cu apelurile](https://elevio-agency.ro/ghid/agent-vocal-ai-ecommerce)
+- [Ce este un agent vocal AI și cum funcționează](https://elevio-agency.ro/ghid/ce-este-un-agent-vocal-ai)
+- [AI Act și GDPR: e legal ca un AI să răspundă la telefon?](https://elevio-agency.ro/ghid/ai-act-gdpr-receptioner-ai)
+- [Redirecționare apeluri: coduri, activare, verificare și anulare](https://elevio-agency.ro/ghid/redirectionare-apeluri)
+- [Centrală telefonică virtuală sau recepționer AI: ce alegi pentru o afacere locală](https://elevio-agency.ro/ghid/centrala-telefonica-virtuala-vs-receptioner-ai)
+- [Apeluri pierdute la firmă: de ce se întâmplă și cum le recuperezi](https://elevio-agency.ro/ghid/apeluri-pierdute-firma)
+- [Robot telefonic AI vs IVR: care e diferența și ce alegi](https://elevio-agency.ro/ghid/robot-telefonic-vs-ivr)
+- [Secretariat telefonic: externalizat, virtual sau cu AI](https://elevio-agency.ro/ghid/secretariat-telefonic)
+- [Mesaj automat la apel ratat: SMS, WhatsApp sau recepționer AI](https://elevio-agency.ro/ghid/mesaj-automat-apel-ratat)
+- [Recepționer AI cu Cal.com sau Calendly: programări prin telefon, direct în calendar](https://elevio-agency.ro/ghid/receptioner-ai-cal-com-calendly)
+- [Cum testezi un agent vocal AI în română înainte să-l cumperi](https://elevio-agency.ro/ghid/cum-testezi-agent-vocal-ai-romana)
 
 ## Informații legale
 

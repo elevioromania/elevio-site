@@ -11,6 +11,12 @@ export const ORGANIZATION_ID = `${SITE_URL}/#organization`;
 export const WEBSITE_ID = `${SITE_URL}/#website`;
 const CONTACT_EMAIL = "elevioromania@gmail.com";
 
+// Profilurile oficiale; adaugă aici YouTube / Facebook când există.
+export const ORGANIZATION_SAME_AS = [
+  "https://www.linkedin.com/company/144838334",
+  "https://www.crunchbase.com/organization/elevio-ai",
+];
+
 export function organizationJsonLd(): JsonLdObject {
   return {
     "@context": CONTEXT,
@@ -29,11 +35,7 @@ export function organizationJsonLd(): JsonLdObject {
     email: CONTACT_EMAIL,
     areaServed: { "@type": "Country", name: "România", identifier: "RO" },
     knowsLanguage: ["ro", "en"],
-    // Profilurile oficiale; adaugă aici YouTube / Facebook când există.
-    sameAs: [
-      "https://www.linkedin.com/company/144838334",
-      "https://www.crunchbase.com/organization/elevio-ai",
-    ],
+    sameAs: ORGANIZATION_SAME_AS,
     founder: {
       "@type": "Person",
       name: "David Morega",
