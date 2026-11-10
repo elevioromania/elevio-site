@@ -7,7 +7,7 @@ import { MARKETING_SERVICE_LABELS, type MarketingLead } from "./marketingLeads";
 
 const DEMO_AUDIO_PATH = path.join(process.cwd(), "public", "audio", "elevio-demo.mp3");
 
-function escapeHtml(value: string): string {
+export function escapeHtml(value: string): string {
   return value
     .replace(/&/g, "&amp;")
     .replace(/</g, "&lt;")
@@ -16,7 +16,7 @@ function escapeHtml(value: string): string {
     .replace(/'/g, "&#39;");
 }
 
-function getTransporter() {
+export function getTransporter() {
   const user = process.env.GMAIL_USER;
   const pass = process.env.GMAIL_APP_PASSWORD;
   if (!user || !pass) return null;
