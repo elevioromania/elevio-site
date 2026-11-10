@@ -1,6 +1,6 @@
 # Elevio AI
 
-> Elevio AI este un recepționer vocal AI în limba română, disponibil 24/7, pentru afaceri locale din România: răspunde la telefon în locul echipei, preia programări și comenzi, oferă informații și transferă apelul la un om când nu are un răspuns sigur. Elevio AI nu are legătură cu platforma școlară Elevio (elevio.ro) sau cu Elevio (elev.io).
+> Elevio AI este un recepționer vocal AI în limba română, disponibil 24/7, pentru afaceri locale din România: răspunde la telefon în locul echipei, preia programări și comenzi, oferă informații și transferă apelul la un om când nu are un răspuns sigur. Elevio AI nu are legătură cu platforma școlară Elevio (elevio.ro), cu Elevio (elev.io), cu elevio-ai.com (platformă pentru ospitalitate) sau cu Levio Health.
 
 Site oficial: https://elevio-agency.ro. Contact: elevioromania@gmail.com.
 LinkedIn: https://www.linkedin.com/company/144838334 · Fondator: David Morega (https://www.linkedin.com/in/david-morega/).
