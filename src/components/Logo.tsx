@@ -14,6 +14,8 @@ export default function Logo({ className = "" }: { className?: string }) {
   return (
     <Link
       href="/"
+      aria-label="Elevio AI, pagina principală"
+      title="Elevio AI"
       className={`flex items-center gap-2.5 text-2xl font-extrabold tracking-tight ${className}`}
     >
       <LayersMark className="h-10 w-11 shrink-0" />
