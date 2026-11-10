@@ -90,7 +90,7 @@ const PASI_START = [
   },
   {
     title: "Pornește și răspunde",
-    text: "Din acel moment, apelurile sunt preluate. Tu primești rezumatele și preiei doar ce are nevoie de tine.",
+    text: "Din acel moment, recepționerul preia apelurile. Tu primești rezumatele și preiei doar ce are nevoie de tine.",
   },
 ];
 
@@ -188,8 +188,8 @@ export default function ReceptionerVirtualPage() {
         title="Ce face recepționerul virtual Elevio AI"
         intro={
           <p>
-            Un receptionist AI bun face partea repetitivă a recepției la telefon și îți
-            lasă ție doar ce are nevoie de tine.
+            Recepționerul AI preia partea repetitivă a recepției la telefon. Ție îți
+            rămân doar cererile care au nevoie de un om din firmă.
           </p>
         }
       >
@@ -202,7 +202,7 @@ export default function ReceptionerVirtualPage() {
         title="Recepționer virtual AI față de alternative"
         intro={
           <p>
-            Nu e o întrecere: multe firme îi folosesc împreună. Recepționerul AI
+            Multe firme folosesc recepționerul AI alături de un angajat: AI-ul
             preia apelurile când angajatul e ocupat, în pauză sau acasă. Despre centrala
             cu meniu, vezi{" "}
             <Link href="/ghid/centrala-telefonica-virtuala-vs-receptioner-ai" className={linkClass}>

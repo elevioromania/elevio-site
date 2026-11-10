@@ -191,7 +191,7 @@ const VAL_1: Industrie[] = [
         },
       ],
       dupaApel:
-        "Luni dimineață, echipa găsește în rezumat comanda nouă (produse, adresă, plată) și o cerere separată: „verificare livrare, comanda 10482”, cu telefonul clientei. Nimeni nu a primit o informație inventată despre colet.",
+        "Luni dimineață, echipa găsește în rezumat comanda nouă (produse, adresă, plată) și o cerere separată: „verificare livrare, comanda 10482”, cu telefonul clientei. Despre colet, clienta a aflat doar că un coleg verifică și o sună.",
     },
     ceFaceElevio: [
       "Preia comenzi telefonice complete: produs, variantă, cantitate, nume, adresă, telefon, metodă de plată și observații.",
@@ -236,7 +236,7 @@ const VAL_1: Industrie[] = [
       },
       {
         q: "Merită pentru un magazin mic, cu câteva apeluri pe zi?",
-        a: "Depinde câte comenzi pierzi când nu răspunzi. Planurile pornesc de la 150€ pe lună + TVA, fără contract pe termen lung, deci poți încerca o perioadă și vezi în transcripturi ce apeluri primești de fapt.",
+        a: "Depinde câte comenzi pierzi când nu răspunzi. Planurile pornesc de la 150€ pe lună + TVA, fără contract pe termen lung, deci decizi lună de lună și vezi în transcripturi ce apeluri primești.",
       },
     ],
     industriiInrudite: ["restaurante", "tamplarie-pvc", "rent-a-car"],
@@ -465,7 +465,7 @@ const VAL_1: Industrie[] = [
         "O intervenție de urgență: în medie 300 lei.",
       ],
       rezultat:
-        "3 intervenții × 300 lei × 4 săptămâni = 3.600 lei pe lună. Fără să socotim clienții care te-ar fi chemat apoi și pentru lucrări mai mari.",
+        "3 intervenții × 300 lei × 4 săptămâni = 3.600 lei pe lună. Calculul nu include clienții care te-ar fi chemat apoi și pentru lucrări mai mari.",
     },
     faq: [
       {
@@ -722,7 +722,7 @@ const VAL_1: Industrie[] = [
         "O revizie: 250 lei.",
       ],
       rezultat:
-        "2,5 revizii pe zi × 250 lei × 20 de zile lucrătoare = aproximativ 12.500 lei într-o lună de sezon. Iar clientul care își face revizia la alții îi sună tot pe ei la primul defect.",
+        "2,5 revizii pe zi × 250 lei × 20 de zile lucrătoare = aproximativ 12.500 lei într-o lună de sezon. Clientul care își face revizia la alții îi sună de obicei tot pe ei la primul defect.",
     },
     faq: [
       {
@@ -965,7 +965,7 @@ const VAL_1: Industrie[] = [
         },
       ],
       dupaApel:
-        "Ioana vede programarea în calendarul ei, cu durata corectă și nota „caramel, mai deschis”. Nimeni din salon nu a lăsat clienta de pe scaun ca să răspundă.",
+        "Ioana vede programarea în calendarul ei, cu durata corectă și nota „caramel, mai deschis”, fără să fi lăsat clienta de pe scaun ca să răspundă.",
     },
     ceFaceElevio: [
       "Programează pe stilist și pe serviciu, cu durata corectă pentru fiecare, verificând calendarul în timp real (Cal.com, Calendly).",
@@ -981,7 +981,7 @@ const VAL_1: Industrie[] = [
         "Valoarea medie a unei programări: 150 lei.",
       ],
       rezultat:
-        "4 programări × 150 lei × 4 săptămâni = 2.400 lei pe lună. Iar clienta care nu te prinde la telefon își poate face obiceiul la alt salon.",
+        "4 programări × 150 lei × 4 săptămâni = 2.400 lei pe lună. O clientă care nu te prinde la telefon se poate obișnui cu alt salon.",
     },
     faq: [
       {
@@ -1569,7 +1569,7 @@ const VAL_2: Industrie[] = [
         },
       ],
       dupaApel:
-        "Medicul vede întrebarea despre alăptare înainte de consultație. Pacienta nu a primit niciun răspuns medical la telefon.",
+        "Medicul vede întrebarea despre alăptare înainte de consultație, iar la telefon pacienta nu a primit niciun răspuns medical.",
     },
     ceFaceElevio: [
       "Programează consultații și proceduri pe medic, cu verificarea în timp real a calendarului și SMS de confirmare.",
@@ -2508,7 +2508,7 @@ const VAL_3: Industrie[] = [
       "Recepție telefonică pentru sala ta de fitness: răspunde despre abonamente, program și clase și programează vizitele de probă și ședințele cu antrenorul.",
     h1: "Recepție telefonică pentru sala ta de fitness",
     intro:
-      "Elevio AI preia telefonul sălii de fitness 24/7, în română: răspunde la întrebările despre abonamente, program și clase și programează vizitele de probă și ședințele cu antrenorul. Recepția se ocupă de oamenii din sală, nu de telefonul care sună la fiecare cinci minute.",
+      "Elevio AI preia telefonul sălii de fitness 24/7, în română: răspunde la întrebările despre abonamente, program și clase și programează vizitele de probă și ședințele cu antrenorul. Recepția se poate ocupa de oamenii din sală, chiar dacă telefonul sună la fiecare cinci minute.",
     scurt: "Abonamente, program și clase, vizite de probă și ședințe cu antrenorul.",
     deCeSunaClientii: [
       {

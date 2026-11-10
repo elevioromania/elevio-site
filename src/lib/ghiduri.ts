@@ -43,7 +43,7 @@ const VERIFICAT = "verificat noiembrie 2026";
 const LINK_COMPARATIE: LinkCard = {
   href: "/ghid/cei-mai-buni-agenti-vocali-ai-romania-2027",
   title: "Cei mai buni agenți vocali AI din România în 2027",
-  text: "Comparație onestă între furnizori, cu prețuri publice, sursă și dată.",
+  text: "Comparație între furnizori, cu prețuri publice, sursă și dată.",
 };
 const LINK_COST: LinkCard = {
   href: "/ghid/cat-costa-receptioner-ai-2027",
@@ -132,7 +132,7 @@ export const GHIDURI: Ghid[] = [
         blocuri: [
           {
             tip: "p",
-            text: "Prețul e doar unul dintre criterii. Iată ce merită verificat la fiecare furnizor, înainte să semnezi ceva:",
+            text: "Pe lângă preț, verifică la fiecare furnizor, înainte să semnezi ceva:",
           },
           {
             tip: "lista",
@@ -238,7 +238,7 @@ export const GHIDURI: Ghid[] = [
           {
             tip: "lista",
             items: [
-              "**Callio, pentru clinici.** E construit doar pentru clinici, deci scenariile lor sunt deja gândite. Iar abonamentul de intrare (139 EUR/lună) e puțin sub planul nostru START (150 €/lună + TVA). Compară totuși și setup-ul și ce include fiecare pachet.",
+              "**Callio, pentru clinici.** E construit doar pentru clinici, deci scenariile lor sunt deja gândite. Abonamentul de intrare (139 EUR/lună) e puțin sub planul nostru START (150 €/lună + TVA). Compară totuși și setup-ul și ce include fiecare pachet.",
               "**LeadVoz, pentru vânzări.** Dacă vrei în principal calificarea lead-urilor și apeluri de vânzare, LeadVoz e concentrat pe asta. Elevio AI e un recepționer: e făcut pentru apelurile pe care le primești (programări, rezervări, comenzi).",
               "**Tariful pe minut, pentru volume mici.** La puține apeluri, plata pe minut poate ieși mai ieftin decât orice abonament fix (vezi exemplul de mai jos).",
               "**Agent Vocal (agentvocal.ro), pentru call-center.** Dacă ai un call-center cu mai mulți operatori, un furnizor orientat pe automatizarea call-center-ului poate fi mai potrivit.",
@@ -298,7 +298,7 @@ export const GHIDURI: Ghid[] = [
           },
           {
             tip: "p",
-            text: "Reprezinți unul dintre furnizori și vezi o greșeală sau un preț schimbat? Scrie-ne la elevioromania@gmail.com și corectăm la următoarea actualizare. Dacă vrei să auzi și varianta noastră, cere un [demo gratuit](/demo).",
+            text: "Dacă reprezinți unul dintre furnizori și vezi o greșeală sau un preț schimbat, scrie-ne la elevioromania@gmail.com și corectăm la următoarea actualizare. Dacă vrei să auzi și varianta noastră, cere un [demo gratuit](/demo).",
           },
         ],
       },
@@ -395,7 +395,7 @@ export const GHIDURI: Ghid[] = [
         blocuri: [
           {
             tip: "p",
-            text: "Salariul din anunț e doar o parte. Costul total pentru firmă include, de regulă:",
+            text: "Costul total pentru firmă e mai mare decât salariul din anunț. De regulă, include:",
           },
           {
             tip: "lista",
@@ -435,7 +435,7 @@ export const GHIDURI: Ghid[] = [
         blocuri: [
           {
             tip: "p",
-            text: "Comparația corectă nu e doar „abonament vs salariu”. Contează și cât pierzi azi din apelurile la care nu răspunde nimeni.",
+            text: "Pe lângă „abonament vs salariu”, contează și cât pierzi azi din apelurile la care nu răspunde nimeni.",
           },
           {
             tip: "nota",
@@ -479,7 +479,7 @@ export const GHIDURI: Ghid[] = [
           },
           {
             tip: "p",
-            text: "Multe firme nu aleg între om și AI: recepționerul AI preia apelurile când angajatul e ocupat, în pauză sau acasă. Vezi cum arată asta în pagina despre [recepționerul virtual](/receptioner-virtual) sau ascultă o mostră cerând un [demo gratuit](/demo).",
+            text: "Multe firme folosesc și un om, și un recepționer AI: AI-ul preia apelurile când angajatul e ocupat, în pauză sau acasă. Vezi cum arată asta în pagina despre [recepționerul virtual](/receptioner-virtual) sau ascultă o mostră cerând un [demo gratuit](/demo).",
           },
         ],
       },
@@ -641,7 +641,7 @@ export const GHIDURI: Ghid[] = [
           },
           {
             tip: "p",
-            text: "Nu știi în ce categorie ești? Cere un [demo gratuit](/demo) și discutăm pe apelurile magazinului tău.",
+            text: "Dacă nu știi în ce categorie ești, cere un [demo gratuit](/demo) și discutăm pe apelurile magazinului tău.",
           },
         ],
       },
@@ -752,7 +752,7 @@ export const GHIDURI: Ghid[] = [
         blocuri: [
           {
             tip: "p",
-            text: "E important să știi și limitele, nu doar ce face bine:",
+            text: "Limitele de care să ții cont:",
           },
           {
             tip: "lista",
@@ -891,7 +891,7 @@ export const GHIDURI: Ghid[] = [
         blocuri: [
           {
             tip: "p",
-            text: "Vocea, numele, numărul de telefon și ce spune clientul în apel sunt date cu caracter personal. Un recepționer AI produce de regulă transcrieri și rezumate ale apelurilor (Elevio AI face asta la fiecare apel), deci GDPR se aplică. Esențialul:",
+            text: "Vocea, numele, numărul de telefon și ce spune clientul în apel sunt date cu caracter personal. Un recepționer AI produce de regulă transcrieri și rezumate ale apelurilor (Elevio AI face asta la fiecare apel), deci GDPR se aplică. Ce înseamnă asta în practică:",
           },
           {
             tip: "lista",
@@ -941,7 +941,7 @@ export const GHIDURI: Ghid[] = [
           },
           {
             tip: "p",
-            text: "Ai întrebări despre cum tratează Elevio AI datele din apeluri? Întreabă-ne la [demo](/demo), cum ai întreba orice furnizor. Despre produs, vezi pagina [agent vocal AI](/agent-vocal-ai), iar despre costuri, pagina de [prețuri](/preturi).",
+            text: "Despre cum tratează Elevio AI datele din apeluri ne poți întreba la [demo](/demo), cum ai întreba orice furnizor. Despre produs, vezi pagina [agent vocal AI](/agent-vocal-ai), iar despre costuri, pagina de [prețuri](/preturi).",
           },
         ],
       },
@@ -1231,7 +1231,7 @@ export const GHIDURI: Ghid[] = [
             items: [
               "**Ai o echipă mare care răspunde toată ziua:** centrala virtuală e baza. Un recepționer AI poate prelua apelurile din afara programului.",
               "**Ai o afacere locală, cu 1–3 oameni care fac și altceva decât să răspundă la telefon:** recepționerul AI rezolvă direct problema apelurilor pierdute.",
-              "**Primești mai ales cereri de programare:** recepționerul AI, pentru că termină treaba singur, nu doar direcționează apelul.",
+              "**Primești mai ales cereri de programare:** recepționerul AI, pentru că face programarea singur, în timp ce centrala doar direcționează apelul.",
             ],
           },
         ],
@@ -1334,7 +1334,7 @@ export const GHIDURI: Ghid[] = [
         blocuri: [
           {
             tip: "p",
-            text: "Formula e simplă: apeluri pierdute pe lună × cât îți aduce în medie un client care sună × cât de des un apel devine client.",
+            text: "Formula: apeluri pierdute pe lună × cât îți aduce în medie un client care sună × cât de des un apel devine client.",
           },
           {
             tip: "nota",
@@ -1380,7 +1380,7 @@ export const GHIDURI: Ghid[] = [
             items: [
               "Săptămâna 1: numără apelurile pierdute și notează orele.",
               "Săptămâna 2: activează redirecționarea condiționată către cine poate răspunde și un SMS automat la apel ratat.",
-              "Săptămâna 3: dacă tot pierzi apeluri seara sau în vârfuri, testează un recepționer AI doar pe apelurile pe care nu le preiei.",
+              "Săptămâna 3: dacă tot pierzi apeluri seara sau în vârfuri, pune un recepționer AI doar pe apelurile pe care nu le preiei.",
               "Săptămâna 4: compară numărul de programări cu luna dinainte.",
             ],
           },
@@ -1393,7 +1393,7 @@ export const GHIDURI: Ghid[] = [
         a: "Apelul înapoi rapid și redirecționarea condiționată către un coleg. Sunt gratuite, dar nu acoperă seara, weekendul și momentele în care toată lumea e ocupată.",
       },
       {
-        q: "Merită un recepționer AI pentru o firmă mică?",
+        q: "Merită un recepționer AI pentru o afacere locală?",
         a: "Merită dacă pierzi constant apeluri pe care nu le poți prelua și un client nou îți aduce mai mult decât costul lunar. Fă întâi calculul de mai sus cu cifrele tale.",
       },
       {
@@ -1494,7 +1494,7 @@ export const GHIDURI: Ghid[] = [
     faq: [
       {
         q: "IVR-ul e același lucru cu robotul telefonic?",
-        a: "Nu. „Robot telefonic” se folosea pentru IVR, adică meniul cu taste. Un robot telefonic AI poartă însă o conversație și rezolvă cererea, nu doar o direcționează.",
+        a: "Nu. „Robot telefonic” se folosea pentru IVR, adică meniul cu taste. Un robot telefonic AI poartă o conversație și rezolvă cererea, iar IVR-ul doar o direcționează.",
       },
       {
         q: "Pot păstra IVR-ul și adăuga un robot AI?",
@@ -1513,7 +1513,7 @@ export const GHIDURI: Ghid[] = [
     titlu: "Secretariat telefonic: externalizat, virtual sau cu AI",
     metaTitle: "Secretariat telefonic: externalizat, virtual sau AI",
     metaDescription:
-      "Ce face un secretariat telefonic, cum funcționează varianta externalizată, cea virtuală și cea cu AI, ce întrebi înainte și ce se potrivește unei firme mici.",
+      "Ce face un secretariat telefonic, cum funcționează varianta externalizată, cea virtuală și cea cu AI, ce întrebi înainte și ce alegi pentru o afacere locală.",
     interogare: "secretariat telefonic",
     variante: [
       "secretariat telefonic externalizat",
@@ -1779,7 +1779,7 @@ export const GHIDURI: Ghid[] = [
         blocuri: [
           {
             tip: "p",
-            text: "Un asistent care doar notează „clientul vrea o programare joi” te lasă tot pe tine să suni înapoi. Legat de calendar, asistentul termină treaba în timpul apelului: vede ce e liber, propune o oră, confirmă și trimite SMS-ul. Clientul închide telefonul cu programarea făcută.",
+            text: "Un asistent care doar notează „clientul vrea o programare joi” te lasă tot pe tine să suni înapoi. Legat de calendar, asistentul termină treaba în timpul apelului: vede ce e liber, propune o oră, confirmă și trimite SMS-ul, iar clientul închide telefonul cu programarea făcută.",
           },
         ],
       },

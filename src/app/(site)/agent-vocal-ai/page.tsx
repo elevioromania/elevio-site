@@ -50,7 +50,7 @@ const FEATURES = [
   },
   {
     title: "Vorbește natural în română",
-    text: "Ton cald și intonație firească. Clientul vorbește normal, nu apasă taste și nu ascultă un meniu.",
+    text: "Are un ton cald și o intonație firească. Clientul vorbește normal, fără să apese taste sau să asculte un meniu.",
   },
   {
     title: "Ia programări, rezervări și comenzi",
@@ -155,8 +155,8 @@ export default function AgentVocalAiPage() {
         title="Trei pași, de la apel la programare"
         intro={
           <p>
-            Pentru clienții tăi nu se schimbă nimic: sună la același număr. Diferența
-            e că acum cineva răspunde de fiecare dată.
+            Pentru clienții tăi nu se schimbă nimic: sună la același număr, doar că
+            acum li se răspunde la fiecare apel.
           </p>
         }
         tinted
@@ -170,8 +170,8 @@ export default function AgentVocalAiPage() {
         title="Ce face agentul vocal AI Elevio"
         intro={
           <p>
-            Un agent AI vocal bun face ce face o recepție bună, fără pauze. Și știe
-            când să-ți dea ție telefonul.
+            Agentul face ce face o recepție bună, fără pauze, și îți transferă
+            apelul când nu are un răspuns sigur.
           </p>
         }
       >
