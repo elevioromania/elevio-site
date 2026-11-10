@@ -10,7 +10,7 @@ import {
   TITLE_TEMPLATE,
 } from "@/lib/seo/metadata";
 import { SITE_URL } from "@/lib/seo/routes";
-import { organizationJsonLd, websiteJsonLd } from "@/lib/seo/schema";
+import { organizationJsonLd } from "@/lib/seo/schema";
 import "./globals.css";
 
 const jakarta = Plus_Jakarta_Sans({
@@ -47,7 +47,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="ro" className={`${jakarta.variable} h-full antialiased`}>
       <body className="min-h-full flex flex-col bg-elevio-bg text-elevio-dark">
-        <JsonLd data={[organizationJsonLd(), websiteJsonLd()]} />
+        <JsonLd data={organizationJsonLd()} />
         {children}
       </body>
     </html>
