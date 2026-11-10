@@ -53,7 +53,7 @@ const CAND_MERITA = [
   },
   {
     title: "Primești multe cereri de programare",
-    text: "Cele mai multe apeluri sunt „când aveți liber?”. Exact asta face bine un robot telefonic pentru programări.",
+    text: "Cele mai multe apeluri sunt „când aveți liber?”. Un robot telefonic pentru programări răspunde la ele și face programarea.",
   },
   {
     title: "Clienții sună și după program",
@@ -61,7 +61,7 @@ const CAND_MERITA = [
   },
   {
     title: "Ai deja un IVR care enervează",
-    text: "Dacă oamenii închid în meniu, un robot cu care pot vorbi normal e un pas înainte față de robotul centralei telefonice.",
+    text: "Dacă oamenii închid în meniu, un robot cu care pot vorbi normal poate înlocui meniul centralei telefonice sau poate prelua o opțiune din el.",
   },
 ];
 
@@ -141,8 +141,8 @@ export default function RobotTelefonicAiPage() {
         intro={
           <p>
             Robotul de centrală telefonică (IVR) a fost gândit ca să împartă apelurile
-            pe departamente. Nu poate face o programare. Un robot telefonic AI poate,
-            pentru că înțelege conversația.
+            pe departamente și nu poate face o programare. Un robot telefonic AI
+            înțelege conversația, așa că poate programa clientul.
           </p>
         }
         tinted
@@ -161,7 +161,7 @@ export default function RobotTelefonicAiPage() {
         intro={
           <p>
             Exemplu ilustrativ pentru un service auto, scris de noi ca să arate
-            fluxul. Nu e transcriptul unui apel real. Vrei să auzi vocea? Cere un{" "}
+            fluxul. Nu e transcriptul unui apel real. Ca să auzi vocea, cere un{" "}
             <Link href="/demo" className={linkClass}>
               demo gratuit
             </Link>{" "}
@@ -249,7 +249,7 @@ export default function RobotTelefonicAiPage() {
           {
             href: "/ghid/cei-mai-buni-agenti-vocali-ai-romania-2027",
             title: "Agenți vocali AI din România în 2027",
-            text: "Comparație onestă între furnizori, cu prețuri publice și sursă.",
+            text: "Comparație între furnizori, cu prețuri publice și sursă.",
           },
           {
             href: "/ghid/robot-telefonic-vs-ivr",
