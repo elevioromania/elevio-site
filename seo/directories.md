@@ -35,14 +35,14 @@ recepționer vocal AI, agent vocal AI, robot telefonic AI, recepționer virtual,
 
 | Director | Cum se face înscrierea | Starea | Link profil |
 |---|---|---|---|
-| Future Tools | Formular fără cont, cu CAPTCHA | **Completat** în browserul din aplicație (Elevio AI, elevio-agency.ro, descrierea EN, Customer Support, Paid, elevioromania@gmail.com). 👤 David rezolvă CAPTCHA-ul și apasă „Submit Tool”. | |
-| RankMyAI | Formular gratuit fără cont (rankmyai.com/tool-addition) | **Completat parțial** (14 câmpuri). Lipsesc denumirea legală a firmei (obligatorie), CUI-ul, anul înființării, adresa și numărul de angajați. 👤 David le dă sau le completează, apoi trimite. | |
-| Crunchbase | Cont obligatoriu („log in or register to continue”) | 👤 David face contul. Tip: Company, fondator David Morega, industrii: Artificial Intelligence, SaaS, Telecommunications. | |
-| SaaSHub | Cont obligatoriu (Register / Login) | 👤 David face contul. Produs nou + **Startup Details** (anul înființării, țara, numărul de angajați, finanțare: bootstrapped), alternative: Callio, Synthflow, Bland AI. | |
+| Future Tools | Formular fără cont, cu CAPTCHA | **Trimis** 10.11 (David a rezolvat CAPTCHA-ul). Așteaptă aprobarea lui Matt Wolfe. Link dofollow raportat. | (după aprobare) |
+| RankMyAI | Formular gratuit fără cont | **Trimis** 10.11 (răspuns `success: true`). „Legal name” = David Morega, cum permite formularul; anul înființării lăsat gol. | (după aprobare) |
+| Crunchbase | Cont făcut de David | **Live** 10.11: nume, descriere, „Also known as: Elevio”, site, LinkedIn, email, industrii (Artificial Intelligence, Customer Service, SaaS), sediu București. Descrierea lungă a fost respinsă la validare; de adăugat mai târziu, fără nume de domenii în text. Link nofollow, dar e o sursă de entitate pentru Google și AI-uri; adăugat în `sameAs`. | https://www.crunchbase.com/organization/elevio-ai |
+| SaaSHub | Cont făcut de David | **Trimis și verificat** 10.11: descriere scurtă și lungă, categorii (Virtual Receptionist, AI Voice, Voice Calling Assistant, Appointments and Scheduling), concurenți (Smith.ai, Ruby Receptionists, Retell AI, Bland AI), apare ca alternativă la 7 produse (Vapi, AI Receptionist, Dialora, TheChattyAI, EpicVoice, BrinoAI, Vokelo), detalii, preț de la 150 EUR/lună, logo. Link principal dofollow. Aprobare gratuită: de la o săptămână la câteva luni. | https://www.saashub.com/elevio-ai (după aprobare) |
 | StartupBlink | Linkul „Join the Network” e formularul de **partener de ecosistem** (pentru organizații), nu pentru startup-uri | Nepotrivit. Listarea ca startup cere cont; de verificat de David. | |
-| EveryDev | Logare cu Google sau GitHub | 👤 David se loghează și trimite unealta. | |
-| AgentHunter | Logare (Google sau email) | 👤 David. | |
-| Acidtools | Logare (Google sau cont nou) | 👤 David. | |
+| EveryDev | Logare cu Google | **Trimis** 10.11 („Submission Received”), profil de utilizator completat. Aprobare în 1–2 zile lucrătoare, cu email. | (după aprobare) |
+| AgentHunter | Logare | **Sărit**: varianta gratuită dă link nofollow și cere un link spre ei de pe site. Doar varianta de 79 $ e dofollow. | |
+| Acidtools | Logare | **Sărit** la cererea lui David (nu vrea badge pe site). | |
 | Stork | **Plătit: 49 $**, o singură dată. Nu mai e gratuit. | Sărit (fără plăți) | |
 | AIPure | **Plătit: 69,90 $** | Sărit | |
 | Aiwith | **Plătit: 26,90 $** sau 39,90 $/lună | Sărit | |
