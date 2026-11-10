@@ -6,6 +6,7 @@ import {
   DEFAULT_DESCRIPTION,
   DEFAULT_TITLE,
   OG_IMAGE,
+  RSS_ALTERNATE,
   SHARED_OPEN_GRAPH,
   TITLE_TEMPLATE,
 } from "@/lib/seo/metadata";
@@ -40,6 +41,7 @@ export const metadata: Metadata = {
   },
   alternates: {
     canonical: "/",
+    types: RSS_ALTERNATE,
   },
 };
 
