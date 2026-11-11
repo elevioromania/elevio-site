@@ -13,7 +13,7 @@ export default function AudioProof() {
           </h2>
           <p className="max-w-xl text-elevio-dark/70">
             Fragment din conversația cu unul dintre agenții noștri AI pentru
-            restaurante.
+            clinici.
           </p>
 
           <div className="w-full max-w-md">
