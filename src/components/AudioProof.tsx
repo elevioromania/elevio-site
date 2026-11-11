@@ -17,7 +17,7 @@ export default function AudioProof() {
           </p>
 
           <div className="w-full max-w-md">
-            <AudioPlayer src="/audio/agent-call-sample.m4a" />
+            <AudioPlayer src="/audio/agent-call-sample.mp3" />
           </div>
         </div>
       </div>
