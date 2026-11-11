@@ -1,0 +1,14 @@
+# Economie de credite Netlify: fiecare publicare reușită în producție costă
+# 15 credite, iar planul are o limită lunară. Restul setărilor de build
+# (comandă, folder) rămân cele din interfața Netlify.
+#
+# `ignore` iese cu 0 (= Netlify sare peste build, fără credite consumate) când
+# commit-ul nu atinge nimic din ce ajunge pe site: doar seo/, vanzari/,
+# tools/, scripts/, supabase/, .claude/ sau fișiere .md din rădăcină.
+# Dacă e același commit (re-deploy manual din interfață), build-ul merge.
+# Un deploy prin API/CLI (export fără git) face mereu build.
+#
+# netlify.toml nu e în listă intenționat: dacă adaugi aici setări de build,
+# pornește un deploy manual după merge.
+[build]
+  ignore = '[ "$CACHED_COMMIT_REF" != "$COMMIT_REF" ] && git diff --quiet "$CACHED_COMMIT_REF" "$COMMIT_REF" -- src public content package.json package-lock.json next.config.ts postcss.config.mjs tsconfig.json eslint.config.mjs'
