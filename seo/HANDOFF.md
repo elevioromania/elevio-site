@@ -7,7 +7,7 @@ De acum, sesiunea locală (Workstation, `C:\Users\Dominic\Desktop\claude\elevio-
 - **Text:** skill-ul `elevio-copywriting`. Fără linie de pauză (—), „afaceri locale”, fără „pilot” sau „test gratuit”, fără cifre sau clienți inventați. Rezultatul clienților se formulează așa: „au recuperat multe programări cu asistentul, deși aveau deja pe cineva la recepție”. Vocea lui David pe LinkedIn: o poveste reală, fraze scurte, „am construit Elevio ca să rezolv exact asta”.
 - **Piața:** doar România.
 - **Brand:** „Elevio AI”, pe domeniul elevio-agency.ro. Se poate confunda cu elevio.ro (platformă școlară) și cu elev.io.
-- **Git:** `git pull` pe main → branch nou → `npm run lint` + `npm run build` → PR → merge. Netlify publică automat după merge (verificat pe 10.11). După deploy: `npm run indexnow`.
+- **Git:** `git pull` pe main → branch nou → `npm run lint` + `npm run build` → PR → merge. Publicarea pe Netlify: planul are credite limitate (s-au terminat pe 10.11 și David a plătit pe 11.11), deci grupăm deploy-urile, cam o dată pe săptămână: lucrul se adună pe un singur branch și se face un singur merge pe main. `netlify.toml` sare automat peste build când merge-ul atinge doar seo/, vanzari/, tools/, scripts/, supabase/, .claude/ sau .md (rapoartele nu mai costă credite). Dacă nu pornește automat după merge, deploy prin MCP-ul Netlify dintr-un export curat (`git archive main` într-un folder separat, fără .next și .env.local). După deploy: `npm run indexnow`.
 - **Mailuri:** pentru redacții și bloguri, variantele din `seo/outreach/mesaje.md`. Template-ul „Passive Script” (`vanzari/cold-email-clienti.md`) e DOAR pentru vânzări către clienți. Nu dăm numele clienților fără acordul lor.
 
 ## Ce e făcut
